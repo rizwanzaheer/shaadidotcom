@@ -1,10 +1,10 @@
 {
-  "name": "shaadi-too-karoo",
+  "name": "shaadi-dot-com",
   "version": "1.0.0",
   "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RizwanZaheer/shaaditookaro.git"
+    "url": "https://github.com/RizwanZaheer/shaadidotcom.git"
   },
   "engines": {
     "npm": ">=3",
@@ -28,7 +28,8 @@
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
-    "dev": "concurrently \"yarn start\" \"yarn apiserver\"",
+    "dev": "concurrently \"yarn apiserver\" \"yarn start\"",
+    "apiserver": "npm run start --prefix ../api_server",
     "presetup": "npm i chalk shelljs",
     "setup": "node ./internals/scripts/setup.js",
     "postsetup": "npm run build:dll",
