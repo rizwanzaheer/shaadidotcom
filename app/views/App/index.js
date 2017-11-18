@@ -35,7 +35,7 @@ export default function App() {
         onClick={(e) => {
           axios({
             method: 'get',
-            url: 'https://localhost:5000',
+            url: 'https://nodeapiserver.herokuapp.com/',
           })
             .then((response) => {
               console.log(response);
