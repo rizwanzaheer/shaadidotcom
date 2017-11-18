@@ -10,10 +10,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import CustomRoutes from '../../config/routes';
-import axios from 'axios';
+import CustomRoutes from 'config/routes';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -28,27 +25,7 @@ export default function App() {
       <Helmet titleTemplate="%s - React.js App" defaultTitle="React.js App">
         <meta name="description" content="A React.js App" />
       </Helmet>
-      <Header />
       <CustomRoutes />
-      <button
-        className="btn"
-        onClick={(e) => {
-          axios({
-            method: 'get',
-            url: 'https://nodeapiserver.herokuapp.com/',
-          })
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error, data) => {
-              console.log('data: ', data);
-              console.log('error occure: ', error);
-            });
-        }}
-      >
-        Axios
-      </button>
-      <Footer />
     </div>
   );
 }
