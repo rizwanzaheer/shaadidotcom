@@ -18,7 +18,7 @@ class Navbar extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    //this.renderLinks = this.renderLinks.bind(this);
+    // this.renderLinks = this.renderLinks.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +53,7 @@ class Navbar extends React.Component {
         <nav>
           <div className="nav-wrapper">
             <NavLink to="#" className="brand-logo">
-              <img src={Logo} alt="Shaadi too karo" />
+              <img src={Logo} alt="logo" />
             </NavLink>
             <NavLink
               to="#"

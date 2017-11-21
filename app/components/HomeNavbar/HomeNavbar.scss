@@ -1,0 +1,32 @@
+.HomeNavbar-container {
+  height: 70px;
+  width: 78%;
+  margin: 20px auto;
+  // .home_logo {
+  margin-top: 20px;
+  background: url("../../images/home-logo.png") no-repeat left top;
+  a {
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .login-btn,
+  .help-btn {
+    i {
+      padding-left: 5px;
+    }
+  }
+  .customer-care-avatar {
+    background: url("../../images/sprite-homepg-v3.png") no-repeat;
+    background-position: left -40px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 6px 6px 0 35px;
+  }
+  // }
+}

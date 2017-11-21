@@ -7,17 +7,28 @@ import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Signin from 'components/Auth/Signin';
+import Home from '../views/Home';
 
 const CustomRoutes = () => (
   <div>
-    <Header />
+    {/* <Header /> */}
     <Switch>
-      <Route exact path="/" component={HomePage} />
+      <Route path="/" component={Home} />
+      {/* <Route exact path="/dashboard" component={HomePage} /> */}
       <Route path="/features" component={FeaturePage} />
       <Route path="/signin" component={Signin} />
+      <Route
+        exact
+        path="/backoffice"
+        component={() => <h1> backoffice route wroking </h1>}
+      />
+      <Route
+        path="/backoffice/help"
+        component={() => <h1> backoffice/help route wroking </h1>}
+      />
       <Route path="" component={NotFoundPage} />
     </Switch>
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 export default CustomRoutes;

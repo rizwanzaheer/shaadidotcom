@@ -22,8 +22,8 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <div>
-      <Helmet titleTemplate="%s - React.js App" defaultTitle="React.js App">
-        <meta name="description" content="A React.js App" />
+      <Helmet titleTemplate="%s - Shaadi dot com App" defaultTitle="Shaadi dot com App">
+        <meta name="description" content="A Shaadi dot com App" />
       </Helmet>
       <CustomRoutes />
     </div>
