@@ -19,8 +19,7 @@ class Modal extends React.Component {
   componentDidMount() {
     $('.modal').modal();
   }
-  componentWillUnmount() {
-  }
+  componentWillUnmount() {}
   render() {
     return (
       <div>
@@ -54,7 +53,7 @@ class Modal extends React.Component {
               </div>
             </div>
             <p className="stay-signedin">
-              <input type="checkbox" id="stay-signedin" />
+              <input type="checkbox" className="filled-in" id="stay-signedin" />
               <label htmlFor="stay-signedin">
                 Stay Signed in &nbsp;
                 <i
@@ -64,7 +63,10 @@ class Modal extends React.Component {
                   aria-hidden="true"
                 />
               </label>
-              <NavLink to="forgetpassword" className="right modal-action modal-close">
+              <NavLink
+                to="forgetpassword"
+                className="forget-password right modal-action modal-close"
+              >
                 forget Password?
               </NavLink>
             </p>
@@ -77,23 +79,21 @@ class Modal extends React.Component {
               <p>not use this if you are</p>
               <p>signing in from a shared computer? </p>
             </ReactTooltip>
-            <button
-              className="btn waves-effect waves-light modal-action modal-close"
-              type="submit"
-              name="action"
-              herf="/signin"
-              onClick={() => {
-                console.log(this.props.history);
-
-                window.location.pathname = '/dashboard';
-              }}
-            >
-              Signin
-              <i className="material-icons right">send</i>
-            </button>
+            <Link to="/signin">
+              <button
+                className="btn waves-effect waves-light modal-action modal-close"
+                type="submit"
+                name="action"
+              >
+                Signin
+                <i className="material-icons right">send</i>
+              </button>
+            </Link>
             <h6>New to Shaadidotcom?</h6>
             <div className="signup-free-btn">
-              <Link to="signup" className="modal-action modal-close">Sign Up Free</Link>
+              <Link to="signup" className="modal-action modal-close">
+                Sign Up Free
+              </Link>
             </div>
           </div>
           {/* <div className="modal-footer"> */}
