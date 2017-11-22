@@ -18,14 +18,20 @@ class Searchbar extends React.Component {
 
   render() {
     return (
-      <div className="container searchbar-container">
-        <div className="row">
-          <div className="col s12 searchbar-bg">
-            {listOfDropDown.map((data) => (
-              <div className="col s3" key={data.label}>
+      <div className="searchbar-container">
+        <div className="row searchbar-bg">
+          <div className="col s12 ">
+            {listOfDropDown.map((data, index) => (
+              <div
+                className={`col s${index === 1 || index === 2 ? 2 : 2}`}
+                key={data.label}
+              >
                 <Dropdown options={data.options} label={data.label} />
               </div>
             ))}
+            <button className="btn lets-begin-btn waves-effect waves-light">
+              Let&nbsp;s Begin
+            </button>
           </div>
         </div>
       </div>

@@ -1,10 +1,25 @@
-.searchbar-container{
+@import "../../utils/_variables.scss";
+.searchbar-container {
   padding: 10px;
-  .searchbar-bg{
-    background: rgba(0,0,0,0.5);
+  width: 80%;
+  margin: 0 auto;
+  .searchbar-bg {
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 3px;
-    color: #fff!important;
+    color: #fff !important;
     margin: 47px auto 0;
-    padding: 15px 19px 20px 20px !important;
+    padding: 20px 20px 30px 20px !important;
+    .lets-begin-btn {
+      margin-top: 3.5%;
+      padding: 0 1rem;
+      cursor: pointer;
+      background: $lets-begin-btn-color;
+      &:hover {
+        background-color: #0194a8;
+        box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18),
+          0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+      }
+    }
   }
 }

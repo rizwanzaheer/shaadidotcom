@@ -51,7 +51,11 @@ export const listOfDropDown = [
     options: Gender,
   },
   {
-    label: 'aged',
+    label: 'Start age',
+    options: Aged,
+  },
+  {
+    label: 'End age',
     options: Aged,
   },
   {
@@ -59,7 +63,7 @@ export const listOfDropDown = [
     options: Religion,
   },
   {
-    label: 'and mother tongue',
+    label: 'mother tongue',
     options: MotherTongue,
   },
 ];
