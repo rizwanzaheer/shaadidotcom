@@ -6,8 +6,8 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'app.components.Searchbar.header',
-    defaultMessage: 'This is the Searchbar component !',
+  letsBeginBtn: {
+    id: 'app.components.Searchbar.letsBeginBtn',
+    defaultMessage: "Let's Begin",
   },
 });

@@ -8,7 +8,7 @@ import './home.scss';
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="home-page">
         <div className="home_banner">
           <div className="row">
             <div className="col s12">
@@ -16,6 +16,13 @@ class Home extends Component {
               <H1>Meet someone for keeps</H1>
               <SearchBar />
               <Modal />
+            </div>
+          </div>
+        </div>
+        <div className="container flow-container">
+          <div className="row">
+            <div className="col s12">
+              <h4>Find your Special Someone</h4>
             </div>
           </div>
         </div>

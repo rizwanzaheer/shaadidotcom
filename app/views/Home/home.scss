@@ -1,8 +1,17 @@
-.home_banner {
-  width: 100%;
-  background: url('../../images/home-banner-nri.jpg')
-    no-repeat center center;
-  min-height: 100vh;
-  height: auto;
-  background-size: cover;
+@import '../../utils/_variables.scss';
+.home-page {
+  .home_banner {
+    width: 100%;
+    background: url("../../images/home-banner-nri.jpg") no-repeat center center;
+    min-height: 90vh;
+    height: auto;
+    background-size: cover;
+  }
+  .flow-container{
+    h4{
+      color: $red;
+      text-align: center;
+      margin: 40px 20px;
+    }
+  }
 }

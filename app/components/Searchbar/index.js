@@ -9,7 +9,7 @@ import React from 'react';
 
 import { FormattedMessage } from 'react-intl';
 import Dropdown from 'components/Dropdown';
-import { options, listOfDropDown } from './SearchbarData';
+import { listOfDropDown } from './SearchbarData';
 import messages from './messages';
 import './SearchbarStyle.scss';
 
@@ -30,7 +30,7 @@ class Searchbar extends React.Component {
               </div>
             ))}
             <button className="btn lets-begin-btn waves-effect waves-light">
-              Let&nbsp;s Begin
+              <FormattedMessage {...messages.letsBeginBtn} />
             </button>
           </div>
         </div>
