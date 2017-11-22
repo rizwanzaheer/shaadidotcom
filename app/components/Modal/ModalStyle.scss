@@ -1,0 +1,59 @@
+@import "../../utils/_variables.scss";
+
+.modal {
+  max-height: 90% !important;
+  .modal-content {
+    .layerlogo {
+      background: url("../../images/home-page-layer-logo.png") no-repeat center
+        center;
+      height: 87px;
+      width: 87px;
+      margin: 9px auto 34px;
+    }
+    .modal-title {
+      text-align: center;
+      color: $heading-color;
+      margin-bottom: 40px;
+    }
+    .input-field {
+      margin-top: 5px !important;
+      input {
+        margin-bottom: 0px !important;
+      }
+    }
+    .stay-signedin {
+      padding-left: 25px;
+      .fa-question-circle-o {
+        //cursor: help;
+        &:hover {
+          color: black;
+        }
+      }
+      a {
+        text-transform: capitalize;
+        margin-right: 20px;
+      }
+    }
+    .toolTipClass {
+      line-height: 0.2;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+      background: $sigin-btn-color;
+    }
+    h6 {
+      text-align: center;
+      padding-top: 20px;
+      color: $heading-color;
+    }
+    .signup-free-btn {
+      text-align: center;
+      margin: 0 auto;
+      font-weight: 600;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
