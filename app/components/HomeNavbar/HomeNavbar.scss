@@ -30,3 +30,20 @@
   }
   // }
 }
+@media (max-width: 600px) {
+    .HomeNavbar-container{
+      a{
+        padding-left: 0px;
+        img{
+          width: 90px;
+        }
+      }
+      .customer-care-avatar{
+        margin-left: 0;
+      }
+      .help-btn{
+        padding-right: 0;
+        padding-left: 2px;
+      }
+    }
+}

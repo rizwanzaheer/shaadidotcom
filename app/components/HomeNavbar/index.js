@@ -18,7 +18,7 @@ class HomeNavbar extends React.Component { // eslint-disable-line react/prefer-s
     return (
       <div className="HomeNavbar-container">
         <Link to="/">
-          <img src={Logo} alt="" />
+          <img src={Logo} alt="Logo" />
         </Link>
         <Link to="#" className="right help-btn">
           Help
