@@ -86,7 +86,6 @@ class Modal extends React.Component {
                 name="action"
               >
                 Signin
-                <i className="material-icons right">send</i>
               </button>
             </Link>
             <h6>New to Shaadidotcom?</h6>

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import HomeNavbar from 'components/HomeNavbar';
-import H1 from 'components/H1';
-import Modal from 'components/Modal';
-import SearchBar from 'components/Searchbar';
-import './home.scss';
+import React, { Component } from "react";
+import HomeNavbar from "components/HomeNavbar";
+import H1 from "components/H1";
+import Modal from "components/Modal";
+import SearchBar from "components/Searchbar";
+import WorkFLowContainer from "components/WorkFlowContainer";
+import "./home.scss";
 
 class Home extends Component {
   render() {
@@ -23,6 +24,7 @@ class Home extends Component {
           <div className="row">
             <div className="col s12">
               <h4>Find your Special Someone</h4>
+              <WorkFLowContainer title="test title" para="test para" />
             </div>
           </div>
         </div>

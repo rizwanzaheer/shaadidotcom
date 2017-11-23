@@ -23,13 +23,13 @@ class Searchbar extends React.Component {
           <div className="col s12 ">
             {listOfDropDown.map((data, index) => (
               <div
-                className={`col s${index === 1 || index === 2 ? 2 : 2}`}
+                className={`col s12 m6 l${index === 1 || index === 2 ? 3 : 4} xl${index === 1 || index === 2 ? 2 : 2}`}
                 key={data.label}
               >
                 <Dropdown options={data.options} label={data.label} />
               </div>
             ))}
-            <button className="btn lets-begin-btn waves-effect waves-light">
+            <button className="btn lets-begin-btn waves-effect waves-light ">
               <FormattedMessage {...messages.letsBeginBtn} />
             </button>
           </div>
