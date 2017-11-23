@@ -8,14 +8,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import WorkFlowDiv from './WorkFlowContainerStyle';
+import './WorkFlowContainer.scss';
 
-function WorkFlowContainer({ title, para }) {
+function WorkFlowContainer({ title, para, img }) {
   return (
-    <WorkFlowDiv className="col s4">
-      <NavLink to="#">
+    <WorkFlowDiv className="col s4 workFlowContainer">
+      <NavLink to="#" style={{ background: `url(${img}) no-repeat left 1px`, backgroundSize: '100%' }}>
         <span />
       </NavLink>
-      <h3>{title}</h3>
+      <h5>{title}</h5>
       <p>{para}</p>
     </WorkFlowDiv>
   );
