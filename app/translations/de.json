@@ -1,6 +1,10 @@
 {
-  "boilerplate.components.Footer.author.message": "Mit Liebe gemacht von {author}.",
-  "boilerplate.components.Footer.license.message": "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht.",
+  "app.components.Footer.author.message": "Mit Liebe gemacht von {author}.",
+  "app.components.Footer.license.message": "Verdens No.1 Matchmaking Service ™",
+  "app.components.HomeNavbar.help": "Hjælp",
+  "app.components.HomeNavbar.login": "Log på",
+  "app.view.Home.heroText.message": "Mød nogen til holder",
+  "app.view.Home.workFlowHeroText.message": "Find din Special Someone",
   "boilerplate.components.Header.features": "",
   "boilerplate.components.Header.home": "",
   "boilerplate.containers.FeaturePage.css.header": "",
@@ -27,5 +31,6 @@
   "containers.HomePage.tryme.message": "Zeige die Github Repositories von",
   "boilerplate.containers.LocaleToggle.de": "",
   "boilerplate.containers.LocaleToggle.en": "",
+  "app.components.Searchbar.letsBeginBtn": "Lad os begynde",
   "boilerplate.containers.NotFoundPage.header": "Seite nicht gefunden."
 }

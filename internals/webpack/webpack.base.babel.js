@@ -4,7 +4,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const $ = require('jquery');
 
 // Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
 // 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,

@@ -2,4 +2,12 @@
 footer.page-footer{
   background: $footer-bg-color !important;
   padding-top: 0;
+  min-height: 50px;
+  padding: 25px;
+  section{
+    span{
+      font-size: 11px;
+      color: $footer-text-color;
+    }
+  }
 }

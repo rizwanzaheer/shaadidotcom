@@ -1,11 +1,13 @@
 /**
-*
-* HomeNavbar
-*
-*/
+ *
+ * HomeNavbar
+ *
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 import Logo from '../../images/home-logo.png';
 
@@ -17,22 +19,22 @@ class HomeNavbar extends React.Component { // eslint-disable-line react/prefer-s
   render() {
     return (
       <div className="HomeNavbar-container container">
-        <Link to="/">
+        <NavLink to="https://shaadidotcom.herokuapp.com" target="_blank">
           <img src={Logo} alt="Logo" />
-        </Link>
-        <Link to="#" className="right help-btn">
-          Help
+        </NavLink>
+        <Link to="#" className="pull-right help-btn">
+          <FormattedMessage {...messages.help} />
           <i className="fa fa-angle-down" aria-hidden="true" />
         </Link>
-        <Link to="#" className="right customer-care-avatar">
+        <Link to="#" className="pull-right customer-care-avatar">
           <span />
         </Link>
         <Link
           to="#modal"
-          className="right login-btn modal-trigger"
+          className="pull-right login-btn modal-trigger"
           data-target="modal"
         >
-          Login
+          <FormattedMessage {...messages.login} />
           <i className="fa fa-angle-down" aria-hidden="true" />
           <span />
         </Link>

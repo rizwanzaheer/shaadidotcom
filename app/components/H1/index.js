@@ -6,7 +6,7 @@ const H1 = styled.h1`
   text-align: center;
   color: white;
   text-shadow: 1px 1px 1px #1f2a1f;
-  margin-top: 10%;
+  margin-top: 16%;
   @media (max-width: 500px) {
     font-size: 2.5em;
     padding-left: 30px;

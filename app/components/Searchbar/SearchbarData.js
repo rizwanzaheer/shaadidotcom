@@ -1,62 +1,65 @@
 export const Gender = [
-  { value: 'Woman', label: 'Woman' },
-  { value: 'Man', label: 'Man', clearableValue: true },
+  { dropDownType: 'gender', value: 'Woman', label: 'Woman' },
+  { dropDownType: 'gender', value: 'Man', label: 'Man', clearableValue: true },
 ];
 
-export const Aged = [];
 // Aged finder
-(function AgeFinder() {
+function AgeFinder(type) {
+  const Aged = [];
   for (let i = 17; i < 70; i++) {
-    Aged.push({ value: i, label: i });
+    Aged.push({ dropDownType: type, value: i, label: i });
   }
-}());
+  return Aged;
+}
+
 export const Religion = [
-  { value: 'Muslim', label: 'Muslim' },
-  { value: 'Hindu', label: 'Hindu' },
-  { value: 'Christian', label: 'Christian' },
-  { value: 'Sikh', label: 'Sikh' },
-  { value: 'Parsi', label: 'Parsi' },
-  { value: 'Jain', label: 'Jain' },
-  { value: 'Jewish', label: 'Jewish' },
-  { value: 'Buddhist', label: 'Buddhist' },
-  { value: 'Spiritual', label: 'Spiritual' },
-  { value: 'No Religion', label: 'No Religion' },
-  { value: 'Other', label: 'Other' },
+  { dropDownType: 'religion', value: 'Muslim', label: 'Muslim' },
+  { dropDownType: 'religion', value: 'Hindu', label: 'Hindu' },
+  { dropDownType: 'religion', value: 'Christian', label: 'Christian' },
+  { dropDownType: 'religion', value: 'Sikh', label: 'Sikh' },
+  { dropDownType: 'religion', value: 'Parsi', label: 'Parsi' },
+  { dropDownType: 'religion', value: 'Jain', label: 'Jain' },
+  { dropDownType: 'religion', value: 'Jewish', label: 'Jewish' },
+  { dropDownType: 'religion', value: 'Buddhist', label: 'Buddhist' },
+  { dropDownType: 'religion', value: 'Spiritual', label: 'Spiritual' },
+  { dropDownType: 'religion', value: 'No Religion', label: 'No Religion' },
+  { dropDownType: 'religion', value: 'Other', label: 'Other' },
 ];
 export const MotherTongue = [
-  { value: 'English', label: 'English' },
-  { value: 'Bengali', label: 'Bengali' },
-  { value: 'Hindi', label: 'Hindi' },
-  { value: 'Punjabi', label: 'Punjabi' },
-  { value: 'Sindhi', label: 'Sindhi' },
-  { value: 'Urdu', label: 'Urdu' },
-  { value: 'Chinese', label: 'Chinese' },
-  { value: 'French', label: 'French' },
-  { value: 'Nepali', label: 'Nepali' },
-  { value: 'Persian', label: 'Persian' },
-  { value: 'Pashto', label: 'Pashto' },
-  { value: 'Russian', label: 'Russian' },
-  { value: 'Seraiki', label: 'Seraiki' },
-  { value: 'Santhali', label: 'Santhali' },
-  { value: 'Swedish', label: 'Swedish' },
-  { value: 'Spanish', label: 'Spanish' },
-  { value: 'Tulu', label: 'Tulu' },
-  { value: 'Hindko', label: 'Hindko' },
-  { value: 'Kashmiri', label: 'Kashmiri' },
-  { value: 'Other', label: 'Other' },
+  { dropDownType: 'motherTougue', value: 'English', label: 'English' },
+  { dropDownType: 'motherTougue', value: 'Bengali', label: 'Bengali' },
+  { dropDownType: 'motherTougue', value: 'Hindi', label: 'Hindi' },
+  { dropDownType: 'motherTougue', value: 'Punjabi', label: 'Punjabi' },
+  { dropDownType: 'motherTougue', value: 'Sindhi', label: 'Sindhi' },
+  { dropDownType: 'motherTougue', value: 'Urdu', label: 'Urdu' },
+  { dropDownType: 'motherTougue', value: 'Chinese', label: 'Chinese' },
+  { dropDownType: 'motherTougue', value: 'French', label: 'French' },
+  { dropDownType: 'motherTougue', value: 'Nepali', label: 'Nepali' },
+  { dropDownType: 'motherTougue', value: 'Persian', label: 'Persian' },
+  { dropDownType: 'motherTougue', value: 'Pashto', label: 'Pashto' },
+  { dropDownType: 'motherTougue', value: 'Russian', label: 'Russian' },
+  { dropDownType: 'motherTougue', value: 'Seraiki', label: 'Seraiki' },
+  { dropDownType: 'motherTougue', value: 'Santhali', label: 'Santhali' },
+  { dropDownType: 'motherTougue', value: 'Swedish', label: 'Swedish' },
+  { dropDownType: 'motherTougue', value: 'Spanish', label: 'Spanish' },
+  { dropDownType: 'motherTougue', value: 'Tulu', label: 'Tulu' },
+  { dropDownType: 'motherTougue', value: 'Hindko', label: 'Hindko' },
+  { dropDownType: 'motherTougue', value: 'Kashmiri', label: 'Kashmiri' },
+  { dropDownType: 'motherTougue', value: 'Other', label: 'Other' },
 ];
+
 export const listOfDropDown = [
   {
     label: "I'm looking for a",
     options: Gender,
   },
   {
-    label: 'Start age',
-    options: Aged,
+    label: 'aged',
+    options: AgeFinder('fromAge'),
   },
   {
-    label: 'End age',
-    options: Aged,
+    label: '',
+    options: AgeFinder('toAge'),
   },
   {
     label: 'of religion',

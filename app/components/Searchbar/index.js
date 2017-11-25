@@ -15,29 +15,90 @@ import './SearchbarStyle.scss';
 
 class Searchbar extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      gender: 'Woman',
+      fromAge: 18,
+      toAge: 19,
+      religion: 'Muslim',
+      motherTongue: 'Urdu',
+    };
+    this.letsBeginBtnClickHandler = this.letsBeginBtnClickHandler.bind(this);
+    this.dropDownChangeHandler = this.dropDownChangeHandler.bind(this);
+  }
+  dropDownChangeHandler(label) {
+    console.log('Change handler', label);
+  }
+  letsBeginBtnClickHandler() {
+    alert();
+  }
   render() {
+    const { gender, fromAge, toAge, religion, motherTongue } = this.state;
     return (
-      <div className="row">
-        <div className="container">
-          <div className="container_inner">
+      <div className="container searchbar-wrapper">
+        <div className="row align-items-end">
+          <div className="col-6 col-sm-3">
+            <Dropdown
+              dropDownChangeHandler={this.dropDownChangeHandler}
+              options={listOfDropDown[0].options}
+              label={listOfDropDown[0].label}
+              defaultValue={gender}
+              dropDownType={gender}
+            />
           </div>
-          <div className="searchbar-bg">
-            <div className="col s12 ">
-              {listOfDropDown.map((data, index) => (
-                <div
-                  className={`col s12 m6 l${
-                    index === 1 || index === 2 ? 3 : 4
-                  } xl${index === 1 || index === 2 ? 2 : 2}`}
-                  key={data.label}
-                >
-                  <Dropdown options={data.options} label={data.label} />
-                </div>
-              ))}
-              <button className="btn lets-begin-btn waves-effect waves-light ">
-                <FormattedMessage {...messages.letsBeginBtn} />
-              </button>
+          <div className="col-sm-3 col-6">
+            <div className="row align-items-end">
+              <div className="col-5 col-sm-5">
+                <Dropdown
+                  dropDownChangeHandler={this.dropDownChangeHandler}
+                  options={listOfDropDown[1].options}
+                  label={listOfDropDown[1].label}
+                  defaultValue={fromAge}
+                  dropDownType={fromAge}
+                />
+              </div>
+              <div className="col-2 col-sm-2">
+                <p className="mb-1">to</p>
+              </div>
+              <div className="col-5 col-sm-5">
+                <Dropdown
+                  dropDownChangeHandler={this.dropDownChangeHandler}
+                  options={listOfDropDown[2].options}
+                  label={listOfDropDown[2].label}
+                  defaultValue={toAge}
+                  dropDownType={toAge}
+                />
+              </div>
             </div>
+          </div>
+          <div className="col-6 col-sm-2">
+            <Dropdown
+              dropDownChangeHandler={this.dropDownChangeHandler}
+              options={listOfDropDown[3].options}
+              label={listOfDropDown[3].label}
+              defaultValue={religion}
+              dropDownType={religion}
+            />
+          </div>
+          <div className="col-6 col-sm-2">
+            <Dropdown
+              dropDownChangeHandler={this.dropDownChangeHandler}
+              options={listOfDropDown[4].options}
+              label={listOfDropDown[4].label}
+              defaultValue={motherTongue}
+              dropDownType={motherTongue}
+            />
+          </div>
+          <div className="col-sm-2 col-12">
+            <button
+              type="button"
+              onClick={this.letsBeginBtnClickHandler}
+              id="lets-begin-btn"
+              className="btn lets-begin-btn btn-block waves-effect waves-light"
+            >
+              <FormattedMessage {...messages.letsBeginBtn} />
+            </button>
           </div>
         </div>
       </div>

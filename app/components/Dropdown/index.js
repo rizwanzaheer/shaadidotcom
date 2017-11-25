@@ -1,8 +1,8 @@
 /**
-*
-* Dropdown
-*
-*/
+ *
+ * Dropdown
+ *
+ */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -17,13 +17,15 @@ class Dropdown extends React.Component {
     super(props);
     this.logChange = this.logChange.bind(this);
     this.state = {
-      selectedValue: '',
+      selectedValue: props.defaultValue,
     };
   }
 
   logChange(val) {
     console.log('Selected: ', val);
     const newValue = val === null ? '' : val.value;
+    console.log(this.props.defaultValue);
+    this.props.dropDownChangeHandler(val.dropDownType);
     this.setState({
       selectedValue: newValue,
     });
@@ -50,6 +52,9 @@ class Dropdown extends React.Component {
 Dropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   label: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  dropDownType: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  dropDownChangeHandler: PropTypes.func,
 };
 
 export default Dropdown;

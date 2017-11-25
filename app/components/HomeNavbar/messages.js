@@ -6,8 +6,12 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'app.components.HomeNavbar.header',
-    defaultMessage: 'This is the HomeNavbar component !',
+  help: {
+    id: 'app.components.HomeNavbar.help',
+    defaultMessage: 'Help',
+  },
+  login: {
+    id: 'app.components.HomeNavbar.login',
+    defaultMessage: 'Login',
   },
 });
