@@ -9,9 +9,9 @@ import WorkFLowContainer from 'components/WorkFlowContainer';
 import Footer from 'components/Footer';
 import messages from './messages';
 import './home.scss';
-import SignupImg from '../../images/home-icon-sprite.png';
 
-class Home extends Component { // eslint-disable-line react/prefer-stateless-function
+class Home extends Component {
+  // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div className="home-page">
@@ -30,25 +30,36 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
         </div>
         <div className="container flow-container">
           <div className="row">
-            <div className="col s12">
+            <div className="col-12">
               <H2>
                 <FormattedMessage {...messages.workFlowHeroText} />
               </H2>
-              <WorkFLowContainer
-                img={SignupImg}
-                title="Sign Up"
-                para="Register for free & put up your Profile"
-              />
-              <WorkFLowContainer
-                img={SignupImg}
-                title="Connect"
-                para="Select & Connect with Matches you like"
-              />
-              <WorkFLowContainer
-                img={SignupImg}
-                title="Interact"
-                para="Become a Premium Member & Start a Conversation"
-              />
+              <div className="row">
+                <WorkFLowContainer
+                  title={
+                    <FormattedMessage {...messages.workFlowSignupTitleText} />
+                  }
+                  para={
+                    <FormattedMessage {...messages.workFlowSignupParaText} />
+                  }
+                />
+                <WorkFLowContainer
+                  title={
+                    <FormattedMessage {...messages.workFlowConnectTitleText} />
+                  }
+                  para={
+                    <FormattedMessage {...messages.workFlowConnectParaText} />
+                  }
+                />
+                <WorkFLowContainer
+                  title={
+                    <FormattedMessage {...messages.workFlowInteractTitleText} />
+                  }
+                  para={
+                    <FormattedMessage {...messages.workFlowInteractParaText} />
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>

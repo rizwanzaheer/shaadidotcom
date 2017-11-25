@@ -3,8 +3,16 @@
   "app.components.Footer.license.message": "The World's No.1 Matchmaking Service™",
   "app.components.HomeNavbar.help": "Help",
   "app.components.HomeNavbar.login": "Login",
+
   "app.view.Home.heroText.message": "Meet someone for keeps",
   "app.view.Home.workFlowHeroText.message": "Find your Special Someone",
+  "app.view.Home.workFlowSignupTitleText.message":"Sign Up",
+  "app.view.Home.workFlowSignupParaText.message": "Register for free & put up your Profile",
+  "app.view.Home.workFlowConnectTitleText.message": "Connect",
+  "app.view.Home.workFlowConnectParaText.message": "Select & Connect with Matches you like",
+  "app.view.Home.workFlowInteractTitleText.message": "Interact",
+  "app.view.Home.workFlowInteractParaText.message": "Become a Premium Member & Start a Conversation",
+
   "boilerplate.components.Header.features": "Features",
   "boilerplate.components.Header.home": "Home",
   "boilerplate.containers.FeaturePage.css.header": "Features",

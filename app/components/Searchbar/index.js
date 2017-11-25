@@ -38,7 +38,7 @@ class Searchbar extends React.Component {
     return (
       <div className="container searchbar-wrapper">
         <div className="row align-items-end">
-          <div className="col-6 col-sm-3">
+          <div className="col-6 col-sm-6 col-md-6 col-lg-3">
             <Dropdown
               dropDownChangeHandler={this.dropDownChangeHandler}
               options={listOfDropDown[0].options}
@@ -47,7 +47,7 @@ class Searchbar extends React.Component {
               dropDownType={gender}
             />
           </div>
-          <div className="col-sm-3 col-6">
+          <div className="col-sm-6 col-6 col-md-6 col-lg-3">
             <div className="row align-items-end">
               <div className="col-5 col-sm-5">
                 <Dropdown
@@ -72,7 +72,7 @@ class Searchbar extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-6 col-sm-2">
+          <div className="col-6 col-sm-6 col-md-4 col-lg-2">
             <Dropdown
               dropDownChangeHandler={this.dropDownChangeHandler}
               options={listOfDropDown[3].options}
@@ -81,7 +81,7 @@ class Searchbar extends React.Component {
               dropDownType={religion}
             />
           </div>
-          <div className="col-6 col-sm-2">
+          <div className="col-6 col-sm-6 col-md-4 col-lg-2">
             <Dropdown
               dropDownChangeHandler={this.dropDownChangeHandler}
               options={listOfDropDown[4].options}
@@ -90,7 +90,7 @@ class Searchbar extends React.Component {
               dropDownType={motherTongue}
             />
           </div>
-          <div className="col-sm-2 col-12">
+          <div className="col-sm-12 col-12 col-md-4 col-lg-2">
             <button
               type="button"
               onClick={this.letsBeginBtnClickHandler}

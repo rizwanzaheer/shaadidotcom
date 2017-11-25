@@ -3,8 +3,16 @@
   "app.components.Footer.license.message": "Verdens No.1 Matchmaking Service ™",
   "app.components.HomeNavbar.help": "Hjælp",
   "app.components.HomeNavbar.login": "Log på",
+
   "app.view.Home.heroText.message": "Mød nogen til holder",
   "app.view.Home.workFlowHeroText.message": "Find din Special Someone",
+  "app.view.Home.workFlowSignupTitleText.message":"Tilmelde",
+  "app.view.Home.workFlowSignupParaText.message": "Tilmeld dig gratis og læg din profil",
+  "app.view.Home.workFlowConnectTitleText.message": "Forbinde",
+  "app.view.Home.workFlowConnectParaText.message": "Vælg & Opret forbindelse med kampe, du kan lide",
+  "app.view.Home.workFlowInteractTitleText.message": "Interact",
+  "app.view.Home.workFlowInteractParaText.message": "Bliv medlem af Premium og start en samtale",
+
   "boilerplate.components.Header.features": "",
   "boilerplate.components.Header.home": "",
   "boilerplate.containers.FeaturePage.css.header": "",

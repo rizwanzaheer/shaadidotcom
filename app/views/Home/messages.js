@@ -16,4 +16,40 @@ export default defineMessages({
       Find your Special Someone
     `,
   },
+  workFlowSignupTitleText: {
+    id: 'app.view.Home.workFlowSignupTitleText.message',
+    defaultMessage: `
+      Sign Up
+    `,
+  },
+  workFlowSignupParaText: {
+    id: 'app.view.Home.workFlowSignupParaText.message',
+    defaultMessage: `
+      Register for free & put up your Profile
+    `,
+  },
+  workFlowConnectTitleText: {
+    id: 'app.view.Home.workFlowConnectTitleText.message',
+    defaultMessage: `
+      Connect
+    `,
+  },
+  workFlowConnectParaText: {
+    id: 'app.view.Home.workFlowConnectParaText.message',
+    defaultMessage: `
+      Select & Connect with Matches you like
+    `,
+  },
+  workFlowInteractTitleText: {
+    id: 'app.view.Home.workFlowInteractTitleText.message',
+    defaultMessage: `
+      Interact
+    `,
+  },
+  workFlowInteractParaText: {
+    id: 'app.view.Home.workFlowInteractParaText.message',
+    defaultMessage: `
+      Become a Premium Member & Start a Conversation
+    `,
+  },
 });

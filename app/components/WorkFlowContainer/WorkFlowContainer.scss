@@ -5,6 +5,10 @@
     width: 133px;
     margin: 0 auto;
     display: block;
+    background-image: url("../../images/home-icon-sprite.png");
+    background-size: cover;
+    background-position: left 1px;
+    background-repeat: no-repeat;
     position: relative;
     transition: all 0.5s ease-in-out 0s;
     span {
@@ -13,27 +17,59 @@
       left: 0;
       height: 148px;
       width: 133px;
-      background: url("../../images/home-icon-sprite.png") no-repeat left -147px;
+      background-image: url("../../images/home-icon-sprite.png");
+      background-size: cover;
+      background-position: left -147px;
+      background-repeat: no-repeat;
       opacity: 0;
       background-size: 100%;
       transition: all 0.5s ease-in-out 0s;
-      &:hover{
+      &:hover {
         opacity: 1;
       }
     }
   }
-  h5,
-  p {
-    text-align: center;
-  }
-  h5 {
-    color: #00bcd5;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
+  &.Connect {
+    a {
+      background-position: left -292px;
+      span {
+        background-position: left -440px;
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
-  p {
-    color: $heading-color;
+
+  &.Interact {
+    a {
+      background-position: left -591px;
+      span {
+        background-position: left -739px;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .details-wrapper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    h4,
+    p {
+      text-align: center;
+    }
+    h4 {
+      color: #00bcd5;
+      cursor: pointer;
+      margin-top: 30px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    p {
+      font-family: "Roboto", sans-serif;
+      color: $paragraph-text-color;
+    }
   }
 }
