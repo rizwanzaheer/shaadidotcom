@@ -1,10 +1,8 @@
 .HomeNavbar-container {
-  height: 70px;
-  width: 78%;
-  margin: 20px auto;
-  // .home_logo {
-  margin-top: 20px;
-  //background: url("../../images/home-logo.png") no-repeat left top;
+  // height: 70px;
+  // width: 78%;
+  margin: 0px auto;
+  padding-top: 20px;
   a {
     cursor: pointer;
     color: white;
@@ -28,7 +26,6 @@
     vertical-align: middle;
     margin: 6px 6px 0 35px;
   }
-  // }
 }
 @media (max-width: 600px) {
     .HomeNavbar-container{

@@ -1,25 +1,26 @@
 @import "../../utils/_variables.scss";
 .workFlowContainer {
   a {
-    //background: url("../..//images/home-icon-sprite.png") no-repeat left 1px;
     height: 148px;
     width: 133px;
     margin: 0 auto;
     display: block;
     position: relative;
-    // background-size: 100%;
     transition: all 0.5s ease-in-out 0s;
-    // span {
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   height: 148px;
-    //   width: 133px;
-    //   background: url("../../images/home-icon-sprite.png") no-repeat left -147px;
-    //   opacity: 0;
-    //   background-size: 100%;
-    //   transition: all 0.5s ease-in-out 0s;
-    // }
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 148px;
+      width: 133px;
+      background: url("../../images/home-icon-sprite.png") no-repeat left -147px;
+      opacity: 0;
+      background-size: 100%;
+      transition: all 0.5s ease-in-out 0s;
+      &:hover{
+        opacity: 1;
+      }
+    }
   }
   h5,
   p {

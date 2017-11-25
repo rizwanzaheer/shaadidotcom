@@ -18,7 +18,10 @@ import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 // Importing  react-select style
 
+// import 'bootstrap-material-design';
 import 'react-select/dist/react-select.css';
+// import 'bootstrap-material-design/js/dist/util';
+// import 'bootstrap-material-design/js/dist/dropdown';
 
 // Import root app
 import App from 'views/App';
@@ -51,11 +54,15 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
-
 // Adding Jquer with Materialize-css
-window.$ = window.jQuery = require('jquery/dist/jquery.js');
-require('materialize-css/dist/css/materialize.css');
-require('materialize-css/dist/js/materialize.js');
+// window.$ = window.jQuery = require('jquery/dist/jquery.js');
+// require('materialize-css/dist/css/materialize.css');
+// require('materialize-css/dist/js/materialize.js');
+// require('./public/popper.min.js');
+// require('./public/bootstrap-material-design.min.js');
+// $(document).ready(() => {
+//   $('body').bootstrapMaterialDesign();
+// })();
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -89,6 +96,7 @@ const render = (messages) => {
     MOUNT_NODE
   );
 };
+
 
 if (module.hot) {
   // Hot reloadable React components and translation json files

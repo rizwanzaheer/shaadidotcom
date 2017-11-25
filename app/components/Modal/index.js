@@ -17,7 +17,7 @@ import './ModalStyle.scss';
 class Modal extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    $('.modal').modal();
+    // $('.modal').modal();
   }
   componentWillUnmount() {}
   render() {

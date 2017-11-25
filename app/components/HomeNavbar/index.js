@@ -16,7 +16,7 @@ import './HomeNavbar.scss';
 class HomeNavbar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div className="HomeNavbar-container">
+      <div className="HomeNavbar-container container">
         <Link to="/">
           <img src={Logo} alt="Logo" />
         </Link>
