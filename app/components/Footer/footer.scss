@@ -1,7 +1,6 @@
 @import "../../utils/_variables.scss";
 footer.page-footer{
-  background: $footer-bg-color !important;
-  padding-top: 0;
+  background: $footer-bg-color;
   min-height: 50px;
   padding: 25px;
   section{

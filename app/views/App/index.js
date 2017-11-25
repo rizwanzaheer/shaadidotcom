@@ -20,11 +20,11 @@ const AppWrapper = styled.div`
 
 export default function App() {
   return (
-    <div>
+    <AppWrapper>
       <Helmet titleTemplate="%s - Shaadi dot com App" defaultTitle="Shaadi dot com App">
         <meta name="description" content="A Shaadi dot com App" />
       </Helmet>
       <CustomRoutes />
-    </div>
+    </AppWrapper>
   );
 }

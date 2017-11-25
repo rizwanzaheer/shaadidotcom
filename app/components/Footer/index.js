@@ -9,17 +9,17 @@ import './footer.scss';
 
 function Footer() {
   return (
-    <footer className="page-footer">
+    <Wrapper className="page-footer">
       <div className="container">
         <div className="row">
-          <div className="col-4">
+          <div className="col-6">
             <section>
               <span> © 2016 - {new Date().getFullYear()} Shaadidotcom,</span>
               <FormattedMessage {...messages.licenseMessage} />
             </section>
           </div>
-          <div className="col-4">
-            <section>
+          <div className="col-2">
+            <section className="pull-right">
               <LocaleToggle />
             </section>
           </div>
@@ -39,23 +39,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      {/* <div className="footer-copyright">
-        <div className="container">
-          © {new Date().getFullYear()} Copyright by Rizwan Zaheer
-          <a className="grey-text text-lighten-4 right" href="#!">
-            More Links
-          </a>
-        </div>
-      </div>
-       <div className="footer-copyright">
-        <div className="container">
-          © {new Date().getFullYear()} Copyright by Rizwan Zaheer
-          <a className="grey-text text-lighten-4 right" href="#!">
-            More Links
-          </a>
-        </div>
-      </div> */}
-    </footer>
+    </Wrapper>
   );
 }
 
