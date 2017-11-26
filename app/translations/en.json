@@ -12,6 +12,9 @@
   "app.view.Home.workFlowConnectParaText.message": "Select & Connect with Matches you like",
   "app.view.Home.workFlowInteractTitleText.message": "Interact",
   "app.view.Home.workFlowInteractParaText.message": "Become a Premium Member & Start a Conversation",
+  "app.view.Home.findSomeOneHeroText": "Search by Popular Matchmaking Sites",
+  "app.view.Home.yourStoryHappenText": "Your story is waiting to happen!",
+  "app.view.Home.yourStoryHappenButtonText":"Get Started",
 
   "boilerplate.components.Header.features": "Features",
   "boilerplate.components.Header.home": "Home",

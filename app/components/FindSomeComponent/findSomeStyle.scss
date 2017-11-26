@@ -1,0 +1,23 @@
+@import "../../utils/_variables.scss";
+
+.find-container {
+  margin: 20px;
+  h6 {
+    color: $heading-color;
+    font-weight: normal;
+  }
+  .find-detail-container {
+    padding: 20px 0;
+    a {
+      font-size: 14px;
+      padding: 5px;
+      display: inline-block;
+      &:after {
+        content: "|";
+        display: inline-block;
+        position: relative;
+        right: -4px;
+      }
+    }
+  }
+}

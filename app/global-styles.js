@@ -9,7 +9,7 @@ injectGlobal`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto',sans-serif;
   }
 
   body.fontLoaded {
@@ -21,8 +21,9 @@ injectGlobal`
     min-height: 100%;
     min-width: 100%;
   }
-
-  p,
+  button{
+    cursor:pointer;
+  }
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;

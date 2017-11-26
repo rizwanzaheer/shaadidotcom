@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { NavLink } from 'react-router-dom';
 import HomeNavbar from 'components/HomeNavbar';
 
 import H1 from 'components/H1';
@@ -7,7 +8,11 @@ import H2 from 'components/H2';
 import SearchBar from 'components/Searchbar';
 import WorkFLowContainer from 'components/WorkFlowContainer';
 import Footer from 'components/Footer';
+import FindSomeComponent from 'components/FindSomeComponent';
+import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
+import { findSomeOneBy } from './homeData';
 import messages from './messages';
+import Logo from '../../images/home-page-layer-logo.png';
 import './home.scss';
 
 class Home extends Component {
@@ -15,6 +20,7 @@ class Home extends Component {
   render() {
     return (
       <div className="home-page">
+        {/* Top home page banner */}
         <div className="home_banner">
           <div className="container">
             <div className="row">
@@ -28,6 +34,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
+        {/* login/site working flow container */}
         <div className="container flow-container">
           <div className="row">
             <div className="col-12">
@@ -66,6 +73,77 @@ class Home extends Component {
             </div>
           </div>
         </div>
+        {/* find someone container */}
+        <div className="container find-someone-container">
+          <div className="row">
+            <div className="col-12">
+              <H2>
+                <FormattedMessage {...messages.findSomeOneHeroText} />
+              </H2>
+            </div>
+          </div>
+          <div className="row">
+            {findSomeOneBy.map((data) => (
+              <div className="col-md-4" key={data.name}>
+                <FindSomeComponent data={data} />
+              </div>
+            ))}
+          </div>
+        </div>
+        {/*  */}
+        <div className="container-fluid ">
+          <div className="row text-center waiting-happen-container">
+            <div className="col-12">
+              <h4>
+                <FormattedMessage {...messages.yourStoryHappenText} />
+                &nbsp;&nbsp;
+                <button
+                  type="button"
+                  className="btn waves-effect text-white waves-float wave-light btn-outline btn-lg"
+                >
+                  <FormattedMessage {...messages.yourStoryHappenButtonText} />
+                </button>
+              </h4>
+            </div>
+          </div>
+        </div>
+        {/* About site container */}
+        <div className="container about-site-container">
+          <div className="row">
+            <div className="col-12 text-center">
+              <img src={Logo} alt="Shaadidotcom" />
+            </div>
+            <div className="col-12 text-center about-site-info">
+              <p>
+                Shaadi.com, The World's No.1 Matchmaking Service, was founded
+                with a simple objective - to help people find happiness.
+              </p>
+              <p>
+                Shaadi.com (sometimes mis-spelt as Shadi) is a social networking
+                site specialising in matchmaking and not just a matrimonial
+                service. As a leader in
+              </p>
+              <p>
+                what is sometimes known as the matrimony category, we have
+                touched more than 35 million lives.
+              </p>
+              <p>
+                Shaadi.com has always differentiated itself from other
+                matrimonials through its innovation-led approach. By redefining
+                the way Indian brides and Shaadi.com has always differentiated
+                itself from other matrimonials through its innovation-led
+                approach. By redefining the way Indian brides and
+              </p>
+              <p>
+                grooms meet for marriage, Shaadi.com has created a
+                world-renowned brand that has changed the way of finding a life
+                partner.
+                <MoreDetailButtonRight label="learn more" url="#" />
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* Footer  component */}
         <Footer />
       </div>
     );
