@@ -10,9 +10,9 @@ import { PropTypes } from 'prop-types';
 import WorkFlowDiv from './WorkFlowContainerStyle';
 import './WorkFlowContainer.scss';
 
-function WorkFlowContainer({ title, para }) {
+function WorkFlowContainer({ title, para, type }) {
   return (
-    <WorkFlowDiv className={`col-12 col-sm-4 workFlowContainer ${title}`}>
+    <WorkFlowDiv className={`col-12 col-sm-4 workFlowContainer ${type}`}>
       <NavLink to="#">
         <span />
       </NavLink>
@@ -27,6 +27,7 @@ function WorkFlowContainer({ title, para }) {
 WorkFlowContainer.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   para: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  type: PropTypes.string,
 };
 
 export default WorkFlowContainer;

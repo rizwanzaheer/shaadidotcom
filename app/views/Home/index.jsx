@@ -39,6 +39,7 @@ class Home extends Component {
                   title={
                     <FormattedMessage {...messages.workFlowSignupTitleText} />
                   }
+                  type="Signup"
                   para={
                     <FormattedMessage {...messages.workFlowSignupParaText} />
                   }
@@ -47,6 +48,7 @@ class Home extends Component {
                   title={
                     <FormattedMessage {...messages.workFlowConnectTitleText} />
                   }
+                  type="Connect"
                   para={
                     <FormattedMessage {...messages.workFlowConnectParaText} />
                   }
@@ -55,6 +57,7 @@ class Home extends Component {
                   title={
                     <FormattedMessage {...messages.workFlowInteractTitleText} />
                   }
+                  type="Interact"
                   para={
                     <FormattedMessage {...messages.workFlowInteractParaText} />
                   }
