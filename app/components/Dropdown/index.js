@@ -24,8 +24,7 @@ class Dropdown extends React.Component {
   logChange(val) {
     console.log('Selected: ', val);
     const newValue = val === null ? '' : val.value;
-    console.log(this.props.defaultValue);
-    this.props.dropDownChangeHandler(val.dropDownType);
+    this.props.dropDownChangeHandler(val);
     this.setState({
       selectedValue: newValue,
     });
@@ -39,7 +38,7 @@ class Dropdown extends React.Component {
         <Select
           id={this.props.label}
           name="form-field-name"
-          clearable
+          clearable={false}
           value={this.state.selectedValue}
           options={this.props.options}
           onChange={this.logChange}

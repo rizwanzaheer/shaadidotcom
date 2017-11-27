@@ -25,9 +25,9 @@ function WorkFlowContainer({ title, para, type }) {
 }
 
 WorkFlowContainer.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  para: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  type: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  para: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default WorkFlowContainer;

@@ -29,7 +29,7 @@
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
     "dev": "concurrently \"yarn apiserver\" \"yarn start\"",
-    "apiserver": "npm run start --prefix ../api_server",
+    "apiserver": "npm run server --prefix ../api_server",
     "presetup": "npm i chalk shelljs",
     "setup": "node ./internals/scripts/setup.js",
     "postsetup": "npm run build:dll",

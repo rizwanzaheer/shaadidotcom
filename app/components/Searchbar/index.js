@@ -6,7 +6,7 @@
 
 import React from 'react';
 // import styled from 'styled-components';
-
+import axios from 'axios';
 import { FormattedMessage } from 'react-intl';
 import Dropdown from 'components/Dropdown';
 import { listOfDropDown } from './SearchbarData';
@@ -27,11 +27,25 @@ class Searchbar extends React.Component {
     this.letsBeginBtnClickHandler = this.letsBeginBtnClickHandler.bind(this);
     this.dropDownChangeHandler = this.dropDownChangeHandler.bind(this);
   }
-  dropDownChangeHandler(label) {
-    console.log('Change handler', label);
+  dropDownChangeHandler({ dropDownType, value }) {
+    this.setState({
+      [dropDownType]: value,
+    });
   }
   letsBeginBtnClickHandler() {
-    alert();
+    console.log('axios calling');
+    // Send Axios API Resqeust request to backend server
+    axios({
+      method: 'post',
+      url: 'http://localhost:3001/search',
+      data: this.state,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   render() {
     const { gender, fromAge, toAge, religion, motherTongue } = this.state;
