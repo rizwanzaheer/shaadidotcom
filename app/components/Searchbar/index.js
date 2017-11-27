@@ -34,6 +34,7 @@ class Searchbar extends React.Component {
   }
   letsBeginBtnClickHandler() {
     console.log('axios calling');
+    console.log(process.env.HOST);
     // Send Axios API Resqeust request to backend server
     axios({
       method: 'post',
