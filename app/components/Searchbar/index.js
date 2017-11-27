@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import Dropdown from 'components/Dropdown';
 import { listOfDropDown } from './SearchbarData';
 import messages from './messages';
+import { nodeApiServerUrl } from '../../config/envChecker';
 import './SearchbarStyle.scss';
 
 class Searchbar extends React.Component {
@@ -33,12 +34,10 @@ class Searchbar extends React.Component {
     });
   }
   letsBeginBtnClickHandler() {
-    console.log('axios calling');
-    console.log(process.env.NODE_ENV);
     // Send Axios API Resqeust request to backend server
     axios({
       method: 'post',
-      url: 'http://localhost:3001/search',
+      url: `${nodeApiServerUrl}/search`,
       data: this.state,
     })
       .then((res) => {
