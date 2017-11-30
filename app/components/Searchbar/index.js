@@ -6,12 +6,14 @@
 
 import React from 'react';
 // import styled from 'styled-components';
-import axios from 'axios';
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+
 import Dropdown from 'components/Dropdown';
+import { connect } from 'react-redux';
 import { listOfDropDown } from './SearchbarData';
 import messages from './messages';
-import { nodeApiServerUrl } from '../../config/envChecker';
 import './SearchbarStyle.scss';
 
 class Searchbar extends React.Component {
@@ -20,8 +22,8 @@ class Searchbar extends React.Component {
     super(props);
     this.state = {
       gender: 'Woman',
-      fromAge: 18,
-      toAge: 19,
+      fromAge: 20,
+      toAge: 25,
       religion: 'Muslim',
       motherTongue: 'Urdu',
     };
@@ -35,17 +37,12 @@ class Searchbar extends React.Component {
   }
   letsBeginBtnClickHandler() {
     // Send Axios API Resqeust request to backend server
-    axios({
-      method: 'post',
-      url: `${nodeApiServerUrl}/search`,
-      data: this.state,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const { gender, fromAge, toAge, religion, motherTongue } = this.state;
+    this.props.history.push(
+      `testhome?gender=${gender}&fromage=${fromAge}&toage=${toAge}&religion=${
+        religion
+      }&mothertongue=${motherTongue}`
+    );
   }
   render() {
     const { gender, fromAge, toAge, religion, motherTongue } = this.state;
@@ -121,5 +118,20 @@ class Searchbar extends React.Component {
 }
 
 Searchbar.propTypes = {};
-
-export default Searchbar;
+export function mapDispatchToProps(dispatch) {
+  return {
+    onChangeUsername: (evt) =>
+      dispatch(this.letsBeginBtnClickHandler(evt.target.value)),
+    // onSubmitForm: (evt) => {
+    //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+    //   dispatch(loadRepos());
+    // },
+  };
+}
+const mapStateToProps = createStructuredSelector({
+  // repos: makeSelectRepos(),
+  // username: makeSelectUsername(),
+  // loading: makeSelectLoading(),
+  // error: makeSelectError(),
+});
+export default withRouter(connect(mapStateToProps, null)(Searchbar));

@@ -55,6 +55,7 @@ export class HomePage extends React.PureComponent {
       error,
       repos,
     };
+    console.log(this.props.children);
     return (
       <article>
         <Helmet>
@@ -62,7 +63,7 @@ export class HomePage extends React.PureComponent {
           <meta name="description" content="A Shaadi Dot Com App Homepage" />
         </Helmet>
         <Header />
-        {/* <div>
+        <div>
           <CenteredSection>
             <H2>
               <FormattedMessage {...messages.startProjectHeader} />
@@ -92,7 +93,7 @@ export class HomePage extends React.PureComponent {
             </Form>
             <ReposList {...reposListProps} />
           </Section>
-        </div> */}
+        </div>
         <Footer />
         <Switch>
           <Route exact path="/dashboard" component={() => <h1> wroking</h1>} />

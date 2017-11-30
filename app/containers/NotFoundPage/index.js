@@ -13,7 +13,7 @@ import messages from './messages';
 export default function NotFound() {
   return (
     <article>
-      <H1>
+      <H1 style={{ color: 'black' }}>
         <FormattedMessage {...messages.header} />
       </H1>
     </article>

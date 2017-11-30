@@ -22,7 +22,7 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
-    $('.button-collapse').sideNav();
+   //  $('.button-collapse').sideNav();
   }
   // renderLinks() {
   //   if (this.props.authenticated) {

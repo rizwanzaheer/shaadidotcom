@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { NavLink } from 'react-router-dom';
-import HomeNavbar from 'components/HomeNavbar';
 
+import { NavLink, withRouter } from 'react-router-dom';
+import HomeNavbar from 'components/HomeNavbar';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+
+import { compose } from 'redux';
+
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+import Header from 'components/Header';
 import H1 from 'components/H1';
 import H2 from 'components/H2';
+import Button from 'components/Button';
 import SearchBar from 'components/Searchbar';
 import WorkFLowContainer from 'components/WorkFlowContainer';
 import Footer from 'components/Footer';
@@ -15,9 +24,17 @@ import messages from './messages';
 import Logo from '../../images/home-page-layer-logo.png';
 import './home.scss';
 
-class Home extends Component {
-  // eslint-disable-line react/prefer-stateless-function
+class Home extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    // const search = this.props.location.search;
+    // console.log("this.props:", this.props);
+    // console.log("search: ", search);
+    // const params = new URLSearchParams(search);
+    // const name = params.get("name");
+    // const age = params.get("age");
+    // console.log("name: ", name);
+    // console.log("age: ", age);
+
     return (
       <div className="home-page">
         {/* Top home page banner */}
@@ -114,6 +131,7 @@ class Home extends Component {
               <img src={Logo} alt="Shaadidotcom" />
             </div>
             <div className="col-12 text-center about-site-info">
+              <NavLink to="features?name=rizwan"> features Route </NavLink>
               <p>
                 Shaadi.com, The World's No.1 Matchmaking Service, was founded
                 with a simple objective - to help people find happiness.
@@ -149,4 +167,45 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    // onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    // onSubmitForm: (evt) => {
+    //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+    //   dispatch(loadRepos());
+    // },
+  };
+}
+
+const mapStateToProps = (state) => ({
+  home: state,
+});
+// createStructuredSelector({
+// repos: makeSelectRepos(),
+// username: makeSelectUsername(),
+// loading: makeSelectLoading(),
+// error: makeSelectError(),
+// });
+
+// const mapStateToProps = (state) => {
+//   console.log('mapstateToprops: ', state);
+//   return {
+//     customState: state,
+//   };
+// };
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+export default withRouter(withConnect(Home));
+
+const withReducer = injectReducer({
+  // key: 'home', reducer
+});
+const withSaga = injectSaga({
+  // key: 'home', saga
+});
+
+// export default compose({}, {}, withConnect)(Home);
+
+// export default Home;

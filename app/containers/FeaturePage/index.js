@@ -23,7 +23,6 @@ export default class FeaturePage extends React.Component {
   shouldComponentUpdate() {
     return false;
   }
-
   render() {
     return (
       <div>

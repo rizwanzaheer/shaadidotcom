@@ -1,29 +1,54 @@
 /**
-*
-* Modal
-*
-*/
+ *
+ * Modal
+ *
+ */
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Modal from 'react-responsive-modal';
 import ReactTooltip from 'react-tooltip';
 import { NavLink, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import 'react-responsive-modal/lib/react-responsive-modal.css';
 
 import CrossIcon from 'components/CrossIcon';
 import ModalWrapper from './ModalStyle';
 import messages from './messages';
 import './ModalStyle.scss';
 
-class Modal extends React.Component {
+class SignInModal extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() {
-    // $('.modal').modal();
+  constructor(props) {
+    super(props);
+    console.log(props.isModalOpen);
+    this.state = {
+      open: props.isModalOpen,
+    };
+    // this.onOpenModal = this.onOpenModal.bind(this);
+    // this.onCloseModal = this.onCloseModal.bind(this);
   }
-  componentWillUnmount() {}
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('nextState: ', nextState);
+    console.log('nextProps: ', nextProps);
+  }
+
+  // onOpenModal() {
+  //   this.setState({ open: this.props.isModalOpen });
+  //   console.log('on open modal');
+  // }
+
+  // onCloseModal() {
+  //   this.setState({ open: false });
+  // }
+
   render() {
+    console.log('render successfuly!', this.props.onCloseModal);
+    const { open } = this.state;
+    console.log('open: ', open);
     return (
       <div>
-        <ModalWrapper id="modal" className="modal">
+        {/* <Modal open={open} onClose={this.onCloseModal} little>
           <CrossIcon />
           <div className="modal-content">
             <div className="layerlogo" />
@@ -94,21 +119,27 @@ class Modal extends React.Component {
                 Sign Up Free
               </Link>
             </div>
-          </div>
-          {/* <div className="modal-footer"> */}
-          {/* <a
+          </div> */}
+        {/* <div className="modal-footer"> */}
+        {/* <a
               href="#!"
               className="modal-action modal-close waves-effect waves-red btn-flat"
             >
               Agree
             </a> */}
-          {/* </div> */}
-        </ModalWrapper>
+        {/* </div> */}
+        {/* </Modal> */}
+        <p>testeingiandfa fadfai adf ad</p>
+        <Modal open={open} onClose={this.props.onCloseModal} little>
+          <h2>Simple centered modal</h2>
+        </Modal>
       </div>
     );
   }
 }
 
-Modal.propTypes = {};
+SignInModal.propTypes = {
+  // isModalOpen: PropTypes.bool,
+};
 
-export default Modal;
+export default SignInModal;

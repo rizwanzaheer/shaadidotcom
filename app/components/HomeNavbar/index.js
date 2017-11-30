@@ -7,6 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import SignInModal from 'components/Modal';
 import messages from './messages';
 
 import Logo from '../../images/home-logo.png';
@@ -15,7 +16,27 @@ import Logo from '../../images/home-logo.png';
 
 import './HomeNavbar.scss';
 
-class HomeNavbar extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class HomeNavbar extends React.Component {
+  // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.onCloseModal = this.onCloseModal.bind(this);
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.state = {
+      openSigninModal: false,
+      openHelpModal: false,
+    };
+  }
+  onOpenModal() {
+    this.setState({ openSigninModal: true }, () => {
+      console.log('this.state.openSigninModal: ', this.state.openSigninModal);
+    });
+  }
+
+  onCloseModal() {
+    this.setState({ openSigninModal: false });
+  }
+
   render() {
     return (
       <div className="HomeNavbar-container container">
@@ -30,14 +51,15 @@ class HomeNavbar extends React.Component { // eslint-disable-line react/prefer-s
           <span />
         </Link>
         <Link
-          to="#modal"
+          to="#"
           className="pull-right login-btn modal-trigger"
-          data-target="modal"
+          onClick={this.onOpenModal}
         >
           <FormattedMessage {...messages.login} />
           <i className="fa fa-angle-down" aria-hidden="true" />
           <span />
         </Link>
+        <SignInModal isModalOpen={this.state.openSigninModal} onCloseModal={() => this.onCloseModal} />
       </div>
     );
   }

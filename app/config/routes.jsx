@@ -1,31 +1,58 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Redirect, Switch, Route } from 'react-router-dom';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import Signin from 'components/Auth/Signin';
 
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Signin from 'components/Auth/Signin';
+import Backoffice from 'containers/Backoffice/Loadable';
+// import AdminDashboard from "containers/AdminLayout/AdminDashboard";
 import Home from '../views/Home';
 
+const RouteWithUserLayout = ({ component, ...rest }) => (
+  <div>
+    <Header />
+    {!localStorage.getItem('user_token') && <Redirect push to="/signin" />}
+    <Route {...rest} render={() => React.createElement(component)} />
+    <Footer />
+  </div>
+);
+
+const RouteWithAdminLayout = ({ component, ...rest }) => (
+  <div>
+    <Header />
+    {!localStorage.getItem('backoffice_token') && (
+      <Redirect push to="/backoffice/signin" />
+    )}
+    <Route {...rest} render={() => React.createElement(component)} />
+    <Footer />
+  </div>
+);
+
 const CustomRoutes = () => (
-  <Switch>
-    {/* // <div> */}
-    {/* <Header /> */}
-    <Route exact path="/" component={Home} />
-    {/* <Route exact path="/dashboard" component={HomePage} /> */}
-    <Route path="/features" component={FeaturePage} />
-    <Route path="/signin" component={Signin} />
-    {/* <Route path="/backoffice" component={Backoffice} /> */}
-    {/* <Route
+  <div>
+    <Switch>
+      {/* User Routes */}
+      <Route exact path="/" component={Home} />
+      <RouteWithUserLayout exact path="/dashboard" component={HomePage} />
+      <RouteWithUserLayout path="/features" component={FeaturePage} />
+      <RouteWithUserLayout path="/signin" component={Signin} />
+      {/* Admin Routes */}
+      <RouteWithAdminLayout exact path="/backoffice" component={Backoffice} />
+      {/* <RouteWithAdminLayout
+        path="/backoffice/dashboard"
+        component={AdminDashboard}
+      /> */}
+      <RouteWithAdminLayout
         path="/backoffice/help"
         component={() => <h1> backoffice/help route wroking </h1>}
-      /> */}
-    <Route path="" component={NotFoundPage} />
-    {/* <Footer /> */}
-    {/* </div> */}
-  </Switch>
+      />
+      <RouteWithAdminLayout path="/backoffice/signin" component={Signin} />
+      <Route path="" component={NotFoundPage} />
+    </Switch>
+  </div>
 );
 export default CustomRoutes;

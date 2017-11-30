@@ -19,7 +19,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
             <FormattedMessage {...messages.features} />
           </HeaderLink>
         </NavBar>
-        <Nav />
+        {/* <Nav /> */}
       </div>
     );
   }
