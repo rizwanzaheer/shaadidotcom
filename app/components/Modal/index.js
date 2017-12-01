@@ -129,7 +129,6 @@ class SignInModal extends React.Component {
             </a> */}
         {/* </div> */}
         {/* </Modal> */}
-        <p>testeingiandfa fadfai adf ad</p>
         <Modal open={open} onClose={this.props.onCloseModal} little>
           <h2>Simple centered modal</h2>
         </Modal>
