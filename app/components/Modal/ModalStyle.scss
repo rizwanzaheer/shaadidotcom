@@ -1,5 +1,7 @@
 @import "../../utils/_variables.scss";
-
+.Modal-modal-0-3{
+  border-radius: 4px;
+}
 .signin-modal {
   margin-top: 20px;
   .modal-content {
@@ -19,6 +21,7 @@
       text-align: center;
       color: $heading-color;
       margin-bottom: 40px;
+      font-weight: normal;
     }
     .input-field {
       margin-top: 5px !important;
@@ -61,13 +64,14 @@
     h6 {
       text-align: center;
       padding-top: 20px;
+      font-weight: normal;
       color: $paragraph-text-color;
     }
     .signup-free-btn {
       a {
         color: $sigin-btn-color;
         margin: 0 auto;
-        font-weight: 600;
+        font-weight: normal;
         &:hover {
           text-decoration: underline;
         }
@@ -76,6 +80,7 @@
     .forget-password {
       color: $sigin-btn-color;
       font-size: 12px;
+      text-transform: capitalize;
       &:hover {
         text-decoration: underline;
       }

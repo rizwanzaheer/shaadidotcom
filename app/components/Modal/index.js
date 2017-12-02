@@ -9,18 +9,19 @@ import { FormattedMessage } from 'react-intl';
 import ReactTooltip from 'react-tooltip';
 import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ForgetPasswordModal from 'components/ForgetPasswordModal';
 import 'react-responsive-modal/lib/react-responsive-modal.css';
 
 // import CrossIcon from 'components/CrossIcon';
 // import ModalWrapper from './ModalStyle';
 import messages from './messages';
 import './ModalStyle.scss';
-
 class SignInModal extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div className="signin-modal">
+        {/* {this.state.isOpenForgetPasswordModal && <ForgetPasswordModal />} */}
         <div className="modal-content">
           <div className="layerlogo" />
           <h5 className="modal-title">
@@ -30,7 +31,7 @@ class SignInModal extends React.Component {
             <div className="row">
               <div className="col-12">
                 <div className="form-group">
-                  <label htmlFor="eamil">Email address</label>
+                  <label htmlFor="eamil">Email</label>
                   <input
                     type="email"
                     className="form-control"
@@ -61,7 +62,11 @@ class SignInModal extends React.Component {
               <div className="col-12">
                 <div className="form-check">
                   <label className="form-check-label">
-                    <input type="checkbox" className="form-check-input" />
+                    <input
+                      type="checkbox"
+                      id="stay-signind"
+                      className="form-check-input"
+                    />
                     Stay Signed in &nbsp;
                   </label>
                   <i
@@ -99,7 +104,7 @@ class SignInModal extends React.Component {
             </Link>
             <h6>New to Shaadidotcom?</h6>
             <div className="signup-free-btn text-center">
-              <Link to="signup" className="modal-action modal-close">
+              <Link to="#" onClick={this.props.signupClickHandler} className="modal-action modal-close">
                 Sign Up Free
               </Link>
             </div>

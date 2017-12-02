@@ -9,7 +9,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import SignInModal from 'components/Modal';
 import Modal from 'react-responsive-modal';
-// import 'react-responsive-modal/lib/react-responsive-modal.css';
+import ForgetPasswordModal from 'components/ForgetPasswordModal';
 import messages from './messages';
 
 import Logo from '../../images/home-logo.png';
@@ -23,23 +23,28 @@ class HomeNavbar extends React.Component {
   constructor(props) {
     super(props);
     this.onCloseModal = this.onCloseModal.bind(this);
+    this.signupClickHandler = this.signupClickHandler.bind(this);
     this.onOpenModal = this.onOpenModal.bind(this);
     this.state = {
       openSigninModal: false,
       openHelpModal: false,
       open: false,
+      isOpenForgetPasswordModal: false,
     };
   }
   onOpenModal() {
-    this.setState({ open: true }, () => {
-      console.log('this.state.open: ', this.state.open);
-    });
+    this.setState({ open: true });
   }
 
   onCloseModal() {
-    this.setState({ open: false });
+    this.setState({ open: false, isOpenForgetPasswordModal: false });
   }
-
+  signupClickHandler() {
+    this.onCloseModal();
+    this.setState({
+      isOpenForgetPasswordModal: true,
+    });
+  }
   render() {
     return (
       <div className="HomeNavbar-container container">
@@ -63,12 +68,12 @@ class HomeNavbar extends React.Component {
           <span />
         </Link>
         <Modal open={this.state.open} onClose={this.onCloseModal} little>
-          <SignInModal />
+          <SignInModal signupClickHandler={this.signupClickHandler} />
         </Modal>
-        {/* <SignInModal
-          isModalOpen={this.state.openSigninModal}
-          onCloseModal={() => this.onCloseModal}
-        /> */}
+        <ForgetPasswordModal
+          isOpenForgetPasswordModal={this.state.isOpenForgetPasswordModal}
+          onCloseModal={this.onCloseModal}
+        />
       </div>
     );
   }
