@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import SignInModal from 'components/Modal';
+import Modal from 'react-responsive-modal';
+// import 'react-responsive-modal/lib/react-responsive-modal.css';
 import messages from './messages';
 
 import Logo from '../../images/home-logo.png';
@@ -25,16 +27,17 @@ class HomeNavbar extends React.Component {
     this.state = {
       openSigninModal: false,
       openHelpModal: false,
+      open: false,
     };
   }
   onOpenModal() {
-    this.setState({ openSigninModal: true }, () => {
-      console.log('this.state.openSigninModal: ', this.state.openSigninModal);
+    this.setState({ open: true }, () => {
+      console.log('this.state.open: ', this.state.open);
     });
   }
 
   onCloseModal() {
-    this.setState({ openSigninModal: false });
+    this.setState({ open: false });
   }
 
   render() {
@@ -59,7 +62,13 @@ class HomeNavbar extends React.Component {
           <i className="fa fa-angle-down" aria-hidden="true" />
           <span />
         </Link>
-        <SignInModal isModalOpen={this.state.openSigninModal} onCloseModal={() => this.onCloseModal} />
+        <Modal open={this.state.open} onClose={this.onCloseModal} little>
+          <SignInModal />
+        </Modal>
+        {/* <SignInModal
+          isModalOpen={this.state.openSigninModal}
+          onCloseModal={() => this.onCloseModal}
+        /> */}
       </div>
     );
   }

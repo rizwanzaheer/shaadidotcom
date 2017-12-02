@@ -6,95 +6,79 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Modal from 'react-responsive-modal';
 import ReactTooltip from 'react-tooltip';
 import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'react-responsive-modal/lib/react-responsive-modal.css';
 
-import CrossIcon from 'components/CrossIcon';
-import ModalWrapper from './ModalStyle';
+// import CrossIcon from 'components/CrossIcon';
+// import ModalWrapper from './ModalStyle';
 import messages from './messages';
 import './ModalStyle.scss';
 
 class SignInModal extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props);
-    console.log(props.isModalOpen);
-    this.state = {
-      open: props.isModalOpen,
-    };
-    // this.onOpenModal = this.onOpenModal.bind(this);
-    // this.onCloseModal = this.onCloseModal.bind(this);
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('nextState: ', nextState);
-    console.log('nextProps: ', nextProps);
-  }
-
-  // onOpenModal() {
-  //   this.setState({ open: this.props.isModalOpen });
-  //   console.log('on open modal');
-  // }
-
-  // onCloseModal() {
-  //   this.setState({ open: false });
-  // }
-
   render() {
-    console.log('render successfuly!', this.props.onCloseModal);
-    const { open } = this.state;
-    console.log('open: ', open);
     return (
-      <div>
-        {/* <Modal open={open} onClose={this.onCloseModal} little>
-          <CrossIcon />
-          <div className="modal-content">
-            <div className="layerlogo" />
-            <h5 className="modal-title">
-              <FormattedMessage {...messages.header} />
-            </h5>
+      <div className="signin-modal">
+        <div className="modal-content">
+          <div className="layerlogo" />
+          <h5 className="modal-title">
+            <FormattedMessage {...messages.header} />
+          </h5>
+          <div className="modal-body">
             <div className="row">
-              <div className="col s12">
-                <div className="input-field col s12">
-                  <input id="email" type="email" className="validate" />
-                  <label
-                    htmlFor="email"
-                    data-error="wrong"
-                    data-success="right"
-                  >
-                    Email
-                  </label>
+              <div className="col-12">
+                <div className="form-group">
+                  <label htmlFor="eamil">Email address</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="eamil"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                  />
+                  <small id="emailHelp" className="form-text text-muted">
+                    Well never share your email with anyone else.
+                  </small>
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col s12">
-                <div className="input-field col s12">
-                  <input id="password" type="password" className="validate" />
+              <div className="col-12">
+                <div className="form-group">
                   <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Password"
+                  />
                 </div>
               </div>
             </div>
-            <p className="stay-signedin">
-              <input type="checkbox" className="filled-in" id="stay-signedin" />
-              <label htmlFor="stay-signedin">
-                Stay Signed in &nbsp;
-                <i
-                  data-tip
-                  data-for="global"
-                  className="fa fa-question-circle-o"
-                  aria-hidden="true"
-                />
-              </label>
-              <NavLink
-                to="forgetpassword"
-                className="forget-password right modal-action modal-close"
-              >
-                forget Password?
-              </NavLink>
-            </p>
+            <div className="row">
+              <div className="col-12">
+                <div className="form-check">
+                  <label className="form-check-label">
+                    <input type="checkbox" className="form-check-input" />
+                    Stay Signed in &nbsp;
+                  </label>
+                  <i
+                    data-tip
+                    data-for="global"
+                    className="fa fa-question-circle-o"
+                    aria-hidden="true"
+                  />
+                  <NavLink
+                    to="forgetpassword"
+                    className="forget-password pull-right modal-action modal-close"
+                  >
+                    forget Password?
+                  </NavLink>
+                </div>
+              </div>
+            </div>
             <ReactTooltip
               id="global"
               className="toolTipClass"
@@ -104,9 +88,9 @@ class SignInModal extends React.Component {
               <p>not use this if you are</p>
               <p>signing in from a shared computer? </p>
             </ReactTooltip>
-            <Link to="/signin">
+            <Link to="/signin" className="signin-btn">
               <button
-                className="btn waves-effect waves-light modal-action modal-close"
+                className="btn text-white waves-effect waves-light modal-action modal-close"
                 type="submit"
                 name="action"
               >
@@ -114,24 +98,13 @@ class SignInModal extends React.Component {
               </button>
             </Link>
             <h6>New to Shaadidotcom?</h6>
-            <div className="signup-free-btn">
+            <div className="signup-free-btn text-center">
               <Link to="signup" className="modal-action modal-close">
                 Sign Up Free
               </Link>
             </div>
-          </div> */}
-        {/* <div className="modal-footer"> */}
-        {/* <a
-              href="#!"
-              className="modal-action modal-close waves-effect waves-red btn-flat"
-            >
-              Agree
-            </a> */}
-        {/* </div> */}
-        {/* </Modal> */}
-        <Modal open={open} onClose={this.props.onCloseModal} little>
-          <h2>Simple centered modal</h2>
-        </Modal>
+          </div>
+        </div>
       </div>
     );
   }

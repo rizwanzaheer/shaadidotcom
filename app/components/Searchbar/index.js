@@ -39,9 +39,9 @@ class Searchbar extends React.Component {
     // Send Axios API Resqeust request to backend server
     const { gender, fromAge, toAge, religion, motherTongue } = this.state;
     this.props.history.push(
-      `testhome?gender=${gender}&fromage=${fromAge}&toage=${toAge}&religion=${
-        religion
-      }&mothertongue=${motherTongue}`
+      `searchusers?gender=${gender}&fromage=${fromAge}&toage=${
+        toAge
+      }&religion=${religion}&mothertongue=${motherTongue}`
     );
   }
   render() {

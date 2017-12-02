@@ -9,9 +9,17 @@ import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Backoffice from 'containers/Backoffice/Loadable';
+import SearchUsers from 'containers/SearchUsers/Loadable';
 // import AdminDashboard from "containers/AdminLayout/AdminDashboard";
 import Home from '../views/Home';
 
+const RouteWithGlobalLayout = ({ component, ...rest }) => (
+  <div>
+    <Header />
+    <Route {...rest} render={() => React.createElement(component)} />
+    <Footer />
+  </div>
+);
 const RouteWithUserLayout = ({ component, ...rest }) => (
   <div>
     <Header />
@@ -40,6 +48,10 @@ const CustomRoutes = () => (
       <RouteWithUserLayout exact path="/dashboard" component={HomePage} />
       <RouteWithUserLayout path="/features" component={FeaturePage} />
       <RouteWithUserLayout path="/signin" component={Signin} />
+
+      {/* Global layout */}
+      <RouteWithGlobalLayout path="/searchusers" component={SearchUsers} />
+
       {/* Admin Routes */}
       <RouteWithAdminLayout exact path="/backoffice" component={Backoffice} />
       {/* <RouteWithAdminLayout
