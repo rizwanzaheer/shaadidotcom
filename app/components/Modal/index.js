@@ -11,12 +11,11 @@ import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import 'react-responsive-modal/lib/react-responsive-modal.css';
-import EnvChecker from '../../config/envChecker';
 
-// import CrossIcon from 'components/CrossIcon';
-// import ModalWrapper from './ModalStyle';
+import EnvChecker from '../../config/envChecker';
 import messages from './messages';
 import './ModalStyle.scss';
+
 class SignInModal extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -24,6 +23,12 @@ class SignInModal extends React.Component {
     this.state = {
       email: '',
       password: '',
+      isEmailValid: false,
+      isPasswordValid: false,
+      hasEmail: false,
+      hasPassword: false,
+      notValidUser: false,
+      error: false,
     };
     this.signinbtnClickHandler = this.signinbtnClickHandler.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,17 +38,51 @@ class SignInModal extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     this.setState({
+      isEmailValid: false,
+      isPasswordValid: false,
+      hasEmail: false,
+      hasPassword: false,
+      notValidUser: false,
+      error: false,
       [name]: value,
     });
   }
   signinbtnClickHandler() {
-    console.log('signinbtnClickHandler!');
     const { email, password } = this.state;
     if (!email && !password) {
-      console.log('Please Enter Email & Password!');
+      this.setState({
+        error: true,
+      });
+    } else if (!email) {
+      this.setState({
+        hasEmail: true,
+      });
+    } else if (!password) {
+      this.setState({
+        hasPassword: true,
+      });
+    } else {
+      axios
+        .post(`${EnvChecker.nodeApiServerUrl}/signin`, this.state)
+        .then((response) => {
+          const { status, statusText, data } = response;
+          if (status === 200 && statusText === 'OK') {
+            localStorage.setItem('user_signin_token', data.token);
+            console.log('successfuly Signin!');
+          }
+        })
+        .catch((error) => {
+          const { status, statusText, data } = error.response;
+          if (status === 401 && statusText === 'Unauthorized') {
+            this.setState({
+              notValidUser: true,
+            });
+          }
+          console.log('catch', error.response);
+          console.log('status code: ', status);
+          console.log('status text: ', statusText);
+        });
     }
-    // axios.post();
-    
   }
   render() {
     return (
@@ -54,6 +93,18 @@ class SignInModal extends React.Component {
           <h5 className="modal-title">
             <FormattedMessage {...messages.header} />
           </h5>
+          {this.state.error && (
+            <h6 className="text-danger">Please Enter Email & Password!</h6>
+          )}
+          {this.state.hasEmail && (
+            <h6 className="text-danger">Please Enter Email!</h6>
+          )}
+          {this.state.hasPassword && (
+            <h6 className="text-danger">Please EnterPassword!</h6>
+          )}
+          {this.state.notValidUser && (
+            <h6 className="text-danger">Your Details does not Exist in our Record!</h6>
+          )}
           <div className="modal-body">
             <div className="row">
               <div className="col-12">
@@ -153,7 +204,6 @@ class SignInModal extends React.Component {
 }
 
 SignInModal.propTypes = {
-  // isModalOpen: PropTypes.bool,
   signupClickHandler: PropTypes.func,
   forgetPasswordClickHandler: PropTypes.func,
 };
