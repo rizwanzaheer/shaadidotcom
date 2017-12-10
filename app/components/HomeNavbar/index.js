@@ -25,6 +25,7 @@ class HomeNavbar extends React.Component {
     this.onCloseModal = this.onCloseModal.bind(this);
     this.signupClickHandler = this.signupClickHandler.bind(this);
     this.onOpenModal = this.onOpenModal.bind(this);
+    this.forgetPasswordClickHandler = this.forgetPasswordClickHandler.bind(this);
     this.state = {
       openSigninModal: false,
       openHelpModal: false,
@@ -40,6 +41,13 @@ class HomeNavbar extends React.Component {
     this.setState({ open: false, isOpenForgetPasswordModal: false });
   }
   signupClickHandler() {
+    this.onCloseModal();
+    // this.setState({
+    //   isOpenForgetPasswordModal: true,
+    // });
+  }
+  forgetPasswordClickHandler() {
+    console.log('forget click handler');
     this.onCloseModal();
     this.setState({
       isOpenForgetPasswordModal: true,
@@ -68,7 +76,7 @@ class HomeNavbar extends React.Component {
           <span />
         </Link>
         <Modal open={this.state.open} onClose={this.onCloseModal} little>
-          <SignInModal signupClickHandler={this.signupClickHandler} />
+          <SignInModal signupClickHandler={this.signupClickHandler} forgetPasswordClickHandler={this.forgetPasswordClickHandler} />
         </Modal>
         <ForgetPasswordModal
           isOpenForgetPasswordModal={this.state.isOpenForgetPasswordModal}

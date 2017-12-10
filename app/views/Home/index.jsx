@@ -3,17 +3,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { NavLink, withRouter } from 'react-router-dom';
 import HomeNavbar from 'components/HomeNavbar';
-import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-
-import { compose } from 'redux';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import Header from 'components/Header';
 import H1 from 'components/H1';
 import H2 from 'components/H2';
-import Button from 'components/Button';
 import SearchBar from 'components/Searchbar';
 import WorkFLowContainer from 'components/WorkFlowContainer';
 import Footer from 'components/Footer';
@@ -131,7 +126,6 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
               <img src={Logo} alt="Shaadidotcom" />
             </div>
             <div className="col-12 text-center about-site-info">
-              <NavLink to="features?name=rizwan"> features Route </NavLink>
               <p>
                 Shaadi.com, The World's No.1 Matchmaking Service, was founded
                 with a simple objective - to help people find happiness.

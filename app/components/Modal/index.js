@@ -9,7 +9,6 @@ import { FormattedMessage } from 'react-intl';
 import ReactTooltip from 'react-tooltip';
 import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ForgetPasswordModal from 'components/ForgetPasswordModal';
 import 'react-responsive-modal/lib/react-responsive-modal.css';
 
 // import CrossIcon from 'components/CrossIcon';
@@ -76,7 +75,8 @@ class SignInModal extends React.Component {
                     aria-hidden="true"
                   />
                   <NavLink
-                    to="forgetpassword"
+                    to="#"
+                    onClick={this.props.forgetPasswordClickHandler}
                     className="forget-password pull-right modal-action modal-close"
                   >
                     forget Password?
@@ -117,6 +117,8 @@ class SignInModal extends React.Component {
 
 SignInModal.propTypes = {
   // isModalOpen: PropTypes.bool,
+  signupClickHandler: PropTypes.func,
+  forgetPasswordClickHandler: PropTypes.func,
 };
 
 export default SignInModal;

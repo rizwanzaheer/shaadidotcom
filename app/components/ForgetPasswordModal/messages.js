@@ -8,7 +8,10 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.ForgetPasswordModal.header',
-    defaultMessage: `Let's set up your account, while
-    we find Matches for you!`,
+    defaultMessage: 'Retrieve your password via Email',
+  },
+  emailInfo: {
+    id: 'app.components.ForgetPasswordModal.emailInfo',
+    defaultMessage: 'Enter the email that you registered with.!',
   },
 });

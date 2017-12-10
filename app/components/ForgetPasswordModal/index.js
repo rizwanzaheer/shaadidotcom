@@ -12,26 +12,41 @@ import Modal from 'react-responsive-modal';
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
+import Logo from '../../images/home-page-layer-logo.png';
 import './ForgetPassword.scss';
 
-class ForgetPasswordModal extends React.Component {
-  // eslint-disable-line react/prefer-stateless-function
+class ForgetPasswordModal extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div className="forget-password-modal">
-        <Modal
-          open={this.props.isOpenForgetPasswordModal}
-          onClose={this.props.onCloseModal}
-          little
-        >
-          <h3>
-            <FormattedMessage {...messages.header} />
-          </h3>
+      <Modal
+        open={this.props.isOpenForgetPasswordModal}
+        onClose={this.props.onCloseModal}
+        little
+      >
+        <div className="forget-password-modal">
           <div className="modal-body">
-            <p>Modal body text goes here.</p>
+            <div className="logo text-center">
+              <img src={Logo} alt="Shaadi dot com" />
+            </div>
+            <h5 className="heading">
+              <FormattedMessage {...messages.header} />
+            </h5>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+              />
+              <small id="emailHelp" className="form-text text-muted">
+                <FormattedMessage {...messages.emailInfo} />
+              </small>
+            </div>
           </div>
-        </Modal>
-      </div>
+        </div>
+      </Modal>
     );
   }
 }
