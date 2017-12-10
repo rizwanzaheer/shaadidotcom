@@ -8,6 +8,7 @@ import React from 'react';
 // import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import { FormattedMessage } from 'react-intl';
 
@@ -15,7 +16,8 @@ import messages from './messages';
 import Logo from '../../images/home-page-layer-logo.png';
 import './ForgetPassword.scss';
 
-class ForgetPasswordModal extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class ForgetPasswordModal extends React.Component {
+  // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <Modal
@@ -43,6 +45,17 @@ class ForgetPasswordModal extends React.Component { // eslint-disable-line react
               <small id="emailHelp" className="form-text text-muted">
                 <FormattedMessage {...messages.emailInfo} />
               </small>
+            </div>
+            <div className="text-center">
+              <Link to="#" className="forget-password-btn">
+                <button
+                  className="btn btn-block waves-effect waves-light modal-action modal-close text-white"
+                  type="submit"
+                  name="action"
+                >
+                  <FormattedMessage {...messages.sendPasswordBtnText} />
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -15,7 +15,10 @@
   "app.view.Home.findSomeOneHeroText": "Search by Popular Matchmaking Sites",
   "app.view.Home.yourStoryHappenText": "Your story is waiting to happen!",
   "app.view.Home.yourStoryHappenButtonText":"Get Started",
-
+  "app.components.ForgetPasswordModal.header": "Retrieve your password via Email",
+  "app.components.ForgetPasswordModal.emailInfo": "Enter the email that you registered with.!",
+  "app.components.ForgetPasswordModal.sendPasswordBtnText": "Send Password",
+  
   "boilerplate.components.Header.features": "Features",
   "boilerplate.components.Header.home": "Home",
   "boilerplate.containers.FeaturePage.css.header": "Features",

@@ -14,4 +14,8 @@ export default defineMessages({
     id: 'app.components.ForgetPasswordModal.emailInfo',
     defaultMessage: 'Enter the email that you registered with.!',
   },
+  sendPasswordBtnText: {
+    id: 'app.components.ForgetPasswordModal.sendPasswordBtnText',
+    defaultMessage: 'Send Password',
+  },
 });

@@ -4,6 +4,7 @@
   "app.components.HomeNavbar.help": "Hjælp",
   "app.components.HomeNavbar.login": "Log på",
   "app.components.MoreDetailButtonRight.header": "Lær mere",
+  "app.components.Modal.header": "Log ind med din e-mail-id",
 
   "app.view.Home.heroText.message": "Mød nogen til holder",
   "app.view.Home.workFlowHeroText.message": "Find din Special Someone",
@@ -16,6 +17,9 @@
   "app.view.Home.findSomeOneHeroText": "Søg efter populære Matchmaking Sites",
   "app.view.Home.yourStoryHappenText": "Din historie venter på at ske!",
   "app.view.Home.yourStoryHappenButtonText":"Kom igang",
+  "app.components.ForgetPasswordModal.header": "Hent dit kodeord via e-mail",
+  "app.components.ForgetPasswordModal.emailInfo": "Indtast den e-mail, du har registreret med.!",
+  "app.components.ForgetPasswordModal.sendPasswordBtnText": "Send adgangskode",
 
   "boilerplate.components.Header.features": "",
   "boilerplate.components.Header.home": "",
