@@ -6,7 +6,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import H1 from 'components/H1';
 import TestComponent from './TestComonent';
@@ -31,6 +31,10 @@ export default class FeaturePage extends React.Component {
           <meta
             name="description"
             content="Feature page"
+          />
+          <meta
+            name="description"
+            content="Feature page of shaadi dot com!"
           />
         </Helmet>
         <H1>
