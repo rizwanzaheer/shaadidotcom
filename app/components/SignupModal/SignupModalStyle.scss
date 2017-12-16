@@ -1,40 +1,46 @@
 @import "../../utils/_variables.scss";
-.forget-password-modal {
+
+.signup-modal {
   margin-top: 20px;
   max-width: 370px;
-  // width: 370px !important;
   color: $heading-color;
-  .modal-body{
-    padding-top: 0;
-  }
   .heading {
-    margin: 0 0 8px;
-    span{
-      font-family: 'Roboto',sans-serif;
+    margin: 10px 0 20px;
+    span {
+      font-family: "Roboto", sans-serif;
       font-weight: normal;
     }
   }
   img {
     margin: 9px auto 34px;
   }
-  .form-group {
-    padding-top: 17px;
+  label {
+    span {
+      color: $paragraph-text-color;
+    }
   }
-  small {
-    color: $info-text-color;
-  }
-  p {
-    color: $paragraph-text-color;
-  }
-  .forget-password-btn button {
+  .signup-btn button {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
       0 2px 10px 0 rgba(0, 0, 0, 0.12);
     transition: all 300ms ease;
     background: $forget-password-btn-color;
     &:hover {
-      background-color: #0194a8;
+      background-color: $btn-hover;
       box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18),
         0 4px 15px 0 rgba(0, 0, 0, 0.15) !important;
+    }
+  }
+  .already-member {
+    margin-top: 20px;
+    span {
+      color: $paragraph-text-color;
+    }
+    a {
+      transition: all 300ms ease;
+      color: $forget-password-btn-color;
+      &:hover {
+        color: $btn-hover;
+      }
     }
   }
 }

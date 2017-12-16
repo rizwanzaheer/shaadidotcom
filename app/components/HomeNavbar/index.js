@@ -7,9 +7,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import SignInModal from 'components/Modal';
 import Modal from 'react-responsive-modal';
+
+import SignInModal from 'components/Modal';
 import ForgetPasswordModal from 'components/ForgetPasswordModal';
+import SignUpModal from 'components/SignupModal';
+
 import messages from './messages';
 
 import Logo from '../../images/home-logo.png';
@@ -25,12 +28,15 @@ class HomeNavbar extends React.Component {
     this.onCloseModal = this.onCloseModal.bind(this);
     this.signupClickHandler = this.signupClickHandler.bind(this);
     this.onOpenModal = this.onOpenModal.bind(this);
-    this.forgetPasswordClickHandler = this.forgetPasswordClickHandler.bind(this);
+    this.forgetPasswordClickHandler = this.forgetPasswordClickHandler.bind(
+      this
+    );
     this.state = {
       openSigninModal: false,
       openHelpModal: false,
       open: false,
       isOpenForgetPasswordModal: false,
+      isOpenSignupModal: false,
     };
   }
   onOpenModal() {
@@ -38,13 +44,18 @@ class HomeNavbar extends React.Component {
   }
 
   onCloseModal() {
-    this.setState({ open: false, isOpenForgetPasswordModal: false });
+    this.setState({
+      open: false,
+      isOpenForgetPasswordModal: false,
+      isOpenSignupModal: false,
+    });
   }
   signupClickHandler() {
+    console.log('signup click handler call!');
     this.onCloseModal();
-    // this.setState({
-    //   isOpenForgetPasswordModal: true,
-    // });
+    this.setState({
+      isOpenSignupModal: true,
+    });
   }
   forgetPasswordClickHandler() {
     console.log('forget click handler');
@@ -75,11 +86,24 @@ class HomeNavbar extends React.Component {
           <i className="fa fa-angle-down" aria-hidden="true" />
           <span />
         </Link>
+
+        {/* Signin Modal Popup here */}
         <Modal open={this.state.open} onClose={this.onCloseModal} little>
-          <SignInModal signupClickHandler={this.signupClickHandler} forgetPasswordClickHandler={this.forgetPasswordClickHandler} />
+          <SignInModal
+            signupClickHandler={this.signupClickHandler}
+            forgetPasswordClickHandler={this.forgetPasswordClickHandler}
+          />
         </Modal>
+
+        {/* Forgert Modal Popup here */}
         <ForgetPasswordModal
           isOpenForgetPasswordModal={this.state.isOpenForgetPasswordModal}
+          onCloseModal={this.onCloseModal}
+        />
+
+        {/* SignUp Modal popup here */}
+        <SignUpModal
+          isOpenSignupModal={this.state.isOpenSignupModal}
           onCloseModal={this.onCloseModal}
         />
       </div>

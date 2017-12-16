@@ -94,13 +94,13 @@ class SignInModal extends React.Component {
             <FormattedMessage {...messages.header} />
           </h5>
           {this.state.error && (
-            <h6 className="text-danger">Please Enter Email & Password!</h6>
+            <h6 className="text-danger">Please enter Email & Password!</h6>
           )}
           {this.state.hasEmail && (
-            <h6 className="text-danger">Please Enter Email!</h6>
+            <h6 className="text-danger">Please enter Email!</h6>
           )}
           {this.state.hasPassword && (
-            <h6 className="text-danger">Please EnterPassword!</h6>
+            <h6 className="text-danger">Please enter Password!</h6>
           )}
           {this.state.notValidUser && (
             <h6 className="text-danger">Your Details does not Exist in our Record!</h6>
