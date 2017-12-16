@@ -64,7 +64,7 @@ class SignupModal extends React.Component {
   };
   signupNextHandler = () => {
     console.log('signup next handler', this.state);
-    this.setState({ reqResErrorText: '' });
+    this.setState({ reqResErrorText: '', reqResError: false });
     axios
       .post(`${nodeApiServerUrl}/signup`, this.state)
       .then((res) => {
@@ -86,6 +86,7 @@ class SignupModal extends React.Component {
   };
   emailValidatorHandler = () => {
     const isValid = EmailValidator.validate(this.state.email);
+    this.setState({ isEmailChange: true });
     isValid
       ? this.setState({
         isEmailValid: false,
@@ -145,14 +146,14 @@ class SignupModal extends React.Component {
                 </label>
                 <input
                   type="email"
-                  className={`form-control ${isEmailValid && 'is-invalid'}`}
+                  className={`form-control ${isEmailValid &&
+                    'is-invalid'} ${reqResError && 'is-invalid'}`}
                   id="email"
                   name="email"
                   aria-describedby="emailHelp"
                   placeholder="Enter email"
                   onChange={this.onChangeHandler}
                   onBlur={() => {
-                    this.setState({ isEmailChange: true });
                     this.emailValidatorHandler();
                   }}
                 />
@@ -174,7 +175,7 @@ class SignupModal extends React.Component {
                 )}
                 {reqResError && (
                   <small id="emailHelp" className="form-text text-danger">
-                    Email is already in Use!
+                    Email Already in Use!
                   </small>
                 )}
               </div>
