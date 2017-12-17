@@ -75,7 +75,7 @@ class SignupModal extends React.Component {
         const { status, statusText, data } = err.response;
         const { error } = data;
         if (status === 422 && statusText === 'Unprocessable Entity') {
-          if (error === 'Email is in use') {
+          if (error === 'Email is in use!') {
             this.setState({
               reqResError: true,
               reqResErrorText: error,
