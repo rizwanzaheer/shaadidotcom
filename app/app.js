@@ -96,7 +96,6 @@ const render = (messages) => {
   );
 };
 
-
 if (module.hot) {
   // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
@@ -116,7 +115,7 @@ if (!window.Intl) {
       Promise.all([
         import('intl/locale-data/jsonp/en.js'),
         import('intl/locale-data/jsonp/de.js'),
-      import('intl/locale-data/jsonp/fr.js'),
+        import('intl/locale-data/jsonp/fr.js'),
       ])
     )
     .then(() => render(translationMessages))
