@@ -7,16 +7,31 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import MoreDetailButtonRight from "components/MoreDetailButtonRight";
+import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
 // import styled from 'styled-components';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import H1 from '../H1';
 import './findSomeStyle.scss';
 
 class FindSomeComponent extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.checkType = this.checkType.bind(this);
+  }
+  checkType = (name) => {
+    switch (name) {
+      case 'By Mother Tongue':
+        return 'mothertongue';
+      case 'By Religion':
+        return 'religion';
+      case 'By Communit':
+        return 'mothertongue';
+      default:
+        return 'in valid lang!';
+    }
+  };
   render() {
     const { name, options } = this.props.data;
     return (
@@ -25,7 +40,11 @@ class FindSomeComponent extends React.Component {
         <hr />
         <div className="find-detail-container">
           {options.map((value) => (
-            <NavLink key={value} className="text-secondary" to="#">
+            <NavLink
+              key={value}
+              className="text-secondary"
+              to={`searchusers?${this.checkType(name)}=${value.toLowerCase()}`}
+            >
               {value}
             </NavLink>
           ))}
