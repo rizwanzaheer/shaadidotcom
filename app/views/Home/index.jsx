@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import HomeNavbar from 'components/HomeNavbar';
 import { connect } from 'react-redux';
 
@@ -21,15 +21,6 @@ import './home.scss';
 
 class Home extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    // const search = this.props.location.search;
-    // console.log("this.props:", this.props);
-    // console.log("search: ", search);
-    // const params = new URLSearchParams(search);
-    // const name = params.get("name");
-    // const age = params.get("age");
-    // console.log("name: ", name);
-    // console.log("age: ", age);
-
     return (
       <div className="home-page">
         {/* Top home page banner */}
@@ -95,7 +86,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
             </div>
           </div>
           <div className="row">
-            {findSomeOneBy.map((data) => (
+            {findSomeOneBy.map((data, i) => (
               <div className="col-md-4" key={data.name}>
                 <FindSomeComponent data={data} />
               </div>
@@ -127,7 +118,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
             </div>
             <div className="col-12 text-center about-site-info">
               <p>
-                Shaadi.com, The World's No.1 Matchmaking Service, was founded
+                Shaadi dot com, The World's No.1 Matchmaking Service, was founded
                 with a simple objective - to help people find happiness.
               </p>
               <p>
@@ -136,15 +127,13 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                 service. As a leader in
               </p>
               <p>
-                what is sometimes known as the matrimony category, we have
-                touched more than 35 million lives.
+                what is sometimes known as the matrimony category,
+                {/* we have touched more than 35 million lives. */}
               </p>
               <p>
-                Shaadi.com has always differentiated itself from other
+                Shaadi dot com has always differentiated itself from other
                 matrimonials through its innovation-led approach. By redefining
-                the way Indian brides and Shaadi.com has always differentiated
-                itself from other matrimonials through its innovation-led
-                approach. By redefining the way Indian brides and
+                the way brides and
               </p>
               <p>
                 grooms meet for marriage, Shaadi.com has created a
