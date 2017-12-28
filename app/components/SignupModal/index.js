@@ -9,27 +9,15 @@ import React from 'react';
 import Modal from 'react-responsive-modal';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Select from 'react-select';
-import * as EmailValidator from 'email-validator';
-import { nodeApiServerUrl } from '../../config/envChecker';
-import axios from 'axios';
-
 import { FormattedMessage } from 'react-intl';
+import * as EmailValidator from 'email-validator';
+import axios from 'axios';
 import messages from './messages';
-import './SignupModalStyle.scss';
+import { nodeApiServerUrl } from '../../config/envChecker';
 
 import Logo from '../../images/home-page-layer-logo.png';
 
-const DROPDOWN_DATA = [
-  { value: '', label: 'Select' },
-  { value: 'Self', label: 'Self' },
-  { value: 'Son', label: 'Son' },
-  { value: 'Daughter', label: 'Daughter' },
-  { value: 'Brother', label: 'Brother' },
-  { value: 'Sister', label: 'Sister' },
-  { value: 'Friend', label: 'Friend' },
-  { value: 'Relative', label: 'Relative' },
-];
+import './SignupModalStyle.scss';
 
 class SignupModal extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -38,17 +26,14 @@ class SignupModal extends React.Component {
     this.state = {
       email: '',
       password: '',
-      createProfileFor: '',
       selectedOption: '',
       isEmailChange: false,
       isPasswordChange: false,
-      isCreateProfileForChange: false,
       isEmailExists: false,
       isEmailValid: false,
       reqResError: false,
       reqResErrorText: '',
     };
-    this.handleChange = this.handleChange.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.signupNextHandler = this.signupNextHandler.bind(this);
     this.emailValidatorHandler = this.emailValidatorHandler.bind(this);
@@ -63,10 +48,10 @@ class SignupModal extends React.Component {
     });
   };
   signupNextHandler = () => {
-    console.log('signup next handler', this.state);
     this.setState({ reqResErrorText: '', reqResError: false });
+    const { password, gender, email } = this.state;
     axios
-      .post(`${nodeApiServerUrl}/signup`, this.state)
+      .post(`${nodeApiServerUrl}/signup`, { password, gender, email })
       .then((res) => {
         console.log(res);
       })
@@ -94,7 +79,6 @@ class SignupModal extends React.Component {
       : this.setState({
         isEmailValid: true,
       });
-    console.log('isValid: ', isValid);
   };
   passwordValidatorHandler = () => {
     this.state.password.length > 3
@@ -105,22 +89,11 @@ class SignupModal extends React.Component {
         isPasswordChange: true,
       });
   };
-  handleChange = (selectedOption) => {
-    const newValue = selectedOption === null ? '' : selectedOption.value;
-    if (newValue) {
-      this.setState({ createProfileFor: newValue });
-    } else {
-      this.setState({ createProfileFor: '' });
-    }
-  };
   render() {
     const {
       email,
-      password,
-      createProfileFor,
       isEmailChange,
       isPasswordChange,
-      isCreateProfileForChange,
       isEmailExists,
       isEmailValid,
       reqResError,
@@ -151,7 +124,7 @@ class SignupModal extends React.Component {
                   id="email"
                   name="email"
                   aria-describedby="emailHelp"
-                  placeholder="Enter email"
+                  placeholder="Email"
                   onChange={this.onChangeHandler}
                   onBlur={() => {
                     this.emailValidatorHandler();
@@ -190,7 +163,7 @@ class SignupModal extends React.Component {
                   name="password"
                   onChange={this.onChangeHandler}
                   aria-describedby="passwordHelp"
-                  placeholder="Enter password"
+                  placeholder="Password"
                   onBlur={() => {
                     this.passwordValidatorHandler();
                   }}
@@ -200,32 +173,6 @@ class SignupModal extends React.Component {
                     Please enter 4 to 20 characters password without any spaces
                   </small>
                 )}
-              </div>
-              <div className="form-group">
-                <label htmlFor="createProfileFor">
-                  <FormattedMessage {...messages.createProfileFor} />
-                </label>
-                <Select
-                  name="createProfileFor"
-                  id="createProfileFor"
-                  isCreateProfileForChange
-                  value={createProfileFor}
-                  onChange={this.handleChange}
-                  onBlur={() =>
-                    this.setState({ isCreateProfileForChange: true })
-                  }
-                  options={DROPDOWN_DATA}
-                  clearable
-                />
-                {isCreateProfileForChange &&
-                  !createProfileFor && (
-                    <small
-                      id="createProfileFor"
-                      className="form-text text-danger"
-                    >
-                      Please specify whose profile is being created
-                    </small>
-                  )}
               </div>
               <div className="form-group">
                 <div className="form-check form-check-inline">
