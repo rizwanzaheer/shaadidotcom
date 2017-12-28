@@ -117,7 +117,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
               <img src={Logo} alt="Shaadidotcom" />
             </div>
             <div className="col-12 text-center about-site-info">
-              {/* <p>
+              <p>
                 Shaadi dot com, The World's No.1 Matchmaking Service, was founded
                 with a simple objective - to help people find happiness.
               </p>
@@ -125,7 +125,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                 Shaadi.com (sometimes mis-spelt as Shadi) is a social networking
                 site specialising in matchmaking and not just a matrimonial
                 service. As a leader in
-              </p> */}
+              </p>
               <p>
                 what is sometimes known as the matrimony category,
                 {/* we have touched more than 35 million lives. */}
