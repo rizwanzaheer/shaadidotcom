@@ -9,6 +9,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import H1 from 'components/H1';
 import H2 from 'components/H2';
+import Slider from 'components/Slider';
 import SearchBar from 'components/Searchbar';
 import WorkFLowContainer from 'components/WorkFlowContainer';
 import Footer from 'components/Footer';
@@ -19,7 +20,8 @@ import messages from './messages';
 import Logo from '../../images/home-page-layer-logo.png';
 import './home.scss';
 
-class Home extends Component { // eslint-disable-line react/prefer-stateless-function
+class Home extends Component {
+  // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div className="home-page">
@@ -93,7 +95,10 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
             ))}
           </div>
         </div>
-        {/*  */}
+        <div className="container-fluid">
+          <Slider />
+        </div>
+        {/* waiting-happen-container */}
         <div className="container-fluid ">
           <div className="row text-center waiting-happen-container">
             <div className="col-12">
@@ -118,8 +123,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
             </div>
             <div className="col-12 text-center about-site-info">
               <p>
-                Shaadi dot com, The World's No.1 Matchmaking Service, was founded
-                with a simple objective - to help people find happiness.
+                Shaadi dot com, The World's No.1 Matchmaking Service, was
+                founded with a simple objective - to help people find happiness.
               </p>
               <p>
                 Shaadi.com (sometimes mis-spelt as Shadi) is a social networking
