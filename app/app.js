@@ -50,6 +50,7 @@ import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
 import '!!style-loader!css-loader!../node_modules/font-awesome/css/font-awesome.css';
+// import '!!style-loader!css-loader!./public/css/waves.css';
 
 import configureStore from './configureStore';
 
@@ -58,7 +59,10 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
+// import './public/js/waves.min';
+
 // require('jquery/dist/jquery');
+
 require('popper.js/dist/umd/popper');
 // require('bootstrap/dist/js/bootstrap');
 

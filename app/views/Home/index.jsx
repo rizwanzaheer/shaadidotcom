@@ -78,6 +78,16 @@ class Home extends Component {
             </div>
           </div>
         </div>
+
+        {/* Slider place */}
+        <div className="container-fluid slider-bg">
+          <div className="row">
+            <div className="col-10 slider-position">
+              <Slider />
+            </div>
+          </div>
+        </div>
+
         {/* find someone container */}
         <div className="container find-someone-container">
           <div className="row">
@@ -95,9 +105,7 @@ class Home extends Component {
             ))}
           </div>
         </div>
-        <div className="container-fluid">
-          <Slider />
-        </div>
+        
         {/* waiting-happen-container */}
         <div className="container-fluid ">
           <div className="row text-center waiting-happen-container">

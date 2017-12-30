@@ -11,68 +11,49 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import $ from 'jquery';
 import img1 from '../../images/sn-couple_v001.jpg';
+import img2 from '../../images/67c6759c76779baf1bff4a1cee846990.jpg';
+import img3 from '../../images/f26be5b085b48791dde15bb47f3cc90d.jpg';
+import img4 from '../../images/5b863d58ece6b24dc1cb378e3b2624be.jpg';
 
 import './SliderStyle.scss';
 import './slick.scss';
 
-const slick = require('./Slick.js');
+import slick from './Slick';
 
 class Slider extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     $('.slider').slick({
-      centerMode: true,
-      centerPadding: '60px',
       slidesToShow: 3,
+      slidesToScroll: 1,
       dots: true,
-      arrows: false,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            arrows: false,
-            centerMode: true,
-            centerPadding: '40px',
-            slidesToShow: 3,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            arrows: false,
-            centerMode: true,
-            centerPadding: '40px',
-            slidesToShow: 1,
-          },
-        },
-      ],
+      // arrows: true,
+      // autoplay: true,
+      // autoplaySpeed: 8000,
     });
   }
   render() {
     return (
       <div className="slider">
-        <div className="heading">
-          <img src={a} alt="logo" />
+        <div
+          className="image-container"
+          style={{ backgroundImage: `url(${img1})` }}
+        >
         </div>
-        <div className="details">
-          <p>
-            &#8220; <FormattedMessage {...messages.header} />&#8221;
-          </p>
+        <div
+          className="image-container"
+          style={{ backgroundImage: `url(${img2})` }}
+        >
         </div>
-        <div className="about-client">
-          <div className="client-img">
-            <div className="img-container">
-              {/* <img src={`${props.data.clientImg}`} alt="#" /> */}
-            </div>
-          </div>
-          <div className="client-details">
-            <h5>
-              <strong>client name</strong>
-            </h5>
-            <h5>
-              <strong>client desg</strong>
-            </h5>
-          </div>
+        <div
+          className="image-container"
+          style={{ backgroundImage: `url(${img3})` }}
+        >
+        </div>
+        <div
+          className="image-container"
+          style={{ backgroundImage: `url(${img4})` }}
+        >
         </div>
       </div>
     );

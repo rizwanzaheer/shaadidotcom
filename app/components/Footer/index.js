@@ -14,7 +14,7 @@ function Footer() {
         <div className="row">
           <div className="col-6">
             <section>
-              <span> © 2016 - {new Date().getFullYear()} Shaadidotcom, </span>
+              <span> © {new Date().getFullYear()} Shaadidotcom, </span>
               <FormattedMessage {...messages.licenseMessage} />
             </section>
           </div>
