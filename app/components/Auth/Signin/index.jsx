@@ -93,8 +93,8 @@ class Signin extends Component {
   render() {
     const { handleSubmit, fields: { email, password } } = this.props;
     return (
-      <div className="row">
-        <div className="col-4 offset-md-3 signin-container">
+      <div className="col-12">
+        <div className="col-8 col-md-8 col-xl-4 offset-2 offset-xl-3 signin-container">
           <form>
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>

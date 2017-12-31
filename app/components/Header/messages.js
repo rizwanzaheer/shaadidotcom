@@ -30,5 +30,9 @@ export default defineMessages({
     id: 'app.components.Header.signup',
     defaultMessage: 'signup',
   },
+  partnerpreferences: {
+    id: 'app.components.Header.partnerpreferences',
+    defaultMessage: 'Partner Preferences',
+  },
 
 });

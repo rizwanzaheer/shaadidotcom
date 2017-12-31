@@ -18,7 +18,7 @@ class Header extends React.Component {
       isSignin: !!isUser,
     };
     this.signoutHandler = this.signoutHandler.bind(this);
-    this.loginBtnHandler = this.loginBtnHandler.bind(this);
+    this.navbarToggler = this.navbarToggler.bind(this);
     this.signinHandler = this.signinHandler.bind(this);
   }
   signinHandler = () => {
@@ -28,7 +28,7 @@ class Header extends React.Component {
     localStorage.removeItem('user_token');
     window.location.pathname = '';
   };
-  loginBtnHandler = () => {
+  navbarToggler = () => {
     if (isUser) {
       return (
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -54,7 +54,12 @@ class Header extends React.Component {
                 <FormattedMessage {...messages.search} />
               </NavLink>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/my-shaadi/search">
+                <FormattedMessage {...messages.partnerpreferences} />
+              </NavLink>
+            </li>
+            {/* <li className="nav-item dropdown">
               <NavLink
                 className="nav-link dropdown-toggle"
                 to="#"
@@ -78,14 +83,14 @@ class Header extends React.Component {
                   Something else here
                 </NavLink>
               </div>
-            </li>
+            </li> */}
           </ul>
 
           <div className="form-inline my-2 my-lg-0">
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav m-auto">
               <li className="nav-item dropdown">
                 <NavLink
-                  className="nav-link dropdown-toggle"
+                  className="nav-link profile-menu-dropdwon dropdown-toggle"
                   to="#"
                   id="navbarDropdown"
                   role="button"
@@ -95,48 +100,38 @@ class Header extends React.Component {
                 >
                   <img
                     src={profileImg}
-                    alt=""
-                    style={{ width: '20px', height: '20px' }}
+                    alt="Name"
                   />
-                  {/* <FormattedMessage {...messages.settings} /> */}
                 </NavLink>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <NavLink className="dropdown-item" to="#">
-                    Action
+                  <NavLink className="dropdown-item" to="/my-shaadi/setting">
+                    Account Setting
                   </NavLink>
                   <NavLink className="dropdown-item" to="#">
                     Another action
                   </NavLink>
                   <div className="dropdown-divider" />
-                  <NavLink className="dropdown-item" to="#">
-                    Something else here
+                  <NavLink
+                    className="dropdown-item" to="#"
+                    onClick={this.signoutHandler}
+                  >
+                    Sign Out
                   </NavLink>
                 </div>
               </li>
             </ul>
           </div>
-          <i
+          {/* <i
             className="fa fa-sign-out fa-2x pull-right signout"
             onClick={this.signoutHandler}
             aria-hidden="true"
-          />
+          /> */}
         </div>
       );
     }
     return (
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <NavLink
-              exact
-              activeClassName="active"
-              className="nav-link"
-              to="/"
-            >
-              Home
-              {/* <FormattedMessage {...messages.dashboard} /> */}
-            </NavLink>
-          </li>
           <li className="nav-item">
             <NavLink
               activeClassName="active"
@@ -186,11 +181,9 @@ class Header extends React.Component {
           >
             <span className="navbar-toggler-icon" />
           </button>
-
-          {this.loginBtnHandler()}
+          {/*  conditional menu rendered */}
+          {this.navbarToggler()}
         </nav>
-
-        {/*  */}
       </NavBar>
     );
   }
