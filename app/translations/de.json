@@ -21,8 +21,11 @@
   "app.components.ForgetPasswordModal.emailInfo": "Indtast den e-mail, du har registreret med.!",
   "app.components.ForgetPasswordModal.sendPasswordBtnText": "Send adgangskode",
 
-  "boilerplate.components.Header.features": "",
-  "boilerplate.components.Header.home": "",
+  "app.components.Header.dashboard": "",
+  "app.components.Header.profile": "",
+  "app.components.Header.settings": "",
+  "app.components.Header.search": "",
+  
   "boilerplate.containers.FeaturePage.css.header": "",
   "boilerplate.containers.FeaturePage.css.message": "Die nächste Generation von CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Sofortiges Feedback",

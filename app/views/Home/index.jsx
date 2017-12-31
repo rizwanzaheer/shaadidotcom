@@ -22,6 +22,11 @@ import './home.scss';
 
 class Home extends Component {
   // eslint-disable-line react/prefer-stateless-function
+  componentWillMount = () => {
+    if (localStorage.getItem('user_token')) {
+      window.location.pathname = 'my-shaadi';
+    }
+  };
   render() {
     return (
       <div className="home-page">
@@ -105,7 +110,7 @@ class Home extends Component {
             ))}
           </div>
         </div>
-        
+
         {/* waiting-happen-container */}
         <div className="container-fluid ">
           <div className="row text-center waiting-happen-container">
@@ -123,6 +128,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
+
         {/* About site container */}
         <div className="container about-site-container">
           <div className="row">

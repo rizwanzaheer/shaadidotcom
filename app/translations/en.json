@@ -19,8 +19,10 @@
   "app.components.ForgetPasswordModal.emailInfo": "Enter the email that you registered with.!",
   "app.components.ForgetPasswordModal.sendPasswordBtnText": "Send Password",
   
-  "boilerplate.components.Header.features": "Features",
-  "boilerplate.components.Header.home": "Home",
+  "app.components.Header.dashboard": "Dashboard",
+  "app.components.Header.profile": "My Profile",
+  "app.components.Header.settings": "Settings",
+  "app.components.Header.search": "Search",
   "boilerplate.containers.FeaturePage.css.header": "Features",
   "boilerplate.containers.FeaturePage.css.message": "Next generation CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Instant feedback",

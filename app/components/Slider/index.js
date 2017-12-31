@@ -10,6 +10,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import $ from 'jquery';
+import { windowWidth, windowMinWidth } from '../../config/windowProperties';
+
 import img1 from '../../images/sn-couple_v001.jpg';
 import img2 from '../../images/67c6759c76779baf1bff4a1cee846990.jpg';
 import img3 from '../../images/f26be5b085b48791dde15bb47f3cc90d.jpg';
@@ -24,7 +26,7 @@ class Slider extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     $('.slider').slick({
-      slidesToShow: 3,
+      slidesToShow: windowWidth < windowMinWidth ? 1 : 3,
       slidesToScroll: 1,
       dots: true,
       // arrows: true,
@@ -38,23 +40,19 @@ class Slider extends React.Component {
         <div
           className="image-container"
           style={{ backgroundImage: `url(${img1})` }}
-        >
-        </div>
+        />
         <div
           className="image-container"
           style={{ backgroundImage: `url(${img2})` }}
-        >
-        </div>
+        />
         <div
           className="image-container"
           style={{ backgroundImage: `url(${img3})` }}
-        >
-        </div>
+        />
         <div
           className="image-container"
           style={{ backgroundImage: `url(${img4})` }}
-        >
-        </div>
+        />
       </div>
     );
   }

@@ -7,6 +7,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import ReactTooltip from 'react-tooltip';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -67,7 +69,13 @@ class SignInModal extends React.Component {
         .then((response) => {
           const { status, statusText, data } = response;
           if (status === 200 && statusText === 'OK') {
-            localStorage.setItem('user_signin_token', data.token);
+            localStorage.setItem('user_token', data.token);
+            console.log('user data: ', data);
+            // window.history.push('/test');
+            // window.history.push('/searchuser');
+            window.location.pathname = 'my-shaadi';
+            // location.push('/features');
+            // console.log(window.location);
             console.log('successfuly Signin!');
           }
         })
@@ -103,7 +111,9 @@ class SignInModal extends React.Component {
             <h6 className="text-danger">Please enter Password!</h6>
           )}
           {this.state.notValidUser && (
-            <h6 className="text-danger">Your Details does not Exist in our Record!</h6>
+            <h6 className="text-danger">
+              Your Details does not Exist in our Record!
+            </h6>
           )}
           <div className="modal-body">
             <div className="row">
@@ -208,4 +218,4 @@ SignInModal.propTypes = {
   forgetPasswordClickHandler: PropTypes.func,
 };
 
-export default SignInModal;
+export default withRouter(connect()(SignInModal));

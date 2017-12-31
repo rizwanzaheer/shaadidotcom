@@ -1,57 +1,135 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import axios from 'axios';
 import * as actions from './actions';
+
+import EnvChecker from '../../../config/envChecker';
+import './siginStyle.scss';
 
 class Signin extends Component {
   // eslint-disable-line
   constructor(props) {
     super(props);
+    this.state = {
+      email: '',
+      password: '',
+      isEmailValid: false,
+      isPasswordValid: false,
+      hasEmail: false,
+      hasPassword: false,
+      notValidUser: false,
+      error: false,
+    };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.signinbtnClickHandler = this.signinbtnClickHandler.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
-
+  componentWillMount() {
+    if (localStorage.getItem('user_token')) {
+      window.location.pathname = 'my-shaadi';
+    }
+  }
   handleFormSubmit({ email, password }) {
     console.log(email, password);
+  }
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    this.setState({
+      isEmailValid: false,
+      isPasswordValid: false,
+      hasEmail: false,
+      hasPassword: false,
+      notValidUser: false,
+      error: false,
+      [name]: value,
+    });
+  }
+  signinbtnClickHandler(e) {
+    e.preventDefault();
+    const { email, password } = this.state;
+    if (!email && !password) {
+      this.setState({
+        error: true,
+      });
+    } else if (!email) {
+      this.setState({
+        hasEmail: true,
+      });
+    } else if (!password) {
+      this.setState({
+        hasPassword: true,
+      });
+    } else {
+      axios
+        .post(`${EnvChecker.nodeApiServerUrl}/signin`, this.state)
+        .then((response) => {
+          const { status, statusText, data } = response;
+          if (status === 200 && statusText === 'OK') {
+            localStorage.setItem('user_token', data.token);
+            console.log('user data: ', data);
+            // window.history.push('/test');
+            // window.history.push('/searchuser');
+            window.location.pathname = 'my-shaadi';
+            // location.push('/features');
+            // console.log(window.location);
+            console.log('successfuly Signin!');
+          }
+        })
+        .catch((error) => {
+          const { status, statusText, data } = error.response;
+          if (status === 401 && statusText === 'Unauthorized') {
+            this.setState({
+              notValidUser: true,
+            });
+          }
+          console.log('catch', error.response);
+          console.log('status code: ', status);
+          console.log('status text: ', statusText);
+        });
+    }
   }
   render() {
     const { handleSubmit, fields: { email, password } } = this.props;
     return (
       <div className="row">
-        <form
-          className="col s12"
-          onSubmit={handleSubmit(this.handleFormSubmit)}
-        >
-          <div className="row">
-            <div className="input-field col s12">
-              <Field
-                {...email}
+        <div className="col-4 offset-md-3 signin-container">
+          <form>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">Email address</label>
+              <input
+                type="email"
+                className="form-control"
                 id="email"
-                value="rizwan@gmail.com"
                 name="email"
-                className="validate"
-                component="input"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                onChange={this.handleInputChange}
               />
-              <label htmlFor="email">Email</label>
+              <small id="emailHelp" className="form-text text-muted">
+                We'll never share your email with anyone else.
+              </small>
             </div>
-          </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <Field
-                {...password}
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input
+                type="password"
+                className="form-control"
                 id="password"
                 name="password"
-                component="input"
-                className="validate"
+                placeholder="Password"
+                onChange={this.handleInputChange}
               />
-              <label htmlFor="password">Password</label>
             </div>
-          </div>
-          <div className="row">
-            <button className="btn waves-effect waves-light" name="action">
+            <button
+              onClick={this.signinbtnClickHandler}
+              className="btn btn-primary"
+            >
               Signin
-              <i className="material-icons right">send</i>
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

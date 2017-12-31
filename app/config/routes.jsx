@@ -45,9 +45,30 @@ const CustomRoutes = () => (
     <Switch>
       {/* User Routes */}
       <Route exact path="/" component={Home} />
-      <RouteWithUserLayout exact path="/dashboard" component={HomePage} />
+      {/* dashboard */}
+      <RouteWithUserLayout exact path="/my-shaadi" component={HomePage} />
+      {/* Profile setting */}
+      <RouteWithUserLayout
+        path="/my-shaadi/profile"
+        component={() => <h1> Profile </h1>}
+      />
+      <RouteWithUserLayout
+        path="/my-shaadi/setting"
+        component={() => <h1> Settings</h1>}
+      />
+      <RouteWithUserLayout
+        path="/my-shaadi/photo"
+        component={() => <h1> photos</h1>}
+      />
+      {/* Advance search for Bride/Groom */}
+      <RouteWithUserLayout
+        path="/my-shaadi/search"
+        component={() => <h1> search </h1>}
+      />
+
       <RouteWithUserLayout path="/features" component={FeaturePage} />
       <RouteWithUserLayout path="/signin" component={Signin} />
+      <RouteWithUserLayout path="/signup" component={Signin} />
 
       {/* Global layout */}
       <RouteWithGlobalLayout path="/searchusers" component={SearchUsers} />
