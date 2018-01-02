@@ -26,6 +26,7 @@ class Header extends React.Component {
   };
   signoutHandler = () => {
     localStorage.removeItem('user_token');
+    localStorage.removeItem('user_detail');
     window.location.pathname = '';
   };
   navbarToggler = () => {
@@ -55,7 +56,7 @@ class Header extends React.Component {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/my-shaadi/search">
+              <NavLink className="nav-link" to="/my-shaadi/ttyrf">
                 <FormattedMessage {...messages.partnerpreferences} />
               </NavLink>
             </li>
@@ -98,10 +99,7 @@ class Header extends React.Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <img
-                    src={profileImg}
-                    alt="Name"
-                  />
+                  <img src={profileImg} alt="Name" />
                 </NavLink>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <NavLink className="dropdown-item" to="/my-shaadi/setting">
@@ -112,7 +110,8 @@ class Header extends React.Component {
                   </NavLink>
                   <div className="dropdown-divider" />
                   <NavLink
-                    className="dropdown-item" to="#"
+                    className="dropdown-item"
+                    to="#"
                     onClick={this.signoutHandler}
                   >
                     Sign Out
@@ -133,20 +132,12 @@ class Header extends React.Component {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <NavLink
-              activeClassName="active"
-              className="nav-link"
-              to="/signin"
-            >
+            <NavLink activeClassName="active" className="nav-link" to="/signin">
               <FormattedMessage {...messages.signin} />
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink
-              activeClassName="active"
-              className="nav-link"
-              to="/signup"
-            >
+            <NavLink activeClassName="active" className="nav-link" to="/signup">
               <FormattedMessage {...messages.signup} />
             </NavLink>
           </li>

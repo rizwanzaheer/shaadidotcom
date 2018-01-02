@@ -1,6 +1,11 @@
 @import "../../utils/_variables.scss";
 .header {
   background: $navbar-bg-color;
+  .navbar {
+    -webkit-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 1);
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+  }
   .navbar-brand {
     margin-left: 5%;
   }
@@ -40,7 +45,7 @@
   }
   .profile-menu-dropdwon {
     display: inline-flex !important;
-    padding-right: 70% !important;
+    padding-right: 100px !important;
     img {
       width: 40px;
       height: 40px;

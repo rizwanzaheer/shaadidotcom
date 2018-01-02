@@ -53,6 +53,14 @@ const CustomRoutes = () => (
         component={() => <h1> Profile </h1>}
       />
       <RouteWithUserLayout
+        path="/my-shaadi/edit-profile"
+        component={() => <h1> Edit Profile </h1>}
+      />
+      <RouteWithUserLayout
+        path="/my-shaadi/edit-preferences"
+        component={() => <h1> Edit Preferences </h1>}
+      />
+      <RouteWithUserLayout
         path="/my-shaadi/setting"
         component={() => <h1> Settings</h1>}
       />

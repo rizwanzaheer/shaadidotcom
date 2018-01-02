@@ -70,6 +70,7 @@ class SignInModal extends React.Component {
           const { status, statusText, data } = response;
           if (status === 200 && statusText === 'OK') {
             localStorage.setItem('user_token', data.token);
+            localStorage.setItem('user_detail', data.user_detail);
             console.log('user data: ', data);
             // window.history.push('/test');
             // window.history.push('/searchuser');
