@@ -13,6 +13,7 @@ import { compose } from 'redux';
 import { axios } from 'axios';
 import { createStructuredSelector } from 'reselect';
 import { NavLink } from 'react-router-dom';
+import Dropzone from 'react-dropzone';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
@@ -53,6 +54,7 @@ export class HomePage extends React.PureComponent {
       userId: USERDETAIl._id,
       fName: USERDETAIl.fname ? USERDETAIl.fname : 'Huddy',
       lName: USERDETAIl.lname ? USERDETAIl.lname : '',
+      files: [],
     };
     this.profileData = {
       name: 'Rizwan',
@@ -82,7 +84,11 @@ export class HomePage extends React.PureComponent {
     //   this.props.onSubmitForm();
     // }
   }
-
+  onDrop(files) {
+    this.setState({
+      files,
+    });
+  }
   render() {
     const { fName, lName } = this.state;
     return (
@@ -102,7 +108,7 @@ export class HomePage extends React.PureComponent {
                   <div className="row">
                     <div className="profile-container">
                       <img
-                        src={profileImg}
+                        src={require('../../images/UNADJUSTEDNONRAW_thumb_1.jpg')}
                         alt="Rizwan Zaheer"
                         className="img-thumbnail"
                       />
@@ -127,6 +133,30 @@ export class HomePage extends React.PureComponent {
                     <div className="col-6">
                       <div className="new-match-container">
                         <h5>My Matches</h5>
+                        <form method="post" encType="multipart/form-data">
+                          <input type="file" name="uploadFile" />
+                          <input
+                            type="submit"
+                            className="btn btn-primary"
+                            value="upload"
+                            name="submit"
+                          />
+                        </form>
+                        <Dropzone onDrop={this.onDrop.bind(this)}>
+                          <p>
+                            Try dropping some files here, or click to select
+                            files to upload.
+                          </p>
+                        </Dropzone>
+                        <h2>Dropped files</h2>
+                        <ul>
+                          {this.state.files.map((f) => (
+                            <li key={f.name}>
+                              {f.name} - {f.size} bytes
+                            </li>
+                          ))}
+                        </ul>
+                        {/*
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
@@ -135,11 +165,21 @@ export class HomePage extends React.PureComponent {
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} /> */}
                       </div>
                     </div>
-                    <div className="partner-search-container">
+                    <div className="right-side-partner-search-container">
                       <h5>Partner Search</h5>
+                      <h5 className="right-side-partner-search-footer">
+                        <NavLink to="#">
+                          Profile Search{' '}
+                          <i className="fa fa-caret-right" aria-hidden="true" />
+                        </NavLink>
+                        <NavLink className="pull-right" to="#">
+                          More Option{' '}
+                          <i className="fa fa-caret-right" aria-hidden="true" />
+                        </NavLink>
+                      </h5>
                     </div>
                   </div>
                 </div>

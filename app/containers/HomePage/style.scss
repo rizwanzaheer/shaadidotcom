@@ -1,4 +1,6 @@
 @import "../../utils/_variables.scss";
+$color: #00bcd5;
+
 .home-page-container {
   min-height: calc(100vh - 250px);
   background: $user-home-bg;
@@ -26,7 +28,7 @@
       margin-top: 10px;
       li {
         a {
-          color: #00bcd5;
+          color: $color;
           font-size: 14px;
         }
       }
@@ -49,21 +51,31 @@
       position: relative;
     }
   }
-  .partner-search-container {
+  .right-side-partner-search-container{
     width: 220px;
+    min-height: 200px;
     height: 100%;
     background-color: white;
     border-radius: 4px;
     position: relative;
     padding: 3px;
     padding-bottom: 10px;
-    h5 {
+    .right-side-partner-search-footer, h5 {
       height: 36px;
       background: #f1f1f2;
       padding: 0 12px;
       font: normal 16px/36px arial;
       color: #72727d;
       position: relative;
+    }
+    .right-side-partner-search-footer{
+      position: absolute;
+      bottom: 0;
+      width: 97%;
+      a{
+        color: $color;
+        font-size: 12px;
+      }
     }
   }
 }
