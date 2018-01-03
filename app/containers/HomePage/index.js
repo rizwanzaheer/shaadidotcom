@@ -51,7 +51,17 @@ export class HomePage extends React.PureComponent {
     super(props);
     this.state = {
       userId: USERDETAIl._id,
-      userName: USERDETAIl.fname ? USERDETAIl.fname : 'Huddy',
+      fName: USERDETAIl.fname ? USERDETAIl.fname : 'Huddy',
+      lName: USERDETAIl.lname ? USERDETAIl.lname : '',
+    };
+    this.profileData = {
+      name: 'Rizwan',
+      age: 23,
+      height: 5,
+      weight: 0,
+      religion: 'Islam',
+      motherToungue: 'Urdu',
+      profileId: this.state.userId,
     };
   }
 
@@ -74,7 +84,7 @@ export class HomePage extends React.PureComponent {
   }
 
   render() {
-    const { userName } = this.state;
+    const { fName, lName } = this.state;
     return (
       <article className="home-page-container">
         <Helmet>
@@ -86,7 +96,9 @@ export class HomePage extends React.PureComponent {
             <div className="col-12">
               <div className="row">
                 <div className="col-12">
-                  <h5 className="welcome-message">Hello, {userName}!</h5>
+                  <h5 className="welcome-message">
+                    Hello, {fName} {lName}!
+                  </h5>
                   <div className="row">
                     <div className="profile-container">
                       <img
@@ -115,10 +127,20 @@ export class HomePage extends React.PureComponent {
                     <div className="col-6">
                       <div className="new-match-container">
                         <h5>My Matches</h5>
-                        <ProfileCompactView />
+                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData} />
                       </div>
                     </div>
-                    <div className="col-3">search</div>
+                    <div className="partner-search-container">
+                      <h5>Partner Search</h5>
+                    </div>
                   </div>
                 </div>
               </div>

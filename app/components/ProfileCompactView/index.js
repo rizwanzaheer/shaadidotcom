@@ -15,11 +15,19 @@ import './style.scss';
 class ProfileCompactView extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   render() {
-    // const { } = this.props;
+    const {
+      name,
+      age,
+      height,
+      weight,
+      religion,
+      motherToungue,
+      profileId,
+    } = this.props.data;
     return (
       <div className="profile_compact_view">
         <span className="thumbnail">
-          <NavLink to="#">
+          <NavLink to={`/my-shaadi/finduser?profileId=${profileId}`}>
             <div className="small-pic">
               <img src={profileImg} alt="profileImg" />
             </div>
@@ -27,13 +35,14 @@ class ProfileCompactView extends React.Component {
         </span>
         <span className="user_info">
           <p>
-            <NavLink to="#">Sana</NavLink>
+            <NavLink to={`/my-shaadi/finduser?profileId=${profileId}`}>{name}</NavLink>
           </p>
-          <p>25, 5' 2", Muslim, Sunni, Urdu</p>
+          <p>
+            {`${age}, ${height}' 2'', ${religion}, ${motherToungue}`}
+          </p>
           <p>Not working, Abu Dhabi, United Arab Emirates</p>
-          <NavLink to="#">
-            full profile{' '}
-            <i className="fa fa-caret-right" aria-hidden="true" />
+          <NavLink to={`/my-shaadi/finduser?profileId=${profileId}`}>
+            full profile <i className="fa fa-caret-right" aria-hidden="true" />
           </NavLink>
         </span>
       </div>

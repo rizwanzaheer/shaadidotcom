@@ -73,6 +73,10 @@ const CustomRoutes = () => (
         path="/my-shaadi/search"
         component={() => <h1> search </h1>}
       />
+      <RouteWithUserLayout
+        path="/my-shaadi/finduser"
+        component={() => <h1> my shaadi find user </h1>}
+      />
 
       <RouteWithUserLayout path="/features" component={FeaturePage} />
       <RouteWithUserLayout path="/signin" component={Signin} />
