@@ -15,6 +15,7 @@ import './style.scss';
 class ProfileCompactView extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   render() {
+    // const { } = this.props;
     return (
       <div className="profile_compact_view">
         <span className="thumbnail">
@@ -30,7 +31,10 @@ class ProfileCompactView extends React.Component {
           </p>
           <p>25, 5' 2", Muslim, Sunni, Urdu</p>
           <p>Not working, Abu Dhabi, United Arab Emirates</p>
-          <NavLink to="#"> full profile</NavLink>
+          <NavLink to="#">
+            full profile{' '}
+            <i className="fa fa-caret-right" aria-hidden="true" />
+          </NavLink>
         </span>
       </div>
     );

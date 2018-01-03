@@ -73,8 +73,6 @@ class Signin extends Component {
             // window.history.push('/test');
             // window.history.push('/searchuser');
             window.location.pathname = 'my-shaadi';
-            // location.push('/features');
-            // console.log(window.location);
             console.log('successfuly Signin!');
           }
         })

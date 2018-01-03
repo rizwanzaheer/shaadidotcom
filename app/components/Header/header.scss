@@ -46,6 +46,8 @@
   .profile-menu-dropdwon {
     display: inline-flex !important;
     padding-right: 100px !important;
+    // padding-top: -1px;
+    padding-bottom: 0;
     img {
       width: 40px;
       height: 40px;

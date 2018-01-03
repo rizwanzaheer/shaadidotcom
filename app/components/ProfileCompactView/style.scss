@@ -1,3 +1,6 @@
+$text-color: #00bcd5;
+$paragraph-color: #72727d;
+
 .profile_compact_view {
   margin: 0 10px;
   padding: 9px 0 16px 0;
@@ -28,7 +31,17 @@
     p{
       padding: 0;
       margin: 0;
+      color: $paragraph-color;
       font-size: 12px;
+      a{
+        color: $text-color;
+        text-transform: capitalize;
+      }
+    }
+    a{
+      color: $text-color;
+      text-transform: capitalize;
+      font-size: 14px;
     }
   }
 }
