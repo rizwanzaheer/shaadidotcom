@@ -152,7 +152,6 @@ export class HomePage extends React.PureComponent {
           setTimeout(() => {
             localStorage.setItem('user_detail', JSON.stringify(data.new_user_detail));
           }, 1000);
-          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -171,7 +170,6 @@ export class HomePage extends React.PureComponent {
       );
     }
     const profileImageUrl = USERDETAIl.image ? USERDETAIl.image : 'testdf';
-    console.log(profileImageUrl);
     return (
       <article className="home-page-container">
         <Helmet>
@@ -214,6 +212,7 @@ export class HomePage extends React.PureComponent {
                     <div className="col-6">
                       <div className="new-match-container">
                         <h5>My Matches</h5>
+
                         <div className="previewComponent">
                           <form onSubmit={(e) => this.handleSubmit(e)}>
                             <input
@@ -231,32 +230,7 @@ export class HomePage extends React.PureComponent {
                           </form>
                           <div className="imgPreview">{$imagePreview}</div>
                         </div>
-                        {/* <form encType="multipart/form-data">
-                          <input type="file" method="post" />
-                          <button type="submit" onClick={this.testUpload}>
-                            submit
-                          </button>
-                        </form> */}
-                        {/* <div className="dropzone"> */}
-                        {/* <FileUpload /> */}
-                        {/* </div> */}
-                        {/* <aside>
-                          <h2>Dropped files</h2>
-                          <ul>
-                            {this.state.files.map((f) => (
-                              <li key={f.name}>
-                                {f.name} - {f.size} bytes
-                              </li>
-                            ))}
-                          </ul>
-                        </aside> */}
-                        {/* <button
-                          onClick={() => {
-                            console.log(this.state);
-                          }}
-                        >
-                          click to check
-                        </button> */}
+
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
@@ -265,26 +239,9 @@ export class HomePage extends React.PureComponent {
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
-                        {/* <ProfileCompactView data={this.profileData} /> */}
                       </div>
                     </div>
-                    {/* <div className="right-side-partner-search-container">
-                      <h5>Partner Search</h5>
-                      <div className="age">
-                        age
-                      </div>
-                      <h5 className="right-side-partner-search-footer">
-                        <NavLink to="#">
-                          Profile Search{' '}
-                          <i className="fa fa-caret-right" aria-hidden="true" />
-                        </NavLink>
-                        <NavLink className="pull-right" to="#">
-                          More Option{' '}
-                          <i className="fa fa-caret-right" aria-hidden="true" />
-                        </NavLink>
-                      </h5>
-                    </div> */}
-                    {/* <RightSidePartnerSearchContainer /> */}
+                    <RightSidePartnerSearchContainer />
                   </div>
                 </div>
               </div>
