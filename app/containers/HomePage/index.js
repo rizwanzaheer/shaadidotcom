@@ -10,18 +10,22 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { axios } from 'axios';
+import axios from 'axios';
 import { createStructuredSelector } from 'reselect';
 import { NavLink } from 'react-router-dom';
-import Dropzone from 'react-dropzone';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+
 import {
   makeSelectRepos,
   makeSelectLoading,
   makeSelectError,
 } from 'views/App/selectors';
+import FormData from 'form-data';
+
+import FileUpload from 'components/FileUpload';
+import RightSidePartnerSearchContainer from 'components/RightSidePartnerSearchContainer';
 import H2 from 'components/H2';
 import ProfileCompactView from 'components/ProfileCompactView';
 import ReposList from 'components/ReposList';
@@ -55,6 +59,10 @@ export class HomePage extends React.PureComponent {
       fName: USERDETAIl.fname ? USERDETAIl.fname : 'Huddy',
       lName: USERDETAIl.lname ? USERDETAIl.lname : '',
       files: [],
+      accepted: [],
+      rejected: [],
+      file: '',
+      imagePreviewUrl: '',
     };
     this.profileData = {
       name: 'Rizwan',
@@ -84,13 +92,86 @@ export class HomePage extends React.PureComponent {
     //   this.props.onSubmitForm();
     // }
   }
-  onDrop(files) {
-    this.setState({
-      files,
-    });
+
+  // onDrop(files) {
+  // let file = new FormData();
+  // file.append('name', files[0]);
+  // let req = request.post(`${nodeApiServerUrl}/api/upload`).send(file);
+  // req.end((err, response) => {
+  //   console.log('upload done!!!!!');
+  // });
+  // const form = new FormData();
+  // files.forEach((file) => {
+  //   form.append(file.name, file);
+  // });
+  // form.append('foo', 'bar');
+  // console.log('working');
+  // axios.post(`${nodeApiServerUrl}/api/upload`, form)
+  //   .then((success) => {
+  //     console.log('success :', success);
+  //   })
+  //   .catch((err) => {
+  //     console.log('error: ', err);
+  //   });
+  // this.setState(
+  //   {
+  //     files,
+  //   },
+  //   () => {
+  //     console.log(this.state);
+  //   }
+  // );
+  // }
+  handleImageChange(e) {
+    e.preventDefault();
+
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file,
+        imagePreviewUrl: reader.result,
+      });
+    };
+
+    reader.readAsDataURL(file);
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    // TODO: do something with -> this.state.file
+    console.log('handle uploading-', this.state.file);
+    setTimeout(() => {
+      axios
+        .post(`${nodeApiServerUrl}/api/upload`, {
+          userId: this.state.userId,
+          imageUrl: this.state.imagePreviewUrl,
+        })
+        .then((data) => {
+          localStorage.removeItem('user_detail');
+          setTimeout(() => {
+            localStorage.setItem('user_detail', JSON.stringify(data.new_user_detail));
+          }, 1000);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 1000);
+    // console.log('imagePreviewUrl: ', this.state.imagePreviewUrl);
   }
   render() {
-    const { fName, lName } = this.state;
+    const { fName, lName, imagePreviewUrl } = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = <img src={imagePreviewUrl} alt="" />;
+    } else {
+      $imagePreview = (
+        <div className="previewText">Please select an Image for Preview</div>
+      );
+    }
+    const profileImageUrl = USERDETAIl.image ? USERDETAIl.image : 'testdf';
+    console.log(profileImageUrl);
     return (
       <article className="home-page-container">
         <Helmet>
@@ -108,8 +189,8 @@ export class HomePage extends React.PureComponent {
                   <div className="row">
                     <div className="profile-container">
                       <img
-                        src={require('../../images/UNADJUSTEDNONRAW_thumb_1.jpg')}
-                        alt="Rizwan Zaheer"
+                        src={profileImageUrl}
+                        alt="huddy"
                         className="img-thumbnail"
                       />
                       <ul>
@@ -133,30 +214,49 @@ export class HomePage extends React.PureComponent {
                     <div className="col-6">
                       <div className="new-match-container">
                         <h5>My Matches</h5>
-                        <form method="post" encType="multipart/form-data">
-                          <input type="file" name="uploadFile" />
-                          <input
-                            type="submit"
-                            className="btn btn-primary"
-                            value="upload"
-                            name="submit"
-                          />
-                        </form>
-                        <Dropzone onDrop={this.onDrop.bind(this)}>
-                          <p>
-                            Try dropping some files here, or click to select
-                            files to upload.
-                          </p>
-                        </Dropzone>
-                        <h2>Dropped files</h2>
-                        <ul>
-                          {this.state.files.map((f) => (
-                            <li key={f.name}>
-                              {f.name} - {f.size} bytes
-                            </li>
-                          ))}
-                        </ul>
-                        {/*
+                        <div className="previewComponent">
+                          <form onSubmit={(e) => this.handleSubmit(e)}>
+                            <input
+                              className="fileInput"
+                              type="file"
+                              onChange={(e) => this.handleImageChange(e)}
+                            />
+                            <button
+                              className="submitButton"
+                              type="submit"
+                              onClick={(e) => this.handleSubmit(e)}
+                            >
+                              Upload Image
+                            </button>
+                          </form>
+                          <div className="imgPreview">{$imagePreview}</div>
+                        </div>
+                        {/* <form encType="multipart/form-data">
+                          <input type="file" method="post" />
+                          <button type="submit" onClick={this.testUpload}>
+                            submit
+                          </button>
+                        </form> */}
+                        {/* <div className="dropzone"> */}
+                        {/* <FileUpload /> */}
+                        {/* </div> */}
+                        {/* <aside>
+                          <h2>Dropped files</h2>
+                          <ul>
+                            {this.state.files.map((f) => (
+                              <li key={f.name}>
+                                {f.name} - {f.size} bytes
+                              </li>
+                            ))}
+                          </ul>
+                        </aside> */}
+                        {/* <button
+                          onClick={() => {
+                            console.log(this.state);
+                          }}
+                        >
+                          click to check
+                        </button> */}
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
@@ -165,11 +265,14 @@ export class HomePage extends React.PureComponent {
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} /> */}
+                        {/* <ProfileCompactView data={this.profileData} /> */}
                       </div>
                     </div>
-                    <div className="right-side-partner-search-container">
+                    {/* <div className="right-side-partner-search-container">
                       <h5>Partner Search</h5>
+                      <div className="age">
+                        age
+                      </div>
                       <h5 className="right-side-partner-search-footer">
                         <NavLink to="#">
                           Profile Search{' '}
@@ -180,7 +283,8 @@ export class HomePage extends React.PureComponent {
                           <i className="fa fa-caret-right" aria-hidden="true" />
                         </NavLink>
                       </h5>
-                    </div>
+                    </div> */}
+                    {/* <RightSidePartnerSearchContainer /> */}
                   </div>
                 </div>
               </div>

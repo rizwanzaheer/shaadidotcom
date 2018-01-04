@@ -1,0 +1,52 @@
+@import "../../utils/_variables.scss";
+$color: #00bcd5;
+.right-side-partner-search-container{
+  width: 220px;
+  min-height: 200px;
+  height: 100%;
+  background-color: white;
+  border-radius: 4px;
+  position: relative;
+  padding: 3px;
+  padding-bottom: 60px;
+  // margin-bottom: 60px;
+  .right-side-partner-search-footer, h5 {
+    height: 36px;
+    background: #f1f1f2;
+    padding: 0 12px;
+    font: normal 16px/36px arial;
+    color: #72727d;
+    position: relative;
+  }
+  .right-side-partner-search-footer{
+    position: absolute;
+    bottom: 0;
+    width: 97%;
+    a{
+      color: $color;
+      font-size: 12px;
+      i{
+        color: gray;
+      }
+    }
+  }
+  .row{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .search-btn{
+    margin-top: 20px;
+    z-index: 0;
+    // padding: 0 1rem;
+    cursor: pointer;
+    color: white;
+    margin-right: 12px;
+    background: $lets-begin-btn-color;
+    &:hover {
+      background-color: #0194a8;
+      box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18),
+        0 4px 15px 0 rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+    }
+  }
+}

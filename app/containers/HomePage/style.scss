@@ -51,31 +51,31 @@ $color: #00bcd5;
       position: relative;
     }
   }
-  .right-side-partner-search-container{
-    width: 220px;
-    min-height: 200px;
-    height: 100%;
-    background-color: white;
-    border-radius: 4px;
-    position: relative;
-    padding: 3px;
-    padding-bottom: 10px;
-    .right-side-partner-search-footer, h5 {
-      height: 36px;
-      background: #f1f1f2;
-      padding: 0 12px;
-      font: normal 16px/36px arial;
-      color: #72727d;
-      position: relative;
-    }
-    .right-side-partner-search-footer{
-      position: absolute;
-      bottom: 0;
-      width: 97%;
-      a{
-        color: $color;
-        font-size: 12px;
-      }
-    }
-  }
+  // .right-side-partner-search-container{
+  //   width: 220px;
+  //   min-height: 200px;
+  //   height: 100%;
+  //   background-color: white;
+  //   border-radius: 4px;
+  //   position: relative;
+  //   padding: 3px;
+  //   padding-bottom: 10px;
+  //   .right-side-partner-search-footer, h5 {
+  //     height: 36px;
+  //     background: #f1f1f2;
+  //     padding: 0 12px;
+  //     font: normal 16px/36px arial;
+  //     color: #72727d;
+  //     position: relative;
+  //   }
+  //   .right-side-partner-search-footer{
+  //     position: absolute;
+  //     bottom: 0;
+  //     width: 97%;
+  //     a{
+  //       color: $color;
+  //       font-size: 12px;
+  //     }
+  //   }
+  // }
 }

@@ -43,6 +43,9 @@ $paragraph-color: #72727d;
       color: $text-color;
       text-transform: capitalize;
       font-size: 14px;
+      i{
+        color: gray;
+      }
     }
   }
 }
