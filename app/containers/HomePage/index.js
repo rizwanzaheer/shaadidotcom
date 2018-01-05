@@ -36,7 +36,7 @@ import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import { loadRepos } from '../../views/App/actions';
-import { changeUsername } from './actions';
+import { changeUsername, imageChange } from './actions';
 import { makeSelectUsername } from './selectors';
 import { nodeApiServerUrl } from '../../config/envChecker';
 import reducer from './reducer';
@@ -44,9 +44,12 @@ import saga from './saga';
 import './style.scss';
 import profileImg from '../../images/UNADJUSTEDNONRAW_thumb_1.jpg';
 
-const USERDETAIl = JSON.parse(localStorage.getItem('user_detail'));
-console.log(USERDETAIl);
-console.log(USERDETAIl._id);
+console.log('localstorage data: ', typeof localStorage.getItem('user_detail'));
+const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
+  ? JSON.parse(localStorage.getItem('user_detail'))
+  : { _id: null };
+// console.log(USERDETAIL);
+// console.log(USERDETAIL._id);
 export class HomePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   /**
@@ -55,9 +58,9 @@ export class HomePage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      userId: USERDETAIl._id,
-      fName: USERDETAIl.fname ? USERDETAIl.fname : 'Huddy',
-      lName: USERDETAIl.lname ? USERDETAIl.lname : '',
+      userId: USERDETAIL._id,
+      fName: USERDETAIL.fname ? USERDETAIL.fname : 'Huddy',
+      lName: USERDETAIL.lname ? USERDETAIL.lname : '',
       files: [],
       accepted: [],
       rejected: [],
@@ -139,23 +142,27 @@ export class HomePage extends React.PureComponent {
   }
   handleSubmit(e) {
     e.preventDefault();
-    // TODO: do something with -> this.state.file
-    console.log('handle uploading-', this.state.file);
+    console.log('working');
+    const { userId, imagePreviewUrl } = this.state;
+    // this.props.imageChange(userId, imagePreviewUrl);
     setTimeout(() => {
       axios
-        .post(`${nodeApiServerUrl}/api/upload`, {
-          userId: this.state.userId,
-          imageUrl: this.state.imagePreviewUrl,
-        })
-        .then((data) => {
-          localStorage.removeItem('user_detail');
-          setTimeout(() => {
-            localStorage.setItem('user_detail', JSON.stringify(data.new_user_detail));
-          }, 1000);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .post(`${nodeApiServerUrl}/api/upload`, {
+        userId,
+        imageUrl: imagePreviewUrl,
+      })
+      .then((data) => {
+        console.log('succes data: ', data);
+        // this.props.imageChange();
+        setTimeout(() => {
+          console.log('data.new_user_detail type: ', typeof data.data.new_user_detail);
+          localStorage.setItem('user_detail', JSON.stringify(data.data.new_user_detail));
+          window.location.reload();
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     }, 1000);
     // console.log('imagePreviewUrl: ', this.state.imagePreviewUrl);
   }
@@ -169,7 +176,7 @@ export class HomePage extends React.PureComponent {
         <div className="previewText">Please select an Image for Preview</div>
       );
     }
-    const profileImageUrl = USERDETAIl.image ? USERDETAIl.image : 'testdf';
+    const profileImageUrl = USERDETAIL.image ? USERDETAIL.image : 'testdf';
     return (
       <article className="home-page-container">
         <Helmet>
@@ -269,6 +276,7 @@ export function mapDispatchToProps(dispatch) {
     //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     //   dispatch(loadRepos());
     // }
+    imageChange,
   };
 }
 

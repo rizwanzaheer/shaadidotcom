@@ -15,10 +15,9 @@
  *    }
  */
 
-import {
-  CHANGE_USERNAME,
-} from './constants';
-
+import axios from 'axios';
+import { nodeApiServerUrl } from '../../config/envChecker';
+import { CHANGE_USERNAME, UPDATE_IMAGE } from './constants';
 /**
  * Changes the input field of the form
  *
@@ -30,5 +29,35 @@ export function changeUsername(name) {
   return {
     type: CHANGE_USERNAME,
     name,
+  };
+}
+export function namefunc(data) {
+  axios.post();
+  return {
+    type: UPDATE_IMAGE,
+    payload: { data },
+  };
+}
+
+export function imageChange(userId, imagePreviewUrl) {
+  // return
+  console.log('userid ', userId);
+  return (dispatch) => {
+    axios
+      .post(`${nodeApiServerUrl}/api/upload`, {
+        userId,
+        imageUrl: imagePreviewUrl,
+      })
+      .then((data) => {
+        console.log('succes data: ', data);
+        dispatch(namefunc(data.data.new_user_detail));
+        localStorage.setItem(
+          'user_detail',
+          JSON.stringify(data.data.new_user_detail)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 }

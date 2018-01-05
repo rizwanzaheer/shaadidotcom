@@ -10,3 +10,4 @@
  */
 
 export const CHANGE_USERNAME = 'Shaadidotcom/Home/CHANGE_USERNAME';
+export const UPDATE_IMAGE = 'Shaadidotcom/Home/UPDATE_IMAGE';

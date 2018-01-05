@@ -13,11 +13,13 @@ import { fromJS } from 'immutable';
 
 import {
   CHANGE_USERNAME,
+  UPDATE_IMAGE,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   username: '',
+  updateImage: '',
 });
 
 function homeReducer(state = initialState, action) {
@@ -27,6 +29,11 @@ function homeReducer(state = initialState, action) {
       // Delete prefixed '@' from the github username
       return state
         .set('username', action.name.replace(/@/gi, ''));
+    case UPDATE_IMAGE:
+      console.log('update image working!', action.payload);
+      return state;
+      // return state
+      //   .set('updateImage', action.name.replace(/@/gi, ''));
     default:
       return state;
   }
