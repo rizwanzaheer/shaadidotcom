@@ -153,11 +153,7 @@ export class SearchContainer extends React.Component {
               <div className="col-12">
                 <span
                   className="advanced-search-btn"
-                  disable
-                  onClick={() => {
-                    this.linkCreation();
-                    console.log('this state: ', this.state);
-                  }}
+                  onClick={this.linkCreation}
                 >
                   <MoreDetailButtonRight label="Search" url="#" />
                 </span>
@@ -166,7 +162,21 @@ export class SearchContainer extends React.Component {
               </div>
             </div>
           </div>
-          <RightSidePartnerSearchContainer />
+          <RightSidePartnerSearchContainer heading="Search By Name" footer>
+            <div className="row">
+              <div className="col-12">
+                <div className="form-group">
+                  <label htmlFor="formGroupExampleInput">Name:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="formGroupExampleInput"
+                    placeholder="Name"
+                  />
+                </div>
+              </div>
+            </div>
+          </RightSidePartnerSearchContainer>
         </div>
       </div>
     );

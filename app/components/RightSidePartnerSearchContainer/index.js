@@ -21,10 +21,11 @@ class RightSidePartnerSearchContainer extends React.Component {
   render() {
     return (
       <div className="right-side-partner-search-container">
-        <h5>Partner Search</h5>
-        <div className="row">
+        <h5>{this.props.heading}</h5>
+        {this.props.children}
+        {/* <div className="row">
           <div className="col-6">
-            {/* <label>Age</label> */}
+             <label>Age</label>
             <Dropdown label="Age" />
           </div>
           <div className="col-6">
@@ -38,8 +39,8 @@ class RightSidePartnerSearchContainer extends React.Component {
               // onChange={this.logChange}
             />
           </div>
-        </div>
-        <div className="row">
+        </div> */}
+        {/* <div className="row">
           <div className="col-6">
             <label>Age</label>
             <Select
@@ -134,8 +135,9 @@ class RightSidePartnerSearchContainer extends React.Component {
               // onChange={this.logChange}
             />
           </div>
-        </div>
-        <div className="row">
+        </div> */}
+        
+        {/* <div className="row">
           <div className="col-12 text-center">
             <button
               className="btn lets-begin-btn btn-block waves-effect waves-light search-btn"
@@ -146,8 +148,9 @@ class RightSidePartnerSearchContainer extends React.Component {
               Search <i className="fa fa-caret-right" aria-hidden="true" />
             </button>
           </div>
-        </div>
-        <h5 className="right-side-partner-search-footer">
+        </div> */}
+
+        { this.props.footer && <h5 className="right-side-partner-search-footer">
           <NavLink to="#">
             Profile Search{' '}
             <i className="fa fa-caret-right" aria-hidden="true" />
@@ -155,7 +158,7 @@ class RightSidePartnerSearchContainer extends React.Component {
           <NavLink className="pull-right" to="#">
             More Option <i className="fa fa-caret-right" aria-hidden="true" />
           </NavLink>
-        </h5>
+        </h5>}
       </div>
     );
   }

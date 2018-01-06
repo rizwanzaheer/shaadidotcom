@@ -6,6 +6,7 @@ $color: #00bcd5;
   background: $user-home-bg;
   .welcome-message {
     margin-top: 30px;
+    text-transform: capitalize;
     color: rgb(114, 114, 125);
   }
   .new-match-container {
