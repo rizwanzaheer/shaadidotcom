@@ -10,7 +10,10 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Backoffice from 'containers/Backoffice/Loadable';
 import SearchUsers from 'containers/SearchUsers/Loadable';
+import MyProfile from 'containers/MyProfile/Loadable';
+
 // import AdminDashboard from "containers/AdminLayout/AdminDashboard";
+
 import Home from '../views/Home';
 
 const RouteWithGlobalLayout = ({ component, ...rest }) => (
@@ -50,7 +53,7 @@ const CustomRoutes = () => (
       {/* Profile setting */}
       <RouteWithUserLayout
         path="/my-shaadi/profile"
-        component={() => <h1> Profile </h1>}
+        component={MyProfile}
       />
       <RouteWithUserLayout
         path="/my-shaadi/edit-profile"

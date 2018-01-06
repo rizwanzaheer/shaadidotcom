@@ -185,38 +185,12 @@ export class HomePage extends React.PureComponent {
                     Hello, {fName} {lName}!
                   </h5>
                   <div className="row">
-                    {/* <div className="profile-container">
-                      <img
-                        src={profileImageUrl}
-                        alt="huddy"
-                        className="img-thumbnail"
-                      />
-                      <ul>
-                        <li>
-                          <NavLink to="/my-shaadi/edit-profile">
-                            {' '}
-                            Edit Profile{' '}
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink to="/my-shaadi/edit-preferences">
-                            {' '}
-                            Edit Preferences{' '}
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink to="/my-shaadi/setting"> Setting </NavLink>
-                        </li>
-                      </ul>
-                    </div> */}
                     {/* Side profile container */}
                     <ProfileComponent />
 
                     <div className="col-6" style={{ marginBottom: '20px' }}>
                       <div className="new-match-container">
                         <h5>My Matches</h5>
-
-                        {/* <UploadImage userId={userId} /> */}
 
                         {/* list of all user present in Db */}
                         {/* Single user call profilecompactive */}

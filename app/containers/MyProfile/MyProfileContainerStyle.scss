@@ -1,0 +1,77 @@
+@import "../../utils/_variables.scss";
+$background: #00bcd5;
+$border-top: #00bcd5;
+
+.my-profile-container {
+  margin-bottom: 60px;
+  .prof_username {
+    margin-top: 30px;
+    color: $paragraph-text-color;
+    text-transform: capitalize;
+  }
+  .complete-profile-contianer {
+    background: white;
+    border-radius: 4px;
+    .short-profile-container {
+      min-height: 200px;
+      .profile-image-container {
+        width: 200px;
+        float: left;
+        margin-top: 20px;
+        height: 235px;
+        // border: 1px solid gray;
+        img {
+          width: 200px !important;
+          height: 200px !important;
+          // padding: 5px;
+          // border: 1px solid
+          // height: 150px;
+        }
+      }
+      .basic-info-container {
+        width: auto;
+        float: left;
+        margin-top: 60px;
+        ul {
+          list-style: none;
+          float: left;
+          // display: inline-flex;
+          li {
+            color: $paragraph-text-color;
+            min-width: 100px;
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+    .about-my-self-heading{
+      // border-top: 2px solid $border-top;
+      background: $background;
+      color: white;
+      padding: 8px;
+    }
+    p{
+      color: $paragraph-text-color;
+      margin-left: 20px;
+      font-size: 14px;
+      text-transform: capitalize;
+    }
+    .profile-descp-headings{
+      color: $navbar-bg-color;
+      margin-left: 10px;
+    }
+  }
+}
+@media screen and (min-width: 1300px) {
+  .my-profile-container {
+    .short-profile-container {
+      .basic-info-container {
+        ul {
+          li {
+            min-width: 150px;
+          }
+        }
+      }
+    }
+  }
+}
