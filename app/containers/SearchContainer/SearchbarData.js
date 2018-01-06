@@ -14,7 +14,7 @@ function AgeFinder(type) {
 // Religion
 export const Religion = [
   { dropDownType: 'religion', value: 'Muslim', label: 'Muslim' },
-  { dropDownType: 'non-muslim', value: 'Hindu', label: 'Non-Muslim' },
+  { dropDownType: 'religion', value: 'Hindu', label: 'Non-Muslim' },
   { dropDownType: 'religion', value: 'Christian', label: 'Christian' },
   { dropDownType: 'religion', value: 'No Religion', label: 'No Religion' },
   { dropDownType: 'religion', value: 'Other', label: 'Other' },
@@ -33,11 +33,24 @@ export const MotherTongue = [
   { dropDownType: 'motherTongue', value: 'Other', label: 'Other' },
 ];
 
-export const listOfDropDown = [
-  {
-    label: "I'm looking for a",
-    options: Gender,
-  },
+export const MatrialStatus = [
+  { dropDownType: 'matrialStatus', value: 'Single', label: 'Single' },
+  { dropDownType: 'matrialStatus', value: 'Divorced', label: 'Divorced' },
+  { dropDownType: 'matrialStatus', value: 'Married', label: 'Married' },
+];
+
+export const Community = [
+  { dropDownType: 'community', label: 'Chauhdary', value: 'Chauhdary' },
+  { dropDownType: 'community', label: 'Malik', value: 'Malik' },
+  { dropDownType: 'community', label: 'Raja', value: 'Raja' },
+  { dropDownType: 'community', label: 'Shakeh', value: 'Shakeh' },
+  { dropDownType: 'community', label: 'Butt', value: 'Butt' },
+  { dropDownType: 'community', label: 'Mir', value: 'Mir' },
+  { dropDownType: 'community', label: 'Kayani', value: 'Kayani' },
+  { dropDownType: 'community', label: 'Khan', value: 'Khan' },
+];
+
+export const ageOfDropDown = [
   {
     label: 'aged',
     options: AgeFinder('fromAge'),
@@ -46,12 +59,22 @@ export const listOfDropDown = [
     label: '',
     options: AgeFinder('toAge'),
   },
+];
+export const FIELDGENERATER = [
   {
-    label: 'of religion',
-    options: Religion,
+    name: 'Matrial Status',
+    data: MatrialStatus,
   },
   {
-    label: 'mother tongue',
-    options: MotherTongue,
+    name: 'Religion',
+    data: Religion,
+  },
+  {
+    name: 'Mother Tounge',
+    data: MotherTongue,
+  },
+  {
+    name: 'Community',
+    data: Community,
   },
 ];

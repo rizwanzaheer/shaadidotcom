@@ -87,7 +87,7 @@ const CustomRoutes = () => (
       <RouteWithUserLayout path="/signup" component={Signin} />
 
       {/* Global layout */}
-      <RouteWithGlobalLayout path="/searchusers" component={SearchUsers} />
+      <RouteWithGlobalLayout path="/my-shaadi/searchusers" component={SearchUsers} />
 
       {/* Admin Routes */}
       <RouteWithAdminLayout exact path="/backoffice" component={Backoffice} />

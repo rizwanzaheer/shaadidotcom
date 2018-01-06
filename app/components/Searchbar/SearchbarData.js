@@ -14,7 +14,7 @@ function AgeFinder(type) {
 // Religion
 export const Religion = [
   { dropDownType: 'religion', value: 'Muslim', label: 'Muslim' },
-  { dropDownType: 'non-muslim', value: 'Hindu', label: 'Non-Muslim' },
+  { dropDownType: 'religion', value: 'Hindu', label: 'Non-Muslim' },
   { dropDownType: 'religion', value: 'Christian', label: 'Christian' },
   { dropDownType: 'religion', value: 'No Religion', label: 'No Religion' },
   { dropDownType: 'religion', value: 'Other', label: 'Other' },

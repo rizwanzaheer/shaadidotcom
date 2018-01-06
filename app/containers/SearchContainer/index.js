@@ -7,13 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import Dropdown from 'components/Dropdown';
-import Select from 'react-select';
+import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -21,40 +23,46 @@ import makeSelectSearchContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { Gender, Religion, MotherTongue, AgeFinder } from './SearchbarData';
+import { FIELDGENERATER, ageOfDropDown } from './SearchbarData';
 import './SearchContainer.scss';
-
-const FIELDGENERATER = [
-  {
-    name: 'Matrial Status',
-    data: [],
-  },
-  {
-    name: 'Religion',
-    data: Religion,
-  },
-  {
-    name: 'Mother Tounge',
-    data: MotherTongue,
-  },
-  {
-    name: 'Community',
-    data: [],
-  },
-];
 
 export class SearchContainer extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-  state = {
-    selectedOption: '',
-  };
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption });
-    console.log(`Selected: ${selectedOption.label}`);
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      gender: 'Woman',
+      fromAge: 20,
+      toAge: 25,
+      religion: 'Muslim',
+      motherTongue: 'Urdu',
+    };
+    this.dropDownChangeHandler = this.dropDownChangeHandler.bind(this);
+    this.linkCreation = this.linkCreation.bind(this);
+  }
+
+  dropDownChangeHandler({ dropDownType, value }) {
+    this.setState({
+      [dropDownType]: value,
+    });
+    console.log('dropDownChangeHandler calling: ', value);
+  }
+  linkCreation() {
+    // Send Axios API Resqeust request to backend server
+    const {
+      gender,
+      fromAge,
+      toAge,
+      religion,
+      motherTongue,
+      community,
+      matrialStatus,
+    } = this.state;
+    // console.log('click working!');
+   this.props.history.push(`searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${matrialStatus}&religion=${religion}&mothertongue=${motherTongue}&community=${community}`);
+  }
   render() {
-    const { selectedOption } = this.state;
-    const value = selectedOption && selectedOption.value;
+    const { gender, fromAge, toAge, religion, motherTongue } = this.state;
     return (
       <div className="container advanced-search-container">
         <Helmet>
@@ -71,6 +79,7 @@ export class SearchContainer extends React.Component {
                 name="inlineRadioOptions"
                 id="inlineRadio1"
                 value="option1"
+                onChange={() => this.setState({ gender: 'woman' }, () => console.log(this.state))}
               />
               <label className="form-check-label" htmlFor="inlineRadio1">
                 Bride
@@ -83,6 +92,7 @@ export class SearchContainer extends React.Component {
                 name="inlineRadioOptions"
                 id="inlineRadio2"
                 value="option2"
+                onChange={() => this.setState({ gender: 'man' }, () => console.log(this.state))}
               />
               <label className="form-check-label" htmlFor="inlineRadio2">
                 Groom
@@ -96,81 +106,51 @@ export class SearchContainer extends React.Component {
           <div className="col-8">
             <div className="row">
               <div className="col-5">
-                <Dropdown />
+                <Dropdown
+                  options={ageOfDropDown[0].options}
+                  defaultValue={fromAge}
+                  dropDownChangeHandler={this.dropDownChangeHandler}
+                />
               </div>
               <div className="col-1">to</div>
               <div className="col-5">
-                <Dropdown />
+                <Dropdown
+                  options={ageOfDropDown[0].options}
+                  defaultValue={toAge}
+                  dropDownChangeHandler={this.dropDownChangeHandler}
+                />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="row single-entity">
-          <div className="col-3">Height</div>
-          <div className="col-8">
-            <div className="row">
-              <div className="col-5">
-                <Select
-                  name="form-field-name"
-                  value={value}
-                  onChange={this.handleChange}
-                  options={[
-                    { value: 'one', label: 'One' },
-                    { value: 'two', label: 'Two' },
-                  ]}
-                />
-              </div>
-              <div className="col-1">
-                <label htmlFor="">to</label>
-              </div>
-              <div className="col-5">
-                <Select
-                  name="form-field-name"
-                  value={value}
-                  onChange={this.handleChange}
-                  options={[
-                    { value: 'one', label: 'One' },
-                    { value: 'two', label: 'Two' },
-                  ]}
-                />
-              </div>
-            </div>
-            {/* <Select
-              name="form-field-name"
-              value={value}
-              onChange={this.handleChange}
-              options={[
-                { value: 'one', label: 'One' },
-                { value: 'two', label: 'Two' },
-              ]}
-            />
-            <label htmlFor="">To</label>
-            <Select
-              name="form-field-name"
-              value={value}
-              onChange={this.handleChange}
-              options={[
-                { value: 'one', label: 'One' },
-                { value: 'two', label: 'Two' },
-              ]}
-            /> */}
-          </div>
-        </div>
-
-        {FIELDGENERATER.map((data) => (
-          <div className="row single-entity" key={data.name}>
-            <div className="col-3">{data.name}</div>
+        {FIELDGENERATER.map(({ data, name }) => (
+          <div className="row single-entity" key={name}>
+            <div className="col-3">{name}</div>
             <div className="col-8">
-              <Select
-                name="form-field-name"
-                value={value}
-                onChange={this.handleChange}
-                options={data.data}
+              <Dropdown
+                options={data}
+                defaultValue=""
+                dropDownChangeHandler={this.dropDownChangeHandler}
               />
             </div>
           </div>
         ))}
+        <div className="row text-center">
+          <div className="col-12">
+            <span
+              className="advanced-search-btn"
+              disable
+              onClick={() => {
+                this.linkCreation();
+                console.log('this state: ', this.state);
+              }}
+            >
+              <MoreDetailButtonRight label="Search" url='#' />
+            </span>
+            &nbsp;&nbsp;&nbsp; <MoreDetailButtonRight label="Reset" url='#' />
+          </div>
+        </div>
       </div>
     );
   }
@@ -195,4 +175,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'searchContainer', reducer });
 const withSaga = injectSaga({ key: 'searchContainer', saga });
 
-export default compose(withReducer, withSaga, withConnect)(SearchContainer);
+export default withRouter(compose(withReducer, withSaga, withConnect)(SearchContainer));
