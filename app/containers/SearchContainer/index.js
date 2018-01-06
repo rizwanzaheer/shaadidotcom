@@ -46,10 +46,8 @@ export class SearchContainer extends React.Component {
     this.setState({
       [dropDownType]: value,
     });
-    console.log('dropDownChangeHandler calling: ', value);
   }
   linkCreation() {
-    // Send Axios API Resqeust request to backend server
     const {
       gender,
       fromAge,
@@ -59,7 +57,6 @@ export class SearchContainer extends React.Component {
       community,
       matrialStatus,
     } = this.state;
-    // console.log('click working!');
     this.props.history.push(
       `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${matrialStatus}&religion=${religion}&mothertongue=${motherTongue}&community=${community}`
     );
