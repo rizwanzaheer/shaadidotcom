@@ -1,32 +1,40 @@
-@import '../../utils/_variables.scss';
+@import "../../utils/_variables.scss";
 
-.advanced-search-container{
-  background: white;
-  box-shadow: $box-shadow;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 30px;
-  color: $paragraph-text-color;
-  min-height: calc(100vh - 200px);
-  .single-entity{
-    margin-top: 40px;
-    margin-bottom: 40px; 
-  }
-  .advanced-search-btn{
-    background: #00bcd5;
-    padding: 12px;
-    border-radius: 5px;
+.advanced-search-wrapper {
+  .advanced-search-container {
+    background: white;
     box-shadow: $box-shadow;
-    a{
-      color: white;
-      &:hover{
-        text-decoration: none;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    color: $paragraph-text-color;
+    min-height: calc(100vh - 200px);
+    border-radius: 3px;
+    .single-entity {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .advanced-search-btn {
+      background: #00bcd5;
+      padding: 12px;
+      border-radius: 5px;
+      box-shadow: $box-shadow;
+      a {
+        color: white;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      &:hover {
+        background: $btn-hover;
       }
     }
-    &:hover{
-      background: $btn-hover;
-    }
+  }
+  .right-side-partner-search-container{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 30px;
   }
 }
