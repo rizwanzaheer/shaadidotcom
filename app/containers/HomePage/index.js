@@ -24,32 +24,33 @@ import {
 } from 'views/App/selectors';
 import FormData from 'form-data';
 
-import FileUpload from 'components/FileUpload';
+import UploadImage from 'components/UploadImage';
 import RightSidePartnerSearchContainer from 'components/RightSidePartnerSearchContainer';
 import H2 from 'components/H2';
 import ProfileCompactView from 'components/ProfileCompactView';
 import ReposList from 'components/ReposList';
+import ProfileComponent from 'components/ProfileComponent';
+
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
+
 import { loadRepos } from '../../views/App/actions';
+
 import { changeUsername, imageChange } from './actions';
 import { makeSelectUsername } from './selectors';
 import { nodeApiServerUrl } from '../../config/envChecker';
+
 import reducer from './reducer';
 import saga from './saga';
 import './style.scss';
-import profileImg from '../../images/UNADJUSTEDNONRAW_thumb_1.jpg';
 
-console.log('localstorage data: ', typeof localStorage.getItem('user_detail'));
 const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
   ? JSON.parse(localStorage.getItem('user_detail'))
   : { _id: null };
-// console.log(USERDETAIL);
-// console.log(USERDETAIL._id);
 export class HomePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   /**
@@ -61,11 +62,6 @@ export class HomePage extends React.PureComponent {
       userId: USERDETAIL._id,
       fName: USERDETAIL.fname ? USERDETAIL.fname : 'Huddy',
       lName: USERDETAIL.lname ? USERDETAIL.lname : '',
-      files: [],
-      accepted: [],
-      rejected: [],
-      file: '',
-      imagePreviewUrl: '',
     };
     this.profileData = {
       name: 'Rizwan',
@@ -145,37 +141,34 @@ export class HomePage extends React.PureComponent {
     console.log('working');
     const { userId, imagePreviewUrl } = this.state;
     // this.props.imageChange(userId, imagePreviewUrl);
-    setTimeout(() => {
-      axios
-      .post(`${nodeApiServerUrl}/api/upload`, {
-        userId,
-        imageUrl: imagePreviewUrl,
-      })
-      .then((data) => {
-        console.log('succes data: ', data);
-        // this.props.imageChange();
-        setTimeout(() => {
-          console.log('data.new_user_detail type: ', typeof data.data.new_user_detail);
-          localStorage.setItem('user_detail', JSON.stringify(data.data.new_user_detail));
-          window.location.reload();
-        }, 1000);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }, 1000);
-    // console.log('imagePreviewUrl: ', this.state.imagePreviewUrl);
+    !imagePreviewUrl
+      ? ''
+      : axios
+          .post(`${nodeApiServerUrl}/api/upload`, {
+            userId,
+            imageUrl: imagePreviewUrl,
+          })
+          .then(({ data }) => {
+            localStorage.setItem(
+              'user_detail',
+              JSON.stringify(data.new_user_detail)
+            );
+            window.location.reload();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
   }
   render() {
-    const { fName, lName, imagePreviewUrl } = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = <img src={imagePreviewUrl} alt="" />;
-    } else {
-      $imagePreview = (
-        <div className="previewText">Please select an Image for Preview</div>
-      );
-    }
+    const { fName, lName, userId } = this.state;
+    // let $imagePreview = null;
+    // if (imagePreviewUrl) {
+    //   $imagePreview = <img src={imagePreviewUrl} alt="" />;
+    // } else {
+    //   $imagePreview = (
+    //     <div className="previewText">Please select an Image for Preview</div>
+    //   );
+    // }
     const profileImageUrl = USERDETAIL.image ? USERDETAIL.image : 'testdf';
     return (
       <article className="home-page-container">
@@ -192,7 +185,7 @@ export class HomePage extends React.PureComponent {
                     Hello, {fName} {lName}!
                   </h5>
                   <div className="row">
-                    <div className="profile-container">
+                    {/* <div className="profile-container">
                       <img
                         src={profileImageUrl}
                         alt="huddy"
@@ -215,29 +208,18 @@ export class HomePage extends React.PureComponent {
                           <NavLink to="/my-shaadi/setting"> Setting </NavLink>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
+                    {/* Side profile container */}
+                    <ProfileComponent />
+
                     <div className="col-6">
                       <div className="new-match-container">
                         <h5>My Matches</h5>
 
-                        <div className="previewComponent">
-                          <form onSubmit={(e) => this.handleSubmit(e)}>
-                            <input
-                              className="fileInput"
-                              type="file"
-                              onChange={(e) => this.handleImageChange(e)}
-                            />
-                            <button
-                              className="submitButton"
-                              type="submit"
-                              onClick={(e) => this.handleSubmit(e)}
-                            >
-                              Upload Image
-                            </button>
-                          </form>
-                          <div className="imgPreview">{$imagePreview}</div>
-                        </div>
+                        {/* <UploadImage userId={userId} /> */}
 
+                        {/* list of all user present in Db */}
+                        {/* Single user call profilecompactive */}
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
                         <ProfileCompactView data={this.profileData} />
