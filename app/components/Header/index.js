@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { isUser } from './constants';
 import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
 import messages from './messages';
 // import Nav from '../Navbar';
 import logo from '../../images/shaadi-logo-v1.png';
 import './header.scss';
-import profileImg from '../../images/UNADJUSTEDNONRAW_thumb_1.jpg';
+
+const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'));
 
 class Header extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -86,9 +86,8 @@ class Header extends React.Component {
               </div>
             </li> */}
           </ul>
-
           <div className="form-inline my-2 my-lg-0">
-            <ul className="navbar-nav m-auto">
+            <ul className="navbar-nav navbar-right-profile m-auto">
               <li className="nav-item dropdown">
                 <NavLink
                   className="nav-link profile-menu-dropdwon dropdown-toggle"
@@ -99,7 +98,7 @@ class Header extends React.Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <img src={profileImg} alt="Name" />
+                  <img src={USERDETAIL.image} alt="Name" />
                 </NavLink>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <NavLink className="dropdown-item" to="/my-shaadi/setting">
@@ -120,11 +119,6 @@ class Header extends React.Component {
               </li>
             </ul>
           </div>
-          {/* <i
-            className="fa fa-sign-out fa-2x pull-right signout"
-            onClick={this.signoutHandler}
-            aria-hidden="true"
-          /> */}
         </div>
       );
     }

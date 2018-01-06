@@ -212,7 +212,7 @@ export class HomePage extends React.PureComponent {
                     {/* Side profile container */}
                     <ProfileComponent />
 
-                    <div className="col-6">
+                    <div className="col-6" style={{ marginBottom: '20px' }}>
                       <div className="new-match-container">
                         <h5>My Matches</h5>
 

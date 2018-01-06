@@ -1,7 +1,11 @@
 @import "../../utils/_variables.scss";
 .header {
   background: $navbar-bg-color;
+  // min-height: 56px;
   .navbar {
+    // height: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
     -webkit-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 1);
     -moz-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 1);
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
@@ -18,16 +22,24 @@
     opacity: 0.75;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+
+    // padding-top: 15px;
+    // padding-bottom: 10px;
     &:hover {
       opacity: 1;
+    }
+  }
+  .navbar-item {
+    .nav-link {
     }
   }
   .active {
     border-radius: 4px;
     background: white;
+    background: url("../../images/top-nav-arrow.png") no-repeat center bottom;
     opacity: 1 !important;
     span {
-      color: $navbar-bg-color;
+      // color: $navbar-bg-color;
     }
   }
   .signout,
