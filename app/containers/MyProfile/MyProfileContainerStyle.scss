@@ -11,6 +11,7 @@ $border-top: #00bcd5;
   }
   .complete-profile-contianer {
     background: white;
+    box-shadow: $box-shadow;
     border-radius: 4px;
     .short-profile-container {
       min-height: 200px;
