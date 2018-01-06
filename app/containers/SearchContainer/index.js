@@ -159,7 +159,11 @@ export class SearchContainer extends React.Component {
               </div>
             </div>
           </div>
-          <RightSidePartnerSearchContainer heading="Search By Name" footer>
+          <RightSidePartnerSearchContainer
+            heading="Search By Name"
+            footer
+            btn
+          >
             <div className="row">
               <div className="col-12">
                 <div className="form-group">

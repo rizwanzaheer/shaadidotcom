@@ -12,6 +12,8 @@ import Select from 'react-select';
 
 import { FormattedMessage } from 'react-intl';
 import Dropdown from 'components/Dropdown';
+import WavesButton from 'components/WavesButton';
+
 
 import messages from './messages';
 import './style.scss';
@@ -137,18 +139,11 @@ class RightSidePartnerSearchContainer extends React.Component {
           </div>
         </div> */}
         
-        {/* <div className="row">
+        { this.props.btn && <div className="row">
           <div className="col-12 text-center">
-            <button
-              className="btn lets-begin-btn btn-block waves-effect waves-light search-btn"
-              onClick={() => {
-                console.log('search btn click');
-              }}
-            >
-              Search <i className="fa fa-caret-right" aria-hidden="true" />
-            </button>
+            <WavesButton label="Search" />
           </div>
-        </div> */}
+        </div>}
 
         { this.props.footer && <h5 className="right-side-partner-search-footer">
           <NavLink to="#">
