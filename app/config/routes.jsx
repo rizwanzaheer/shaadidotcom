@@ -11,6 +11,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Backoffice from 'containers/Backoffice/Loadable';
 import SearchUsers from 'containers/SearchUsers/Loadable';
 import MyProfile from 'containers/MyProfile/Loadable';
+import SearchContainer from 'containers/SearchContainer/Loadable';
 
 // import AdminDashboard from "containers/AdminLayout/AdminDashboard";
 
@@ -74,7 +75,7 @@ const CustomRoutes = () => (
       {/* Advance search for Bride/Groom */}
       <RouteWithUserLayout
         path="/my-shaadi/search"
-        component={() => <h1> search </h1>}
+        component={SearchContainer}
       />
       <RouteWithUserLayout
         path="/my-shaadi/finduser"

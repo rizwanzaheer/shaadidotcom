@@ -33,9 +33,11 @@ class Dropdown extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ margin: '5px' }}>
-          <Label htmlFor={this.props.label}>{this.props.label}</Label>
-        </div>
+        {this.props.label && (
+          <div style={{ margin: '5px' }}>
+            <Label htmlFor={this.props.label}>{this.props.label}</Label>
+          </div>
+        )}
         <Select
           id={this.props.label}
           name="form-field-name"

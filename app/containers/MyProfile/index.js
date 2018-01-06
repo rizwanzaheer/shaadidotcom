@@ -80,7 +80,6 @@ export class MyProfile extends React.Component {
             <div className="basic-info-container">
               <ul>
                 <li>age</li>
-                <li>height</li>
                 <li>religion</li>
                 <li>Caste</li>
               </ul>
@@ -88,10 +87,6 @@ export class MyProfile extends React.Component {
                 <li>
                   :&nbsp;&nbsp;
                   {USERDETAIL.age ? USERDETAIL.age : 'N/A'}
-                </li>
-                <li>
-                  :&nbsp;&nbsp;
-                  {USERDETAIL.height ? USERDETAIL.height : 'N/A'}
                 </li>
                 <li>
                   :&nbsp;&nbsp;
@@ -103,19 +98,14 @@ export class MyProfile extends React.Component {
                 </li>
               </ul>
               <ul>
-                <li>City</li>
-                <li>country</li>
-                <li>Mother tounge</li>
                 <li>gender</li>
+                <li>Mother tounge</li>
+                <li>City</li>
               </ul>
               <ul>
                 <li>
                   :&nbsp;&nbsp;
-                  {USERDETAIL.city ? USERDETAIL.city : 'N/A'}
-                </li>
-                <li>
-                  :&nbsp;&nbsp;
-                  {USERDETAIL.country ? USERDETAIL.country : 'N/A'}
+                  {USERDETAIL.gender ? USERDETAIL.gender : 'N/A'}
                 </li>
                 <li>
                   :&nbsp;&nbsp;
@@ -123,7 +113,7 @@ export class MyProfile extends React.Component {
                 </li>
                 <li>
                   :&nbsp;&nbsp;
-                  {USERDETAIL.gender ? USERDETAIL.gender : 'N/A'}
+                  {USERDETAIL.city ? USERDETAIL.city : 'N/A'}
                 </li>
               </ul>
             </div>

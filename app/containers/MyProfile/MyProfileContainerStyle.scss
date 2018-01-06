@@ -24,9 +24,6 @@ $border-top: #00bcd5;
         img {
           width: 200px !important;
           height: 200px !important;
-          // padding: 5px;
-          // border: 1px solid
-          // height: 150px;
         }
       }
       .basic-info-container {
@@ -36,6 +33,7 @@ $border-top: #00bcd5;
         ul {
           list-style: none;
           float: left;
+          line-height: 2.5;
           // display: inline-flex;
           li {
             color: $paragraph-text-color;
