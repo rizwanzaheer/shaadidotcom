@@ -15,10 +15,14 @@ import axios from 'axios';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+
+import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
+
 import makeSelectMyProfile from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+
 import { nodeApiServerUrl } from '../../config/envChecker';
 
 import './MyProfileContainerStyle.scss';
@@ -136,7 +140,12 @@ export class MyProfile extends React.Component {
             <hr />
           </div>
           <div className="col-12">
-            <h6 className="profile-descp-headings">Detail Information:</h6>
+            <h6 className="profile-descp-headings">
+              Detail Information:
+              <span className="pull-right">
+                <MoreDetailButtonRight label="Edit" url="edit-profile" />
+              </span>
+            </h6>
             <hr />
             <div className="row">
               <div className="col-6">
@@ -144,9 +153,13 @@ export class MyProfile extends React.Component {
                   First Name : {USERDETAIL.fname ? USERDETAIL.fname : 'N/A'}
                 </p>
                 <p>Date of Birth : {USERDETAIL.dob ? USERDETAIL.dob : 'N/A'}</p>
-                <p>Mother tounge : {USERDETAIL.mother_tongue ? USERDETAIL.mother_tongue : 'N/A'}</p>
                 <p>
-                  Marital Status : {USERDETAIL.status ? USERDETAIL.status : 'N/A'}
+                  Mother tounge :{' '}
+                  {USERDETAIL.mother_tongue ? USERDETAIL.mother_tongue : 'N/A'}
+                </p>
+                <p>
+                  Marital Status :{' '}
+                  {USERDETAIL.status ? USERDETAIL.status : 'N/A'}
                 </p>
                 <p>Hight : {USERDETAIL.height ? USERDETAIL.height : 'N/A'}</p>
                 <p>City : {USERDETAIL.city ? USERDETAIL.city : 'N/A'}</p>
@@ -157,7 +170,9 @@ export class MyProfile extends React.Component {
               <div className="col-6">
                 <p>Last Name : {USERDETAIL.lname ? USERDETAIL.lname : 'N/A'}</p>
                 <p>Gender : {USERDETAIL.gender ? USERDETAIL.gender : 'N/A'}</p>
-                <p>religion : {USERDETAIL.religion ? USERDETAIL.religion : 'N/A'}</p>
+                <p>
+                  religion : {USERDETAIL.religion ? USERDETAIL.religion : 'N/A'}
+                </p>
                 <p>
                   education :{' '}
                   {USERDETAIL.education ? USERDETAIL.education : 'N/A'}
