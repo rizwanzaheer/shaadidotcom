@@ -186,9 +186,10 @@ export class HomePage extends React.PureComponent {
                   </h5>
                   <div className="row">
                     {/* Side profile container */}
-                    <ProfileComponent />
-
-                    <div className="col-6" style={{ marginBottom: '20px' }}>
+                    <div className="col-12 col-md-12 col-lg-3 col-sm-12">
+                      <ProfileComponent />
+                    </div>
+                    <div className="col-12 col-md-12 col-lg-6 col-sm-12" style={{ marginBottom: '20px' }}>
                       <div className="new-match-container">
                         <h5>My Matches</h5>
 
@@ -204,12 +205,14 @@ export class HomePage extends React.PureComponent {
                         <ProfileCompactView data={this.profileData} />
                       </div>
                     </div>
-                    <RightSidePartnerSearchContainer
-                      heading="Partner Search"
-                      btn="Search"
-                    >
-                      <h1>working </h1>
-                    </RightSidePartnerSearchContainer>
+                    <div className="col-12 col-md-12 col-lg-3 col-sm-12">
+                      <RightSidePartnerSearchContainer
+                        heading="Partner Search"
+                        btn="Search"
+                      >
+                        <h1>working </h1>
+                      </RightSidePartnerSearchContainer>
+                    </div>
                   </div>
                 </div>
               </div>

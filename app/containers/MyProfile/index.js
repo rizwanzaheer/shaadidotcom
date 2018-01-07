@@ -61,11 +61,11 @@ export class MyProfile extends React.Component {
         </Helmet>
         <div className="row">
           <div className="col-12">
-            <h6 className="prof_username">
+            <h3 className="prof_username">
               {USERDETAIL.fname
                 ? `${USERDETAIL.fname} ${USERDETAIL.lname}`
                 : 'Huddy!'}
-            </h6>
+            </h3>
           </div>
         </div>
         <div className="row complete-profile-contianer">
@@ -152,9 +152,13 @@ export class MyProfile extends React.Component {
                   {USERDETAIL.status ? USERDETAIL.status : 'N/A'}
                 </p>
                 <p>Hight : {USERDETAIL.height ? USERDETAIL.height : 'N/A'}</p>
+                <p>
+                  Smoke : {USERDETAIL.smoke ? USERDETAIL.smoke : 'N/A'}
+                </p>
+                <p>Blood group : {USERDETAIL.blood_group ? USERDETAIL.blood_group : 'N/A'}</p>
                 <p>City : {USERDETAIL.city ? USERDETAIL.city : 'N/A'}</p>
                 <p>
-                  province : {USERDETAIL.province ? USERDETAIL.province : 'N/A'}
+                  country : {USERDETAIL.country ? USERDETAIL.country : 'N/A'}
                 </p>
               </div>
               <div className="col-6">
@@ -168,9 +172,10 @@ export class MyProfile extends React.Component {
                   {USERDETAIL.education ? USERDETAIL.education : 'N/A'}
                 </p>
                 <p>weight : {USERDETAIL.weight ? USERDETAIL.weight : 'N/A'}</p>
+                <p>drink : {USERDETAIL.drink ? USERDETAIL.drink : 'N/A'}</p>
                 <p>caste : {USERDETAIL.caste ? USERDETAIL.caste : 'N/A'}</p>
                 <p>
-                  country : {USERDETAIL.country ? USERDETAIL.country : 'N/A'}
+                  province : {USERDETAIL.province ? USERDETAIL.province : 'N/A'}
                 </p>
               </div>
             </div>
