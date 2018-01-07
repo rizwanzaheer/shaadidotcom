@@ -204,7 +204,12 @@ export class HomePage extends React.PureComponent {
                         <ProfileCompactView data={this.profileData} />
                       </div>
                     </div>
-                    <RightSidePartnerSearchContainer />
+                    <RightSidePartnerSearchContainer
+                      heading="Partner Search"
+                      btn="Search"
+                    >
+                      <h1>working </h1>
+                    </RightSidePartnerSearchContainer>
                   </div>
                 </div>
               </div>

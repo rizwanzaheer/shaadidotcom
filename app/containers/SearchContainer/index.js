@@ -37,9 +37,12 @@ export class SearchContainer extends React.Component {
       toAge: 25,
       religion: 'Muslim',
       motherTongue: 'Urdu',
+      community: 'Malik',
+      matrialStatus: 'single',
     };
     this.dropDownChangeHandler = this.dropDownChangeHandler.bind(this);
     this.linkCreation = this.linkCreation.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   dropDownChangeHandler({ dropDownType, value }) {
@@ -61,6 +64,7 @@ export class SearchContainer extends React.Component {
       `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${matrialStatus}&religion=${religion}&mothertongue=${motherTongue}&community=${community}`
     );
   }
+  reset() {}
   render() {
     const { gender, fromAge, toAge, religion, motherTongue } = this.state;
     return (
@@ -71,6 +75,11 @@ export class SearchContainer extends React.Component {
         </Helmet>
         <div className="row">
           <div className="col-8 advanced-search-container">
+            <div className="row">
+              <div className="col-12">
+                <h3 className="adcanced-search-heading">Advanced Search:</h3>
+              </div>
+            </div>
             <div className="row single-entity">
               <div className="col-3">Looking For</div>
               <div className="col-8">
@@ -154,15 +163,17 @@ export class SearchContainer extends React.Component {
                 >
                   <MoreDetailButtonRight label="Search" url="#" />
                 </span>
-                &nbsp;&nbsp;&nbsp;{' '}
-                <MoreDetailButtonRight label="Reset" url="#" />
+                &nbsp;&nbsp;&nbsp;
+                <span onClick={this.reset}>
+                  <MoreDetailButtonRight label="Reset" url="#" />
+                </span>
               </div>
             </div>
           </div>
           <RightSidePartnerSearchContainer
             heading="Search By Name"
-            footer
-            btn
+            footer={false}
+            btn="Search"
           >
             <div className="row">
               <div className="col-12">
