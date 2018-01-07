@@ -68,7 +68,7 @@ class UploadImage extends React.Component {
     const { imagePreviewUrl } = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = <img src={imagePreviewUrl} alt="" />;
+      $imagePreview = <img src={imagePreviewUrl} alt="image" style={{ width: '200px' }} />;
     } else {
       $imagePreview = (
         <div className="previewText">Please select an Image for Preview</div>
@@ -90,7 +90,9 @@ class UploadImage extends React.Component {
             Upload Image
           </button>
         </form>
-        <div className="imgPreview">{$imagePreview}</div>
+        <div className="imgPreview">
+          {$imagePreview}
+        </div>
       </div>
     );
   }

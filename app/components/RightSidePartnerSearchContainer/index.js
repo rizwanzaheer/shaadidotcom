@@ -52,7 +52,7 @@ class RightSidePartnerSearchContainer extends React.Component {
 RightSidePartnerSearchContainer.propTypes = {
   heading: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
-  btn: PropTypes.bool,
+  btn: PropTypes.string,
   footer: PropTypes.string,
 };
 

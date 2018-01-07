@@ -161,14 +161,6 @@ export class HomePage extends React.PureComponent {
   }
   render() {
     const { fName, lName, userId } = this.state;
-    // let $imagePreview = null;
-    // if (imagePreviewUrl) {
-    //   $imagePreview = <img src={imagePreviewUrl} alt="" />;
-    // } else {
-    //   $imagePreview = (
-    //     <div className="previewText">Please select an Image for Preview</div>
-    //   );
-    // }
     const profileImageUrl = USERDETAIL.image ? USERDETAIL.image : 'testdf';
     return (
       <article className="home-page-container">
@@ -189,7 +181,10 @@ export class HomePage extends React.PureComponent {
                     <div className="col-12 col-md-12 col-lg-3 col-sm-12">
                       <ProfileComponent />
                     </div>
-                    <div className="col-12 col-md-12 col-lg-6 col-sm-12" style={{ marginBottom: '20px' }}>
+                    <div
+                      className="col-12 col-md-12 col-lg-6 col-sm-12"
+                      style={{ marginBottom: '20px' }}
+                    >
                       <div className="new-match-container">
                         <h5>My Matches</h5>
 
