@@ -12,6 +12,7 @@ import Backoffice from 'containers/Backoffice/Loadable';
 import SearchUsers from 'containers/SearchUsers/Loadable';
 import MyProfile from 'containers/MyProfile/Loadable';
 import SearchContainer from 'containers/SearchContainer/Loadable';
+import EditProfileContainer from 'containers/EditProfileContainer/Loadable';
 
 // import AdminDashboard from "containers/AdminLayout/AdminDashboard";
 
@@ -58,7 +59,7 @@ const CustomRoutes = () => (
       />
       <RouteWithUserLayout
         path="/my-shaadi/edit-profile"
-        component={() => <h1> Edit Profile </h1>}
+        component={EditProfileContainer}
       />
       <RouteWithUserLayout
         path="/my-shaadi/edit-preferences"

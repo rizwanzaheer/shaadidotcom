@@ -43,14 +43,15 @@ import { loadRepos } from '../../views/App/actions';
 import { changeUsername, imageChange } from './actions';
 import { makeSelectUsername } from './selectors';
 import { nodeApiServerUrl } from '../../config/envChecker';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 
 import reducer from './reducer';
 import saga from './saga';
 import './style.scss';
 
-const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
-  ? JSON.parse(localStorage.getItem('user_detail'))
-  : { _id: null };
+// const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
+//   ? JSON.parse(localStorage.getItem('user_detail'))
+//   : { _id: null };
 export class HomePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   /**
@@ -160,8 +161,7 @@ export class HomePage extends React.PureComponent {
           });
   }
   render() {
-    const { fName, lName, userId } = this.state;
-    const profileImageUrl = USERDETAIL.image ? USERDETAIL.image : 'testdf';
+    const { fName, lName } = this.state;
     return (
       <article className="home-page-container">
         <Helmet>

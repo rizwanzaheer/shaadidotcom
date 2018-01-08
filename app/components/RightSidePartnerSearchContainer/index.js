@@ -53,7 +53,7 @@ RightSidePartnerSearchContainer.propTypes = {
   heading: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
   btn: PropTypes.string,
-  footer: PropTypes.string,
+  footer: PropTypes.bool,
 };
 
 export default RightSidePartnerSearchContainer;
