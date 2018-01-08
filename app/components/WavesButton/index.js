@@ -17,7 +17,9 @@ class WavesButton extends React.Component {
     return (
       <button
         className="btn lets-begin-btn btn-block waves-effect waves-light"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
+          this.props.clickHandler(e);
           console.log('search btn click');
         }}
       >

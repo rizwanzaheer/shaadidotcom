@@ -19,6 +19,9 @@ import axios from 'axios';
 
 import ProfileComponent from 'components/ProfileComponent';
 import Dropdown from 'components/Dropdown';
+import Input from 'components/Input';
+import WavesButton from 'components/WavesButton';
+
 import makeSelectEditProfileContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -26,6 +29,12 @@ import messages from './messages';
 
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
+import {
+  MotherTongue,
+  MatrialStatus,
+  Community,
+  Religion,
+} from '../../config/dropDownListData';
 
 import './EditProfileContainerStyle.scss';
 
@@ -34,6 +43,8 @@ export class EditProfileContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.inputChange = this.inputChange.bind(this);
+    // this.dropDownChangeHandler = this.dropDownChangeHandler.bind(this);
   }
 
   componentWillMount() {
@@ -45,13 +56,7 @@ export class EditProfileContainer extends React.Component {
         .then(({ data: { user }, status, statusText }) => {
           if (status === 200 && statusText === 'OK') {
             console.log(user);
-            // for (const key in user) {
-            //   if (user.hasOwnProperty(key)) {
-            //     console.log(`${key} -> ${user[key]}`);
-            //   }
-            // }
             Object.entries(user).forEach(([key, value]) =>
-              // console.log(key, value);
               this.setState({ [key]: value })
             );
             console.log('this state: ', this.state);
@@ -62,9 +67,76 @@ export class EditProfileContainer extends React.Component {
       console.log(error);
     }
   }
-
+  inputChange(name, value) {
+    this.setState({
+      [name]: value,
+    });
+    console.log(`handle input change name: ${name}, value: ${value}`);
+  }
+  dropDownChangeHandler = ({ dropDownType, value }) => {
+    this.setState({
+      [dropDownType]: value,
+    });
+  };
+  updateAndSaveHandler = () => {
+    const {
+      fname,
+      email,
+      lname,
+      education,
+      religion,
+      about_my_self,
+      blood_group,
+      caste,
+      dob,
+      drink,
+      height,
+      mother_tongue,
+      phone,
+      province,
+      smoke,
+      status,
+      weight,
+      city,
+      country,
+    } = this.state;
+    const updatedData = {
+      fname,
+      email,
+      lname,
+      education,
+      religion,
+      about_my_self,
+      blood_group,
+      caste,
+      dob,
+      drink,
+      height,
+      mother_tongue,
+      phone,
+      province,
+      smoke,
+      status,
+      weight,
+      city,
+      country,
+      userId: USERDETAIL._id,
+    };
+    try {
+      axios
+        .post(`${nodeApiServerUrl}/api/updateandsaveuser`, updatedData)
+        .then((success) => {
+          console.log(success);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.error('catch error: ', error);
+    }
+    console.info('this state: ', this.state);
+  };
   renderField = () => {
-    console.log('working');
     const loopData = [];
     const excludeEntries = [
       '_id',
@@ -100,7 +172,27 @@ export class EditProfileContainer extends React.Component {
   };
 
   render() {
-    const { fname} = this.state;
+    const {
+      fname,
+      email,
+      lname,
+      education,
+      religion,
+      about_my_self,
+      blood_group,
+      caste,
+      dob,
+      drink,
+      height,
+      mother_tongue,
+      phone,
+      province,
+      smoke,
+      status,
+      weight,
+      city,
+      country,
+    } = this.state;
     return (
       <div className="container">
         <Helmet>
@@ -115,26 +207,285 @@ export class EditProfileContainer extends React.Component {
             <ProfileComponent />
           </div>
           <div className="col-12 col-md-12 col-lg-8 col-sm-12 edit-profile-wrapper">
-            <div className="row">
-              <div className="col-12">
-                <h3 className="edit-personal-profile-heading">
-                  <FormattedMessage {...messages.header} />
-                </h3>
-              </div>
-            </div>
-            {/* {this.renderField()} */}
-            <div className="row">
-              <div className="col-12">
-                <div className="row">
-                  <div className="col-lg-5">
-                    <label>First Name </label>
-                  </div>
-                  <div className="col-lg-7">
-                    <p>: {fname} </p>
-                  </div>
+            <form>
+              <div className="row">
+                <div className="col-12">
+                  <h3 className="edit-personal-profile-heading">
+                    <FormattedMessage {...messages.header} />
+                  </h3>
                 </div>
               </div>
-            </div>
+
+              <Input
+                id="fname"
+                label="First Name"
+                placeholder="Enter update name"
+                value={fname}
+                name="fname"
+                type="text"
+                inputChange={this.inputChange}
+              />
+
+              <Input
+                id="lname"
+                label="Last Name"
+                placeholder="Enter update last name"
+                value={lname}
+                name="lname"
+                type="text"
+                inputChange={this.inputChange}
+              />
+
+              <div className="form-group">
+                <label htmlFor="fname">
+                  Gender
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <div className="form-check form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="gender1"
+                    value="Male"
+                    checked
+                  />
+                  <label className="form-check-label" htmlFor="gender1">
+                    Male
+                  </label>
+                </div>
+                <div className="form-check form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="gender2"
+                    value="Female"
+                  />
+                  <label className="form-check-label" htmlFor="gender2">
+                    Female
+                  </label>
+                </div>
+              </div>
+
+              <Input
+                id="email"
+                label="Email"
+                placeholder="Enter update email"
+                value={email}
+                name="email"
+                type="email"
+                inputChange={this.inputChange}
+              />
+              <Input
+                id="education"
+                label="Education"
+                placeholder="Enter Education"
+                value={education}
+                name="education"
+                type="text"
+                inputChange={this.inputChange}
+              />
+              <Input
+                id="dob"
+                label="Date of Birth"
+                placeholder="Enter Date of birth"
+                value={dob}
+                name="dob"
+                type="date"
+                inputChange={this.inputChange}
+              />
+              <div className="form-group">
+                <Dropdown
+                  label="Status"
+                  dropDownChangeHandler={this.dropDownChangeHandler}
+                  options={MatrialStatus}
+                  defaultValue={status}
+                  dropDownType={status}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="smoke">
+                  Smoke
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <div className="form-check form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="smoke"
+                    id="smoke1"
+                    value="yes"
+                    onChange={() => this.setState({ smoke: 'yes' })}
+                  />
+                  <label className="form-check-label" htmlFor="smoke1">
+                    Yes
+                  </label>
+                </div>
+                <div className="form-check form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="smoke"
+                    id="smoke2"
+                    value="no"
+                    onChange={() => this.setState({ smoke: 'no' })}
+                  />
+                  <label className="form-check-label" htmlFor="smoke2">
+                    No
+                  </label>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <Dropdown
+                  dropDownChangeHandler={this.dropDownChangeHandler}
+                  options={Community}
+                  defaultValue={caste}
+                  dropDownType={caste}
+                  label="Caste"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="drink">
+                  Drink
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+                <div className="form-check form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="drink"
+                    id="drink1"
+                    value="yes"
+                    onChange={() => this.setState({ drink: 'yes' })}
+                  />
+                  <label className="form-check-label" htmlFor="drink1">
+                    Yes
+                  </label>
+                </div>
+                <div className="form-check form-check-inline">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="drink"
+                    id="drink2"
+                    value="no"
+                    onChange={() => this.setState({ drink: 'no' })}
+                  />
+                  <label className="form-check-label" htmlFor="drink2">
+                    No
+                  </label>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <Dropdown
+                  label="Religion"
+                  dropDownChangeHandler={this.dropDownChangeHandler}
+                  options={Religion}
+                  defaultValue={religion}
+                  dropDownType={religion}
+                />
+              </div>
+
+              <Input
+                id="city"
+                label="City"
+                placeholder="Enter city"
+                value={city}
+                name="city"
+                type="text"
+                inputChange={this.inputChange}
+              />
+              <Input
+                id="country"
+                label="Country"
+                placeholder="Enter country"
+                value={country}
+                name="country"
+                type="text"
+                inputChange={this.inputChange}
+              />
+
+              <Input
+                id="phone"
+                label="Phone"
+                placeholder="Enter phone"
+                value={phone}
+                name="phone"
+                type="text"
+                inputChange={this.inputChange}
+              />
+
+              <div className="form-group">
+                <Dropdown
+                  label={'Mother Tongue'}
+                  dropDownChangeHandler={this.dropDownChangeHandler}
+                  options={MotherTongue}
+                  defaultValue={mother_tongue}
+                  dropDownType={mother_tongue}
+                />
+              </div>
+
+              <Input
+                id="province"
+                label="Province"
+                placeholder="Enter province"
+                value={province}
+                name="province"
+                type="text"
+                inputChange={this.inputChange}
+              />
+
+              <Input
+                id="height"
+                label="Height"
+                placeholder="Enter height"
+                value={height}
+                name="height"
+                type="text"
+                inputChange={this.inputChange}
+              />
+              <Input
+                id="weight"
+                label="Weight"
+                placeholder="Enter weight"
+                value={weight}
+                name="weight"
+                type="text"
+                inputChange={this.inputChange}
+              />
+              <Input
+                id="blood_group"
+                label="Blood Group"
+                placeholder="Enter blood group"
+                value={blood_group}
+                name="blood_group"
+                type="text"
+                inputChange={this.inputChange}
+              />
+              <Input
+                id="about_my_self"
+                label="About Myself"
+                placeholder="about you self"
+                value={about_my_self}
+                name="about_my_self"
+                type="text"
+                inputChange={this.inputChange}
+              />
+              <div className="row">
+                <div className="col-6" />
+                <div className="col-6">
+                  <WavesButton
+                    label={'Save & Update'}
+                    clickHandler={(e) => this.updateAndSaveHandler(e)}
+                  />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
