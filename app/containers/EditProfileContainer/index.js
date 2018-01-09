@@ -21,6 +21,7 @@ import ProfileComponent from 'components/ProfileComponent';
 import Dropdown from 'components/Dropdown';
 import Input from 'components/Input';
 import WavesButton from 'components/WavesButton';
+import SweetAlertPopup from 'components/SweetAlertPopup';
 
 import makeSelectEditProfileContainer from './selectors';
 import reducer from './reducer';
@@ -125,50 +126,30 @@ export class EditProfileContainer extends React.Component {
     try {
       axios
         .post(`${nodeApiServerUrl}/api/updateandsaveuser`, updatedData)
-        .then((success) => {
-          console.log(success);
+        .then(({data, status, statusText}) => {
+          console.log(data);
+          if (status === 200 && statusText === 'OK') {
+            SweetAlertPopup(
+              'Success!',
+              'Your data is update & save Successfuly!',
+              'success'
+            );
+            // window.location.reload();
+          }
         })
         .catch((err) => {
           console.log(err);
+          SweetAlertPopup(
+            'Oops...',
+            'Something went wrong!',
+            'error'
+          );
         });
     } catch (error) {
       console.error('catch error: ', error);
+
+
     }
-    console.info('this state: ', this.state);
-  };
-  renderField = () => {
-    const loopData = [];
-    const excludeEntries = [
-      '_id',
-      '__v',
-      'image',
-      'createdDate',
-      'modifiedDate',
-      'password',
-    ];
-    Object.entries(this.state).forEach(([key, value]) =>
-      // console.log(key, value);
-      // this.setState({ [key]: value })
-      loopData.push(
-        excludeEntries.includes(key) ? (
-          ''
-        ) : (
-          <div className="row" key={key}>
-            <div className="col-12">
-              <div className="row">
-                <div className="col-lg-5">
-                  <label className="edit-personal-profile-heading">{key}</label>
-                </div>
-                <div className="col-lg-7">
-                  <p>: {value}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      )
-    );
-    return loopData;
   };
 
   render() {
@@ -248,7 +229,8 @@ export class EditProfileContainer extends React.Component {
                     name="gender"
                     id="gender1"
                     value="Male"
-                    checked
+                    checked={this.state.gender === 'Male'}
+                    onChange={() => this.setState({ gender: 'Male' })}
                   />
                   <label className="form-check-label" htmlFor="gender1">
                     Male
@@ -260,7 +242,9 @@ export class EditProfileContainer extends React.Component {
                     type="radio"
                     name="gender"
                     id="gender2"
-                    value="Female"
+                    value="Woman"
+                    checked={this.state.gender === 'Woman'}
+                    onChange={() => this.setState({ gender: 'Woman' })}
                   />
                   <label className="form-check-label" htmlFor="gender2">
                     Female
@@ -317,6 +301,7 @@ export class EditProfileContainer extends React.Component {
                     name="smoke"
                     id="smoke1"
                     value="yes"
+                    checked={this.state.smoke === 'yes'}
                     onChange={() => this.setState({ smoke: 'yes' })}
                   />
                   <label className="form-check-label" htmlFor="smoke1">
@@ -330,6 +315,7 @@ export class EditProfileContainer extends React.Component {
                     name="smoke"
                     id="smoke2"
                     value="no"
+                    checked={this.state.smoke === 'no'}
                     onChange={() => this.setState({ smoke: 'no' })}
                   />
                   <label className="form-check-label" htmlFor="smoke2">
@@ -360,6 +346,7 @@ export class EditProfileContainer extends React.Component {
                     name="drink"
                     id="drink1"
                     value="yes"
+                    checked={this.state.drink === 'yes'}
                     onChange={() => this.setState({ drink: 'yes' })}
                   />
                   <label className="form-check-label" htmlFor="drink1">
@@ -373,6 +360,7 @@ export class EditProfileContainer extends React.Component {
                     name="drink"
                     id="drink2"
                     value="no"
+                    checked={this.state.drink === 'no'}
                     onChange={() => this.setState({ drink: 'no' })}
                   />
                   <label className="form-check-label" htmlFor="drink2">

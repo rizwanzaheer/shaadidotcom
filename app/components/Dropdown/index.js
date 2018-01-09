@@ -20,7 +20,11 @@ class Dropdown extends React.Component {
       selectedValue: props.defaultValue,
     };
   }
-
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      selectedValue: newProps.defaultValue,
+    });
+  }
   logChange(val) {
     const newValue = val === null ? '' : val.value;
     if (newValue) {
@@ -31,6 +35,8 @@ class Dropdown extends React.Component {
     }
   }
   render() {
+    console.log('this.state.selectedValue: ', this.state.selectedValue);
+    console.log('this.props.options: ', this.props.options);
     return (
       <div>
         {this.props.label && (
