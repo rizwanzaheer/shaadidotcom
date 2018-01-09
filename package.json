@@ -241,6 +241,7 @@
     "minimist": "^1.2.0",
     "popper.js": "^1.12.9",
     "prop-types": "^15.6.0",
+    "rc-slider": "^8.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.3",

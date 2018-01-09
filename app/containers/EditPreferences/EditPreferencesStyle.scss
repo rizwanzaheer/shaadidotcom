@@ -1,0 +1,22 @@
+@import "../../utils/_variables.scss";
+
+.edit-preferences-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: $paragraph-text-color;
+  .edit-preferences-wrapper {
+    border-radius: 4px;
+    box-shadow: $box-shadow;
+    background: white;
+    min-height: calc(100vh - 200px);
+    padding-top: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
+    .edit-preferences-profile-heading {
+      margin-bottom: 30px;
+    }
+    label {
+      // color: $paragraph-text-color !important;
+    }
+  }
+}
