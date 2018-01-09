@@ -4,40 +4,40 @@
  *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Helmet } from "react-helmet";
-import { FormattedMessage } from "react-intl";
-import { createStructuredSelector } from "reselect";
-import { compose } from "redux";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
 
-import injectSaga from "utils/injectSaga";
-import injectReducer from "utils/injectReducer";
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 
-import axios from "axios";
+import axios from 'axios';
 
-import ProfileComponent from "components/ProfileComponent";
-import Dropdown from "components/Dropdown";
-import Input from "components/Input";
-import WavesButton from "components/WavesButton";
-import SweetAlertPopup from "components/SweetAlertPopup";
+import ProfileComponent from 'components/ProfileComponent';
+import Dropdown from 'components/Dropdown';
+import Input from 'components/Input';
+import WavesButton from 'components/WavesButton';
+import SweetAlertPopup from 'components/SweetAlertPopup';
 
-import makeSelectEditProfileContainer from "./selectors";
-import reducer from "./reducer";
-import saga from "./saga";
-import messages from "./messages";
+import makeSelectEditProfileContainer from './selectors';
+import reducer from './reducer';
+import saga from './saga';
+import messages from './messages';
 
-import { nodeApiServerUrl } from "../../config/envChecker";
-import { USERDETAIL } from "../../config/getUserDetailFromLocalStorage";
+import { nodeApiServerUrl } from '../../config/envChecker';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 import {
   MotherTongue,
   MatrialStatus,
   Community,
-  Religion
-} from "../../config/dropDownListData";
+  Religion,
+} from '../../config/dropDownListData';
 
-import "./EditProfileContainerStyle.scss";
+import './EditProfileContainerStyle.scss';
 
 export class EditProfileContainer extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -52,31 +52,31 @@ export class EditProfileContainer extends React.Component {
     try {
       axios
         .post(`${nodeApiServerUrl}/api/getuserdetail`, {
-          userId: USERDETAIL._id
+          userId: USERDETAIL._id,
         })
         .then(({ data: { user }, status, statusText }) => {
-          if (status === 200 && statusText === "OK") {
+          if (status === 200 && statusText === 'OK') {
             console.log(user);
             Object.entries(user).forEach(([key, value]) =>
               this.setState({ [key]: value })
             );
-            console.log("this state: ", this.state);
+            console.log('this state: ', this.state);
           }
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }
   }
   inputChange(name, value) {
     this.setState({
-      [name]: value
+      [name]: value,
     });
     console.log(`handle input change name: ${name}, value: ${value}`);
   }
   dropDownChangeHandler = ({ dropDownType, value }) => {
     this.setState({
-      [dropDownType]: value
+      [dropDownType]: value,
     });
   };
   updateAndSaveHandler = () => {
@@ -99,7 +99,7 @@ export class EditProfileContainer extends React.Component {
       status,
       weight,
       city,
-      country
+      country,
     } = this.state;
     const updatedData = {
       fname,
@@ -121,28 +121,28 @@ export class EditProfileContainer extends React.Component {
       weight,
       city,
       country,
-      userId: USERDETAIL._id
+      userId: USERDETAIL._id,
     };
     try {
       axios
         .post(`${nodeApiServerUrl}/api/updateandsaveuser`, updatedData)
         .then(({ data, status, statusText }) => {
           console.log(data);
-          if (status === 200 && statusText === "OK") {
+          if (status === 200 && statusText === 'OK') {
             SweetAlertPopup(
-              "Success!",
-              "Your data is update & save Successfuly!",
-              "success"
+              'Success!',
+              'Your data is update & save Successfuly!',
+              'success'
             );
             // window.location.reload();
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
-          SweetAlertPopup("Oops...", "Something went wrong!", "error");
+          SweetAlertPopup('Oops...', 'Something went wrong!', 'error');
         });
     } catch (error) {
-      console.error("catch error: ", error);
+      console.error('catch error: ', error);
     }
   };
 
@@ -166,7 +166,7 @@ export class EditProfileContainer extends React.Component {
       status,
       weight,
       city,
-      country
+      country,
     } = this.state;
     return (
       <div className="container">
@@ -182,7 +182,7 @@ export class EditProfileContainer extends React.Component {
             <ProfileComponent />
           </div>
           <div className="col-12 col-md-12 col-lg-8 col-sm-12">
-            <div class="edit-profile-wrapper">
+            <div className="edit-profile-wrapper">
               <form>
                 <div className="row">
                   <div className="col-12">
@@ -224,8 +224,8 @@ export class EditProfileContainer extends React.Component {
                       name="gender"
                       id="gender1"
                       value="Male"
-                      checked={this.state.gender === "Male"}
-                      onChange={() => this.setState({ gender: "Male" })}
+                      checked={this.state.gender === 'Male'}
+                      onChange={() => this.setState({ gender: 'Male' })}
                     />
                     <label className="form-check-label" htmlFor="gender1">
                       Male
@@ -238,8 +238,8 @@ export class EditProfileContainer extends React.Component {
                       name="gender"
                       id="gender2"
                       value="Woman"
-                      checked={this.state.gender === "Woman"}
-                      onChange={() => this.setState({ gender: "Woman" })}
+                      checked={this.state.gender === 'Woman'}
+                      onChange={() => this.setState({ gender: 'Woman' })}
                     />
                     <label className="form-check-label" htmlFor="gender2">
                       Female
@@ -296,8 +296,8 @@ export class EditProfileContainer extends React.Component {
                       name="smoke"
                       id="smoke1"
                       value="yes"
-                      checked={this.state.smoke === "yes"}
-                      onChange={() => this.setState({ smoke: "yes" })}
+                      checked={this.state.smoke === 'yes'}
+                      onChange={() => this.setState({ smoke: 'yes' })}
                     />
                     <label className="form-check-label" htmlFor="smoke1">
                       Yes
@@ -310,8 +310,8 @@ export class EditProfileContainer extends React.Component {
                       name="smoke"
                       id="smoke2"
                       value="no"
-                      checked={this.state.smoke === "no"}
-                      onChange={() => this.setState({ smoke: "no" })}
+                      checked={this.state.smoke === 'no'}
+                      onChange={() => this.setState({ smoke: 'no' })}
                     />
                     <label className="form-check-label" htmlFor="smoke2">
                       No
@@ -341,8 +341,8 @@ export class EditProfileContainer extends React.Component {
                       name="drink"
                       id="drink1"
                       value="yes"
-                      checked={this.state.drink === "yes"}
-                      onChange={() => this.setState({ drink: "yes" })}
+                      checked={this.state.drink === 'yes'}
+                      onChange={() => this.setState({ drink: 'yes' })}
                     />
                     <label className="form-check-label" htmlFor="drink1">
                       Yes
@@ -355,8 +355,8 @@ export class EditProfileContainer extends React.Component {
                       name="drink"
                       id="drink2"
                       value="no"
-                      checked={this.state.drink === "no"}
-                      onChange={() => this.setState({ drink: "no" })}
+                      checked={this.state.drink === 'no'}
+                      onChange={() => this.setState({ drink: 'no' })}
                     />
                     <label className="form-check-label" htmlFor="drink2">
                       No
@@ -405,7 +405,7 @@ export class EditProfileContainer extends React.Component {
 
                 <div className="form-group">
                   <Dropdown
-                    label={"Mother Tongue"}
+                    label={'Mother Tongue'}
                     dropDownChangeHandler={this.dropDownChangeHandler}
                     options={MotherTongue}
                     defaultValue={mother_tongue}
@@ -456,7 +456,6 @@ export class EditProfileContainer extends React.Component {
                   placeholder="about you self"
                   value={about_my_self}
                   name="about_my_self"
-  
                   type="text"
                   inputChange={this.inputChange}
                 />
@@ -464,8 +463,8 @@ export class EditProfileContainer extends React.Component {
                   <div className="col-6" />
                   <div className="col-6">
                     <WavesButton
-                      label={"Save & Update"}
-                      clickHandler={e => this.updateAndSaveHandler(e)}
+                      label={'Save & Update'}
+                      clickHandler={(e) => this.updateAndSaveHandler(e)}
                     />
                   </div>
                 </div>
@@ -479,23 +478,23 @@ export class EditProfileContainer extends React.Component {
 }
 
 EditProfileContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  editprofilecontainer: makeSelectEditProfileContainer()
+  editprofilecontainer: makeSelectEditProfileContainer(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch
+    dispatch,
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: "editProfileContainer", reducer });
-const withSaga = injectSaga({ key: "editProfileContainer", saga });
+const withReducer = injectReducer({ key: 'editProfileContainer', reducer });
+const withSaga = injectSaga({ key: 'editProfileContainer', saga });
 
 export default compose(withReducer, withSaga, withConnect)(
   EditProfileContainer

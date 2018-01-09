@@ -15,6 +15,8 @@ import { compose } from 'redux';
 import ProfileComponent from 'components/ProfileComponent';
 import ReactRangeSlider from 'components/ReactRangeSlider';
 import Input from 'components/Input';
+import Dropdown from 'components/Dropdown';
+import WavesButton from 'components/WavesButton';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -39,19 +41,37 @@ export class EditPreferences extends React.Component {
     this.state = {
       fromAge: 20,
       toAge: 24,
+      community: 'Malik',
+      motherTongue: 'Punjabi',
+      religion: 'Muslim',
+      status: 'Divorced',
     };
   }
-
+  dropDownChangeHandler = ({ dropDownType, value }) => {
+    this.setState(
+      {
+        [dropDownType]: value,
+      },
+      () => console.log('this.state: ', this.state)
+    );
+  };
   AgeChangeHandler = (value) => {
     this.setState({
       fromAge: value[0],
       toAge: value[0],
     });
-    console.log('AgeChangeHandler: ', value);
-    console.log('AgeChangeHandler state: ', this.state);
+    // console.log('AgeChangeHandler: ', value);
+    // console.log('AgeChangeHandler state: ', this.state);
   };
   render() {
-    const { fromAge, toAge } = this.state;
+    const {
+      fromAge,
+      toAge,
+      community,
+      motherTongue,
+      religion,
+      status,
+    } = this.state;
     return (
       <div className="container">
         <Helmet>
@@ -99,17 +119,15 @@ export class EditPreferences extends React.Component {
                     Marital Status
                   </label>
                   <div className="col-sm-7">
-                    <Input
-                      id="fname"
-                      // label="First Name"
-                      placeholder="Enter update name"
-                      // value={'fname'}
-                      name="fname"
-                      type="text"
-                      inputChange={this.inputChange}
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={MatrialStatus}
+                      defaultValue={status}
+                      dropDownType={status}
                     />
                   </div>
                 </div>
+
                 <div className="form-group row">
                   <label
                     htmlFor="staticEmail"
@@ -118,18 +136,53 @@ export class EditPreferences extends React.Component {
                     Religion
                   </label>
                   <div className="col-sm-7">
-                    <Input
-                      id="fname"
-                      // label="First Name"
-                      placeholder="Enter update name"
-                      // value={'fname'}
-                      name="fname"
-                      type="text"
-                      inputChange={this.inputChange}
+                    <div className="form-group">
+                      <Dropdown
+                        dropDownChangeHandler={this.dropDownChangeHandler}
+                        options={Religion}
+                        defaultValue={religion}
+                        dropDownType={religion}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Community
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={Community}
+                      defaultValue={community}
+                      dropDownType={community}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Mother Tongue
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={MotherTongue}
+                      defaultValue={motherTongue}
+                      dropDownType={motherTongue}
                     />
                   </div>
                 </div>
 
+                <div className="row save-and-update">
+                  <WavesButton label="Save & update" />
+                </div>
                 {/*
               <Input
                 id="fname"

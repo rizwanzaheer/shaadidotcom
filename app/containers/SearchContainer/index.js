@@ -74,91 +74,93 @@ export class SearchContainer extends React.Component {
           <meta name="description" content="Description of SearchContainer" />
         </Helmet>
         <div className="row">
-          <div className="col-8 advanced-search-container">
-            <div className="row">
-              <div className="col-12">
-                <h3 className="adcanced-search-heading">Advanced Search</h3>
-              </div>
-            </div>
-            <div className="row single-entity">
-              <div className="col-3">Looking For</div>
-              <div className="col-8">
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
-                    onChange={() => this.setState({ gender: 'woman' })}
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio1">
-                    Bride
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                    onChange={() => this.setState({ gender: 'man' })}
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio2">
-                    Groom
-                  </label>
+          <div className="col-12 col-lg-8">
+            <div className="advanced-search-container">
+              <div className="row">
+                <div className="col-12">
+                  <h3 className="adcanced-search-heading">Advanced Search</h3>
                 </div>
               </div>
-            </div>
-
-            <div className="row single-entity">
-              <div className="col-3">Age</div>
-              <div className="col-8">
-                <div className="row">
-                  <div className="col-5">
-                    <Dropdown
-                      options={ageOfDropDown[0].options}
-                      defaultValue={fromAge}
-                      dropDownChangeHandler={this.dropDownChangeHandler}
-                    />
-                  </div>
-                  <div className="col-1">to</div>
-                  <div className="col-5">
-                    <Dropdown
-                      options={ageOfDropDown[0].options}
-                      defaultValue={toAge}
-                      dropDownChangeHandler={this.dropDownChangeHandler}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {FIELDGENERATER.map(({ data, name }) => (
-              <div className="row single-entity" key={name}>
-                <div className="col-3">{name}</div>
+              <div className="row single-entity">
+                <div className="col-3">Looking For</div>
                 <div className="col-8">
-                  <Dropdown
-                    options={data}
-                    defaultValue=""
-                    dropDownChangeHandler={this.dropDownChangeHandler}
-                  />
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="inlineRadioOptions"
+                      id="inlineRadio1"
+                      value="option1"
+                      onChange={() => this.setState({ gender: 'woman' })}
+                    />
+                    <label className="form-check-label" htmlFor="inlineRadio1">
+                      Bride
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="inlineRadioOptions"
+                      id="inlineRadio2"
+                      value="option2"
+                      onChange={() => this.setState({ gender: 'man' })}
+                    />
+                    <label className="form-check-label" htmlFor="inlineRadio2">
+                      Groom
+                    </label>
+                  </div>
                 </div>
               </div>
-            ))}
-            <div className="row text-center">
-              <div className="col-12">
-                <span
-                  className="advanced-search-btn"
-                  onClick={this.linkCreation}
-                >
-                  <MoreDetailButtonRight label="Search" url="#" />
-                </span>
-                &nbsp;&nbsp;&nbsp;
-                <span onClick={this.reset}>
-                  <MoreDetailButtonRight label="Reset" url="#" />
-                </span>
+
+              <div className="row single-entity">
+                <div className="col-3">Age</div>
+                <div className="col-8">
+                  <div className="row">
+                    <div className="col-5">
+                      <Dropdown
+                        options={ageOfDropDown[0].options}
+                        defaultValue={fromAge}
+                        dropDownChangeHandler={this.dropDownChangeHandler}
+                      />
+                    </div>
+                    <div className="col-1">to</div>
+                    <div className="col-5">
+                      <Dropdown
+                        options={ageOfDropDown[0].options}
+                        defaultValue={toAge}
+                        dropDownChangeHandler={this.dropDownChangeHandler}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {FIELDGENERATER.map(({ data, name }) => (
+                <div className="row single-entity" key={name}>
+                  <div className="col-3">{name}</div>
+                  <div className="col-8">
+                    <Dropdown
+                      options={data}
+                      defaultValue=""
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                    />
+                  </div>
+                </div>
+              ))}
+              <div className="row text-center">
+                <div className="col-12">
+                  <span
+                    className="advanced-search-btn"
+                    onClick={this.linkCreation}
+                  >
+                    <MoreDetailButtonRight label="Search" url="#" />
+                  </span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span onClick={this.reset}>
+                    <MoreDetailButtonRight label="Reset" url="#" />
+                  </span>
+                </div>
               </div>
             </div>
           </div>
