@@ -49,6 +49,16 @@ export const Community = [
   { dropDownType: 'community', label: 'Kayani', value: 'Kayani' },
   { dropDownType: 'community', label: 'Khan', value: 'Khan' },
 ];
+export const ageOfDropDown = [
+  {
+    label: 'aged',
+    options: AgeFinder('fromAge'),
+  },
+  {
+    label: '',
+    options: AgeFinder('toAge'),
+  },
+];
 
 export const listOfDropDown = [
   {

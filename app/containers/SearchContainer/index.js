@@ -24,7 +24,13 @@ import makeSelectSearchContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import { FIELDGENERATER, ageOfDropDown } from './SearchbarData';
+import {
+  MatrialStatus,
+  Religion,
+  MotherTongue,
+  Community,
+  ageOfDropDown,
+} from '../../config/dropDownListData';
 import './SearchContainer.scss';
 
 export class SearchContainer extends React.Component {
@@ -38,7 +44,7 @@ export class SearchContainer extends React.Component {
       religion: 'Muslim',
       motherTongue: 'Urdu',
       community: 'Malik',
-      matrialStatus: 'single',
+      status: 'Single',
     };
     this.dropDownChangeHandler = this.dropDownChangeHandler.bind(this);
     this.linkCreation = this.linkCreation.bind(this);
@@ -46,9 +52,13 @@ export class SearchContainer extends React.Component {
   }
 
   dropDownChangeHandler({ dropDownType, value }) {
-    this.setState({
-      [dropDownType]: value,
-    });
+    console.log(`dropDownType: ${dropDownType}, value: ${value}`);
+    this.setState(
+      {
+        [dropDownType]: value,
+      },
+      () => console.log('this.state:', this.state)
+    );
   }
   linkCreation() {
     const {
@@ -58,15 +68,23 @@ export class SearchContainer extends React.Component {
       religion,
       motherTongue,
       community,
-      matrialStatus,
+      status,
     } = this.state;
     this.props.history.push(
-      `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${matrialStatus}&religion=${religion}&mothertongue=${motherTongue}&community=${community}`
+      `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${status}&religion=${religion}&mothertongue=${motherTongue}&community=${community}`
     );
   }
   reset() {}
   render() {
-    const { gender, fromAge, toAge, religion, motherTongue } = this.state;
+    const {
+      gender,
+      fromAge,
+      toAge,
+      religion,
+      status,
+      motherTongue,
+      community,
+    } = this.state;
     return (
       <div className="container advanced-search-wrapper">
         <Helmet>
@@ -91,7 +109,8 @@ export class SearchContainer extends React.Component {
                       name="inlineRadioOptions"
                       id="inlineRadio1"
                       value="option1"
-                      onChange={() => this.setState({ gender: 'woman' })}
+                      checked={gender === 'Woman'}
+                      onChange={() => this.setState({ gender: 'Woman' })}
                     />
                     <label className="form-check-label" htmlFor="inlineRadio1">
                       Bride
@@ -104,7 +123,8 @@ export class SearchContainer extends React.Component {
                       name="inlineRadioOptions"
                       id="inlineRadio2"
                       value="option2"
-                      onChange={() => this.setState({ gender: 'man' })}
+                      checked={gender === 'Male'}
+                      onChange={() => this.setState({ gender: 'Man' })}
                     />
                     <label className="form-check-label" htmlFor="inlineRadio2">
                       Groom
@@ -136,18 +156,70 @@ export class SearchContainer extends React.Component {
                 </div>
               </div>
 
-              {FIELDGENERATER.map(({ data, name }) => (
+              <div className="row single-entity">
+                <div className="col-3">
+                  <label htmlFor="#">Matrial Status</label>
+                </div>
+                <div className="col-8">
+                  <Dropdown
+                    options={MatrialStatus}
+                    defaultValue={status}
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                  />
+                </div>
+              </div>
+              <div className="row single-entity">
+                <div className="col-3">
+                  <label htmlFor="#">Religion</label>
+                </div>
+                <div className="col-8">
+                  <Dropdown
+                    options={Religion}
+                    defaultValue={religion}
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                  />
+                </div>
+              </div>
+
+              <div className="row single-entity">
+                <div className="col-3">
+                  <label htmlFor="#">Mother Tongue</label>
+                </div>
+                <div className="col-8">
+                  <Dropdown
+                    options={MotherTongue}
+                    defaultValue={motherTongue}
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                  />
+                </div>
+              </div>
+
+              <div className="row single-entity">
+                <div className="col-3">
+                  <label htmlFor="#">Community</label>
+                </div>
+                <div className="col-8">
+                  <Dropdown
+                    options={Community}
+                    defaultValue={community}
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                  />
+                </div>
+              </div>
+
+              {/* {FIELDGENERATER.map(({ data, name }) => (
                 <div className="row single-entity" key={name}>
                   <div className="col-3">{name}</div>
                   <div className="col-8">
                     <Dropdown
                       options={data}
-                      defaultValue=""
+                      defaultValue={this.state.dropDownType}
                       dropDownChangeHandler={this.dropDownChangeHandler}
                     />
                   </div>
                 </div>
-              ))}
+              ))} */}
+
               <div className="row text-center">
                 <div className="col-12">
                   <span

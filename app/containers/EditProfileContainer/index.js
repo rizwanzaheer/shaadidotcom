@@ -164,6 +164,7 @@ export class EditProfileContainer extends React.Component {
       province,
       smoke,
       status,
+      gender,
       weight,
       city,
       country,
@@ -224,7 +225,7 @@ export class EditProfileContainer extends React.Component {
                       name="gender"
                       id="gender1"
                       value="Male"
-                      checked={this.state.gender === 'Male'}
+                      checked={gender === 'Male'}
                       onChange={() => this.setState({ gender: 'Male' })}
                     />
                     <label className="form-check-label" htmlFor="gender1">
@@ -238,7 +239,7 @@ export class EditProfileContainer extends React.Component {
                       name="gender"
                       id="gender2"
                       value="Woman"
-                      checked={this.state.gender === 'Woman'}
+                      checked={gender === 'Woman'}
                       onChange={() => this.setState({ gender: 'Woman' })}
                     />
                     <label className="form-check-label" htmlFor="gender2">
@@ -296,7 +297,7 @@ export class EditProfileContainer extends React.Component {
                       name="smoke"
                       id="smoke1"
                       value="yes"
-                      checked={this.state.smoke === 'yes'}
+                      checked={smoke === 'yes'}
                       onChange={() => this.setState({ smoke: 'yes' })}
                     />
                     <label className="form-check-label" htmlFor="smoke1">
@@ -310,7 +311,7 @@ export class EditProfileContainer extends React.Component {
                       name="smoke"
                       id="smoke2"
                       value="no"
-                      checked={this.state.smoke === 'no'}
+                      checked={smoke === 'no'}
                       onChange={() => this.setState({ smoke: 'no' })}
                     />
                     <label className="form-check-label" htmlFor="smoke2">
@@ -341,7 +342,7 @@ export class EditProfileContainer extends React.Component {
                       name="drink"
                       id="drink1"
                       value="yes"
-                      checked={this.state.drink === 'yes'}
+                      checked={drink === 'yes'}
                       onChange={() => this.setState({ drink: 'yes' })}
                     />
                     <label className="form-check-label" htmlFor="drink1">
@@ -355,7 +356,7 @@ export class EditProfileContainer extends React.Component {
                       name="drink"
                       id="drink2"
                       value="no"
-                      checked={this.state.drink === 'no'}
+                      checked={drink === 'no'}
                       onChange={() => this.setState({ drink: 'no' })}
                     />
                     <label className="form-check-label" htmlFor="drink2">
