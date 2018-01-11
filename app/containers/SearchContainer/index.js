@@ -74,7 +74,17 @@ export class SearchContainer extends React.Component {
       `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${status}&religion=${religion}&mothertongue=${motherTongue}&community=${community}`
     );
   }
-  reset() {}
+  reset() {
+    this.setState({
+      gender: 'Woman',
+      fromAge: 20,
+      toAge: 25,
+      religion: 'Muslim',
+      motherTongue: 'Urdu',
+      community: 'Malik',
+      status: 'Single',
+    });
+  }
   render() {
     const {
       gender,
@@ -106,9 +116,9 @@ export class SearchContainer extends React.Component {
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
+                      name="gender"
+                      id="bride"
+                      value="Male"
                       checked={gender === 'Woman'}
                       onChange={() => this.setState({ gender: 'Woman' })}
                     />
@@ -120,16 +130,17 @@ export class SearchContainer extends React.Component {
                     <input
                       className="form-check-input"
                       type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio2"
-                      value="option2"
-                      checked={gender === 'Male'}
+                      name="gender"
+                      id="groom"
+                      value="Male"
+                      checked={gender === 'Man'}
                       onChange={() => this.setState({ gender: 'Man' })}
                     />
                     <label className="form-check-label" htmlFor="inlineRadio2">
                       Groom
                     </label>
                   </div>
+
                 </div>
               </div>
 
@@ -206,19 +217,6 @@ export class SearchContainer extends React.Component {
                   />
                 </div>
               </div>
-
-              {/* {FIELDGENERATER.map(({ data, name }) => (
-                <div className="row single-entity" key={name}>
-                  <div className="col-3">{name}</div>
-                  <div className="col-8">
-                    <Dropdown
-                      options={data}
-                      defaultValue={this.state.dropDownType}
-                      dropDownChangeHandler={this.dropDownChangeHandler}
-                    />
-                  </div>
-                </div>
-              ))} */}
 
               <div className="row text-center">
                 <div className="col-12">
