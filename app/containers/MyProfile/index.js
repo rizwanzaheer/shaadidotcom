@@ -13,6 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import axios from 'axios';
 
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
@@ -21,9 +22,6 @@ import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
 import makeSelectMyProfile from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
-
-import { nodeApiServerUrl } from '../../config/envChecker';
 
 import './MyProfileContainerStyle.scss';
 
@@ -32,26 +30,6 @@ const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
   : { _id: null };
 
 export class MyProfile extends React.Component {
-  // eslint-disable-line react/prefer-stateless-function
-  // constructor(props) {
-  //   super(props);
-  // }
-  // componentWillMount() {
-  //   try {
-  //     axios
-  //       .post(`${nodeApiServerUrl}/api/getuserdetail`, {
-  //         userId: USERDETAIL._id,
-  //       })
-  //       .then((data) => {
-  //         console.log('USERDETAIL data: ', data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } catch (error) {
-  //     console.log('try catch error:', error);
-  //   }
-  // }
   render() {
     return (
       <div className="container my-profile-container">

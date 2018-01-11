@@ -218,7 +218,7 @@ export class EditProfileContainer extends React.Component {
                     Gender
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </label>
-                  <div className="form-check form-check-inline">
+                  <div className="form-check ">
                     <input
                       className="form-check-input"
                       type="radio"
@@ -232,7 +232,7 @@ export class EditProfileContainer extends React.Component {
                       Male
                     </label>
                   </div>
-                  <div className="form-check form-check-inline">
+                  <div className="form-check ">
                     <input
                       className="form-check-input"
                       type="radio"
@@ -290,7 +290,7 @@ export class EditProfileContainer extends React.Component {
                     Smoke
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </label>
-                  <div className="form-check form-check-inline">
+                  <div className="form-check ">
                     <input
                       className="form-check-input"
                       type="radio"
@@ -304,7 +304,7 @@ export class EditProfileContainer extends React.Component {
                       Yes
                     </label>
                   </div>
-                  <div className="form-check form-check-inline">
+                  <div className="form-check ">
                     <input
                       className="form-check-input"
                       type="radio"
@@ -335,7 +335,7 @@ export class EditProfileContainer extends React.Component {
                     Drink
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </label>
-                  <div className="form-check form-check-inline">
+                  <div className="form-check ">
                     <input
                       className="form-check-input"
                       type="radio"
@@ -349,7 +349,7 @@ export class EditProfileContainer extends React.Component {
                       Yes
                     </label>
                   </div>
-                  <div className="form-check form-check-inline">
+                  <div className="form-check ">
                     <input
                       className="form-check-input"
                       type="radio"

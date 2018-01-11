@@ -15,23 +15,22 @@
   }
   .navbar-nav {
     margin-left: 5%;
-    margin-top: 5px;
+    // margin-top: 5px;
   }
   .navbar-expand-lg .navbar-nav .nav-link {
     color: white;
     opacity: 0.75;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-
-    // padding-top: 15px;
-    // padding-bottom: 10px;
+    line-height: 56px;
+    padding-bottom: 0;
+    padding-top: 0;
     &:hover {
       opacity: 1;
     }
   }
   .navbar-item {
-    .nav-link {
-    }
+    height: 100%;
   }
   .active {
     border-radius: 4px;

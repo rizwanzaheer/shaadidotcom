@@ -10,6 +10,7 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Backoffice from 'containers/Backoffice/Loadable';
 import SearchUsers from 'containers/SearchUsers/Loadable';
+import FindUser from 'containers/FindUser/Loadable';
 import MyProfile from 'containers/MyProfile/Loadable';
 import SearchContainer from 'containers/SearchContainer/Loadable';
 import EditProfileContainer from 'containers/EditProfileContainer/Loadable';
@@ -74,6 +75,10 @@ const CustomRoutes = () => (
         path="/my-shaadi/photo"
         component={() => <h1> photos</h1>}
       />
+      <RouteWithUserLayout
+        path="/my-shaadi/partner-preferences"
+        component={MyProfile}
+      />
       {/* Advance search for Bride/Groom */}
       <RouteWithUserLayout
         path="/my-shaadi/search"
@@ -81,7 +86,7 @@ const CustomRoutes = () => (
       />
       <RouteWithUserLayout
         path="/my-shaadi/finduser"
-        component={() => <h1> my shaadi find user </h1>}
+        component={FindUser}
       />
 
       <RouteWithUserLayout path="/features" component={FeaturePage} />
