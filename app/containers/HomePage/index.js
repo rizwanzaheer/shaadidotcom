@@ -55,9 +55,6 @@ import reducer from './reducer';
 import saga from './saga';
 import './style.scss';
 
-// const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
-//   ? JSON.parse(localStorage.getItem('user_detail'))
-//   : { _id: null };
 export class HomePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   /**
@@ -145,6 +142,8 @@ export class HomePage extends React.PureComponent {
   }
 
   componentWillMount() {
+    !USERDETAIL.fname ? window.location.href = '/my-shaadi/edit-profile' : '';
+    
     // axios.post(`${nodeApiServerUrl}/get-user-detail`, {
     //   user_token: localStorage.getItem('user_token'),
     // })
@@ -160,74 +159,6 @@ export class HomePage extends React.PureComponent {
     // if (this.props.username && this.props.username.trim().length > 0) {
     //   this.props.onSubmitForm();
     // }
-  }
-
-  // onDrop(files) {
-  // let file = new FormData();
-  // file.append('name', files[0]);
-  // let req = request.post(`${nodeApiServerUrl}/api/upload`).send(file);
-  // req.end((err, response) => {
-  //   console.log('upload done!!!!!');
-  // });
-  // const form = new FormData();
-  // files.forEach((file) => {
-  //   form.append(file.name, file);
-  // });
-  // form.append('foo', 'bar');
-  // console.log('working');
-  // axios.post(`${nodeApiServerUrl}/api/upload`, form)
-  //   .then((success) => {
-  //     console.log('success :', success);
-  //   })
-  //   .catch((err) => {
-  //     console.log('error: ', err);
-  //   });
-  // this.setState(
-  //   {
-  //     files,
-  //   },
-  //   () => {
-  //     console.log(this.state);
-  //   }
-  // );
-  // }
-  handleImageChange(e) {
-    e.preventDefault();
-
-    const reader = new FileReader();
-    const file = e.target.files[0];
-
-    reader.onloadend = () => {
-      this.setState({
-        file,
-        imagePreviewUrl: reader.result,
-      });
-    };
-
-    reader.readAsDataURL(file);
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log('working');
-    const { userId, imagePreviewUrl } = this.state;
-    // this.props.imageChange(userId, imagePreviewUrl);
-    !imagePreviewUrl
-      ? ''
-      : axios
-          .post(`${nodeApiServerUrl}/api/upload`, {
-            userId,
-            imageUrl: imagePreviewUrl,
-          })
-          .then(({ data }) => {
-            localStorage.setItem(
-              'user_detail',
-              JSON.stringify(data.new_user_detail)
-            );
-            window.location.reload();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
   }
   render() {
     const { fName, lName } = this.state;
@@ -270,9 +201,24 @@ export class HomePage extends React.PureComponent {
                     <div className="col-12 col-md-12 col-lg-3 col-sm-12">
                       <RightSidePartnerSearchContainer
                         heading="Partner Search"
+                        footer
                         btn="Search"
                       >
-                        <h1>working </h1>
+                        <div className="row">
+                          <div className="col-12">
+                            <div className="form-group">
+                              <label htmlFor="formGroupExampleInput">
+                                Name:
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="formGroupExampleInput"
+                                placeholder="Name"
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </RightSidePartnerSearchContainer>
                     </div>
                   </div>

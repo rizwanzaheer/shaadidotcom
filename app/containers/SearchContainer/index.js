@@ -254,7 +254,7 @@ export class SearchContainer extends React.Component {
                 </div>
               </div>
             </RightSidePartnerSearchContainer>
-            <RightSidePartnerSearchContainer
+            {/* <RightSidePartnerSearchContainer
               heading="Search By Name"
               footer
               btn="Search"
@@ -272,7 +272,7 @@ export class SearchContainer extends React.Component {
                   </div>
                 </div>
               </div>
-            </RightSidePartnerSearchContainer>
+            </RightSidePartnerSearchContainer> */}
           </div>
         </div>
       </div>

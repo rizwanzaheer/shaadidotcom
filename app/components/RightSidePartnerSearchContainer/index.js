@@ -20,7 +20,7 @@ import './style.scss';
 class RightSidePartnerSearchContainer extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { heading, children, btn, footer } = this.props;
+    const { heading, children, btn, footer,  } = this.props;
     return (
       <div className="right-side-partner-search-container">
         <h5>{heading}</h5>
@@ -39,7 +39,7 @@ class RightSidePartnerSearchContainer extends React.Component {
               Profile Search{' '}
               <i className="fa fa-caret-right" aria-hidden="true" />
             </NavLink>
-            <NavLink className="pull-right" to="#">
+            <NavLink className="pull-right" to="/my-shaadi/search">
               More Option <i className="fa fa-caret-right" aria-hidden="true" />
             </NavLink>
           </h5>

@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import axios from 'axios';
 
 import ProfileComponent from 'components/ProfileComponent';
 import ReactRangeSlider from 'components/ReactRangeSlider';
@@ -30,6 +31,11 @@ import {
   Religion,
   MotherTongue,
   Community,
+  SkinTone,
+  BloodGroup,
+  BodyType,
+  HairType,
+  FamilyAffluence,
 } from '../../config/dropDownListData';
 
 import './EditPreferencesStyle.scss';
@@ -45,6 +51,13 @@ export class EditPreferences extends React.Component {
       motherTongue: 'Punjabi',
       religion: 'Muslim',
       status: 'Divorced',
+      skinTone: 'Fair',
+      bloodGroup: 'A+',
+      bodyType: 'Average',
+      hairType: 'Brown Straight long',
+      familyAffluence: 'Middle class',
+      drink: 'yes',
+      smoke: 'yes',
     };
   }
   dropDownChangeHandler = ({ dropDownType, value }) => {
@@ -63,6 +76,11 @@ export class EditPreferences extends React.Component {
     // console.log('AgeChangeHandler: ', value);
     // console.log('AgeChangeHandler state: ', this.state);
   };
+  saveAndUpdate = () => {
+    console.log("this.state: ", this.state);
+    // axios
+  }
+
   render() {
     const {
       fromAge,
@@ -71,6 +89,13 @@ export class EditPreferences extends React.Component {
       motherTongue,
       religion,
       status,
+      skinTone,
+      familyAffluence,
+      bloodGroup,
+      hairType,
+      bodyType,
+      drink,
+      smoke,
     } = this.state;
     return (
       <div className="container">
@@ -133,6 +158,169 @@ export class EditPreferences extends React.Component {
                     htmlFor="staticEmail"
                     className="col-sm-4 col-form-label"
                   >
+                    Skin Tone
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={SkinTone}
+                      defaultValue={skinTone}
+                      dropDownType={skinTone}
+                    />
+                  </div>
+                </div>
+
+
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Body Type
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={BodyType}
+                      defaultValue={bodyType}
+                      dropDownType={bodyType}
+                    />
+                  </div>
+                </div>
+
+
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Hair Type
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={HairType}
+                      defaultValue={hairType}
+                      dropDownType={hairType}
+                    />
+                  </div>
+                </div>
+
+
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Family Affluence
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={FamilyAffluence}
+                      defaultValue={familyAffluence}
+                      dropDownType={familyAffluence}
+                    />
+                  </div>
+                </div>
+
+
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Blood Group
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={BloodGroup}
+                      defaultValue={bloodGroup}
+                      dropDownType={bloodGroup}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="drink">
+                    Drink
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="drink"
+                      id="drink1"
+                      value="yes"
+                      checked={drink === 'yes'}
+                      onChange={() => this.setState({ drink: 'yes' })}
+                    />
+                    <label className="form-check-label" htmlFor="drink1">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="drink"
+                      id="drink2"
+                      value="no"
+                      checked={drink === 'no'}
+                      onChange={() => this.setState({ drink: 'no' })}
+                    />
+                    <label className="form-check-label" htmlFor="drink2">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="smoke">
+                    Smoke
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="smoke"
+                      id="smoke1"
+                      value="yes"
+                      checked={smoke === 'yes'}
+                      onChange={() => this.setState({ smoke: 'yes' })}
+                    />
+                    <label className="form-check-label" htmlFor="smoke1">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="smoke"
+                      id="smoke2"
+                      value="no"
+                      checked={smoke === 'no'}
+                      onChange={() => this.setState({ smoke: 'no' })}
+                    />
+                    <label className="form-check-label" htmlFor="smoke2">
+                      No
+                    </label>
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
                     Religion
                   </label>
                   <div className="col-sm-7">
@@ -181,7 +369,10 @@ export class EditPreferences extends React.Component {
                 </div>
 
                 <div className="row save-and-update">
-                  <WavesButton label="Save & update" />
+                  <WavesButton
+                    label="Save & update"
+                    clickHandler={this.saveAndUpdate}
+                  />
                 </div>
               </form>
             </div>

@@ -19,5 +19,12 @@
     label {
       // color: $paragraph-text-color !important;
     }
+    .save-and-update{
+      float: right;
+      button{
+        width: 200px;
+        margin-right: 60px;
+      }
+    }
   }
 }
