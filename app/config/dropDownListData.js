@@ -74,7 +74,6 @@ export const BodyType = [
   { dropDownType: 'bodyType', value: 'Heavy', label: 'Heavy' },
 ];
 
-
 export const HairType = [
   // Brown
   { dropDownType: 'hairType', value: 'Brown Straight long', label: 'Brown Straight long' },

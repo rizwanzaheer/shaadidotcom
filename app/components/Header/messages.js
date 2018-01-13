@@ -34,5 +34,9 @@ export default defineMessages({
     id: 'app.components.Header.partnerpreferences',
     defaultMessage: 'Partner Preferences',
   },
+  shortlist: {
+    id: 'app.components.Header.shortlist',
+    defaultMessage: 'Short List',
+  },
 
 });

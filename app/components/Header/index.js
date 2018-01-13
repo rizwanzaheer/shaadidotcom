@@ -56,13 +56,8 @@ class Header extends React.Component {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/my-shaadi/partner-preferences">
-                <FormattedMessage {...messages.partnerpreferences} />
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink className="nav-link" to="/my-shaadi/shortlist">
-                Short List
+                <FormattedMessage {...messages.shortlist} />
               </NavLink>
             </li>
             {/* <li className="nav-item dropdown">

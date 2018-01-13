@@ -25,7 +25,7 @@ import makeSelectEditPreferences from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-
+import { nodeApiServerUrl } from '../../config/envChecker';
 import {
   MatrialStatus,
   Religion,
@@ -37,6 +37,7 @@ import {
   HairType,
   FamilyAffluence,
 } from '../../config/dropDownListData';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 
 import './EditPreferencesStyle.scss';
 
@@ -77,9 +78,19 @@ export class EditPreferences extends React.Component {
     // console.log('AgeChangeHandler state: ', this.state);
   };
   saveAndUpdate = () => {
-    console.log("this.state: ", this.state);
-    // axios
-  }
+    console.log('this.state: ', this.state);
+    axios
+      .post(
+        `${nodeApiServerUrl}/api/updateandsavepartnerpreferences`,
+        Object.assign({}, this.state, { userId: USERDETAIL._id })
+      )
+      .then((success) => {
+        console.log('success: ', success);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
     const {
@@ -170,7 +181,6 @@ export class EditPreferences extends React.Component {
                   </div>
                 </div>
 
-
                 <div className="form-group row">
                   <label
                     htmlFor="staticEmail"
@@ -187,7 +197,6 @@ export class EditPreferences extends React.Component {
                     />
                   </div>
                 </div>
-
 
                 <div className="form-group row">
                   <label
@@ -206,7 +215,6 @@ export class EditPreferences extends React.Component {
                   </div>
                 </div>
 
-
                 <div className="form-group row">
                   <label
                     htmlFor="staticEmail"
@@ -223,7 +231,6 @@ export class EditPreferences extends React.Component {
                     />
                   </div>
                 </div>
-
 
                 <div className="form-group row">
                   <label
@@ -242,6 +249,57 @@ export class EditPreferences extends React.Component {
                   </div>
                 </div>
 
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Religion
+                  </label>
+                  <div className="col-sm-7">
+                    <div className="form-group">
+                      <Dropdown
+                        dropDownChangeHandler={this.dropDownChangeHandler}
+                        options={Religion}
+                        defaultValue={religion}
+                        dropDownType={religion}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Community
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={Community}
+                      defaultValue={community}
+                      dropDownType={community}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Mother Tongue
+                  </label>
+                  <div className="col-sm-7">
+                    <Dropdown
+                      dropDownChangeHandler={this.dropDownChangeHandler}
+                      options={MotherTongue}
+                      defaultValue={motherTongue}
+                      dropDownType={motherTongue}
+                    />
+                  </div>
+                </div>
                 <div className="form-group">
                   <label htmlFor="drink">
                     Drink
@@ -313,58 +371,6 @@ export class EditPreferences extends React.Component {
                     <label className="form-check-label" htmlFor="smoke2">
                       No
                     </label>
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticEmail"
-                    className="col-sm-4 col-form-label"
-                  >
-                    Religion
-                  </label>
-                  <div className="col-sm-7">
-                    <div className="form-group">
-                      <Dropdown
-                        dropDownChangeHandler={this.dropDownChangeHandler}
-                        options={Religion}
-                        defaultValue={religion}
-                        dropDownType={religion}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticEmail"
-                    className="col-sm-4 col-form-label"
-                  >
-                    Community
-                  </label>
-                  <div className="col-sm-7">
-                    <Dropdown
-                      dropDownChangeHandler={this.dropDownChangeHandler}
-                      options={Community}
-                      defaultValue={community}
-                      dropDownType={community}
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label
-                    htmlFor="staticEmail"
-                    className="col-sm-4 col-form-label"
-                  >
-                    Mother Tongue
-                  </label>
-                  <div className="col-sm-7">
-                    <Dropdown
-                      dropDownChangeHandler={this.dropDownChangeHandler}
-                      options={MotherTongue}
-                      defaultValue={motherTongue}
-                      dropDownType={motherTongue}
-                    />
                   </div>
                 </div>
 

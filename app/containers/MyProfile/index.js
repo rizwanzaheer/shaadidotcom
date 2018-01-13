@@ -211,7 +211,7 @@ export class MyProfile extends React.Component {
             <h6 className="profile-descp-headings">
               Partner Preference:
               <span className="pull-right">
-                <MoreDetailButtonRight label="Edit" url="edit-profile" />
+                <MoreDetailButtonRight label="Edit" url="edit-preferences" />
               </span>
             </h6>
             <hr />

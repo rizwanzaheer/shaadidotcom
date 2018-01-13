@@ -36,6 +36,11 @@ import {
   MatrialStatus,
   Community,
   Religion,
+  BloodGroup,
+  HairType,
+  BodyType,
+  SkinTone,
+  FamilyAffluence,
 } from '../../config/dropDownListData';
 
 import './EditProfileContainerStyle.scss';
@@ -81,54 +86,10 @@ export class EditProfileContainer extends React.Component {
     });
   };
   updateAndSaveHandler = () => {
-    const {
-      fname,
-      email,
-      lname,
-      education,
-      religion,
-      aboutMySelf,
-      bloodGroup,
-      community,
-      dob,
-      drink,
-      height,
-      gender,
-      motherTongue,
-      phone,
-      province,
-      smoke,
-      status,
-      weight,
-      city,
-      country,
-    } = this.state;
-    const updatedData = {
-      fname,
-      email,
-      lname,
-      education,
-      religion,
-      aboutMySelf,
-      bloodGroup,
-      community,
-      dob,
-      gender,
-      drink,
-      height,
-      motherTongue,
-      phone,
-      province,
-      smoke,
-      status,
-      weight,
-      city,
-      country,
-      userId: USERDETAIL._id,
-    };
+    
     try {
       axios
-        .post(`${nodeApiServerUrl}/api/updateandsaveuser`, updatedData)
+        .post(`${nodeApiServerUrl}/api/updateandsaveuser`, Object.assign({}, this.state, { userId: USERDETAIL._id}))
         .then(({ data, status, statusText }) => {
           console.log(data);
           if (status === 200 && statusText === 'OK') {
@@ -161,13 +122,17 @@ export class EditProfileContainer extends React.Component {
       community,
       dob,
       drink,
+      familyAffluence,
       height,
       motherTongue,
       phone,
       province,
       smoke,
       status,
+      skinTone,
       gender,
+      hairType,
+      bodyType,
       weight,
       city,
       country,
@@ -291,6 +256,42 @@ export class EditProfileContainer extends React.Component {
                     dropDownType={status}
                   />
                 </div>
+                <div className="form-group">
+                  <Dropdown
+                    label="Family Affluence"
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                    options={FamilyAffluence}
+                    defaultValue={familyAffluence}
+                    dropDownType={familyAffluence}
+                  />
+                </div>
+                <div className="form-group">
+                  <Dropdown
+                    label="Skin Tone"
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                    options={SkinTone}
+                    defaultValue={skinTone}
+                    dropDownType={skinTone}
+                  />
+                </div>
+                <div className="form-group">
+                  <Dropdown
+                    label="Body Type"
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                    options={BodyType}
+                    defaultValue={bodyType}
+                    dropDownType={bodyType}
+                  />
+                </div>
+                <div className="form-group">
+                  <Dropdown
+                    label="Hair Type"
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                    options={HairType}
+                    defaultValue={hairType}
+                    dropDownType={hairType}
+                  />
+                </div>
 
                 <div className="form-group">
                   <label htmlFor="smoke">
@@ -402,6 +403,16 @@ export class EditProfileContainer extends React.Component {
                 />
 
                 <Input
+                  id="province"
+                  label="Province"
+                  placeholder="Enter province"
+                  value={province}
+                  name="province"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+
+                <Input
                   id="phone"
                   label="Phone"
                   placeholder="Enter phone"
@@ -422,16 +433,6 @@ export class EditProfileContainer extends React.Component {
                 </div>
 
                 <Input
-                  id="province"
-                  label="Province"
-                  placeholder="Enter province"
-                  value={province}
-                  name="province"
-                  type="text"
-                  inputChange={this.inputChange}
-                />
-
-                <Input
                   id="height"
                   label="Height"
                   placeholder="Enter height"
@@ -449,15 +450,17 @@ export class EditProfileContainer extends React.Component {
                   type="text"
                   inputChange={this.inputChange}
                 />
-                <Input
-                  id="bloodGroup"
-                  label="Blood Group"
-                  placeholder="Enter blood group"
-                  value={bloodGroup}
-                  name="bloodGroup"
-                  type="text"
-                  inputChange={this.inputChange}
-                />
+
+                <div className="form-group">
+                  <Dropdown
+                    label={'Blood Group'}
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                    options={BloodGroup}
+                    defaultValue={bloodGroup}
+                    dropDownType={bloodGroup}
+                  />
+                </div>
+
                 <Input
                   id="aboutMySelf"
                   label="About Myself"
