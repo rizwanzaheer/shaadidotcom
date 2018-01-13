@@ -37,6 +37,12 @@ import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
+import image1 from '../../images/AAEAAQAAAAAAAA3gAAAAJGE4NTVhODJhLWRlMTQtNDBjMS1iZGMxLTBiNDk0MjZlMjZjNw.jpg';
+import image2 from '../../images/AAEAAQAAAAAAAAcwAAAAJGUxYTQ1MDBlLWI5YzEtNDZlMi04MWI2LWZkMjg3MzJhODc0ZA.jpg';
+import image3 from '../../images/AAEAAQAAAAAAAAd3AAAAJDAyZjEzNWJmLTE4OTgtNGFlYS05ZDAzLTllMzgzYjkwNzk3Mw.jpg';
+import image4 from '../../images/AAEAAQAAAAAAAAluAAAAJDBjMDU3MjQ5LWJmNTktNGYzMC05NDYzLWM4NWRiNzQ4YmRiNA.jpg';
+import image6 from '../../images/AAEAAQAAAAAAAAdnAAAAJDM3YWQwNzY1LWM2NTQtNGZlOS05MTQwLWNjNjdjMmRmZDA5Yg.jpg';
+import image5 from '../../images/AAEAAQAAAAAAAAjzAAAAJGQ3NmNjMzUzLTM4MGMtNGEyMi04YTRiLTI5NzhhYjJmYzhlYQ.jpg';
 
 import { loadRepos } from '../../views/App/actions';
 
@@ -64,14 +70,77 @@ export class HomePage extends React.PureComponent {
       fName: USERDETAIL.fname ? USERDETAIL.fname : 'Huddy',
       lName: USERDETAIL.lname ? USERDETAIL.lname : '',
     };
-    this.profileData = {
-      name: 'Rizwan',
+    this.profileData1 = {
+      name: 'Hina khalid',
       age: 23,
       height: 5,
       weight: 0,
       religion: 'Islam',
       motherToungue: 'Urdu',
       profileId: this.state.userId,
+      city: 'Islamabad, ',
+      country: 'Pakistan',
+      profileImg: image1,
+    };
+    this.profileData2 = {
+      name: 'Maryam Nawaz',
+      age: 23,
+      height: 5,
+      weight: 0,
+      religion: 'Islam',
+      motherToungue: 'Punjabi',
+      profileId: this.state.userId,
+      city: 'Islamabad, ',
+      country: 'Pakistan',
+      profileImg: image2,
+    };
+    this.profileData3 = {
+      name: 'Saba Moin',
+      age: 20,
+      height: 6,
+      weight: 0,
+      religion: 'Islam',
+      motherToungue: 'Punjabi',
+      profileId: this.state.userId,
+      city: 'Lahore, ',
+      country: 'Pakistan',
+      profileImg: image3,
+    };
+    this.profileData4 = {
+      name: 'Kalsoom Bibi',
+      age: 25,
+      height: 5,
+      weight: 0,
+      religion: 'Islam',
+      motherToungue: 'Sindhi',
+      profileId: this.state.userId,
+      city: 'karachi, ',
+      country: 'Pakistan',
+      profileImg: image4,
+    };
+    this.profileData5 = {
+      name: 'Sana Saleem',
+      age: 22,
+      height: 5,
+      weight: 0,
+      religion: 'Islam',
+      motherToungue: 'Urdu',
+      profileId: this.state.userId,
+      city: 'Islamabad, ',
+      country: 'Pakistan',
+      profileImg: image5,
+    };
+    this.profileData6 = {
+      name: 'Ayesha Khalid',
+      age: 24,
+      height: 5,
+      weight: 0,
+      religion: 'Islam',
+      motherToungue: 'Punjabi',
+      profileId: this.state.userId,
+      city: 'Multan, ',
+      country: 'Pakistan',
+      profileImg: image6,
     };
   }
 
@@ -190,14 +259,12 @@ export class HomePage extends React.PureComponent {
 
                         {/* list of all user present in Db */}
                         {/* Single user call profilecompactive */}
-                        <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} />
-                        <ProfileCompactView data={this.profileData} />
+                        <ProfileCompactView data={this.profileData1} />
+                        <ProfileCompactView data={this.profileData2} />
+                        <ProfileCompactView data={this.profileData3} />
+                        <ProfileCompactView data={this.profileData4} />
+                        <ProfileCompactView data={this.profileData5} />
+                        <ProfileCompactView data={this.profileData6} />
                       </div>
                     </div>
                     <div className="col-12 col-md-12 col-lg-3 col-sm-12">

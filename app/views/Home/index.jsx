@@ -137,11 +137,11 @@ class Home extends Component {
             </div>
             <div className="col-12 text-center about-site-info">
               <p>
-                Shaadi dot com, The World's No.1 Matchmaking Service, was
+                Shaadi dot com, The Pakistan's No.1 Matchmaking Service, was
                 founded with a simple objective - to help people find happiness.
               </p>
               <p>
-                Shaadi.com (sometimes mis-spelt as Shadi) is a social networking
+                Shaadi dot com (sometimes mis-spelt as Shadi) is a social networking
                 site specialising in matchmaking and not just a matrimonial
                 service. As a leader in
               </p>
@@ -155,11 +155,14 @@ class Home extends Component {
                 the way brides and
               </p>
               <p>
-                grooms meet for marriage, Shaadi.com has created a
-                world-renowned brand that has changed the way of finding a life
-                partner.
+                grooms meet for marriage.
                 <MoreDetailButtonRight label="learn more" url="#" />
               </p>
+              {/* <p>
+              Shaadi dot com has created a
+                world-renowned brand that has changed the way of finding a life
+                partner
+              </p> */}
             </div>
           </div>
         </div>

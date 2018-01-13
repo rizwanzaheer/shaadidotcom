@@ -11,7 +11,6 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import axios from 'axios';
 
 
 import injectSaga from 'utils/injectSaga';
@@ -151,6 +150,47 @@ export class MyProfile extends React.Component {
                 </p>
                 <p>weight : {USERDETAIL.weight ? USERDETAIL.weight : 'N/A'}</p>
                 <p>drink : {USERDETAIL.drink ? USERDETAIL.drink : 'N/A'}</p>
+                <p>caste : {USERDETAIL.caste ? USERDETAIL.caste : 'N/A'}</p>
+                <p>
+                  province : {USERDETAIL.province ? USERDETAIL.province : 'N/A'}
+                </p>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div className="col-12">
+            <h6 className="profile-descp-headings">
+              Partner Preference:
+              <span className="pull-right">
+                <MoreDetailButtonRight label="Edit" url="edit-profile" />
+              </span>
+            </h6>
+            <hr />
+            <div className="row">
+              <div className="col-6">
+                <p>
+                  Mother tounge :{' '}
+                  {USERDETAIL.mother_tongue ? USERDETAIL.mother_tongue : 'N/A'}
+                </p>
+                <p>
+                  Marital Status :{' '}
+                  {USERDETAIL.status ? USERDETAIL.status : 'N/A'}
+                </p>
+                <p>Hight : {USERDETAIL.height ? USERDETAIL.height : 'N/A'}</p>
+                <p>City : {USERDETAIL.city ? USERDETAIL.city : 'N/A'}</p>
+                <p>
+                  country : {USERDETAIL.country ? USERDETAIL.country : 'N/A'}
+                </p>
+              </div>
+              <div className="col-6">
+                <p>
+                  religion : {USERDETAIL.religion ? USERDETAIL.religion : 'N/A'}
+                </p>
+                <p>
+                  education :{' '}
+                  {USERDETAIL.education ? USERDETAIL.education : 'N/A'}
+                </p>
+                <p>weight : {USERDETAIL.weight ? USERDETAIL.weight : 'N/A'}</p>
                 <p>caste : {USERDETAIL.caste ? USERDETAIL.caste : 'N/A'}</p>
                 <p>
                   province : {USERDETAIL.province ? USERDETAIL.province : 'N/A'}

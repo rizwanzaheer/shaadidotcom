@@ -23,6 +23,9 @@ class ProfileCompactView extends React.Component {
       religion,
       motherToungue,
       profileId,
+      profileImg,
+      city,
+      country,
     } = this.props.data;
     return (
       <div className="profile_compact_view">
@@ -40,7 +43,10 @@ class ProfileCompactView extends React.Component {
             </NavLink>
           </p>
           <p>{`${age}, ${height}' 2'', ${religion}, ${motherToungue}`}</p>
-          <p>Not working, Abu Dhabi, United Arab Emirates</p>
+          <p>
+            Not working, {city || "Islamabad, "}
+            {country || "United Arab Emirates"}
+          </p>
           <NavLink to={`/my-shaadi/finduser?profileId=${profileId}`}>
             full profile <i className="fa fa-caret-right" aria-hidden="true" />
           </NavLink>

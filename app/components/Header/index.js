@@ -60,6 +60,11 @@ class Header extends React.Component {
                 <FormattedMessage {...messages.partnerpreferences} />
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/my-shaadi/shortlist">
+                Short List
+              </NavLink>
+            </li>
             {/* <li className="nav-item dropdown">
               <NavLink
                 className="nav-link dropdown-toggle"

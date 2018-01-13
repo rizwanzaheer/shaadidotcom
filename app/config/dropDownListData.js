@@ -39,6 +39,57 @@ export const MatrialStatus = [
   { dropDownType: 'status', value: 'Married', label: 'Married' },
 ];
 
+export const FamilyAffluence = [
+  { dropDownType: 'familyAffluence', value: 'Affluent', label: 'Affluent' },
+  { dropDownType: 'familyAffluence', value: 'Upper Middle class', label: 'Upper Middle class' },
+  { dropDownType: 'familyAffluence', value: 'Middle class', label: 'Middle class' },
+  { dropDownType: 'familyAffluence', value: 'Lower Middle class', label: 'Lower Middle class' },
+  { dropDownType: 'familyAffluence', value: 'Lower class', label: 'Lower class' },
+];
+
+export const BloodGroup = [
+  { dropDownType: 'bloodGroup', value: 'Do not know', label: 'Do not know' },
+  { dropDownType: 'bloodGroup', value: 'A+', label: 'A+' },
+  { dropDownType: 'bloodGroup', value: 'A-', label: 'A-' },
+  { dropDownType: 'bloodGroup', value: 'B+', label: 'B+' },
+  { dropDownType: 'bloodGroup', value: 'B-', label: 'B-' },
+  { dropDownType: 'bloodGroup', value: 'AB+', label: 'AB+' },
+  { dropDownType: 'bloodGroup', value: 'AB-', label: 'AB-' },
+  { dropDownType: 'bloodGroup', value: 'O+', label: 'O+' },
+  { dropDownType: 'bloodGroup', value: 'O-', label: 'O-' },
+];
+
+export const SkinTone = [
+  { dropDownType: 'skinTone', value: 'Very Fair', label: 'Very Fair' },
+  { dropDownType: 'skinTone', value: 'Fair', label: 'Fair' },
+  { dropDownType: 'skinTone', value: 'Wheatish', label: 'Wheatish' },
+  { dropDownType: 'skinTone', value: 'Dark', label: 'Dark' },
+];
+
+
+export const BodyType = [
+  { dropDownType: 'bodyType', value: 'Average', label: 'Average' },
+  { dropDownType: 'bodyType', value: 'Slim', label: 'Slim' },
+  { dropDownType: 'bodyType', value: 'Athletic', label: 'Athletic' },
+  { dropDownType: 'bodyType', value: 'Heavy', label: 'Heavy' },
+];
+
+
+export const HairType = [
+  { dropDownType: 'hairType', value: 'Brown Straight', label: 'Brown Straight' },
+  { dropDownType: 'hairType', value: 'Black Straight', label: 'Black Straight' },
+  { dropDownType: 'hairType', value: 'White Straight', label: 'White Straight' },
+  { dropDownType: 'hairType', value: 'Brown Wavy', label: 'Brown Wavy' },
+  { dropDownType: 'hairType', value: 'Black Wavy', label: 'Black Wavy' },
+  { dropDownType: 'hairType', value: 'White Wavy', label: 'White Wavy' },
+  { dropDownType: 'hairType', value: 'Brown Curly', label: 'Brown Curly' },
+  { dropDownType: 'hairType', value: 'Black Curly', label: 'Black Curly' },
+  { dropDownType: 'hairType', value: 'White Curly', label: 'White Curly' },
+  { dropDownType: 'hairType', value: 'Brown Kinky', label: 'Brown Kinky' },
+  { dropDownType: 'hairType', value: 'Black Kinky', label: 'Black Kinky' },
+  { dropDownType: 'hairType', value: 'White Kinky', label: 'White Kinky' },
+];
+
 export const Community = [
   { dropDownType: 'community', label: 'Chauhdary', value: 'Chauhdary' },
   { dropDownType: 'community', label: 'Malik', value: 'Malik' },

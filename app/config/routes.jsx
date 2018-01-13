@@ -79,6 +79,10 @@ const CustomRoutes = () => (
         path="/my-shaadi/partner-preferences"
         component={MyProfile}
       />
+      <RouteWithUserLayout
+        path="/my-shaadi/shortlist"
+        component={() => <h1> Short list</h1>}
+      />
       {/* Advance search for Bride/Groom */}
       <RouteWithUserLayout
         path="/my-shaadi/search"
