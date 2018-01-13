@@ -11,7 +11,8 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import axios from 'axios';
+import getAge from 'get-age';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -21,15 +22,92 @@ import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
 import makeSelectMyProfile from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import { nodeApiServerUrl } from '../../config/envChecker';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 
 import './MyProfileContainerStyle.scss';
 
-const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
-  ? JSON.parse(localStorage.getItem('user_detail'))
-  : { _id: null };
+// const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
+//   ? JSON.parse(localStorage.getItem('user_detail'))
+//   : { _id: null };
 
 export class MyProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fname: '',
+      email: '',
+      lname: '',
+      education: '',
+      religion: '',
+      aboutMySelf: '',
+      bloodGroup: '',
+      community: '',
+      dob: '',
+      drink: '',
+      height: '',
+      motherTongue: '',
+      phone: '',
+      province: '',
+      smoke: '',
+      status: '',
+      gender: '',
+      weight: '',
+      city: '',
+      age: 0,
+      country: '',
+      image: '',
+    };
+  }
+  componentWillMount() {
+    const tempState = [];
+    try {
+      axios
+        .post(`${nodeApiServerUrl}/api/getuserdetail`, {
+          userId: USERDETAIL._id,
+        })
+        .then(({ data: { user }, status, statusText }) => {
+          if (status === 200 && statusText === 'OK') {
+            console.log(user);
+            Object.entries(user).forEach(([key, value]) => {
+              this.setState({ [key]: value });
+              tempState.push({ [key]: value });
+            });
+            console.log('this state: ', this.state);
+            console.log('this temp state: ', tempState);
+          }
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   render() {
+    const {
+      fname,
+      email,
+      lname,
+      education,
+      religion,
+      aboutMySelf,
+      bloodGroup,
+      age,
+      community,
+      dob,
+      drink,
+      height,
+      motherTongue,
+      phone,
+      province,
+      smoke,
+      status,
+      gender,
+      weight,
+      city,
+      country,
+      image,
+    } = this.state;
     return (
       <div className="container my-profile-container">
         <Helmet>
@@ -39,39 +117,33 @@ export class MyProfile extends React.Component {
         <div className="row">
           <div className="col-12">
             <h3 className="prof_username">
-              {USERDETAIL.fname
-                ? `${USERDETAIL.fname} ${USERDETAIL.lname}`
-                : 'Huddy!'}
+              {fname ? `${fname} ${lname}` : 'Huddy!'}
             </h3>
           </div>
         </div>
         <div className="row complete-profile-contianer">
           <div className="col-12 short-profile-container">
             <div className="profile-image-container">
-              <img
-                src={USERDETAIL.image}
-                alt="image"
-                className="img-thumbnail"
-              />
+              <img src={image} alt="image" className="img-thumbnail" />
             </div>
             <div className="basic-info-container">
               <ul>
                 <li>age</li>
                 <li>religion</li>
-                <li>Caste</li>
+                <li>community</li>
               </ul>
               <ul>
                 <li>
                   :&nbsp;&nbsp;
-                  {USERDETAIL.age ? USERDETAIL.age : 'N/A'}
+                  {age || getAge(dob) || 'N/A' }
                 </li>
                 <li>
                   :&nbsp;&nbsp;
-                  {USERDETAIL.religion ? USERDETAIL.religion : 'N/A'}
+                  {religion || 'N/A'}
                 </li>
                 <li>
                   :&nbsp;&nbsp;
-                  {USERDETAIL.caste ? USERDETAIL.caste : 'N/A'}
+                  {community || 'N/A'}
                 </li>
               </ul>
               <ul>
@@ -82,15 +154,15 @@ export class MyProfile extends React.Component {
               <ul>
                 <li>
                   :&nbsp;&nbsp;
-                  {USERDETAIL.gender ? USERDETAIL.gender : 'N/A'}
+                  {gender || 'N/A'}
                 </li>
                 <li>
                   :&nbsp;&nbsp;
-                  {USERDETAIL.mother_tongue ? USERDETAIL.mother_tongue : 'N/A'}
+                  {motherTongue || 'N/A'}
                 </li>
                 <li>
                   :&nbsp;&nbsp;
-                  {USERDETAIL.city ? USERDETAIL.city : 'N/A'}
+                  {city || 'N/A'}
                 </li>
               </ul>
             </div>
@@ -99,11 +171,7 @@ export class MyProfile extends React.Component {
             <h5 className="about-my-self-heading">About Myself:</h5>
             <br />
             <h6 className="profile-descp-headings">Personality, Career etc</h6>
-            <p>
-              {USERDETAIL.about_my_self
-                ? USERDETAIL.about_my_self
-                : 'I am a good person thats it.'}
-            </p>
+            <p>{aboutMySelf || 'I am a good person thats it.'}</p>
             <hr />
           </div>
           <div className="col-12">
@@ -116,44 +184,25 @@ export class MyProfile extends React.Component {
             <hr />
             <div className="row">
               <div className="col-6">
-                <p>
-                  First Name : {USERDETAIL.fname ? USERDETAIL.fname : 'N/A'}
-                </p>
-                <p>Date of Birth : {USERDETAIL.dob ? USERDETAIL.dob : 'N/A'}</p>
-                <p>
-                  Mother tounge :{' '}
-                  {USERDETAIL.mother_tongue ? USERDETAIL.mother_tongue : 'N/A'}
-                </p>
-                <p>
-                  Marital Status :{' '}
-                  {USERDETAIL.status ? USERDETAIL.status : 'N/A'}
-                </p>
-                <p>Hight : {USERDETAIL.height ? USERDETAIL.height : 'N/A'}</p>
-                <p>
-                  Smoke : {USERDETAIL.smoke ? USERDETAIL.smoke : 'N/A'}
-                </p>
-                <p>Blood group : {USERDETAIL.blood_group ? USERDETAIL.blood_group : 'N/A'}</p>
-                <p>City : {USERDETAIL.city ? USERDETAIL.city : 'N/A'}</p>
-                <p>
-                  country : {USERDETAIL.country ? USERDETAIL.country : 'N/A'}
-                </p>
+                <p>First Name : {fname || 'N/A'}</p>
+                <p>Date of Birth : {dob || 'N/A'}</p>
+                <p>Mother tounge : {motherTongue || 'N/A'}</p>
+                <p>Marital Status : {status || 'N/A'}</p>
+                <p>Hight : {height || 'N/A'}</p>
+                <p>Smoke : {smoke || 'N/A'}</p>
+                <p>Blood group : {bloodGroup || 'N/A'}</p>
+                <p>City : {city || 'N/A'}</p>
+                <p>country : {country || 'N/A'}</p>
               </div>
               <div className="col-6">
-                <p>Last Name : {USERDETAIL.lname ? USERDETAIL.lname : 'N/A'}</p>
-                <p>Gender : {USERDETAIL.gender ? USERDETAIL.gender : 'N/A'}</p>
-                <p>
-                  religion : {USERDETAIL.religion ? USERDETAIL.religion : 'N/A'}
-                </p>
-                <p>
-                  education :{' '}
-                  {USERDETAIL.education ? USERDETAIL.education : 'N/A'}
-                </p>
-                <p>weight : {USERDETAIL.weight ? USERDETAIL.weight : 'N/A'}</p>
-                <p>drink : {USERDETAIL.drink ? USERDETAIL.drink : 'N/A'}</p>
-                <p>caste : {USERDETAIL.caste ? USERDETAIL.caste : 'N/A'}</p>
-                <p>
-                  province : {USERDETAIL.province ? USERDETAIL.province : 'N/A'}
-                </p>
+                <p>Last Name : {lname || 'N/A'}</p>
+                <p>Gender : {gender || 'N/A'}</p>
+                <p>religion : {religion || 'N/A'}</p>
+                <p>education : {education || 'N/A'}</p>
+                <p>weight : {weight || 'N/A'}</p>
+                <p>drink : {drink || 'N/A'}</p>
+                <p>community : {community || 'N/A'}</p>
+                <p>province : {province || 'N/A'}</p>
               </div>
             </div>
             <hr />
@@ -168,33 +217,18 @@ export class MyProfile extends React.Component {
             <hr />
             <div className="row">
               <div className="col-6">
-                <p>
-                  Mother tounge :{' '}
-                  {USERDETAIL.mother_tongue ? USERDETAIL.mother_tongue : 'N/A'}
-                </p>
-                <p>
-                  Marital Status :{' '}
-                  {USERDETAIL.status ? USERDETAIL.status : 'N/A'}
-                </p>
-                <p>Hight : {USERDETAIL.height ? USERDETAIL.height : 'N/A'}</p>
-                <p>City : {USERDETAIL.city ? USERDETAIL.city : 'N/A'}</p>
-                <p>
-                  country : {USERDETAIL.country ? USERDETAIL.country : 'N/A'}
-                </p>
+                <p>Mother tounge : {motherTongue || 'N/A'}</p>
+                <p>Marital Status : {status || 'N/A'}</p>
+                <p>Hight : {height || 'N/A'}</p>
+                <p>City : {city || 'N/A'}</p>
+                <p>country : {country || 'N/A'}</p>
               </div>
               <div className="col-6">
-                <p>
-                  religion : {USERDETAIL.religion ? USERDETAIL.religion : 'N/A'}
-                </p>
-                <p>
-                  education :{' '}
-                  {USERDETAIL.education ? USERDETAIL.education : 'N/A'}
-                </p>
-                <p>weight : {USERDETAIL.weight ? USERDETAIL.weight : 'N/A'}</p>
-                <p>caste : {USERDETAIL.caste ? USERDETAIL.caste : 'N/A'}</p>
-                <p>
-                  province : {USERDETAIL.province ? USERDETAIL.province : 'N/A'}
-                </p>
+                <p>religion : {religion || 'N/A'}</p>
+                <p>education : {education || 'N/A'}</p>
+                <p>weight : {weight || 'N/A'}</p>
+                <p>community : {community || 'N/A'}</p>
+                <p>province : {province || 'N/A'}</p>
               </div>
             </div>
             <hr />
@@ -204,9 +238,9 @@ export class MyProfile extends React.Component {
             <hr />
             <div className="row">
               <div className="col-6">
-                <p>phone : {USERDETAIL.phone ? USERDETAIL.phone : 'N/A'}</p>
+                <p>phone : {phone || 'N/A'}</p>
                 <p style={{ textTransform: 'initial' }}>
-                  Email : {USERDETAIL.email ? USERDETAIL.email : 'N/A'}
+                  Email : {email || 'N/A'}
                 </p>
               </div>
             </div>

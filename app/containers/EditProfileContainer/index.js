@@ -22,6 +22,7 @@ import Dropdown from 'components/Dropdown';
 import Input from 'components/Input';
 import WavesButton from 'components/WavesButton';
 import SweetAlertPopup from 'components/SweetAlertPopup';
+import UploadImage from 'components/UploadImage';
 
 import makeSelectEditProfileContainer from './selectors';
 import reducer from './reducer';
@@ -86,13 +87,14 @@ export class EditProfileContainer extends React.Component {
       lname,
       education,
       religion,
-      about_my_self,
-      blood_group,
-      caste,
+      aboutMySelf,
+      bloodGroup,
+      community,
       dob,
       drink,
       height,
-      mother_tongue,
+      gender,
+      motherTongue,
       phone,
       province,
       smoke,
@@ -107,13 +109,14 @@ export class EditProfileContainer extends React.Component {
       lname,
       education,
       religion,
-      about_my_self,
-      blood_group,
-      caste,
+      aboutMySelf,
+      bloodGroup,
+      community,
       dob,
+      gender,
       drink,
       height,
-      mother_tongue,
+      motherTongue,
       phone,
       province,
       smoke,
@@ -153,13 +156,13 @@ export class EditProfileContainer extends React.Component {
       lname,
       education,
       religion,
-      about_my_self,
-      blood_group,
-      caste,
+      aboutMySelf,
+      bloodGroup,
+      community,
       dob,
       drink,
       height,
-      mother_tongue,
+      motherTongue,
       phone,
       province,
       smoke,
@@ -192,7 +195,11 @@ export class EditProfileContainer extends React.Component {
                     </h3>
                   </div>
                 </div>
-
+                <div className="row">
+                  <div className="col-12">
+                    <UploadImage userId={USERDETAIL._id} />
+                  </div>
+                </div>
                 <Input
                   id="fname"
                   label="First Name"
@@ -226,7 +233,7 @@ export class EditProfileContainer extends React.Component {
                       id="gender1"
                       value="Male"
                       checked={gender === 'Male'}
-                      onChange={() => this.setState({ gender: 'Male' })}
+                      onChange={() => this.setState({ gender: 'Male' }, () =>{ console.log('gender:', this.state.gender)})}
                     />
                     <label className="form-check-label" htmlFor="gender1">
                       Male
@@ -238,9 +245,9 @@ export class EditProfileContainer extends React.Component {
                       type="radio"
                       name="gender"
                       id="gender2"
-                      value="Woman"
-                      checked={gender === 'Woman'}
-                      onChange={() => this.setState({ gender: 'Woman' })}
+                      value="Female"
+                      checked={gender === 'Female'}
+                      onChange={() => this.setState({ gender: 'Female' }, () =>{ console.log('gender:', this.state.gender)})}
                     />
                     <label className="form-check-label" htmlFor="gender2">
                       Female
@@ -324,9 +331,9 @@ export class EditProfileContainer extends React.Component {
                   <Dropdown
                     dropDownChangeHandler={this.dropDownChangeHandler}
                     options={Community}
-                    defaultValue={caste}
-                    dropDownType={caste}
-                    label="Caste"
+                    defaultValue={community}
+                    dropDownType={community}
+                    label="Community"
                   />
                 </div>
 
@@ -409,8 +416,8 @@ export class EditProfileContainer extends React.Component {
                     label={'Mother Tongue'}
                     dropDownChangeHandler={this.dropDownChangeHandler}
                     options={MotherTongue}
-                    defaultValue={mother_tongue}
-                    dropDownType={mother_tongue}
+                    defaultValue={motherTongue}
+                    dropDownType={motherTongue}
                   />
                 </div>
 
@@ -443,20 +450,20 @@ export class EditProfileContainer extends React.Component {
                   inputChange={this.inputChange}
                 />
                 <Input
-                  id="blood_group"
+                  id="bloodGroup"
                   label="Blood Group"
                   placeholder="Enter blood group"
-                  value={blood_group}
-                  name="blood_group"
+                  value={bloodGroup}
+                  name="bloodGroup"
                   type="text"
                   inputChange={this.inputChange}
                 />
                 <Input
-                  id="about_my_self"
+                  id="aboutMySelf"
                   label="About Myself"
                   placeholder="about you self"
-                  value={about_my_self}
-                  name="about_my_self"
+                  value={aboutMySelf}
+                  name="aboutMySelf"
                   type="text"
                   inputChange={this.inputChange}
                 />

@@ -1,6 +1,6 @@
 export const Gender = [
-  { dropDownType: 'gender', value: 'Woman', label: 'Woman' },
-  { dropDownType: 'gender', value: 'Man', label: 'Man', clearableValue: true },
+  { dropDownType: 'gender', value: 'Female', label: 'Female' },
+  { dropDownType: 'gender', value: 'Male', label: 'Male', clearableValue: true },
 ];
 
 // Aged finder
@@ -62,7 +62,7 @@ export const BloodGroup = [
 export const SkinTone = [
   { dropDownType: 'skinTone', value: 'Very Fair', label: 'Very Fair' },
   { dropDownType: 'skinTone', value: 'Fair', label: 'Fair' },
-  { dropDownType: 'skinTone', value: 'Wheatish', label: 'Wheatish' },
+  { dropDownType: 'skinTone', value: 'Wheatish', label: 'Wheatish' }, // Means gandi skin/brown skin type
   { dropDownType: 'skinTone', value: 'Dark', label: 'Dark' },
 ];
 
@@ -76,18 +76,55 @@ export const BodyType = [
 
 
 export const HairType = [
-  { dropDownType: 'hairType', value: 'Brown Straight', label: 'Brown Straight' },
-  { dropDownType: 'hairType', value: 'Black Straight', label: 'Black Straight' },
-  { dropDownType: 'hairType', value: 'White Straight', label: 'White Straight' },
-  { dropDownType: 'hairType', value: 'Brown Wavy', label: 'Brown Wavy' },
-  { dropDownType: 'hairType', value: 'Black Wavy', label: 'Black Wavy' },
-  { dropDownType: 'hairType', value: 'White Wavy', label: 'White Wavy' },
-  { dropDownType: 'hairType', value: 'Brown Curly', label: 'Brown Curly' },
-  { dropDownType: 'hairType', value: 'Black Curly', label: 'Black Curly' },
-  { dropDownType: 'hairType', value: 'White Curly', label: 'White Curly' },
-  { dropDownType: 'hairType', value: 'Brown Kinky', label: 'Brown Kinky' },
-  { dropDownType: 'hairType', value: 'Black Kinky', label: 'Black Kinky' },
-  { dropDownType: 'hairType', value: 'White Kinky', label: 'White Kinky' },
+  // Brown
+  { dropDownType: 'hairType', value: 'Brown Straight long', label: 'Brown Straight long' },
+  { dropDownType: 'hairType', value: 'Brown Straight medium', label: 'Brown Straight medium' },
+  { dropDownType: 'hairType', value: 'Brown Straight short', label: 'Brown Straight short' },
+
+  { dropDownType: 'hairType', value: 'Brown Wavy long', label: 'Brown Wavy long' },
+  { dropDownType: 'hairType', value: 'Brown Wavy medium', label: 'Brown Wavy medium' },
+  { dropDownType: 'hairType', value: 'Brown Wavy short', label: 'Brown Wavy short' },
+
+  { dropDownType: 'hairType', value: 'Brown Curly long', label: 'Brown Curly long' },
+  { dropDownType: 'hairType', value: 'Brown Curly medium', label: 'Brown Curly medium' },
+  { dropDownType: 'hairType', value: 'Brown Curly short', label: 'Brown Curly short' },
+
+  { dropDownType: 'hairType', value: 'Brown Kinky long', label: 'Brown Kinky long' },
+  { dropDownType: 'hairType', value: 'Brown Kinky medium', label: 'Brown Kinky medium' },
+  { dropDownType: 'hairType', value: 'Brown Kinky short', label: 'Brown Kinky short' },
+  // Black
+  { dropDownType: 'hairType', value: 'Black Straight long', label: 'Black Straight long' },
+  { dropDownType: 'hairType', value: 'Black Straight medium', label: 'Black Straight medium' },
+  { dropDownType: 'hairType', value: 'Black Straight short', label: 'Black Straight short' },
+
+  { dropDownType: 'hairType', value: 'Black Wavy long', label: 'Black Wavy long' },
+  { dropDownType: 'hairType', value: 'Black Wavy medium', label: 'Black Wavy medium' },
+  { dropDownType: 'hairType', value: 'Black Wavy short', label: 'Black Wavy short' },
+
+  { dropDownType: 'hairType', value: 'Black Curly long', label: 'Black Curly long' },
+  { dropDownType: 'hairType', value: 'Black Curly medium', label: 'Black Curly medium' },
+  { dropDownType: 'hairType', value: 'Black Curly short', label: 'Black Curly short' },
+
+  { dropDownType: 'hairType', value: 'Black Kinky long', label: 'Black Kinky long' },
+  { dropDownType: 'hairType', value: 'Black Kinky medium', label: 'Black Kinky medium' },
+  { dropDownType: 'hairType', value: 'Black Kinky short', label: 'Black Kinky short' },
+
+  // White
+  { dropDownType: 'hairType', value: 'White Straight long', label: 'White Straight long' },
+  { dropDownType: 'hairType', value: 'White Straight medium', label: 'White Straight medium' },
+  { dropDownType: 'hairType', value: 'White Straight short', label: 'White Straight short' },
+
+  { dropDownType: 'hairType', value: 'White Wavy long', label: 'White Wavy long' },
+  { dropDownType: 'hairType', value: 'White Wavy medium', label: 'White Wavy medium' },
+  { dropDownType: 'hairType', value: 'White Wavy short', label: 'White Wavy short' },
+
+  { dropDownType: 'hairType', value: 'White Curly long', label: 'White Curly long' },
+  { dropDownType: 'hairType', value: 'White Curly medium', label: 'White Curly medium' },
+  { dropDownType: 'hairType', value: 'White Curly short', label: 'White Curly short' },
+
+  { dropDownType: 'hairType', value: 'White Kinky long', label: 'White Kinky long' },
+  { dropDownType: 'hairType', value: 'White Kinky medium', label: 'White Kinky medium' },
+  { dropDownType: 'hairType', value: 'White Kinky short', label: 'White Kinky short' },
 ];
 
 export const Community = [

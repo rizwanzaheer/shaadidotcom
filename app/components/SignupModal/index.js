@@ -11,6 +11,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import * as EmailValidator from 'email-validator';
+
+import SweetAlertPopup from 'components/SweetAlertPopup';
+
 import axios from 'axios';
 import messages from './messages';
 import { nodeApiServerUrl } from '../../config/envChecker';
@@ -54,6 +57,11 @@ class SignupModal extends React.Component {
       .post(`${nodeApiServerUrl}/signup`, { password, gender, email })
       .then((res) => {
         console.log(res);
+        SweetAlertPopup(
+           'Successfuly Signup',
+           'You have successfuly Signup, Now go and login to use serveice.',
+           'success',
+        );
       })
       .catch((err) => {
         console.log('error: ', err.response);
@@ -182,8 +190,8 @@ class SignupModal extends React.Component {
                       type="radio"
                       name="gender"
                       id="gender1"
-                      value="male"
-                      onChange={() => this.setState({ gender: 'male' })}
+                      value="Male"
+                      onChange={() => this.setState({ gender: 'Male' })}
                     />
                     Male
                   </label>
@@ -195,8 +203,8 @@ class SignupModal extends React.Component {
                       type="radio"
                       name="gender"
                       id="gender2"
-                      value="female"
-                      onChange={() => this.setState({ gender: 'female' })}
+                      value="Female"
+                      onChange={() => this.setState({ gender: 'Female' })}
                     />
                     Female
                   </label>
