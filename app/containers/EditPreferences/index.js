@@ -59,8 +59,10 @@ export class EditPreferences extends React.Component {
       hairType: "Brown Straight long",
       familyAffluence: "Middle class",
       drink: "yes",
-      smoke: "yes"
+      smoke: "yes",
+      height: ""
     };
+    this.inputChange = this.inputChange.bind(this);
   }
 
   componentWillMount() {
@@ -68,7 +70,7 @@ export class EditPreferences extends React.Component {
       .post(`${nodeApiServerUrl}/api/getpartnerpreference`, {
         userId: USERDETAIL._id
       })
-      .then(({data, status,statusText}) => {
+      .then(({ data, status, statusText }) => {
         Object.entries(data.result).forEach(([key, value]) => {
           this.setState({ [key]: value });
         });
@@ -77,12 +79,6 @@ export class EditPreferences extends React.Component {
       .catch(error => {
         console.log(error);
       });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log("prevProps: ", prevProps);
-    console.log("prevState: ", prevState);
-    console.log("next State: ", this.state);
   }
   dropDownChangeHandler = ({ dropDownType, value }) => {
     this.setState(
@@ -101,6 +97,12 @@ export class EditPreferences extends React.Component {
     // console.log('AgeChangeHandler: ', value);
     // console.log('AgeChangeHandler state: ', this.state);
   };
+  inputChange(name, value) {
+    this.setState({
+      [name]: value
+    });
+    console.log(`handle input change name: ${name}, value: ${value}`);
+  }
   saveAndUpdate = () => {
     console.log("this.state: ", this.state);
     axios
@@ -135,6 +137,7 @@ export class EditPreferences extends React.Component {
       hairType,
       bodyType,
       drink,
+      height,
       smoke
     } = this.state;
     return (
@@ -176,6 +179,27 @@ export class EditPreferences extends React.Component {
                     />
                   </div>
                 </div>
+
+                <div className="form-group row">
+                  <label
+                    htmlFor="staticEmail"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Height
+                  </label>
+                  <div className="col-sm-7">
+                    <Input
+                      id="fname"
+                      label=""
+                      placeholder="Enter hight"
+                      value={height}
+                      name="height"
+                      type="text"
+                      inputChange={this.inputChange}
+                    />
+                  </div>
+                </div>
+
                 <div className="form-group row">
                   <label
                     htmlFor="staticEmail"
@@ -403,11 +427,15 @@ export class EditPreferences extends React.Component {
                   </div>
                 </div>
 
-                <div className="row save-and-update">
-                  <WavesButton
-                    label="Save & update"
-                    clickHandler={this.saveAndUpdate}
-                  />
+                <div className="row">
+                  <div className="col-12">
+                    <div className="save-and-update">
+                      <WavesButton
+                        label="Save & update"
+                        clickHandler={this.saveAndUpdate}
+                      />
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>

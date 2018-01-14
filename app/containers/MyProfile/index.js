@@ -57,6 +57,7 @@ export class MyProfile extends React.Component {
       age: 0,
       country: '',
       image: '',
+      partnerPreferences: {},
     };
   }
   componentWillMount() {
@@ -65,12 +66,18 @@ export class MyProfile extends React.Component {
         .post(`${nodeApiServerUrl}/api/getdetails`, {
           userId: USERDETAIL._id,
         })
-        .then(({ data: { user }, status, statusText }) => {
+        .then(({ data, status, statusText }) => {
+          console.log("my profile data: ", data);
           if (status === 200 && statusText === 'OK') {
-            Object.entries(user).forEach(([key, value]) => {
+            Object.entries(data.user).forEach(([key, value]) => {
               this.setState({ [key]: value });
             });
-            console.log('this state: ', this.state);
+            this.setState({
+              ...this.state,
+              partnerPreferences: data.partnerPreferences,
+            }, () => {
+              console.log('this state: ', this.state);
+            });
           }
         })
         .catch((err) => console.log(err));
@@ -103,6 +110,7 @@ export class MyProfile extends React.Component {
       city,
       country,
       image,
+      partnerPreferences
     } = this.state;
     return (
       <div className="container my-profile-container">
@@ -213,18 +221,24 @@ export class MyProfile extends React.Component {
             <hr />
             <div className="row">
               <div className="col-6">
-                <p>Mother tounge : {motherTongue || 'N/A'}</p>
-                <p>Marital Status : {status || 'N/A'}</p>
-                <p>Hight : {height || 'N/A'}</p>
-                <p>City : {city || 'N/A'}</p>
-                <p>country : {country || 'N/A'}</p>
+                <p>Mother tounge : {partnerPreferences.motherTongue || 'N/A'}</p>
+                <p>Marital Status : {partnerPreferences.status || 'N/A'}</p>
+                <p>Hight : {partnerPreferences.height || 'N/A'}</p>
+                <p>City : {partnerPreferences.city || 'N/A'}</p>
+                {/* <p>country : {partnerPreferences.country || 'N/A'}</p> */}
+                <p>body Type : {partnerPreferences.bodyType || 'N/A'}</p>
+                <p>skinTone : {partnerPreferences.skinTone || 'N/A'}</p>
+                {/* <p>province : {partnerPreferences.province || 'N/A'}</p> */}
               </div>
               <div className="col-6">
-                <p>religion : {religion || 'N/A'}</p>
-                <p>education : {education || 'N/A'}</p>
-                <p>weight : {weight || 'N/A'}</p>
-                <p>community : {community || 'N/A'}</p>
-                <p>province : {province || 'N/A'}</p>
+                <p>religion : {partnerPreferences.religion || 'N/A'}</p>
+                {/* <p>education : {partnerPreferences.education || 'N/A'}</p> */}
+                {/* <p>weight : {partnerPreferences.weight || 'N/A'}</p> */}
+                <p>community : {partnerPreferences.community || 'N/A'}</p>
+                <p>hair type : {partnerPreferences.hairType || 'N/A'}</p>
+                <p>family Affluence : {partnerPreferences.familyAffluence || 'N/A'}</p>
+                <p>drink : {partnerPreferences.drink || 'N/A'}</p>
+                
               </div>
             </div>
             <hr />
