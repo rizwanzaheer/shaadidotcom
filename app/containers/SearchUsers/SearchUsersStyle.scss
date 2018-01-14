@@ -1,0 +1,52 @@
+@import '../../utils/_variables.scss';
+
+.search-users-container{
+  margin-top: 20px; 
+  margin-bottom: 20px;
+  min-height: calc(100vh - 180px);
+  color: $paragraph-text-color;
+  .search-users-wrapper{
+    padding: 20px;
+    border-radius: 5px;
+    // .single-search-user-contaienr{
+    //   padding: 20px;
+    //   background: white;
+    //   box-shadow: $box-shadow; 
+    //   min-height: 200px;
+    //   .search-user-tilte{
+    //     color: #00bcd5;
+    //   }
+    //   .search-user-image{
+    //     max-width: 200px;
+    //     float: left;
+    //     // margin-top: 20px;
+    //     height: auto;
+    //   }
+    //   .search-user-detail-wrapper{
+    //     width: auto;
+    //     float: left;
+    //     // margin-top: 30px;
+    //     ul{
+    //       list-style: none;
+    //       float: left;
+    //       padding-left: 15px;
+    //       // line-height: 1;
+    //       li{
+    //         font-size: 14px;
+    //       }
+    //     }
+    //   }
+    //   .connect-with-her-wrapper{
+    //     float: left;
+    //     padding-left: 15px;
+    //     text-transform: capitalize; 
+    //     a{
+    //       font-size: 12px;
+    //     }
+    //   }
+    //   img{
+    //     max-width: 140px;
+    //   }
+    // }
+  }
+}

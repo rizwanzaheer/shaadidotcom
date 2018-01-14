@@ -28,7 +28,6 @@ class ProfileCompactView extends React.Component {
       city,
       country,
     } = this.props.data;
-    console.log('profile compact view data: ', this.props.data );
     return (
       <div className="profile_compact_view">
         <span className="thumbnail">

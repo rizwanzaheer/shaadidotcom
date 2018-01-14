@@ -39,7 +39,7 @@ class ReactRangeSlider extends React.Component {
   // }
   onChange = (value) => {
     this.setState({ value });
-    console.log('this.state: ', this.state.value);
+    // console.log('this.state: ', this.state.value);
     this.props.onChange(this.state.value);
   };
   // handle = (props) => {

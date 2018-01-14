@@ -39,14 +39,14 @@ export class FindUser extends React.Component {
             <ImageThumbnail image={test} name="test" />
           </div>
           <div className="col-lg-8 col-8">
-            <div class="custom-user-detail-wrapper">
-              <div class="row">
-                <div class="col-12">
+            <div className="custom-user-detail-wrapper">
+              <div className="row">
+                <div className="col-12">
                   <FormattedMessage {...messages.header} />
                 </div>
               </div>
-              <div class="row">
-                <div class="col-12">
+              <div className="row">
+                <div className="col-12">
                   <FormattedMessage {...messages.header} />
                 </div>
               </div>

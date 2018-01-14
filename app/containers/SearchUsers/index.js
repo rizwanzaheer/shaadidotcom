@@ -4,68 +4,67 @@
  *
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
-import ImageUploader from 'react-images-upload';
-import request from 'superagent';
-import { nodeApiServerUrl } from '../../config/envChecker';
+import React from "react";
+import { withRouter } from "react-router";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
+import { FormattedMessage } from "react-intl";
+import { createStructuredSelector } from "reselect";
+import { compose } from "redux";
+import axios from "axios";
 
-import ProfileCompactView from 'components/ProfileCompactView';
+import ProfileCompactView from "components/ProfileCompactView";
+import SingleProfileComponent from 'components/SingleProfileComponent';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
-import makeSelectSearchUsers from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import messages from './messages';
+import RightSidePartnerSearchContainer from "components/RightSidePartnerSearchContainer";
+
+import injectSaga from "utils/injectSaga";
+import injectReducer from "utils/injectReducer";
+import makeSelectSearchUsers from "./selectors";
+import reducer from "./reducer";
+import saga from "./saga";
+import messages from "./messages";
+
+
+import { nodeApiServerUrl } from "../../config/envChecker";
+
+import "./SearchUsersStyle.scss";
 
 export class SearchUsers extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    this.state = {
-      image1: '',
-    };
-
-    this.handleUploadFile = this.handleUploadFile.bind(this);
+    this.state = {};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.profileData = {
-      name: 'Rizwan',
+      fname: "Rizwan",
       age: 23,
       height: 5,
       weight: 0,
-      religion: 'Islam',
-      motherToungue: 'Urdu',
-      profileId: 1,
+      religion: "Islam",
+      motherToungue: "Urdu",
+      _id: 1
     };
   }
 
-  handleUploadFile = (event) => {
-    console.log('event', event.target);
-    this.setState({
-      image1: event.target.files[0],
-    });
-  };
+  componentWillMount() {
+    console.log("this.props: ", this.props.history.location.search);
+    const query = new URLSearchParams(this.props.history.location.search);
+    const gender = query.get("gender");
+    const fromage = query.get("fromage");
+    const toage = query.get("toage");
+    const religion = query.get("religion");
+    const mothertongue = query.get("mothertongue");
+    console.log("gender: ", gender);
+    console.log("gender: ", fromage);
+    console.log("gender: ", toage);
+    console.log("gender: ", religion);
+    console.log("gender: ", mothertongue);
+  }
 
   handleSubmit(e) {
     e.preventDefault();
-    const dataDemo = {
-      image: this.state.image1,
-    };
-
-    request
-      .post(`${nodeApiServerUrl}/api/upload/image`)
-      .set('Content-Type', 'application/json')
-      .send(dataDemo)
-      .end((err, res) => {
-        console.log('err', err);
-        console.log('res', res);
-      });
   }
   render() {
     return (
@@ -74,36 +73,35 @@ export class SearchUsers extends React.Component {
           <title>SearchUsers</title>
           <meta name="description" content="Description of SearchUsers" />
         </Helmet>
-        <div className="col-12">
-          <FormattedMessage {...messages.header} />
-          <h1>Your Search Result</h1>
-          <form encType="multipart/form-data">
-            <div style={{ width: '100%', marginTop: '10px' }}>
-              Image 1
-              <input
-                name="image1"
-                type="file"
-                onChange={this.handleUploadFile}
-              />
-            </div>
+        <div className="row search-users-container">
+          <div className="col-4">
+            <RightSidePartnerSearchContainer
+              heading="Refine Search"
+              footer
+              btn="Search"
+            >
+              <div className="row">
+                <div className="col-12">
+                  <div className="form-group">
+                    <label htmlFor="formGroupExampleInput">Name:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="formGroupExampleInput"
+                      placeholder="Name"
+                    />
+                  </div>
+                </div>
+              </div>
+            </RightSidePartnerSearchContainer>
+          </div>
+          <div className="col-8">
+            <h4>Your Search Result</h4>
 
-            <div style={{ width: '100%', marginTop: '10px' }}>
-              <input
-                type="submit"
-                name="submit"
-                value="submit"
-                onClick={this.handleSubmit}
-              />
+            <div className="row search-users-wrapper">
+              <SingleProfileComponent />  
             </div>
-          </form>
-          <ProfileCompactView data={this.profileData} />
-          <ProfileCompactView data={this.profileData} />
-          <ProfileCompactView data={this.profileData} />
-          <ProfileCompactView data={this.profileData} />
-          <ProfileCompactView data={this.profileData} />
-          <ProfileCompactView data={this.profileData} />
-          <ProfileCompactView data={this.profileData} />
-          <ProfileCompactView data={this.profileData} />
+          </div>
         </div>
       </div>
     );
@@ -111,22 +109,24 @@ export class SearchUsers extends React.Component {
 }
 
 SearchUsers.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
-  searchusers: makeSelectSearchUsers(),
+  searchusers: makeSelectSearchUsers()
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    dispatch
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'searchUsers', reducer });
-const withSaga = injectSaga({ key: 'searchUsers', saga });
+const withReducer = injectReducer({ key: "searchUsers", reducer });
+const withSaga = injectSaga({ key: "searchUsers", saga });
 
-export default compose(withReducer, withSaga, withConnect)(SearchUsers);
+export default withRouter(
+  compose(withReducer, withSaga, withConnect)(SearchUsers)
+);

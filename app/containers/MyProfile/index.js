@@ -27,10 +27,6 @@ import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 
 import './MyProfileContainerStyle.scss';
 
-// const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'))
-//   ? JSON.parse(localStorage.getItem('user_detail'))
-//   : { _id: null };
-
 export class MyProfile extends React.Component {
   constructor(props) {
     super(props);
