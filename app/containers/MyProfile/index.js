@@ -60,7 +60,6 @@ export class MyProfile extends React.Component {
     };
   }
   componentWillMount() {
-    const tempState = [];
     try {
       axios
         .post(`${nodeApiServerUrl}/api/getdetails`, {
@@ -68,13 +67,10 @@ export class MyProfile extends React.Component {
         })
         .then(({ data: { user }, status, statusText }) => {
           if (status === 200 && statusText === 'OK') {
-            console.log(user);
             Object.entries(user).forEach(([key, value]) => {
               this.setState({ [key]: value });
-              tempState.push({ [key]: value });
             });
             console.log('this state: ', this.state);
-            console.log('this temp state: ', tempState);
           }
         })
         .catch((err) => console.log(err));
