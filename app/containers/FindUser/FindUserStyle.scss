@@ -1,0 +1,13 @@
+@import '../../utils/_variables.scss';
+
+.custom-user-container{
+  margin-top: 20px; 
+  margin-bottom: 20px; 
+  .custom-user-image-wrapper{
+    // box-shadow: $box-shadow;
+  }
+  .custom-user-detail-wrapper{
+    box-shadow: $box-shadow;
+    padding: 20px;
+  }
+}

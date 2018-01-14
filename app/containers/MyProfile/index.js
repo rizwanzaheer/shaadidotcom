@@ -63,7 +63,7 @@ export class MyProfile extends React.Component {
     const tempState = [];
     try {
       axios
-        .post(`${nodeApiServerUrl}/api/getuserdetail`, {
+        .post(`${nodeApiServerUrl}/api/getdetails`, {
           userId: USERDETAIL._id,
         })
         .then(({ data: { user }, status, statusText }) => {

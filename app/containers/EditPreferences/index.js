@@ -18,6 +18,7 @@ import ReactRangeSlider from 'components/ReactRangeSlider';
 import Input from 'components/Input';
 import Dropdown from 'components/Dropdown';
 import WavesButton from 'components/WavesButton';
+import SweetAlertPopup from 'components/SweetAlertPopup';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -61,6 +62,18 @@ export class EditPreferences extends React.Component {
       smoke: 'yes',
     };
   }
+  
+  componentWillMount() {
+    axios.post(`${nodeApiServerUrl}/api/getspecificpartnerpreference`, {
+      userId: USERDETAIL._id,
+    });
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prevProps: ", prevProps);
+    console.log("prevState: ", prevState);
+    console.log("next State: ", this.state);
+  }
   dropDownChangeHandler = ({ dropDownType, value }) => {
     this.setState(
       {
@@ -70,9 +83,10 @@ export class EditPreferences extends React.Component {
     );
   };
   AgeChangeHandler = (value) => {
+    console.log('AgeChangeHandler value: ', value);
     this.setState({
       fromAge: value[0],
-      toAge: value[0],
+      toAge: value[1],
     });
     // console.log('AgeChangeHandler: ', value);
     // console.log('AgeChangeHandler state: ', this.state);
@@ -85,6 +99,11 @@ export class EditPreferences extends React.Component {
         Object.assign({}, this.state, { userId: USERDETAIL._id })
       )
       .then((success) => {
+        SweetAlertPopup(
+          'Saved!',
+          'Partner Preferences saved successfuly',
+          'success'
+        );
         console.log('success: ', success);
       })
       .catch((err) => {

@@ -16,38 +16,41 @@ class ProfileCompactView extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   render() {
     const {
-      name,
+      fname,
+      lname,
       age,
       height,
       weight,
       religion,
-      motherToungue,
-      profileId,
-      profileImg,
+      motherTongue,
+      _id,
+      image,
       city,
       country,
     } = this.props.data;
+    console.log('profile compact view data: ', this.props.data );
     return (
       <div className="profile_compact_view">
         <span className="thumbnail">
-          <NavLink to={`/my-shaadi/finduser?profileId=${profileId}`}>
+          <NavLink to={`/my-shaadi/finduser?profileId=${_id}`}>
             <div className="small-pic">
-              <img src={profileImg} alt="profileImg" />
+              <img src={image} alt="profileImg" />
             </div>
           </NavLink>
         </span>
         <span className="user_info">
           <p>
-            <NavLink to={`/my-shaadi/finduser?profileId=${profileId}`}>
-              {name}
+            <NavLink to={`/my-shaadi/finduser?profileId=${_id}`}>
+              {fname}&nbsp;{lname}
             </NavLink>
           </p>
-          <p>{`${age}, ${height}' 2'', ${religion}, ${motherToungue}`}</p>
+          <p>{`${age}, ${height}'', ${religion}, ${motherTongue}`}</p>
           <p>
-            Not working, {city || "Islamabad, "}
+            {city || "Islamabad"},
+            &nbsp;
             {country || "United Arab Emirates"}
           </p>
-          <NavLink to={`/my-shaadi/finduser?profileId=${profileId}`}>
+          <NavLink to={`/my-shaadi/finduser?profileId=${_id}`}>
             full profile <i className="fa fa-caret-right" aria-hidden="true" />
           </NavLink>
         </span>
