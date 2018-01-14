@@ -65,14 +65,12 @@ module.exports = (options) => ({
             //   },
             // },
             options: {
-              optimizationLevel: 7,
               mozjpeg: {
                 progressive: true,
                 quality: 65
               },
               // optipng.enabled: false will disable optipng
               optipng: {
-                // enabled: false,
                 optimizationLevel: 4,
               },
               pngquant: {
