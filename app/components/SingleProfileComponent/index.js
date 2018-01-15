@@ -41,9 +41,9 @@ class SingleProfileComponent extends React.Component {
         </div>
         <div className="connect-with-her-wrapper">
           <h6>connect with:</h6>
-          <button class="btn waves-effect waves-light">Yes</button>
-          <button class="btn waves-effect waves-light">Maybe</button>
-          <button class="btn waves-effect waves-light">No</button>
+          <button className="btn waves-effect waves-light">Yes</button>
+          <button className="btn waves-effect waves-light">Maybe</button>
+          <button className="btn waves-effect waves-light">No</button>
           <MoreDetailButtonRight label="View full profile" url="adfadf" />
         </div>
       </div>
