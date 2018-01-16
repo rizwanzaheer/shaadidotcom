@@ -53,27 +53,32 @@ export class MyProfile extends React.Component {
       age: 0,
       country: '',
       image: '',
-      partnerPreferences: {},
+      partnerPreferences: {
+      },
     };
   }
   componentWillMount() {
     try {
+      console.log('my profil will mount:', USERDETAIL._id);
       axios
         .post(`${nodeApiServerUrl}/api/getdetails`, {
           userId: USERDETAIL._id,
         })
         .then(({ data, status, statusText }) => {
-          console.log("my profile data: ", data);
+          console.log('my profile data: ', data);
           if (status === 200 && statusText === 'OK') {
             Object.entries(data.user).forEach(([key, value]) => {
               this.setState({ [key]: value });
             });
-            this.setState({
-              ...this.state,
-              partnerPreferences: data.partnerPreferences,
-            }, () => {
-              console.log('this state: ', this.state);
-            });
+            this.setState(
+              {
+                ...this.state,
+                partnerPreferences: data.partnerPreferences,
+              },
+              () => {
+                console.log('this state: ', this.state);
+              }
+            );
           }
         })
         .catch((err) => console.log(err));
@@ -106,7 +111,7 @@ export class MyProfile extends React.Component {
       city,
       country,
       image,
-      partnerPreferences
+      partnerPreferences,
     } = this.state;
     return (
       <div className="container my-profile-container">
@@ -135,7 +140,7 @@ export class MyProfile extends React.Component {
               <ul>
                 <li>
                   :&nbsp;&nbsp;
-                  {age || getAge(dob) || 'N/A' }
+                  {age || getAge(dob) || 'N/A'}
                 </li>
                 <li>
                   :&nbsp;&nbsp;
@@ -217,7 +222,9 @@ export class MyProfile extends React.Component {
             <hr />
             <div className="row">
               <div className="col-6">
-                <p>Mother tounge : {partnerPreferences.motherTongue || 'N/A'}</p>
+                <p>
+                  Mother tounge : {partnerPreferences.motherTongue || 'N/A'}
+                </p>
                 <p>Marital Status : {partnerPreferences.status || 'N/A'}</p>
                 <p>Hight : {partnerPreferences.height || 'N/A'}</p>
                 <p>City : {partnerPreferences.city || 'N/A'}</p>
@@ -232,9 +239,11 @@ export class MyProfile extends React.Component {
                 {/* <p>weight : {partnerPreferences.weight || 'N/A'}</p> */}
                 <p>community : {partnerPreferences.community || 'N/A'}</p>
                 <p>hair type : {partnerPreferences.hairType || 'N/A'}</p>
-                <p>family Affluence : {partnerPreferences.familyAffluence || 'N/A'}</p>
+                <p>
+                  family Affluence :{' '}
+                  {partnerPreferences.familyAffluence || 'N/A'}
+                </p>
                 <p>drink : {partnerPreferences.drink || 'N/A'}</p>
-                
               </div>
             </div>
             <hr />

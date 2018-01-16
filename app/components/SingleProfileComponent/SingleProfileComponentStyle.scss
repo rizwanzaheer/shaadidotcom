@@ -13,39 +13,24 @@
   .search-user-image{
     max-width: 200px;
     float: left;
-    // margin-top: 20px;
     height: auto;
   }
-  .search-user-detail-wrapper{
-    width: auto;
-    float: left;
-    // margin-top: 30px;
-    ul{
-      list-style: none;
-      float: left;
-      padding-left: 15px;
-      // line-height: 1;
-      li{
-        font-size: 14px;
+  .table
+  {
+    td{
+      border-top: unset;
+      padding: 0.25rem;
+      font-size: 12px;
+      &:first-child{
+        &::after{
+          content: ":";
+          float: right;
+        }
       }
     }
   }
-  // .connect-with-her-wrapper{
-  //   float: left;
-  //   padding-left: 15px;
-  //   display: flex;
-  //   flex-basis: auto;
-  //   flex-direction: row;
-  //   text-transform: capitalize; 
-  //   h6{
-  //     margin-right: 10px;
-  //     line-height: 2;
-  //   }
-  //   a{
-  //     font-size: 12px;
-  //   }
-  // }
   img{
-    max-width: 140px;
+    max-width: 150px;
+    opacity: .3;
   }
 }

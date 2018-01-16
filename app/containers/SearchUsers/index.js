@@ -63,7 +63,7 @@ export class SearchUsers extends React.Component {
     console.log('gender: ', religion);
     console.log('gender: ', mothertongue);
     axios
-      .post(`${nodeApiServerUrl}/api/getallusers`, {})
+      .post(`${nodeApiServerUrl}/api/search/getallusers`, {})
       .then((users) => {
         this.setState(
           {
@@ -71,7 +71,7 @@ export class SearchUsers extends React.Component {
           },
           () => {
             console.log('final state: ', this.state.users);
-            this.state.users.map((data) => console.log('data is: ', data));
+            // this.state.users.map((data) => console.log('data is: ', data));
           }
         );
       })
@@ -116,7 +116,7 @@ export class SearchUsers extends React.Component {
             <div className="row search-users-wrapper">
               {this.state.users.map((data) => (
                 <div className="row" key={data._id}>
-                  <SingleProfileComponent />
+                  <SingleProfileComponent data={data} />
                 </div>
               ))}
             </div>

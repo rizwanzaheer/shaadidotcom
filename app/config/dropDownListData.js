@@ -130,6 +130,7 @@ export const Community = [
   { dropDownType: 'community', label: 'Chauhdary', value: 'Chauhdary' },
   { dropDownType: 'community', label: 'Malik', value: 'Malik' },
   { dropDownType: 'community', label: 'Raja', value: 'Raja' },
+  { dropDownType: 'community', label: 'Qurashi', value: 'Qurashi' },
   { dropDownType: 'community', label: 'Shakeh', value: 'Shakeh' },
   { dropDownType: 'community', label: 'Butt', value: 'Butt' },
   { dropDownType: 'community', label: 'Mir', value: 'Mir' },
