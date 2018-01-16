@@ -17,6 +17,7 @@ import injectReducer from "utils/injectReducer";
 
 import ImageThumbnail from "components/ImageThumbnail";
 
+
 import makeSelectFindUser from "./selectors";
 import reducer from "./reducer";
 import saga from "./saga";
@@ -35,7 +36,6 @@ export class FindUser extends React.Component {
         </Helmet>
         <div className="row custom-user-container">
           <div className="col-lg-4 col-4 custom-user-image-wrapper">
-            <FormattedMessage {...messages.header} />
             <ImageThumbnail image={test} name="test" />
           </div>
           <div className="col-lg-8 col-8">

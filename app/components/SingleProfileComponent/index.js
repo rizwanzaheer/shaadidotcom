@@ -4,13 +4,15 @@
  *
  */
 
-import React from "react";
+import React from 'react';
 // import styled from 'styled-components';
 
-import { FormattedMessage } from "react-intl";
-import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
-import messages from "./messages";
-import image from "../../images/0c1ac4b49886e4a8ee5dad5164a9a5fa.jpg";
+import { FormattedMessage } from 'react-intl';
+import ConnectWith from 'components/ConnectWith';
+
+import messages from './messages';
+
+import image from '../../images/0c1ac4b49886e4a8ee5dad5164a9a5fa.jpg';
 
 import './SingleProfileComponentStyle.scss';
 
@@ -39,13 +41,7 @@ class SingleProfileComponent extends React.Component {
             <li>Location</li>
           </ul>
         </div>
-        <div className="connect-with-her-wrapper">
-          <h6>connect with:</h6>
-          <button className="btn waves-effect waves-light">Yes</button>
-          <button className="btn waves-effect waves-light">Maybe</button>
-          <button className="btn waves-effect waves-light">No</button>
-          <MoreDetailButtonRight label="View full profile" url="adfadf" />
-        </div>
+        <ConnectWith />
       </div>
     );
   }
