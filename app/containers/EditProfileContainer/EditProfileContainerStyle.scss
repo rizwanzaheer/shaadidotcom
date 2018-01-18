@@ -3,6 +3,10 @@
 .edit-profile-container {
   margin-top: 30px;
   margin-bottom: 30px;
+  .profile-image{
+    max-width: 250px;
+    margin-bottom: 20px;
+  }
   .edit-profile-wrapper {
     background: white;
     border-radius: 4px;

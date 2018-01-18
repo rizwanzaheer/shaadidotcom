@@ -4,33 +4,23 @@
  *
  */
 
-import React from 'react';
+import axios from 'axios';
+import moment from 'moment';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
 import { compose } from 'redux';
-
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
-
-import axios from 'axios';
-
-import ProfileComponent from 'components/ProfileComponent';
+import { createStructuredSelector } from 'reselect';
 import Dropdown from 'components/Dropdown';
 import Input from 'components/Input';
-import WavesButton from 'components/WavesButton';
+import ProfileComponent from 'components/ProfileComponent';
 import SweetAlertPopup from 'components/SweetAlertPopup';
 import UploadImage from 'components/UploadImage';
-
-import makeSelectEditProfileContainer from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import messages from './messages';
-
-import { nodeApiServerUrl } from '../../config/envChecker';
-import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
+import WavesButton from 'components/WavesButton';
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
 import {
   MotherTongue,
   MatrialStatus,
@@ -42,8 +32,14 @@ import {
   SkinTone,
   FamilyAffluence,
 } from '../../config/dropDownListData';
-
+import { nodeApiServerUrl } from '../../config/envChecker';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 import './EditProfileContainerStyle.scss';
+
+import messages from './messages';
+import reducer from './reducer';
+import saga from './saga';
+import makeSelectEditProfileContainer from './selectors';
 
 export class EditProfileContainer extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -63,9 +59,11 @@ export class EditProfileContainer extends React.Component {
         .then(({ data: { user }, status, statusText }) => {
           if (status === 200 && statusText === 'OK') {
             console.log(user);
-            Object.entries(user).forEach(([key, value]) =>
-              this.setState({ [key]: value })
-            );
+            Object.entries(user).forEach(([key, value]) => {
+              const newValue =
+                key === 'dob' ? moment(value).format('YYYY-MM-DD') : value;
+              this.setState({ [key]: newValue });
+            });
             console.log('this state: ', this.state);
           }
         })
@@ -86,18 +84,21 @@ export class EditProfileContainer extends React.Component {
     });
   };
   updateAndSaveHandler = () => {
-    
     try {
       axios
-        .post(`${nodeApiServerUrl}/api/updateandsaveuser`, Object.assign({}, this.state, { userId: USERDETAIL._id}))
+        .post(
+          `${nodeApiServerUrl}/api/updateandsaveuser`,
+          Object.assign({}, this.state, { userId: USERDETAIL._id })
+        )
         .then(({ data, status, statusText }) => {
-          console.log(data);
+          console.log('moment age: ', moment(data.user.dob).format('L'));
           if (status === 200 && statusText === 'OK') {
             SweetAlertPopup(
               'Success!',
               'Your data is update & save Successfuly!',
               'success'
             );
+
             // window.location.reload();
           }
         })
@@ -131,6 +132,7 @@ export class EditProfileContainer extends React.Component {
       status,
       skinTone,
       gender,
+      image,
       hairType,
       bodyType,
       weight,
@@ -158,6 +160,11 @@ export class EditProfileContainer extends React.Component {
                     <h3 className="edit-personal-profile-heading">
                       <FormattedMessage {...messages.header} />
                     </h3>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-12">
+                    <img src={image} alt="" className="profile-image img-thumbnail" />
                   </div>
                 </div>
                 <div className="row">
@@ -198,7 +205,10 @@ export class EditProfileContainer extends React.Component {
                       id="gender1"
                       value="Male"
                       checked={gender === 'Male'}
-                      onChange={() => this.setState({ gender: 'Male' }, () =>{ console.log('gender:', this.state.gender)})}
+                      onChange={() =>
+                        this.setState({ gender: 'Male' }, () => {
+                          console.log('gender:', this.state.gender);
+                        })}
                     />
                     <label className="form-check-label" htmlFor="gender1">
                       Male
@@ -212,7 +222,10 @@ export class EditProfileContainer extends React.Component {
                       id="gender2"
                       value="Female"
                       checked={gender === 'Female'}
-                      onChange={() => this.setState({ gender: 'Female' }, () =>{ console.log('gender:', this.state.gender)})}
+                      onChange={() =>
+                        this.setState({ gender: 'Female' }, () => {
+                          console.log('gender:', this.state.gender);
+                        })}
                     />
                     <label className="form-check-label" htmlFor="gender2">
                       Female

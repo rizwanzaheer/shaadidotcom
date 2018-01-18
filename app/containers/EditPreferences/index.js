@@ -4,29 +4,23 @@
  *
  */
 
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Helmet } from "react-helmet";
-import { FormattedMessage } from "react-intl";
-import { createStructuredSelector } from "reselect";
-import { compose } from "redux";
-import axios from "axios";
+import axios from 'axios';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
-import ProfileComponent from "components/ProfileComponent";
-import ReactRangeSlider from "components/ReactRangeSlider";
-import Input from "components/Input";
-import Dropdown from "components/Dropdown";
-import WavesButton from "components/WavesButton";
-import SweetAlertPopup from "components/SweetAlertPopup";
-
-import injectSaga from "utils/injectSaga";
-import injectReducer from "utils/injectReducer";
-import makeSelectEditPreferences from "./selectors";
-import reducer from "./reducer";
-import saga from "./saga";
-import messages from "./messages";
-import { nodeApiServerUrl } from "../../config/envChecker";
+import Dropdown from 'components/Dropdown';
+import Input from 'components/Input';
+import ProfileComponent from 'components/ProfileComponent';
+import ReactRangeSlider from 'components/ReactRangeSlider';
+import SweetAlertPopup from 'components/SweetAlertPopup';
+import WavesButton from 'components/WavesButton';
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
 import {
   MatrialStatus,
   Religion,
@@ -36,11 +30,15 @@ import {
   BloodGroup,
   BodyType,
   HairType,
-  FamilyAffluence
-} from "../../config/dropDownListData";
-import { USERDETAIL } from "../../config/getUserDetailFromLocalStorage";
-
-import "./EditPreferencesStyle.scss";
+  FamilyAffluence,
+} from '../../config/dropDownListData';
+import { nodeApiServerUrl } from '../../config/envChecker';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
+import './EditPreferencesStyle.scss';
+import messages from './messages';
+import reducer from './reducer';
+import saga from './saga';
+import makeSelectEditPreferences from './selectors';
 
 export class EditPreferences extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -49,18 +47,18 @@ export class EditPreferences extends React.Component {
     this.state = {
       fromAge: 20,
       toAge: 24,
-      community: "Malik",
-      motherTongue: "Punjabi",
-      religion: "Muslim",
-      status: "Divorced",
-      skinTone: "Fair",
-      bloodGroup: "A+",
-      bodyType: "Average",
-      hairType: "Brown Straight long",
-      familyAffluence: "Middle class",
-      drink: "yes",
-      smoke: "yes",
-      height: ""
+      community: 'Malik',
+      motherTongue: 'Punjabi',
+      religion: 'Muslim',
+      status: 'Single',
+      skinTone: 'Fair',
+      bloodGroup: 'A+',
+      bodyType: 'Average',
+      hairType: 'Brown Straight long',
+      familyAffluence: 'Middle class',
+      drink: 'yes',
+      smoke: 'yes',
+      height: '',
     };
     this.inputChange = this.inputChange.bind(this);
   }
@@ -68,57 +66,57 @@ export class EditPreferences extends React.Component {
   componentWillMount() {
     axios
       .post(`${nodeApiServerUrl}/api/getpartnerpreference`, {
-        userId: USERDETAIL._id
+        userId: USERDETAIL._id,
       })
       .then(({ data, status, statusText }) => {
         Object.entries(data.result).forEach(([key, value]) => {
           this.setState({ [key]: value });
         });
-        console.log("doc", data);
+        console.log('doc', data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
   dropDownChangeHandler = ({ dropDownType, value }) => {
     this.setState(
       {
-        [dropDownType]: value
+        [dropDownType]: value,
       },
-      () => console.log("this.state: ", this.state)
+      () => console.log('this.state: ', this.state)
     );
   };
-  AgeChangeHandler = value => {
-    console.log("AgeChangeHandler value: ", value);
+  AgeChangeHandler = (value) => {
+    console.log('AgeChangeHandler value: ', value);
     this.setState({
       fromAge: value[0],
-      toAge: value[1]
+      toAge: value[1],
     });
     // console.log('AgeChangeHandler: ', value);
     // console.log('AgeChangeHandler state: ', this.state);
   };
   inputChange(name, value) {
     this.setState({
-      [name]: value
+      [name]: value,
     });
     console.log(`handle input change name: ${name}, value: ${value}`);
   }
   saveAndUpdate = () => {
-    console.log("this.state: ", this.state);
+    console.log('this.state: ', this.state);
     axios
       .post(
         `${nodeApiServerUrl}/api/updateandsavepartnerpreferences`,
         Object.assign({}, this.state, { userId: USERDETAIL._id })
       )
-      .then(success => {
+      .then((success) => {
         SweetAlertPopup(
-          "Saved!",
-          "Partner Preferences saved successfuly",
-          "success"
+          'Saved!',
+          'Partner Preferences saved successfuly',
+          'success'
         );
-        console.log("success: ", success);
+        console.log('success: ', success);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -138,7 +136,7 @@ export class EditPreferences extends React.Component {
       bodyType,
       drink,
       height,
-      smoke
+      smoke,
     } = this.state;
     return (
       <div className="container">
@@ -174,8 +172,8 @@ export class EditPreferences extends React.Component {
                       max={28}
                       defaultValue={[fromAge, toAge]}
                       onChange={this.AgeChangeHandler}
-                      label1={"From 18 years"}
-                      label2={"To 28 years"}
+                      label1={'From 18 years'}
+                      label2={'To 28 years'}
                     />
                   </div>
                 </div>
@@ -367,8 +365,8 @@ export class EditPreferences extends React.Component {
                       name="drink"
                       id="drink1"
                       value="yes"
-                      checked={drink === "yes"}
-                      onChange={() => this.setState({ drink: "yes" })}
+                      checked={drink === 'yes'}
+                      onChange={() => this.setState({ drink: 'yes' })}
                     />
                     <label className="form-check-label" htmlFor="drink1">
                       Yes
@@ -381,8 +379,8 @@ export class EditPreferences extends React.Component {
                       name="drink"
                       id="drink2"
                       value="no"
-                      checked={drink === "no"}
-                      onChange={() => this.setState({ drink: "no" })}
+                      checked={drink === 'no'}
+                      onChange={() => this.setState({ drink: 'no' })}
                     />
                     <label className="form-check-label" htmlFor="drink2">
                       No
@@ -404,8 +402,8 @@ export class EditPreferences extends React.Component {
                       name="smoke"
                       id="smoke1"
                       value="yes"
-                      checked={smoke === "yes"}
-                      onChange={() => this.setState({ smoke: "yes" })}
+                      checked={smoke === 'yes'}
+                      onChange={() => this.setState({ smoke: 'yes' })}
                     />
                     <label className="form-check-label" htmlFor="smoke1">
                       Yes
@@ -418,8 +416,8 @@ export class EditPreferences extends React.Component {
                       name="smoke"
                       id="smoke2"
                       value="no"
-                      checked={smoke === "no"}
-                      onChange={() => this.setState({ smoke: "no" })}
+                      checked={smoke === 'no'}
+                      onChange={() => this.setState({ smoke: 'no' })}
                     />
                     <label className="form-check-label" htmlFor="smoke2">
                       No
@@ -447,22 +445,22 @@ export class EditPreferences extends React.Component {
 }
 
 EditPreferences.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  editpreferences: makeSelectEditPreferences()
+  editpreferences: makeSelectEditPreferences(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch
+    dispatch,
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: "editPreferences", reducer });
-const withSaga = injectSaga({ key: "editPreferences", saga });
+const withReducer = injectReducer({ key: 'editPreferences', reducer });
+const withSaga = injectSaga({ key: 'editPreferences', saga });
 
 export default compose(withReducer, withSaga, withConnect)(EditPreferences);

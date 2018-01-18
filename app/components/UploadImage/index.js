@@ -4,15 +4,13 @@
  *
  */
 
-import React from 'react';
+import axios from 'axios';
 // import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-
 import { nodeApiServerUrl } from '../../config/envChecker';
+import messages from './messages';
 
 class UploadImage extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -68,7 +66,14 @@ class UploadImage extends React.Component {
     const { imagePreviewUrl } = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = <img src={imagePreviewUrl} alt="image" style={{ width: '200px' }} />;
+      $imagePreview = (
+        <img
+          src={imagePreviewUrl}
+          alt="image"
+          className="img-thumbnail"
+          style={{ width: '200px', margin: '10px' }}
+        />
+      );
     } else {
       $imagePreview = (
         <div className="previewText">Please select an Image for Preview</div>
@@ -83,16 +88,14 @@ class UploadImage extends React.Component {
             onChange={(e) => this.handleImageChange(e)}
           />
           <button
-            className="submitButton"
+            className="submitButton btn  waves-effect waves-light"
             type="submit"
             onClick={(e) => this.handleSubmit(e)}
           >
             Upload Image
           </button>
         </form>
-        <div className="imgPreview">
-          {$imagePreview}
-        </div>
+        <div className="imgPreview">{$imagePreview}</div>
       </div>
     );
   }
