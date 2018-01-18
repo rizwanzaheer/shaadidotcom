@@ -52,16 +52,37 @@ export class SearchUsers extends React.Component {
   componentWillMount() {
     console.log('this.props: ', this.props.location.search);
     const query = new URLSearchParams(this.props.history.location.search);
+
     const gender = query.get('gender');
-    const fromage = query.get('fromageadfad');
+    const fromage = query.get('fromage');
     const toage = query.get('toage');
     const religion = query.get('religion');
     const mothertongue = query.get('mothertongue');
+    const matrialStatus = query.get('matrialStatus');
+    const community = query.get('community');
+    const skintone = query.get('skintone');
+    const bodytype = query.get('bodytype');
+    const hairtype = query.get('hairtype');
+    const familyaffluence = query.get('familyaffluence');
+    const drink = query.get('drink');
+    const smoke = query.get('smoke');
+    const height = query.get('height');
+    const bloodgroup = query.get('bloodgroup');
     console.log('gender: ', gender);
     console.log('gender: ', fromage);
     console.log('gender: ', toage);
     console.log('gender: ', religion);
     console.log('gender: ', mothertongue);
+    console.log('gender: ', matrialStatus);
+    console.log('gender: ', community);
+    console.log('gender: ', skintone);
+    console.log('gender: ', bodytype);
+    console.log('gender: ', hairtype);
+    console.log('gender: ', familyaffluence);
+    console.log('gender: ', drink);
+    console.log('gender: ', bloodgroup);
+    console.log('gender: ', smoke);
+    console.log('gender: ', height);
     axios
       .post(`${nodeApiServerUrl}/api/search/getallusers`, {})
       .then((users) => {
