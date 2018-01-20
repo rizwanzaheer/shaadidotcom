@@ -89,7 +89,7 @@ const CustomRoutes = () => (
         component={SearchContainer}
       />
       <RouteWithUserLayout
-        path="/my-shaadi/finduser"
+        path="/my-shaadi/finduser/:id"
         component={FindUser}
       />
 

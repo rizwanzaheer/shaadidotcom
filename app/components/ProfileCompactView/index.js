@@ -4,12 +4,13 @@
  *
  */
 
+import PropTypes from 'prop-types';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 // import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import profileImg from '../../images/UNADJUSTEDNONRAW_thumb_1.jpg';
+import messages from './messages';
 import './style.scss';
 
 class ProfileCompactView extends React.Component {
@@ -20,7 +21,6 @@ class ProfileCompactView extends React.Component {
       lname,
       age,
       height,
-      weight,
       religion,
       motherTongue,
       _id,
@@ -31,7 +31,7 @@ class ProfileCompactView extends React.Component {
     return (
       <div className="profile_compact_view">
         <span className="thumbnail">
-          <NavLink to={`/my-shaadi/finduser?profileId=${_id}`}>
+          <NavLink to={`/my-shaadi/finduser/${_id}`}>
             <div className="small-pic">
               <img src={image} alt="profileImg" />
             </div>
@@ -39,17 +39,16 @@ class ProfileCompactView extends React.Component {
         </span>
         <span className="user_info">
           <p>
-            <NavLink to={`/my-shaadi/finduser?profileId=${_id}`}>
+            <NavLink to={`/my-shaadi/finduser/${_id}`}>
               {fname}&nbsp;{lname}
             </NavLink>
           </p>
           <p>{`${age}, ${height}'', ${religion}, ${motherTongue}`}</p>
           <p>
-            {city || "Islamabad"},
-            &nbsp;
-            {country || "United Arab Emirates"}
+            {city || 'Islamabad'}, &nbsp;
+            {country || 'United Arab Emirates'}
           </p>
-          <NavLink to={`/my-shaadi/finduser?profileId=${_id}`}>
+          <NavLink to={`/my-shaadi/finduser/${_id}`}>
             full profile <i className="fa fa-caret-right" aria-hidden="true" />
           </NavLink>
         </span>
@@ -58,6 +57,18 @@ class ProfileCompactView extends React.Component {
   }
 }
 
-ProfileCompactView.propTypes = {};
+ProfileCompactView.propTypes = {
+  _id: PropTypes.string,
+  fname: PropTypes.string,
+  lname: PropTypes.string,
+  religion: PropTypes.string,
+  age: PropTypes.number,
+  height: PropTypes.string,
+  city: PropTypes.string,
+  image: PropTypes.string,
+  country: PropTypes.string,
+  motherTongue: PropTypes.string,
+  data: PropTypes.object,
+};
 
 export default ProfileCompactView;
