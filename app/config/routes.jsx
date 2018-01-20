@@ -15,6 +15,7 @@ import MyProfile from 'containers/MyProfile/Loadable';
 import SearchContainer from 'containers/SearchContainer/Loadable';
 import EditProfileContainer from 'containers/EditProfileContainer/Loadable';
 import EditPreferences from 'containers/EditPreferences/Loadable';
+import ShortListPage from 'containers/ShortListPage/Loadable';
 
 // import AdminDashboard from "containers/AdminLayout/AdminDashboard";
 
@@ -81,7 +82,7 @@ const CustomRoutes = () => (
       />
       <RouteWithUserLayout
         path="/my-shaadi/shortlist"
-        component={() => <h1> Short list</h1>}
+        component={ShortListPage}
       />
       {/* Advance search for Bride/Groom */}
       <RouteWithUserLayout

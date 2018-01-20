@@ -13,6 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import axios from 'axios';
 import getAge from 'get-age';
+import moment from 'moment';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -190,7 +191,7 @@ export class MyProfile extends React.Component {
             <div className="row">
               <div className="col-6">
                 <p>First Name : {fname || 'N/A'}</p>
-                <p>Date of Birth : {dob || 'N/A'}</p>
+                <p>Date of Birth : {moment(dob).format('DD/MM/YYYY') || 'N/A'}</p>
                 <p>Mother tounge : {motherTongue || 'N/A'}</p>
                 <p>Marital Status : {status || 'N/A'}</p>
                 <p>Hight : {height || 'N/A'}</p>
@@ -227,7 +228,7 @@ export class MyProfile extends React.Component {
                 </p>
                 <p>Marital Status : {partnerPreferences.status || 'N/A'}</p>
                 <p>Hight : {partnerPreferences.height || 'N/A'}</p>
-                <p>City : {partnerPreferences.city || 'N/A'}</p>
+                {/* <p>City : {partnerPreferences.city || 'N/A'}</p> */}
                 {/* <p>country : {partnerPreferences.country || 'N/A'}</p> */}
                 <p>body Type : {partnerPreferences.bodyType || 'N/A'}</p>
                 <p>skinTone : {partnerPreferences.skinTone || 'N/A'}</p>

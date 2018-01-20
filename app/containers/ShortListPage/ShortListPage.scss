@@ -1,0 +1,15 @@
+@import '../../utils/_variables.scss';
+
+.shortlist-wrapper{
+  margin: 30px 0;
+  background: white;
+  box-shadow: $box-shadow; 
+  min-height: calc( 100vh  - 200px);
+  .shortlist-header{
+    min-height: auto;
+    padding: 8px;
+    padding-left: 20px;
+    color: $paragraph-text-color;
+    background: #f1f1f2;
+  }
+}
