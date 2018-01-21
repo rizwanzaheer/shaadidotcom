@@ -12,7 +12,6 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-
 import Dropdown from 'components/Dropdown';
 import Input from 'components/Input';
 import ProfileComponent from 'components/ProfileComponent';
@@ -69,9 +68,12 @@ export class EditPreferences extends React.Component {
         userId: USERDETAIL._id,
       })
       .then(({ data, status, statusText }) => {
-        Object.entries(data.result).forEach(([key, value]) => {
-          this.setState({ [key]: value });
-        });
+        if (status === 200 && statusText === 'OK') {
+          Object.entries(data.result).forEach(([key, value]) => {
+            if (key === 'fromAge') console.log('form age', key);
+            this.setState({ [key]: value });
+          });
+        }
         console.log('doc', data);
       })
       .catch((error) => {

@@ -60,6 +60,7 @@ export class ShortListPage extends React.Component {
               <div className="shortlist-header">
                 <h5>Shortlisted Members</h5>
               </div>
+              <hr />
               <ProfileCompactView data={this.state} />
             </div>
           </div>
