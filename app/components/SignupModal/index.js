@@ -225,7 +225,7 @@ class SignupModal extends React.Component {
               <div className="text-center already-member">
                 <p>
                   <FormattedMessage {...messages.AlreadyMember} />&nbsp;
-                  <Link to="#">Login</Link>
+                  <Link to="#" onClick={ () => this.props.loginClickHandler()} >Login</Link>
                 </p>
               </div>
             </div>
@@ -239,6 +239,7 @@ class SignupModal extends React.Component {
 SignupModal.propTypes = {
   isOpenSignupModal: PropTypes.bool,
   onCloseModal: PropTypes.func,
+  loginClickHandler: PropTypes.func,
 };
 
 export default SignupModal;

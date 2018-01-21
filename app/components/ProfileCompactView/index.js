@@ -40,13 +40,14 @@ class ProfileCompactView extends React.Component {
         <span className="user_info">
           <p>
             <NavLink to={`/my-shaadi/finduser/${_id}`}>
-              {fname}&nbsp;{lname}
+              {fname || 'N/A'}&nbsp;{lname || 'N/A'}
             </NavLink>
           </p>
-          <p>{`${age}, ${height}'', ${religion}, ${motherTongue}`}</p>
+          <p>{`${age || 'N/A'}, ${height || 'N/A'}'', ${religion ||
+            'N/A'}, ${motherTongue || 'N/A'}`}</p>
           <p>
-            {city || 'Islamabad'}, &nbsp;
-            {country || 'United Arab Emirates'}
+            {city || 'N/A'}, &nbsp;
+            {country || 'N/A'}
           </p>
           <NavLink to={`/my-shaadi/finduser/${_id}`}>
             full profile <i className="fa fa-caret-right" aria-hidden="true" />

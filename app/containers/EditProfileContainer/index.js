@@ -91,7 +91,9 @@ export class EditProfileContainer extends React.Component {
           Object.assign({}, this.state, { userId: USERDETAIL._id })
         )
         .then(({ data, status, statusText }) => {
-          console.log('moment age: ', moment(data.user.dob).format('L'));
+          console.log('moment age: ', data);
+          localStorage.setItem('user_detail', JSON.stringify(data.user));
+          // console.log(localStorage.getItem('user_detail'));
           if (status === 200 && statusText === 'OK') {
             SweetAlertPopup(
               'Success!',

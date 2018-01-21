@@ -16,6 +16,7 @@ import ProfileCompactView from 'components/ProfileCompactView';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { nodeApiServerUrl } from '../../config/envChecker';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 import messages from './messages';
 import reducer from './reducer';
 import saga from './saga';
@@ -26,18 +27,22 @@ export class ShortListPage extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      shortlistUsers: [],
+    };
   }
 
   componentWillMount() {
     try {
       axios
         .post(`${nodeApiServerUrl}/api/shortlist`, {
-          id: '5a5b8f35f370662372948fb8',
+          id: USERDETAIL._id,
         })
         .then((users) => {
           console.log('users: ', users);
-          this.setState(users.data.user);
+          this.setState({ shortlistUsers: users.data.user }, () =>
+            console.log('this.state: ', this.state)
+          );
         })
         .catch((error) => {
           console.log(error);
@@ -48,6 +53,7 @@ export class ShortListPage extends React.Component {
   }
 
   render() {
+    const { shortlistUsers } = this.state;
     return (
       <div className="container">
         <Helmet>
@@ -61,7 +67,18 @@ export class ShortListPage extends React.Component {
                 <h5>Shortlisted Members</h5>
               </div>
               <hr />
-              <ProfileCompactView data={this.state} />
+              {shortlistUsers.map((data) => (
+                <div key={data._id}>
+                  <ProfileCompactView data={data} />
+                </div>
+              ))}
+              {shortlistUsers.length === 0 && (
+                <div className="row">
+                  <div className="col-12 text-center text-secondary">
+                    <h1>You did not shortlisted any member!!!</h1>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

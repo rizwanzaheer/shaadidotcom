@@ -3,23 +3,20 @@
  * HomeNavbar
  *
  */
-import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Modal from 'react-responsive-modal';
-
-import SignInModal from 'components/Modal';
+import { Link, NavLink } from 'react-router-dom';
 import ForgetPasswordModal from 'components/ForgetPasswordModal';
+import SignInModal from 'components/Modal';
 import SignUpModal from 'components/SignupModal';
-
-import messages from './messages';
-
 import Logo from '../../images/home-logo.png';
 
 // import styled from 'styled-components';
-
 import './HomeNavbar.scss';
+
+import messages from './messages';
 
 class HomeNavbar extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -28,6 +25,7 @@ class HomeNavbar extends React.Component {
     this.onCloseModal = this.onCloseModal.bind(this);
     this.signupClickHandler = this.signupClickHandler.bind(this);
     this.onOpenModal = this.onOpenModal.bind(this);
+    this.loginClickHandler = this.loginClickHandler.bind(this);
     this.forgetPasswordClickHandler = this.forgetPasswordClickHandler.bind(
       this
     );
@@ -55,6 +53,14 @@ class HomeNavbar extends React.Component {
     this.onCloseModal();
     this.setState({
       isOpenSignupModal: true,
+    });
+  }
+  loginClickHandler() {
+    console.log('loginClickHandler working!');
+    this.onCloseModal();
+    this.setState({
+      isOpenSignupModal: false,
+      open: true,
     });
   }
   forgetPasswordClickHandler() {
@@ -104,6 +110,7 @@ class HomeNavbar extends React.Component {
         {/* SignUp Modal popup here */}
         <SignUpModal
           isOpenSignupModal={this.state.isOpenSignupModal}
+          loginClickHandler={this.loginClickHandler}
           onCloseModal={this.onCloseModal}
         />
       </div>
