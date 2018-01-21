@@ -16,6 +16,7 @@ import SearchContainer from 'containers/SearchContainer/Loadable';
 import EditProfileContainer from 'containers/EditProfileContainer/Loadable';
 import EditPreferences from 'containers/EditPreferences/Loadable';
 import ShortListPage from 'containers/ShortListPage/Loadable';
+import SettingPage from 'containers/SettingPage/Loadable';
 
 // import AdminDashboard from "containers/AdminLayout/AdminDashboard";
 
@@ -70,7 +71,7 @@ const CustomRoutes = () => (
       />
       <RouteWithUserLayout
         path="/my-shaadi/setting"
-        component={() => <h1> Settings</h1>}
+        component={SettingPage}
       />
       <RouteWithUserLayout
         path="/my-shaadi/photo"

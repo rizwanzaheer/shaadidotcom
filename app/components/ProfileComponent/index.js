@@ -41,7 +41,7 @@ class ProfileComponent extends React.Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/my-shaadi/setting"> Setting </NavLink>
+            <NavLink to="/my-shaadi/setting"> Settings </NavLink>
           </li>
         </ul>
       </div>
