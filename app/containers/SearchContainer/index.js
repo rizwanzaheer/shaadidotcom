@@ -202,7 +202,7 @@ export class SearchContainer extends React.Component {
                     <div className="col-1">to</div>
                     <div className="col-5">
                       <Dropdown
-                        options={ageOfDropDown[0].options}
+                        options={ageOfDropDown[1].options}
                         defaultValue={toAge}
                         dropDownChangeHandler={this.dropDownChangeHandler}
                       />

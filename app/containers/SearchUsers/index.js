@@ -4,31 +4,27 @@
  *
  */
 
-import React from 'react';
-import { withRouter } from 'react-router';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { compose } from 'redux';
-import axios from 'axios';
-
+import { createStructuredSelector } from 'reselect';
 import ProfileCompactView from 'components/ProfileCompactView';
-import SingleProfileComponent from 'components/SingleProfileComponent';
-
 import RightSidePartnerSearchContainer from 'components/RightSidePartnerSearchContainer';
-
-import injectSaga from 'utils/injectSaga';
+import SingleProfileComponent from 'components/SingleProfileComponent';
 import injectReducer from 'utils/injectReducer';
-import makeSelectSearchUsers from './selectors';
+import injectSaga from 'utils/injectSaga';
+import { nodeApiServerUrl } from '../../config/envChecker';
+import messages from './messages';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
-
-import { nodeApiServerUrl } from '../../config/envChecker';
-
 import './SearchUsersStyle.scss';
+
+import makeSelectSearchUsers from './selectors';
 
 export class SearchUsers extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -84,8 +80,25 @@ export class SearchUsers extends React.Component {
     console.log('gender: ', smoke);
     console.log('gender: ', height);
     axios
-      .post(`${nodeApiServerUrl}/api/search/getallusers`, {})
+      .post(`${nodeApiServerUrl}/api/search/getusersbysearchcriteria`, {
+        gender,
+        fromage,
+        toage,
+        religion,
+        mothertongue,
+        matrialStatus,
+        community,
+        skintone,
+        bodytype,
+        hairtype,
+        familyaffluence,
+        drink,
+        smoke,
+        height,
+        bloodgroup,
+      })
       .then((users) => {
+        console.log('users: ', users);
         this.setState(
           {
             users: users.data.users,
@@ -103,6 +116,7 @@ export class SearchUsers extends React.Component {
     e.preventDefault();
   }
   render() {
+    const { users } = this.state;
     return (
       <div className="container">
         <Helmet>
@@ -135,11 +149,16 @@ export class SearchUsers extends React.Component {
             <h4>Your Search Result</h4>
 
             <div className="row search-users-wrapper">
-              {this.state.users.map((data) => (
+              {users.map((data) => (
                 <div className="row" key={data._id}>
                   <SingleProfileComponent data={data} />
                 </div>
               ))}
+              {users.length === 0 && (
+                <h1>
+                  Didn't find any User accroding to your Search Criteria!!!{' '}
+                </h1>
+              )}
             </div>
           </div>
         </div>

@@ -46,6 +46,7 @@ export class SettingPage extends React.Component {
   }
   render() {
     const { email } = this.state;
+    console.log('this.props is: ', this.props);
     return (
       <div className="container">
         <Helmet>
@@ -62,19 +63,22 @@ export class SettingPage extends React.Component {
                 </div>
                 <div className="col-12 col-md-12 col-lg-6 col-sm-12">
                   <div className="settings-container">
+                    {/* <h4>Update</h4> */}
+                    {/* <br /> */}
                     <div className="form-group">
                       <label htmlFor="exampleInputEmail1">Email:</label>
                       <input
                         type="email"
+                        readOnly
                         className="form-control"
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
                         value={email}
                         placeholder="Enter email"
                       />
-                      <small id="emailHelp" className="form-text text-muted">
+                      {/* <small id="emailHelp" className="form-text text-muted">
                         We'll never share your email with anyone else.
-                      </small>
+                      </small> */}
                     </div>
                   </div>
                 </div>
@@ -98,6 +102,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    testFunc: () => console.log('Rizwan Zaheer'),
   };
 }
 

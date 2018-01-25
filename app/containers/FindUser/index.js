@@ -4,6 +4,7 @@
  *
  */
 
+import { Modal, Button, Input } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -14,24 +15,34 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import 'antd/lib/button/style/css';
+import 'antd/lib/input/style/css';
+import 'antd/lib/modal/style/css';
 import ConnectWith from 'components/ConnectWith';
 import ImageThumbnail from 'components/ImageThumbnail';
+import SweetAlertPopup from 'components/SweetAlertPopup';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { nodeApiServerUrl } from '../../config/envChecker';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 import ConnectInstantly from '../../images/connect-instantly.png';
 import './FindUserStyle.scss';
 import messages from './messages';
 import reducer from './reducer';
 import saga from './saga';
 import makeSelectFindUser from './selectors';
+const { TextArea } = Input;
 
 export class FindUser extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      visible: false,
+      message: '',
+    };
   }
+
   componentWillMount() {
     // getting profile Id from URL
     // Then get Profile data using profile Id
@@ -43,9 +54,7 @@ export class FindUser extends React.Component {
         })
         .then(({ data, statusText, status }) => {
           if (statusText === 'OK' && status === 200) {
-            this.setState(data.user, () =>
-              console.log('this.state: ', this.state)
-            );
+            this.setState(data.user);
           }
         })
         .catch((err) => console.log(err));
@@ -53,9 +62,49 @@ export class FindUser extends React.Component {
       console.log(error);
     }
   }
-  componentDidMount() {
-    console.log(this.state.dob);
-  }
+  onMessageChange = (e) => {
+    this.setState({ message: e.target.value });
+  };
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+  handleCancel = () => {
+    this.setState({
+      visible: false,
+    });
+  };
+  handleOk = () => {
+    const { message } = this.state;
+    if (message) {
+      try {
+        axios
+          .post(`${nodeApiServerUrl}/api/user/email`, {
+            userId: USERDETAIL._id,
+            fname: USERDETAIL.fname,
+            lname: USERDETAIL.lname,
+            message,
+            profileId: this.props.match.params.id,
+          })
+          .then((mes) => {
+            console.log('message is: ', mes);
+            if (mes.status === 200 && mes.statusText === 'OK') {
+              SweetAlertPopup('Email Send', 'Email Send Successfuly!', 'success');
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            SweetAlertPopup('Email not Send', 'Email Not Send Successfuly Due to some Issue!', 'error');
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    this.setState({
+      visible: false,
+    });
+  };
   render() {
     const {
       _id,
@@ -75,7 +124,6 @@ export class FindUser extends React.Component {
       familyAffluence,
       fname,
       lname,
-      gender,
       hairType,
       healthInformation,
       motherTongue,
@@ -86,7 +134,6 @@ export class FindUser extends React.Component {
       smoke,
       status,
     } = this.state;
-    console.log('dob: ', this.state.dob);
     return (
       <div className="container">
         <Helmet>
@@ -107,7 +154,10 @@ export class FindUser extends React.Component {
                   <div className="connection-container">
                     <ConnectWith gender="Male" _id={_id} />
                     <div className="connection-footer">
-                      <button className="btn btn-sm btn-outline-secondary">
+                      <button
+                        onClick={this.showModal}
+                        className="btn btn-sm btn-outline-secondary"
+                      >
                         Send Email
                       </button>
                       <img src={ConnectInstantly} alt="ConnectInstantly" />
@@ -232,6 +282,16 @@ export class FindUser extends React.Component {
               </div>
             </div>
           </div>
+
+          <Modal
+            title="Write Email"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            okText="Send"
+            onCancel={this.handleCancel}
+          >
+            <TextArea rows={6} onChange={this.onMessageChange} />
+          </Modal>
         </div>
       </div>
     );
