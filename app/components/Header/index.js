@@ -11,8 +11,8 @@ import messages from './messages';
 import NavBar from './NavBar';
 
 const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'));
-const avator = USERDETAIL.gender === 'Male' ? MaleAvator : femaleAvator;
-const newImage = USERDETAIL.image || avator;
+// const avator = USERDETAIL.gender === 'Male' ? MaleAvator : femaleAvator;
+// const newImage = USERDETAIL.image || avator;
 
 class Header extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -24,6 +24,8 @@ class Header extends React.Component {
     this.signoutHandler = this.signoutHandler.bind(this);
     this.navbarToggler = this.navbarToggler.bind(this);
     this.signinHandler = this.signinHandler.bind(this);
+    this.avator = USERDETAIL.gender === 'Male' ? MaleAvator : femaleAvator;
+    this.newImage = USERDETAIL.image || this.avator;
   }
   signinHandler = () => {
     window.location.pathname = 'signin';
@@ -64,31 +66,6 @@ class Header extends React.Component {
                 <FormattedMessage {...messages.shortlist} />
               </NavLink>
             </li>
-            {/* <li className="nav-item dropdown">
-              <NavLink
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <FormattedMessage {...messages.settings} />
-              </NavLink>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <NavLink className="dropdown-item" to="#">
-                  Action
-                </NavLink>
-                <NavLink className="dropdown-item" to="#">
-                  Another action
-                </NavLink>
-                <div className="dropdown-divider" />
-                <NavLink className="dropdown-item" to="#">
-                  Something else here
-                </NavLink>
-              </div>
-            </li> */}
           </ul>
           <div className="form-inline my-2 my-lg-0">
             <ul className="navbar-nav navbar-right-profile m-auto">
@@ -102,16 +79,9 @@ class Header extends React.Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <img src={newImage} alt="Name" />
+                  <img src={this.newImage} alt="Name" />
                 </NavLink>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <NavLink className="dropdown-item" to="/my-shaadi/setting">
-                    Account Setting
-                  </NavLink>
-                  <NavLink className="dropdown-item" to="#">
-                    Another action
-                  </NavLink>
-                  <div className="dropdown-divider" />
                   <NavLink
                     className="dropdown-item"
                     to="#"

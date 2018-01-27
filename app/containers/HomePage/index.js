@@ -52,14 +52,9 @@ export class HomePage extends React.PureComponent {
       .then(({ data: { users }, status, statusText }) => {
         if (status === 200 && statusText === 'OK') {
           console.log('users: ', users);
-          this.setState(
-            {
-              users,
-            },
-            () => {
-              console.log('api/getusers data: set state', this.state);
-            }
-          );
+          this.setState({
+            users,
+          });
         }
       })
       .catch((error) => {
@@ -92,8 +87,7 @@ export class HomePage extends React.PureComponent {
               <div className="row">
                 <div className="col-12">
                   <h5 className="welcome-message">
-                    Hello, {fName}
-                    {lName}!
+                    Hello, {fName} {lName}!
                   </h5>
                   <div className="row">
                     {/* Side profile container */}

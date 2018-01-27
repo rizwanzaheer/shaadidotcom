@@ -88,15 +88,9 @@ export class SearchUsers extends React.Component {
         })
         .then((users) => {
           console.log('users: ', users);
-          this.setState(
-            {
-              users: users.data.users,
-            },
-            () => {
-              console.log('final state: ', this.state.users);
-              // this.state.users.map((data) => console.log('data is: ', data));
-            }
-          );
+          this.setState({
+            users: users.data.users,
+          });
         })
         .catch((err) => console.log(err));
     } else {

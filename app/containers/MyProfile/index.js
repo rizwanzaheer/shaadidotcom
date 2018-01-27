@@ -4,31 +4,27 @@
  *
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector } from 'reselect';
-import { compose } from 'redux';
 import axios from 'axios';
 import getAge from 'get-age';
 import moment from 'moment';
-
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
-
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
-
-import makeSelectMyProfile from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import femaleAvator from '../../images/femaleAvator.gif';
-import MaleAvator from '../../images/MaleAvator.gif';
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
-
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 import './MyProfileContainerStyle.scss';
+import reducer from './reducer';
+import saga from './saga';
+import makeSelectMyProfile from './selectors';
 
 export class MyProfile extends React.Component {
   constructor(props) {
@@ -56,35 +52,35 @@ export class MyProfile extends React.Component {
       age: 0,
       country: '',
       image: '',
-      partnerPreferences: {
-      },
+      partnerPreferences: {},
     };
   }
   componentWillMount() {
     try {
       console.log('my profil will mount:', USERDETAIL._id);
       axios
-        .post(`${nodeApiServerUrl}/api/getdetails`, {
-          userId: USERDETAIL._id,
-        })
-        .then(({ data, status, statusText }) => {
-          console.log('my profile data: ', data);
-          if (status === 200 && statusText === 'OK') {
-            Object.entries(data.user).forEach(([key, value]) => {
-              this.setState({ [key]: value });
-            });
-            this.setState(
-              {
-                ...this.state,
-                partnerPreferences: data.partnerPreferences,
-              },
-              () => {
-                console.log('this state: ', this.state);
-              }
-            );
-          }
-        })
-        .catch((err) => console.log(err));
+      .post(`${nodeApiServerUrl}/api/getdetails`, {
+        userId: USERDETAIL._id,
+      })
+      .then(({ data, status, statusText }) => {
+        console.log('working!');
+        console.log('my profile data: ', data);
+        if (status === 200 && statusText === 'OK') {
+          Object.entries(data.user).forEach(([key, value]) => {
+            this.setState({ [key]: value });
+          });
+          this.setState(
+            {
+              ...this.state,
+              partnerPreferences: data.partnerPreferences,
+            },
+            () => {
+              console.log('this state: ', this.state);
+            }
+          );
+        }
+      })
+      .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }
@@ -127,7 +123,7 @@ export class MyProfile extends React.Component {
         <div className="row">
           <div className="col-12">
             <h3 className="prof_username">
-              {fname ? `${fname} ${lname}` : 'Huddy!'}
+              {fname ? `${fname}&nbsp;${lname}` : 'Huddy!'}
             </h3>
           </div>
         </div>
@@ -195,7 +191,9 @@ export class MyProfile extends React.Component {
             <div className="row">
               <div className="col-6">
                 <p>First Name : {fname || 'N/A'}</p>
-                <p>Date of Birth : {moment(dob).format('DD/MM/YYYY') || 'N/A'}</p>
+                <p>
+                  Date of Birth : {moment(dob).format('DD/MM/YYYY') || 'N/A'}
+                </p>
                 <p>Mother tounge : {motherTongue || 'N/A'}</p>
                 <p>Marital Status : {status || 'N/A'}</p>
                 <p>Hight : {height || 'N/A'}</p>
