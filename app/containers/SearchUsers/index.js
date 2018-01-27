@@ -32,6 +32,7 @@ export class SearchUsers extends React.Component {
     super(props);
     this.state = {
       users: [],
+      searchByName: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.profileData = {
@@ -81,24 +82,23 @@ export class SearchUsers extends React.Component {
     console.log('gender: ', smoke);
     console.log('gender: ', height);
     if (fname) {
-      console.log('workingi');
       axios
-      .post(`${nodeApiServerUrl}/api/search/getuserbyname`, {
-        fname,
-      })
-      .then((users) => {
-        console.log('users: ', users);
-        this.setState(
-          {
-            users: users.data.users,
-          },
-          () => {
-            console.log('final state: ', this.state.users);
-            // this.state.users.map((data) => console.log('data is: ', data));
-          }
-        );
-      })
-      .catch((err) => console.log(err));
+        .post(`${nodeApiServerUrl}/api/search/getuserbyname`, {
+          fname,
+        })
+        .then((users) => {
+          console.log('users: ', users);
+          this.setState(
+            {
+              users: users.data.users,
+            },
+            () => {
+              console.log('final state: ', this.state.users);
+              // this.state.users.map((data) => console.log('data is: ', data));
+            }
+          );
+        })
+        .catch((err) => console.log(err));
     } else {
       axios
         .post(`${nodeApiServerUrl}/api/search/getusersbysearchcriteria`, {
@@ -119,16 +119,9 @@ export class SearchUsers extends React.Component {
           bloodgroup,
         })
         .then((users) => {
-          console.log('users: ', users);
-          this.setState(
-            {
-              users: users.data.users,
-            },
-            () => {
-              console.log('final state: ', this.state.users);
-              // this.state.users.map((data) => console.log('data is: ', data));
-            }
-          );
+          this.setState({
+            users: users.data.users,
+          });
         })
         .catch((err) => console.log(err));
     }
@@ -137,6 +130,13 @@ export class SearchUsers extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
   }
+  clickHandler = () => {
+    const { searchByName } = this.state;
+    const newSearchByName =
+      searchByName.charAt(0).toUpperCase() + searchByName.slice(1);
+    this.props.history.push(`searchusers?fname=${newSearchByName}`);
+    window.location.reload();
+  };
   render() {
     const { users } = this.state;
     return (
@@ -151,16 +151,19 @@ export class SearchUsers extends React.Component {
               heading="Refine Search"
               footer
               btn="Search"
+              clickHandler={this.clickHandler}
             >
               <div className="row">
                 <div className="col-12">
                   <div className="form-group">
-                    <label htmlFor="formGroupExampleInput">Name:</label>
+                    <label htmlFor="formGroupExampleInput">First Name:</label>
                     <input
                       type="text"
                       className="form-control"
                       id="formGroupExampleInput"
-                      placeholder="Name"
+                      placeholder="First name"
+                      onChange={(e) =>
+                        this.setState({ searchByName: e.target.value })}
                     />
                   </div>
                 </div>
@@ -169,7 +172,6 @@ export class SearchUsers extends React.Component {
           </div>
           <div className="col-8">
             <h4>Your Search Result</h4>
-
             <div className="row search-users-wrapper">
               {users.map((data) => (
                 <div className="row" key={data._id}>
@@ -178,7 +180,7 @@ export class SearchUsers extends React.Component {
               ))}
               {users.length === 0 && (
                 <h1>
-                  Didn't find any User accroding to your Search Criteria!!!{' '}
+                  Didn't find any User accroding to your Search Criteria!!!
                 </h1>
               )}
             </div>

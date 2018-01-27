@@ -5,48 +5,23 @@
  */
 
 import axios from 'axios';
-import FormData from 'form-data';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import H2 from 'components/H2';
 import ProfileCompactView from 'components/ProfileCompactView';
 import ProfileComponent from 'components/ProfileComponent';
-import ReposList from 'components/ReposList';
 import RightSidePartnerSearchContainer from 'components/RightSidePartnerSearchContainer';
-import UploadImage from 'components/UploadImage';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import {
-  makeSelectRepos,
-  makeSelectLoading,
-  makeSelectError,
-} from 'views/App/selectors';
-
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
-import image1 from '../../images/AAEAAQAAAAAAAA3gAAAAJGE4NTVhODJhLWRlMTQtNDBjMS1iZGMxLTBiNDk0MjZlMjZjNw.jpg';
-import image2 from '../../images/AAEAAQAAAAAAAAcwAAAAJGUxYTQ1MDBlLWI5YzEtNDZlMi04MWI2LWZkMjg3MzJhODc0ZA.jpg';
-import image3 from '../../images/AAEAAQAAAAAAAAd3AAAAJDAyZjEzNWJmLTE4OTgtNGFlYS05ZDAzLTllMzgzYjkwNzk3Mw.jpg';
-import image6 from '../../images/AAEAAQAAAAAAAAdnAAAAJDM3YWQwNzY1LWM2NTQtNGZlOS05MTQwLWNjNjdjMmRmZDA5Yg.jpg';
-import image5 from '../../images/AAEAAQAAAAAAAAjzAAAAJGQ3NmNjMzUzLTM4MGMtNGEyMi04YTRiLTI5NzhhYjJmYzhlYQ.jpg';
-import image4 from '../../images/AAEAAQAAAAAAAAluAAAAJDBjMDU3MjQ5LWJmNTktNGYzMC05NDYzLWM4NWRiNzQ4YmRiNA.jpg';
-import { loadRepos } from '../../views/App/actions';
 import { changeUsername, imageChange } from './actions';
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import messages from './messages';
 import reducer from './reducer';
 import saga from './saga';
-import Section from './Section';
-import { makeSelectUsername } from './selectors';
 import './style.scss';
 
 export class HomePage extends React.PureComponent {
@@ -62,6 +37,7 @@ export class HomePage extends React.PureComponent {
       lName: USERDETAIL.lname ? USERDETAIL.lname : '',
       users: [],
       testname: '',
+      searchByName: '',
     };
   }
 
@@ -76,9 +52,14 @@ export class HomePage extends React.PureComponent {
       .then(({ data: { users }, status, statusText }) => {
         if (status === 200 && statusText === 'OK') {
           console.log('users: ', users);
-          this.setState({ users }, () => {
-            console.log('api/getusers data: set state', this.state);
-          });
+          this.setState(
+            {
+              users,
+            },
+            () => {
+              console.log('api/getusers data: set state', this.state);
+            }
+          );
         }
       })
       .catch((error) => {
@@ -88,9 +69,15 @@ export class HomePage extends React.PureComponent {
 
   componentDidMount() {
     // if (this.props.username && this.props.username.trim().length > 0) {
-    //   this.props.onSubmitForm();
-    // }
+    // this.props.onSubmitForm(); }
   }
+  clickHandler = () => {
+    // console.log('clickHandler is working!!!!');
+    const { searchByName } = this.state;
+    const newSearchByName =
+      searchByName.charAt(0).toUpperCase() + searchByName.slice(1);
+    this.props.history.push(`my-shaadi/searchusers?fname=${newSearchByName}`);
+  };
   render() {
     const { fName, lName, users } = this.state;
     return (
@@ -105,7 +92,8 @@ export class HomePage extends React.PureComponent {
               <div className="row">
                 <div className="col-12">
                   <h5 className="welcome-message">
-                    Hello, {fName} {lName}!
+                    Hello, {fName}
+                    {lName}!
                   </h5>
                   <div className="row">
                     {/* Side profile container */}
@@ -114,7 +102,9 @@ export class HomePage extends React.PureComponent {
                     </div>
                     <div
                       className="col-12 col-md-12 col-lg-6 col-sm-12"
-                      style={{ marginBottom: '20px' }}
+                      style={{
+                        marginBottom: '20px',
+                      }}
                     >
                       <div className="new-match-container">
                         <h5>My Matches</h5>
@@ -122,10 +112,10 @@ export class HomePage extends React.PureComponent {
                         {/* list of all user present in Db */}
                         {/* Single user call profilecompactive */}
                         {users.map((value) => (
-                            <div key={value._id}>
-                              <ProfileCompactView data={value} />
-                            </div>
-                          ))}
+                          <div key={value._id}>
+                            <ProfileCompactView data={value} />
+                          </div>
+                        ))}
                         {users.length === 0 && (
                           <p>No perfect match for you in our Record!!!</p>
                         )}
@@ -136,18 +126,30 @@ export class HomePage extends React.PureComponent {
                         heading="Partner Search"
                         footer
                         btn="Search"
+                        clickHandler={this.clickHandler}
                       >
                         <div className="row">
                           <div className="col-12">
                             <div className="form-group">
                               <label htmlFor="formGroupExampleInput">
-                                Name:
+                                First name:
                               </label>
                               <input
                                 type="text"
                                 className="form-control"
                                 id="formGroupExampleInput"
-                                placeholder="Name"
+                                placeholder="First name"
+                                onChange={(e) =>
+                                  this.setState(
+                                    {
+                                      searchByName: e.target.value,
+                                    },
+                                    () =>
+                                      console.log(
+                                        'this. staet',
+                                        this.state.searchByName
+                                      )
+                                  )}
                               />
                             </div>
                           </div>
@@ -166,31 +168,25 @@ export class HomePage extends React.PureComponent {
 }
 
 HomePage.propTypes = {
-  // loading: PropTypes.bool,
-  // error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  // repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  // onSubmitForm: PropTypes.func,
-  // username: PropTypes.string,
+  // loading: PropTypes.bool, error: PropTypes.oneOfType([PropTypes.object,
+  // PropTypes.bool]), repos: PropTypes.oneOfType([PropTypes.array,
+  // PropTypes.bool]), onSubmitForm: PropTypes.func, username: PropTypes.string,
   // onChangeUsername: PropTypes.func
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
     // onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-    // onSubmitForm: evt => {
-    //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    //   dispatch(loadRepos());
-    // }
+    // onSubmitForm: evt => {   if (evt !== undefined && evt.preventDefault)
+    // evt.preventDefault();   dispatch(loadRepos()); }
     imageChange,
   };
 }
 
 const mapStateToProps = createStructuredSelector(
   {
-    // repos: makeSelectRepos(),
-    // username: makeSelectUsername(),
-    // loading: makeSelectLoading(),
-    // error: makeSelectError()
+    // repos: makeSelectRepos(), username: makeSelectUsername(), loading:
+    // makeSelectLoading(), error: makeSelectError()
   }
 );
 
@@ -199,4 +195,6 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'home', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 
-export default compose(withReducer, withSaga, withConnect)(HomePage);
+export default withRouter(
+  compose(withReducer, withSaga, withConnect)(HomePage)
+);

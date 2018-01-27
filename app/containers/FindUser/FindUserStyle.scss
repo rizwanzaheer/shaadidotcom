@@ -6,6 +6,9 @@ $btn-background: #00bcd5;
   margin-bottom: 20px; 
   .custom-user-image-wrapper{
     // box-shadow: $box-shadow;
+    h3{
+      color: $paragraph-text-color;
+    }
   }
   .connection-container{
     min-height: 180px;

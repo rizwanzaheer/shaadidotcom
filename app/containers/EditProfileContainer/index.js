@@ -102,7 +102,6 @@ export class EditProfileContainer extends React.Component {
               'Your data is update & save Successfuly!',
               'success'
             );
-
             // window.location.reload();
           }
         })
