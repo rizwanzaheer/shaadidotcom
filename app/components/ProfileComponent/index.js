@@ -8,8 +8,8 @@ import React from 'react';
 // import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 
 import './ProfileComponentStyle.scss';
 
@@ -28,9 +28,12 @@ class ProfileComponent extends React.Component {
   }
   render() {
     const { profileImageUrl } = this.state;
+    const avator = USERDETAIL.gender === 'Male' ? MaleAvator : femaleAvator;
+    const newImage = profileImageUrl || avator;
+
     return (
       <div className="profile-container">
-        <img src={profileImageUrl} alt="huddy" className="img-thumbnail" />
+        <img src={newImage} alt="huddy" className="img-thumbnail" />
         <ul>
           <li>
             <NavLink to="/my-shaadi/edit-profile"> Edit Profile </NavLink>

@@ -64,6 +64,7 @@ export class SearchUsers extends React.Component {
     const smoke = query.get('smoke');
     const height = query.get('height');
     const bloodgroup = query.get('bloodgroup');
+    const fname = query.get('fname');
     console.log('gender: ', gender);
     console.log('gender: ', fromage);
     console.log('gender: ', toage);
@@ -79,23 +80,11 @@ export class SearchUsers extends React.Component {
     console.log('gender: ', bloodgroup);
     console.log('gender: ', smoke);
     console.log('gender: ', height);
-    axios
-      .post(`${nodeApiServerUrl}/api/search/getusersbysearchcriteria`, {
-        gender,
-        fromage,
-        toage,
-        religion,
-        mothertongue,
-        matrialStatus,
-        community,
-        skintone,
-        bodytype,
-        hairtype,
-        familyaffluence,
-        drink,
-        smoke,
-        height,
-        bloodgroup,
+    if (fname) {
+      console.log('workingi');
+      axios
+      .post(`${nodeApiServerUrl}/api/search/getuserbyname`, {
+        fname,
       })
       .then((users) => {
         console.log('users: ', users);
@@ -110,6 +99,39 @@ export class SearchUsers extends React.Component {
         );
       })
       .catch((err) => console.log(err));
+    } else {
+      axios
+        .post(`${nodeApiServerUrl}/api/search/getusersbysearchcriteria`, {
+          gender,
+          fromage,
+          toage,
+          religion,
+          mothertongue,
+          matrialStatus,
+          community,
+          skintone,
+          bodytype,
+          hairtype,
+          familyaffluence,
+          drink,
+          smoke,
+          height,
+          bloodgroup,
+        })
+        .then((users) => {
+          console.log('users: ', users);
+          this.setState(
+            {
+              users: users.data.users,
+            },
+            () => {
+              console.log('final state: ', this.state.users);
+              // this.state.users.map((data) => console.log('data is: ', data));
+            }
+          );
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   handleSubmit(e) {

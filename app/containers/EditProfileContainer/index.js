@@ -21,6 +21,8 @@ import UploadImage from 'components/UploadImage';
 import WavesButton from 'components/WavesButton';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 import {
   MotherTongue,
   MatrialStatus,
@@ -141,6 +143,8 @@ export class EditProfileContainer extends React.Component {
       city,
       country,
     } = this.state;
+    const avator = gender === 'Male' ? MaleAvator : femaleAvator;
+    const newImage = image || avator;
     return (
       <div className="container">
         <Helmet>
@@ -166,7 +170,7 @@ export class EditProfileContainer extends React.Component {
                 </div>
                 <div className="row">
                   <div className="col-12">
-                    <img src={image} alt="" className="profile-image img-thumbnail" />
+                    <img src={newImage} alt="" className="profile-image img-thumbnail" />
                   </div>
                 </div>
                 <div className="row">

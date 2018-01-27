@@ -26,8 +26,9 @@ import injectSaga from 'utils/injectSaga';
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 import ConnectInstantly from '../../images/connect-instantly.png';
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 import './FindUserStyle.scss';
-import messages from './messages';
 import reducer from './reducer';
 import saga from './saga';
 import makeSelectFindUser from './selectors';
@@ -90,12 +91,20 @@ export class FindUser extends React.Component {
           .then((mes) => {
             console.log('message is: ', mes);
             if (mes.status === 200 && mes.statusText === 'OK') {
-              SweetAlertPopup('Email Send', 'Email Send Successfuly!', 'success');
+              SweetAlertPopup(
+                'Email Send',
+                'Email Send Successfuly!',
+                'success'
+              );
             }
           })
           .catch((err) => {
             console.log(err);
-            SweetAlertPopup('Email not Send', 'Email Not Send Successfuly Due to some Issue!', 'error');
+            SweetAlertPopup(
+              'Email not Send',
+              'Email Not Send Successfuly Due to some Issue!',
+              'error'
+            );
           });
       } catch (error) {
         console.log(error);
@@ -125,7 +134,8 @@ export class FindUser extends React.Component {
       fname,
       lname,
       hairType,
-      healthInformation,
+      // healthInformation,
+      gender,
       motherTongue,
       phone,
       province,
@@ -134,6 +144,8 @@ export class FindUser extends React.Component {
       smoke,
       status,
     } = this.state;
+    const avator = gender === 'Male' ? MaleAvator : femaleAvator;
+    const newImage = image || avator;
     return (
       <div className="container">
         <Helmet>
@@ -145,7 +157,7 @@ export class FindUser extends React.Component {
             <h3>
               {fname || 'N/A'} {lname || 'N/A'}
             </h3>
-            <ImageThumbnail image={image} name="test" />
+            <ImageThumbnail image={newImage} name="test" />
           </div>
           <div className="col-lg-8 col-8">
             <div className="custom-user-detail-wrapper">

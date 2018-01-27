@@ -43,7 +43,7 @@ export class SearchContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gender: 'Male',
+      gender: 'Female',
       fromAge: 20,
       toAge: 25,
       religion: 'Muslim',
@@ -57,6 +57,7 @@ export class SearchContainer extends React.Component {
       familyAffluence: 'Middle class',
       drink: 'yes',
       smoke: 'yes',
+      searchByName: '',
       height: '5.2',
     };
     this.dropDownChangeHandler = this.dropDownChangeHandler.bind(this);
@@ -105,7 +106,7 @@ export class SearchContainer extends React.Component {
   }
   reset() {
     this.setState({
-      gender: 'Male',
+      gender: 'Female',
       fromAge: 20,
       toAge: 25,
       religion: 'Muslim',
@@ -120,8 +121,14 @@ export class SearchContainer extends React.Component {
       drink: 'yes',
       smoke: 'yes',
       height: '',
+      searchByName: '',
     });
   }
+  clickHandler = () => {
+    // console.log('clickHandler is working!!!!');
+    const { searchByName } = this.state;
+    this.props.history.push(`searchusers?fname=${searchByName}`);
+  };
   render() {
     const {
       fromAge,
@@ -390,6 +397,7 @@ export class SearchContainer extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </label>
                 <div className="form-check form-check-inline">
                   <input
@@ -424,6 +432,7 @@ export class SearchContainer extends React.Component {
               <div className="form-group">
                 <label htmlFor="smoke">
                   Smoke
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -479,40 +488,24 @@ export class SearchContainer extends React.Component {
               heading="Search By Name"
               footer={false}
               btn="Search"
+              clickHandler={this.clickHandler}
             >
               <div className="row">
                 <div className="col-12">
                   <div className="form-group">
-                    <label htmlFor="formGroupExampleInput">Name:</label>
+                    <label htmlFor="formGroupExampleInput">First Name:</label>
                     <input
                       type="text"
                       className="form-control"
                       id="formGroupExampleInput"
-                      placeholder="Name"
+                      placeholder="First name"
+                      onChange={(e) =>
+                        this.setState({ searchByName: e.target.value })}
                     />
                   </div>
                 </div>
               </div>
             </RightSidePartnerSearchContainer>
-            {/* <RightSidePartnerSearchContainer
-              heading="Search By Name"
-              footer
-              btn="Search"
-            >
-              <div className="row">
-                <div className="col-12">
-                  <div className="form-group">
-                    <label htmlFor="formGroupExampleInput">Name:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="formGroupExampleInput"
-                      placeholder="Name"
-                    />
-                  </div>
-                </div>
-              </div>
-            </RightSidePartnerSearchContainer> */}
           </div>
         </div>
       </div>

@@ -23,6 +23,8 @@ import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
 import makeSelectMyProfile from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 
@@ -114,6 +116,8 @@ export class MyProfile extends React.Component {
       image,
       partnerPreferences,
     } = this.state;
+    const avator = gender === 'Male' ? MaleAvator : femaleAvator;
+    const newImage = image || avator;
     return (
       <div className="container my-profile-container">
         <Helmet>
@@ -130,7 +134,7 @@ export class MyProfile extends React.Component {
         <div className="row complete-profile-contianer">
           <div className="col-12 short-profile-container">
             <div className="profile-image-container">
-              <img src={image} alt="image" className="img-thumbnail" />
+              <img src={newImage} alt="image" className="img-thumbnail" />
             </div>
             <div className="basic-info-container">
               <ul>

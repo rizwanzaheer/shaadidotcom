@@ -62,7 +62,7 @@ class SingleProfileComponent extends React.Component {
                     <tr>
                       <td>Age/hight</td>
                       <td>
-                        {age || 'N/A'}/{height || 'N/A'}
+                        {`${age}y` || 'N/A'} / {`${height}''` || 'N/A'}
                       </td>
                     </tr>
                     <tr>
@@ -76,7 +76,7 @@ class SingleProfileComponent extends React.Component {
                     <tr>
                       <td>Hair/Skin type</td>
                       <td>
-                        {hairType || 'N/A'}/{skinTone || 'N/A'}
+                        {hairType || 'N/A'} / {skinTone || 'N/A'}
                       </td>
                     </tr>
                     <tr>

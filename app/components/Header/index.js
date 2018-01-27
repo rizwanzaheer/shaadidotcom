@@ -1,14 +1,18 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { isUser } from './constants';
-import NavBar from './NavBar';
-import messages from './messages';
+import { NavLink } from 'react-router-dom';
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 // import Nav from '../Navbar';
 import logo from '../../images/shaadi-logo-v1.png';
+import { isUser } from './constants';
 import './header.scss';
+import messages from './messages';
+import NavBar from './NavBar';
 
 const USERDETAIL = JSON.parse(localStorage.getItem('user_detail'));
+const avator = USERDETAIL.gender === 'Male' ? MaleAvator : femaleAvator;
+const newImage = USERDETAIL.image || avator;
 
 class Header extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -98,7 +102,7 @@ class Header extends React.Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <img src={USERDETAIL.image} alt="Name" />
+                  <img src={newImage} alt="Name" />
                 </NavLink>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <NavLink className="dropdown-item" to="/my-shaadi/setting">
