@@ -4,20 +4,21 @@
  *
  */
 
-import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
 import { compose } from 'redux';
-
-import injectSaga from 'utils/injectSaga';
+import { createStructuredSelector } from 'reselect';
+import 'antd/lib/button/style/css';
+import 'antd/lib/icon/style/css';
+import 'antd/lib/menu/style/css';
 import injectReducer from 'utils/injectReducer';
-import makeSelectBackoffice from './selectors';
+import injectSaga from 'utils/injectSaga';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
+import makeSelectBackoffice from './selectors';
+
 
 export class Backoffice extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -28,7 +29,7 @@ export class Backoffice extends React.Component {
           <title>Backoffice</title>
           <meta name="description" content="Description of Backoffice" />
         </Helmet>
-        <FormattedMessage {...messages.header} />
+        <h1>backoffice Dashboard</h1>
       </div>
     );
   }
