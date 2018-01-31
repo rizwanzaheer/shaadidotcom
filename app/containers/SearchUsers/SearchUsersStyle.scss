@@ -5,6 +5,9 @@
   margin-bottom: 20px;
   min-height: calc(100vh - 180px);
   color: $paragraph-text-color;
+  h4{
+    color: $paragraph-text-color;
+  }
   .search-users-wrapper{
     padding: 20px;
     border-radius: 5px;

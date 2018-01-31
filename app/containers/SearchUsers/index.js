@@ -113,6 +113,7 @@ export class SearchUsers extends React.Component {
           bloodgroup,
         })
         .then((users) => {
+          console.log('result data: ', users);
           this.setState({
             users: users.data.users,
           });

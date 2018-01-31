@@ -123,7 +123,7 @@ export class MyProfile extends React.Component {
         <div className="row">
           <div className="col-12">
             <h3 className="prof_username">
-              {fname ? `${fname}&nbsp;${lname}` : 'Huddy!'}
+              {fname ? `${fname} ${lname}` : 'Huddy!'}
             </h3>
           </div>
         </div>

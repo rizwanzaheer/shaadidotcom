@@ -30,6 +30,7 @@ import {
   SkinTone,
   ageOfDropDown,
 } from '../../config/dropDownListData';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 // import Input from '../HomePage/Input';
 import messages from './messages';
 import reducer from './reducer';
@@ -38,27 +39,28 @@ import './SearchContainer.scss';
 
 import makeSelectSearchContainer from './selectors';
 
+console.log('gender is: ', USERDETAIL.gender);
 export class SearchContainer extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
-      gender: 'Female',
+      gender: USERDETAIL.gender === 'Female' ? 'Male' : 'Female',
       fromAge: 20,
       toAge: 25,
-      religion: 'Muslim',
-      motherTongue: 'Urdu',
-      community: 'Malik',
-      status: 'Single',
-      skinTone: 'Fair',
-      bloodGroup: 'A+',
-      bodyType: 'Average',
-      hairType: 'Brown Straight long',
-      familyAffluence: 'Middle class',
-      drink: 'yes',
-      smoke: 'yes',
+      religion: '',
+      motherTongue: '',
+      community: '',
+      status: '',
+      skinTone: '',
+      bloodGroup: '',
+      bodyType: '',
+      hairType: '',
+      familyAffluence: '',
+      drink: '',
+      smoke: '',
       searchByName: '',
-      height: '5.2',
+      height: '',
     };
     this.dropDownChangeHandler = this.dropDownChangeHandler.bind(this);
     this.linkCreation = this.linkCreation.bind(this);
@@ -73,6 +75,7 @@ export class SearchContainer extends React.Component {
   }
 
   dropDownChangeHandler({ dropDownType, value }) {
+    console.log('testd');
     console.log(`dropDownType: ${dropDownType}, value: ${value}`);
     this.setState(
       {
@@ -99,6 +102,8 @@ export class SearchContainer extends React.Component {
       smoke,
       height,
     } = this.state;
+    console.log('this. state: ', this.state);
+    // return false;
     this.props.history.push(
       `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${status}&religion=${religion}&mothertongue=${motherTongue}&community=${community}&skintone=${skinTone}&bodytype=${bodyType}&hairtype=${hairType}&familyaffluence=${familyAffluence}&drink=${drink}&smoke=${smoke}&height=${height}&bloodgroup=${bloodGroup}
       `
@@ -106,22 +111,22 @@ export class SearchContainer extends React.Component {
   }
   reset() {
     this.setState({
-      gender: 'Female',
+      gender: '',
       fromAge: 20,
       toAge: 25,
-      religion: 'Muslim',
-      motherTongue: 'Urdu',
-      community: 'Malik',
-      status: 'Single',
-      skinTone: 'Fair',
-      bloodGroup: 'A+',
-      bodyType: 'Average',
-      hairType: 'Brown Straight long',
-      familyAffluence: 'Middle class',
-      drink: 'yes',
-      smoke: 'yes',
-      height: '',
+      religion: '',
+      motherTongue: '',
+      community: '',
+      status: '',
+      skinTone: '',
+      bloodGroup: '',
+      bodyType: '',
+      hairType: '',
+      familyAffluence: '',
+      drink: '',
+      smoke: '',
       searchByName: '',
+      height: '',
     });
   }
   clickHandler = () => {

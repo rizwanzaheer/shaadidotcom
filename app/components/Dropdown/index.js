@@ -4,11 +4,9 @@
  *
  */
 
-import React from 'react';
 import PropTypes from 'prop-types';
-
+import React from 'react';
 import Select from 'react-select';
-
 import Label from './DropdownsStyle';
 
 class Dropdown extends React.Component {
@@ -26,11 +24,17 @@ class Dropdown extends React.Component {
     });
   }
   logChange(val) {
-    const newValue = val === null ? '' : val.value;
+    console.log('value is :', val);
+    const newValue = val === undefined || val === null ? '' : val.value;
     if (newValue) {
       this.props.dropDownChangeHandler(val);
       this.setState({ selectedValue: newValue });
     } else {
+      console.log('working');
+      // this.props.dropDownChangeHandler({
+      //   dropDownType: 'rizwan',
+      //   value: 'zaheer',
+      // });
       this.setState({ selectedValue: '' });
     }
   }

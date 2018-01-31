@@ -21,6 +21,7 @@
       border-top: unset;
       padding: 0.25rem;
       font-size: 12px;
+      text-transform: capitalize;
       &:first-child{
         &::after{
           content: ":";
