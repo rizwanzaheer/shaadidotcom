@@ -1,8 +1,12 @@
+@import '../../utils/_variables.scss';
+
+
 .connect-with-her-wrapper{
   padding-left: 15px;
   h6{
     margin-right: 10px;
     line-height: 2;
+    color: $paragraph-text-color;    
   }
   a{
     font-size: 12px;
