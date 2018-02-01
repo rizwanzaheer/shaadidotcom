@@ -111,7 +111,11 @@ export class HomePage extends React.PureComponent {
                           </div>
                         ))}
                         {users.length === 0 && (
-                          <p>No perfect match for you in our Record!!!</p>
+                          <h6 className="text-center">
+                            No perfect match for you in our Record!!!
+                            <br />
+                            Please Set the Partner Preferences.
+                          </h6>
                         )}
                       </div>
                     </div>

@@ -10,7 +10,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
+
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
@@ -82,11 +82,11 @@ export class FindUser extends React.Component {
       try {
         axios
           .post(`${nodeApiServerUrl}/api/user/email`, {
-            userId: USERDETAIL._id,
+            userId: this.props.match.params.id,
             fname: USERDETAIL.fname,
             lname: USERDETAIL.lname,
             message,
-            profileId: this.props.match.params.id,
+            profileId: USERDETAIL._id,
           })
           .then((mes) => {
             console.log('message is: ', mes);
