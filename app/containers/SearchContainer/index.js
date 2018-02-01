@@ -32,7 +32,6 @@ import {
 } from '../../config/dropDownListData';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 // import Input from '../HomePage/Input';
-import messages from './messages';
 import reducer from './reducer';
 import saga from './saga';
 import './SearchContainer.scss';

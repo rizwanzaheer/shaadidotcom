@@ -21,8 +21,6 @@ import UploadImage from 'components/UploadImage';
 import WavesButton from 'components/WavesButton';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import femaleAvator from '../../images/femaleAvator.gif';
-import MaleAvator from '../../images/MaleAvator.gif';
 import {
   MotherTongue,
   MatrialStatus,
@@ -36,6 +34,8 @@ import {
 } from '../../config/dropDownListData';
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 import './EditProfileContainerStyle.scss';
 
 import messages from './messages';
@@ -169,7 +169,11 @@ export class EditProfileContainer extends React.Component {
                 </div>
                 <div className="row">
                   <div className="col-12">
-                    <img src={newImage} alt="" className="profile-image img-thumbnail" />
+                    <img
+                      src={newImage}
+                      alt=""
+                      className="profile-image img-thumbnail"
+                    />
                   </div>
                 </div>
                 <div className="row">
@@ -180,7 +184,7 @@ export class EditProfileContainer extends React.Component {
                 <Input
                   id="fname"
                   label="First Name"
-                  placeholder="Enter update name"
+                  placeholder="Enter first name"
                   value={fname}
                   name="fname"
                   type="text"
@@ -190,14 +194,14 @@ export class EditProfileContainer extends React.Component {
                 <Input
                   id="lname"
                   label="Last Name"
-                  placeholder="Enter update last name"
+                  placeholder="Enter last name"
                   value={lname}
                   name="lname"
                   type="text"
                   inputChange={this.inputChange}
                 />
 
-                <div className="form-group">
+                <div className="form-group form-check-inline">
                   <label htmlFor="fname">
                     Gender
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -219,7 +223,7 @@ export class EditProfileContainer extends React.Component {
                       Male
                     </label>
                   </div>
-                  <div className="form-check ">
+                  <div className="form-check">
                     <input
                       className="form-check-input"
                       type="radio"
@@ -234,6 +238,76 @@ export class EditProfileContainer extends React.Component {
                     />
                     <label className="form-check-label" htmlFor="gender2">
                       Female
+                    </label>
+                  </div>
+                </div>
+                <br />
+                <div className="form-group form-check-inline">
+                  <label htmlFor="drink">
+                    Drink
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                  <div className="form-check ">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="drink"
+                      id="drink1"
+                      value="yes"
+                      checked={drink === 'yes'}
+                      onChange={() => this.setState({ drink: 'yes' })}
+                    />
+                    <label className="form-check-label" htmlFor="drink1">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="form-check ">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="drink"
+                      id="drink2"
+                      value="no"
+                      checked={drink === 'no'}
+                      onChange={() => this.setState({ drink: 'no' })}
+                    />
+                    <label className="form-check-label" htmlFor="drink2">
+                      No
+                    </label>
+                  </div>
+                </div>
+                <br />
+                <div className="form-group form-check-inline">
+                  <label htmlFor="smoke">
+                    Smoke
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                  <div className="form-check ">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="smoke"
+                      id="smoke1"
+                      value="yes"
+                      checked={smoke === 'yes'}
+                      onChange={() => this.setState({ smoke: 'yes' })}
+                    />
+                    <label className="form-check-label" htmlFor="smoke1">
+                      Yes
+                    </label>
+                  </div>
+                  <div className="form-check ">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="smoke"
+                      id="smoke2"
+                      value="no"
+                      checked={smoke === 'no'}
+                      onChange={() => this.setState({ smoke: 'no' })}
+                    />
+                    <label className="form-check-label" htmlFor="smoke2">
+                      No
                     </label>
                   </div>
                 </div>
@@ -312,41 +386,6 @@ export class EditProfileContainer extends React.Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="smoke">
-                    Smoke
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </label>
-                  <div className="form-check ">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="smoke"
-                      id="smoke1"
-                      value="yes"
-                      checked={smoke === 'yes'}
-                      onChange={() => this.setState({ smoke: 'yes' })}
-                    />
-                    <label className="form-check-label" htmlFor="smoke1">
-                      Yes
-                    </label>
-                  </div>
-                  <div className="form-check ">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="smoke"
-                      id="smoke2"
-                      value="no"
-                      checked={smoke === 'no'}
-                      onChange={() => this.setState({ smoke: 'no' })}
-                    />
-                    <label className="form-check-label" htmlFor="smoke2">
-                      No
-                    </label>
-                  </div>
-                </div>
-
-                <div className="form-group">
                   <Dropdown
                     dropDownChangeHandler={this.dropDownChangeHandler}
                     options={Community}
@@ -354,41 +393,6 @@ export class EditProfileContainer extends React.Component {
                     dropDownType={community}
                     label="Community"
                   />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="drink">
-                    Drink
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </label>
-                  <div className="form-check ">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="drink"
-                      id="drink1"
-                      value="yes"
-                      checked={drink === 'yes'}
-                      onChange={() => this.setState({ drink: 'yes' })}
-                    />
-                    <label className="form-check-label" htmlFor="drink1">
-                      Yes
-                    </label>
-                  </div>
-                  <div className="form-check ">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="drink"
-                      id="drink2"
-                      value="no"
-                      checked={drink === 'no'}
-                      onChange={() => this.setState({ drink: 'no' })}
-                    />
-                    <label className="form-check-label" htmlFor="drink2">
-                      No
-                    </label>
-                  </div>
                 </div>
 
                 <div className="form-group">
@@ -400,45 +404,6 @@ export class EditProfileContainer extends React.Component {
                     dropDownType={religion}
                   />
                 </div>
-
-                <Input
-                  id="city"
-                  label="City"
-                  placeholder="Enter city"
-                  value={city}
-                  name="city"
-                  type="text"
-                  inputChange={this.inputChange}
-                />
-                <Input
-                  id="country"
-                  label="Country"
-                  placeholder="Enter country"
-                  value={country}
-                  name="country"
-                  type="text"
-                  inputChange={this.inputChange}
-                />
-
-                <Input
-                  id="province"
-                  label="Province"
-                  placeholder="Enter province"
-                  value={province}
-                  name="province"
-                  type="text"
-                  inputChange={this.inputChange}
-                />
-
-                <Input
-                  id="phone"
-                  label="Phone"
-                  placeholder="Enter phone"
-                  value={phone}
-                  name="phone"
-                  type="text"
-                  inputChange={this.inputChange}
-                />
 
                 <div className="form-group">
                   <Dropdown
@@ -453,7 +418,7 @@ export class EditProfileContainer extends React.Component {
                 <Input
                   id="height"
                   label="Height"
-                  placeholder="Enter height"
+                  placeholder="Enter height eg. 5.5"
                   value={height}
                   name="height"
                   type="text"
@@ -462,7 +427,7 @@ export class EditProfileContainer extends React.Component {
                 <Input
                   id="weight"
                   label="Weight"
-                  placeholder="Enter weight"
+                  placeholder="Enter Weight in Kg"
                   value={weight}
                   name="weight"
                   type="text"
@@ -480,6 +445,45 @@ export class EditProfileContainer extends React.Component {
                 </div>
 
                 <Input
+                  id="phone"
+                  label="Phone"
+                  placeholder="Enter phone"
+                  value={phone}
+                  name="phone"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+
+                <Input
+                  id="city"
+                  label="City"
+                  placeholder="Enter city"
+                  value={city}
+                  name="city"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+
+                <Input
+                  id="province"
+                  label="Province"
+                  placeholder="Enter province"
+                  value={province}
+                  name="province"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+
+                <Input
+                  id="country"
+                  label="Country"
+                  placeholder="Enter country"
+                  value={country}
+                  name="country"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+                <Input
                   id="aboutMySelf"
                   label="About Myself"
                   placeholder="about you self"
@@ -488,6 +492,7 @@ export class EditProfileContainer extends React.Component {
                   type="text"
                   inputChange={this.inputChange}
                 />
+
                 <div className="row">
                   <div className="col-6" />
                   <div className="col-6">
