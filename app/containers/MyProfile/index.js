@@ -196,7 +196,7 @@ export class MyProfile extends React.Component {
                 </p>
                 <p>Mother tounge : {motherTongue || 'N/A'}</p>
                 <p>Marital Status : {status || 'N/A'}</p>
-                <p>Hight : {height || 'N/A'}</p>
+                <p>Hight : {`${height}''` || 'N/A'}</p>
                 <p>Smoke : {smoke || 'N/A'}</p>
                 <p>Blood group : {bloodGroup || 'N/A'}</p>
                 <p>City : {city || 'N/A'}</p>
@@ -207,7 +207,7 @@ export class MyProfile extends React.Component {
                 <p>Gender : {gender || 'N/A'}</p>
                 <p>religion : {religion || 'N/A'}</p>
                 <p>education : {education || 'N/A'}</p>
-                <p>weight : {weight || 'N/A'}</p>
+                <p>weight : {`${weight} kg` || 'N/A'}</p>
                 <p>drink : {drink || 'N/A'}</p>
                 <p>community : {community || 'N/A'}</p>
                 <p>province : {province || 'N/A'}</p>

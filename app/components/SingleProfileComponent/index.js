@@ -13,7 +13,8 @@ import ConnectWith from 'components/ConnectWith';
 
 import messages from './messages';
 
-import testImage from '../../images/0c1ac4b49886e4a8ee5dad5164a9a5fa.jpg';
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 
 import './SingleProfileComponentStyle.scss';
 
@@ -36,9 +37,12 @@ class SingleProfileComponent extends React.Component {
       country,
       motherTongue,
       religion,
-      aboutMySelf,
+      status,
     } = this.props.data;
+    console.log('single profile component data: ', status);
     console.log('data is: ', _id);
+    const avator = gender === 'Male' ? MaleAvator : femaleAvator;
+    const newImage = image || avator;
     return (
       <div className="col-12 single-search-user-contaienr">
         <h6 className="search-user-tilte">
@@ -51,7 +55,7 @@ class SingleProfileComponent extends React.Component {
                 <div className="search-user-image">
                   <img
                     className="img-thumbnail"
-                    src={image}
+                    src={newImage}
                     alt="profielImage"
                   />
                 </div>
@@ -66,18 +70,24 @@ class SingleProfileComponent extends React.Component {
                       </td>
                     </tr>
                     <tr>
-                      <td>Religion</td>
-                      <td>{religion || 'N/A'}</td>
-                    </tr>
-                    <tr>
-                      <td>Mother Tongue</td>
-                      <td>{motherTongue || 'N/A'}</td>
+                      <td>Marital Status</td>
+                      <td>
+                        {status || 'N/A'}
+                      </td>
                     </tr>
                     <tr>
                       <td>Hair/Skin type</td>
                       <td>
                         {hairType || 'N/A'} / {skinTone || 'N/A'}
                       </td>
+                    </tr>
+                    <tr>
+                      <td>Religion</td>
+                      <td>{religion || 'N/A'}</td>
+                    </tr>
+                    <tr>
+                      <td>Mother Tongue</td>
+                      <td>{motherTongue || 'N/A'}</td>
                     </tr>
                     <tr>
                       <td>Community</td>

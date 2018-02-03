@@ -30,10 +30,10 @@ class RightSidePartnerSearchContainer extends React.Component {
 
         {footer && (
           <h5 className="right-side-partner-search-footer">
-            <NavLink to="#">
+            {/* <NavLink to="#">
               Profile Search{' '}
               <i className="fa fa-caret-right" aria-hidden="true" />
-            </NavLink>
+            </NavLink> */}
             <NavLink className="pull-right" to="/my-shaadi/search">
               More Option <i className="fa fa-caret-right" aria-hidden="true" />
             </NavLink>

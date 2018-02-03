@@ -48,7 +48,7 @@ export const FamilyAffluence = [
 ];
 
 export const BloodGroup = [
-  { dropDownType: 'bloodGroup', value: 'Do not know', label: 'Do not know' },
+  // { dropDownType: 'bloodGroup', value: 'Do not know', label: 'Do not know' },
   { dropDownType: 'bloodGroup', value: 'A+', label: 'A+' },
   { dropDownType: 'bloodGroup', value: 'A-', label: 'A-' },
   { dropDownType: 'bloodGroup', value: 'B+', label: 'B+' },

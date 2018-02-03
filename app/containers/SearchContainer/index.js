@@ -19,7 +19,7 @@ import RightSidePartnerSearchContainer from 'components/RightSidePartnerSearchCo
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
-  BloodGroup,
+  // BloodGroup,
   BodyType,
   Community,
   FamilyAffluence,
@@ -52,7 +52,7 @@ export class SearchContainer extends React.Component {
       community: '',
       status: '',
       skinTone: '',
-      bloodGroup: '',
+      // bloodGroup: '',
       bodyType: '',
       hairType: '',
       familyAffluence: '',
@@ -93,7 +93,7 @@ export class SearchContainer extends React.Component {
       community,
       status,
       skinTone,
-      bloodGroup,
+      // bloodGroup,
       bodyType,
       hairType,
       familyAffluence,
@@ -104,8 +104,7 @@ export class SearchContainer extends React.Component {
     console.log('this. state: ', this.state);
     // return false;
     this.props.history.push(
-      `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${status}&religion=${religion}&mothertongue=${motherTongue}&community=${community}&skintone=${skinTone}&bodytype=${bodyType}&hairtype=${hairType}&familyaffluence=${familyAffluence}&drink=${drink}&smoke=${smoke}&height=${height}&bloodgroup=${bloodGroup}
-      `
+      `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${status}&religion=${religion}&mothertongue=${motherTongue}&community=${community}&skintone=${skinTone}&bodytype=${bodyType}&hairtype=${hairType}&familyaffluence=${familyAffluence}&drink=${drink}&smoke=${smoke}&height=${height}`
     );
   }
   reset() {
@@ -118,7 +117,7 @@ export class SearchContainer extends React.Component {
       community: '',
       status: '',
       skinTone: '',
-      bloodGroup: '',
+      // bloodGroup: '',
       bodyType: '',
       hairType: '',
       familyAffluence: '',
@@ -144,7 +143,7 @@ export class SearchContainer extends React.Component {
       status,
       skinTone,
       familyAffluence,
-      bloodGroup,
+      // bloodGroup,
       hairType,
       bodyType,
       drink,
@@ -326,7 +325,7 @@ export class SearchContainer extends React.Component {
                   />
                 </div>
               </div>
-
+{/* 
               <div className="form-group row">
                 <label
                   htmlFor="staticEmail"
@@ -342,7 +341,7 @@ export class SearchContainer extends React.Component {
                     dropDownType={bloodGroup}
                   />
                 </div>
-              </div>
+              </div> */}
 
               <div className="form-group row">
                 <label
