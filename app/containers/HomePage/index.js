@@ -19,7 +19,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
-import { changeUsername, imageChange } from './actions';
+import { imageChange } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import './style.scss';

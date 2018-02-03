@@ -24,8 +24,8 @@ class Header extends React.Component {
     this.signoutHandler = this.signoutHandler.bind(this);
     this.navbarToggler = this.navbarToggler.bind(this);
     this.signinHandler = this.signinHandler.bind(this);
-    this.avator = USERDETAIL.gender === 'Male' ? MaleAvator : femaleAvator;
-    this.newImage = USERDETAIL.image || this.avator;
+    this.avator = USERDETAIL && USERDETAIL.gender === 'Male' ? MaleAvator : femaleAvator;
+    this.newImage = USERDETAIL &&  USERDETAIL.image || this.avator;
   }
   signinHandler = () => {
     window.location.pathname = 'signin';

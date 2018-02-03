@@ -6,12 +6,11 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-// import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import profileImg from '../../images/UNADJUSTEDNONRAW_thumb_1.jpg';
-import messages from './messages';
+import femaleAvator from '../../images/femaleAvator.gif';
+import MaleAvator from '../../images/MaleAvator.gif';
 import './style.scss';
+
 
 class ProfileCompactView extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -26,14 +25,17 @@ class ProfileCompactView extends React.Component {
       _id,
       image,
       city,
+      gender,
       country,
     } = this.props.data;
+    const avator = gender === 'Male' ? MaleAvator : femaleAvator;
+    const newImage = image || avator;
     return (
       <div className="profile_compact_view">
         <span className="thumbnail">
           <NavLink to={`/my-shaadi/finduser/${_id}`}>
             <div className="small-pic">
-              <img src={image} alt="profileImg" />
+              <img src={newImage} alt="profileImg" />
             </div>
           </NavLink>
         </span>
