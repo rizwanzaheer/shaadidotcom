@@ -21,7 +21,7 @@ class Searchbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gender: 'Woman',
+      gender: 'Female',
       fromAge: 20,
       toAge: 25,
       religion: 'Muslim',

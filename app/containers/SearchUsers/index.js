@@ -4,22 +4,22 @@
  *
  */
 
+import { Pagination } from 'antd';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import 'antd/lib/pagination/style/css';
 import ProfileCompactView from 'components/ProfileCompactView';
 import RightSidePartnerSearchContainer from 'components/RightSidePartnerSearchContainer';
 import SingleProfileComponent from 'components/SingleProfileComponent';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { nodeApiServerUrl } from '../../config/envChecker';
-import messages from './messages';
 import reducer from './reducer';
 import saga from './saga';
 import './SearchUsersStyle.scss';
@@ -33,6 +33,9 @@ export class SearchUsers extends React.Component {
     this.state = {
       users: [],
       searchByName: '',
+      defaultPage: 1,
+      totalPageSize: 0,
+      defaultPageSize: 5,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.profileData = {
@@ -47,6 +50,21 @@ export class SearchUsers extends React.Component {
   }
 
   componentWillMount() {
+    this.getData(0);
+  }
+  onChange = (page) => {
+    console.log(page);
+    this.getData((page - this.state.defaultPage) * this.state.defaultPageSize);
+    this.setState(
+      {
+        current: page,
+      },
+      () => console.log('this state: ', this.state)
+    );
+    console.log();
+  };
+  getData = (skipRecords) => {
+    console.log(skipRecords);
     console.log('this.props: ', this.props.location.search);
     const query = new URLSearchParams(this.props.history.location.search);
 
@@ -85,11 +103,15 @@ export class SearchUsers extends React.Component {
       axios
         .post(`${nodeApiServerUrl}/api/search/getuserbyname`, {
           fname,
+          pageSizeLimit: this.state.defaultPageSize,
+          skipRecords,
+          // resultLimit: ,
         })
         .then((users) => {
           console.log('users: ', users);
           this.setState({
             users: users.data.users,
+            totalPageSize: users.data.users.length,
           });
         })
         .catch((err) => console.log(err));
@@ -111,20 +133,24 @@ export class SearchUsers extends React.Component {
           smoke,
           height,
           bloodgroup,
+          pageSizeLimit: this.state.defaultPageSize,
+          skipRecords,
         })
         .then((users) => {
           console.log('result data: ', users);
           this.setState({
             users: users.data.users,
+            totalPageSize: users.data.users.length,
           });
         })
         .catch((err) => console.log(err));
     }
-  }
+  };
 
   handleSubmit(e) {
     e.preventDefault();
   }
+
   clickHandler = () => {
     const { searchByName } = this.state;
     const newSearchByName =
@@ -133,7 +159,8 @@ export class SearchUsers extends React.Component {
     window.location.reload();
   };
   render() {
-    const { users } = this.state;
+    const { users, defaultPage, totalPageSize, defaultPageSize } = this.state;
+    console.log('totalPageSize ', totalPageSize);
     return (
       <div className="container">
         <Helmet>
@@ -178,6 +205,17 @@ export class SearchUsers extends React.Component {
                   Didn't find any User accroding to your Search Criteria!!!
                 </h1>
               )}
+              <div className="col-12 text-center" style={{ marginTop: '20px' }}>
+                <Pagination
+                  defaultCurrent={defaultPage}
+                  defaultPageSize={defaultPageSize}
+                  total={totalPageSize}
+                  onChange={this.onChange}
+                  // simple={false}
+                  showTotal={(total, range) =>
+                    `${range[0]}-${range[1]} of ${total} items`}
+                />
+              </div>
             </div>
           </div>
         </div>
