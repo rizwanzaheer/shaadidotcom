@@ -111,7 +111,7 @@ export class SearchUsers extends React.Component {
           console.log('users: ', users);
           this.setState({
             users: users.data.users,
-            totalPageSize: users.data.users.length,
+            totalPageSize: this.state.totalPageSize >= users.data.count ? this.state.totalPageSize : users.data.count,
           });
         })
         .catch((err) => console.log(err));
@@ -140,7 +140,7 @@ export class SearchUsers extends React.Component {
           console.log('result data: ', users);
           this.setState({
             users: users.data.users,
-            totalPageSize: users.data.users.length,
+            totalPageSize: this.state.totalPageSize >= users.data.count ? this.state.totalPageSize : users.data.count,
           });
         })
         .catch((err) => console.log(err));
