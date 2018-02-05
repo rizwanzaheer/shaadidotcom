@@ -80,6 +80,9 @@ export class EditPreferences extends React.Component {
         console.log(error);
       });
   }
+  componentDidMount() {
+    console.log('did mount!');
+  }
   componentWillUpdate(nextProps, nextState) {
     console.log("shouldComponentUpdate nextprops is: ", nextProps);
     console.log("shouldComponentUpdate nextState is: ", nextState);

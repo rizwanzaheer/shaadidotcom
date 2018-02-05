@@ -16,6 +16,7 @@ import { createStructuredSelector } from 'reselect';
 import MoreDetailButtonRight from 'components/MoreDetailButtonRight';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+import { newUsers } from '../../config/dropDownListData';
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 import femaleAvator from '../../images/femaleAvator.gif';
@@ -58,31 +59,92 @@ export class MyProfile extends React.Component {
     try {
       console.log('my profil will mount:', USERDETAIL._id);
       axios
-      .post(`${nodeApiServerUrl}/api/getdetails`, {
-        userId: USERDETAIL._id,
-      })
-      .then(({ data, status, statusText }) => {
-        console.log('working!');
-        console.log('my profile data: ', data);
-        if (status === 200 && statusText === 'OK') {
-          Object.entries(data.user).forEach(([key, value]) => {
-            this.setState({ [key]: value });
-          });
-          this.setState(
-            {
-              ...this.state,
-              partnerPreferences: data.partnerPreferences,
-            },
-            () => {
-              console.log('this state: ', this.state);
-            }
-          );
-        }
-      })
-      .catch((err) => console.log(err));
+        .post(`${nodeApiServerUrl}/api/getdetails`, {
+          userId: USERDETAIL._id,
+        })
+        .then(({ data, status, statusText }) => {
+          console.log('working!');
+          console.log('my profile data: ', data);
+          if (status === 200 && statusText === 'OK') {
+            Object.entries(data.user).forEach(([key, value]) => {
+              this.setState({ [key]: value });
+            });
+            this.setState(
+              {
+                ...this.state,
+                partnerPreferences: data.partnerPreferences,
+              },
+              () => {
+                console.log('this state: ', this.state);
+              }
+            );
+          }
+        })
+        .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }
+  }
+  componentDidMount() {
+    console.log('did mount');
+    // insert user record in db on fly
+    // try {
+    //   // axios.post(`${nodeApiServerUrl}/api/getdetails`, {
+    //   // });
+    //   // Object.entries(newUsers).forEach((key, value) => {
+    //   //   console.log('key is: ', [key]);
+    //   //   console.log('value is: ', value);
+    //   //   return true;
+    //   // });
+    //   newUsers.map((item, key) => {
+    //     console.log('email is: ', item.email);
+    //     console.log('bodyType is: ', item.bodyType);
+    //     console.log('community is: ', item.community);
+    //     console.log('dob is: ', item.dob);
+    //     console.log('drink is: ', item.drink);
+    //     console.log('familyAffluence is: ', item.familyAffluence);
+    //     console.log('fname is: ', item.fname);
+    //     console.log('gender is: ', item.gender);
+    //     console.log('hairType is: ', item.hairType);
+    //     console.log('height is: ', item.height);
+    //     console.log('lname is: ', item.lname);
+    //     console.log('motherTongue is: ', item.motherTongue);
+    //     console.log('password is: ', item.password);
+    //     console.log('religion is: ', item.religion);
+    //     console.log('skinTone is: ', item.skinTone);
+    //     console.log('education is: ', item.education);
+    //     console.log('smoke is: ', item.smoke);
+    //     console.log('status is: ', item.status);
+    //     console.log('weight is: ', item.weight);
+    //     console.log('bloodGroup is: ', item.bloodGroup);
+    //     console.log('phone is: ', item.phone);
+    //     axios.post(`${nodeApiServerUrl}/testing`, {
+    //       email: `${item.fname}${item.lname}@gmail.com`,
+    //       bodyType: item.bodyType,
+    //       community: item.community,
+    //       dob: item.dob,
+    //       drink: item.drink,
+    //       familyAffluence: item.familyAffluence,
+    //       fname: item.fname,
+    //       gender: item.gender,
+    //       hairType: item.hairType,
+    //       height: item.height,
+    //       lname: item.lname,
+    //       motherTongue: item.motherTongue,
+    //       password: item.password,
+    //       religion: item.religion,
+    //       skinTone: item.skinTone,
+    //       smoke: item.smoke,
+    //       education: item.education,
+    //       status: item.status,
+    //       weight: item.weight,
+    //       phone: item.phone,
+    //       bloodGroup: item.bloodGroup,
+    //     });
+    //   });
+    // } catch (error) {
+    //   console.log('trycatch error: ', error);
+    // }
   }
 
   render() {
@@ -224,18 +286,21 @@ export class MyProfile extends React.Component {
             <hr />
             <div className="row">
               <div className="col-6">
+                <p>from Age : {partnerPreferences.fromAge || 'N/A'}</p>
                 <p>
                   Mother tounge : {partnerPreferences.motherTongue || 'N/A'}
                 </p>
                 <p>Marital Status : {partnerPreferences.status || 'N/A'}</p>
-                <p>Hight : {partnerPreferences.height || 'N/A'}</p>
+                <p>Hight : {`${partnerPreferences.height}''` || 'N/A'}</p>
                 {/* <p>City : {partnerPreferences.city || 'N/A'}</p> */}
                 {/* <p>country : {partnerPreferences.country || 'N/A'}</p> */}
                 <p>body Type : {partnerPreferences.bodyType || 'N/A'}</p>
                 <p>skinTone : {partnerPreferences.skinTone || 'N/A'}</p>
+                <p>Smoke : {partnerPreferences.smoke || 'N/A'}</p>
                 {/* <p>province : {partnerPreferences.province || 'N/A'}</p> */}
               </div>
               <div className="col-6">
+                <p>To age : {partnerPreferences.toAge || 'N/A'}</p>
                 <p>religion : {partnerPreferences.religion || 'N/A'}</p>
                 {/* <p>education : {partnerPreferences.education || 'N/A'}</p> */}
                 {/* <p>weight : {partnerPreferences.weight || 'N/A'}</p> */}

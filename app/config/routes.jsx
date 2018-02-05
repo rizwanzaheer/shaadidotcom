@@ -59,18 +59,16 @@ const CustomRoutes = () => (
   <div>
     <Switch>
       {/* User Routes */}
-      <Route exact path="/" component={Home} />
-      {/* dashboard */}
-      <RouteWithUserLayout exact path="/my-shaadi" component={HomePage} />
-      {/* Profile setting */}
+      <Route exact path="/" component={Home} /> {/* dashboard */}
+      <RouteWithUserLayout exact path="/my-shaadi" component={HomePage} /> {/* Profile setting */}
       <RouteWithUserLayout path="/my-shaadi/profile" component={MyProfile} />
       <RouteWithUserLayout
         path="/my-shaadi/edit-profile"
-        component={EditProfileContainer} 
+        component={EditProfileContainer}
       />
       <RouteWithUserLayout
         path="/my-shaadi/edit-preferences"
-        component={EditPreferences} 
+        component={EditPreferences}
       />
       <RouteWithUserLayout path="/my-shaadi/setting" component={SettingPage} />
       <RouteWithUserLayout
@@ -84,15 +82,13 @@ const CustomRoutes = () => (
         path="/my-shaadi/partner-preferences"
         component={MyProfile}
       />
-      <RouteWithUserLayout path="/my-shaadi/shortlist" component={ShortListPage} />
-      {/* Advance search for Bride/Groom */}
+      <RouteWithUserLayout path="/my-shaadi/shortlist" component={ShortListPage} /> {/* Advance search for Bride/Groom */}
       <RouteWithUserLayout path="/my-shaadi/search" component={SearchContainer} />
       <RouteWithUserLayout path="/my-shaadi/finduser/:id" component={FindUser} />
 
       <RouteWithUserLayout path="/features" component={FeaturePage} />
       <RouteWithUserLayout path="/signin" component={Signin} />
-      <RouteWithUserLayout path="/signup" component={Signin} />
-      {/* Admin Routes */}
+      <RouteWithUserLayout path="/signup" component={Signin} /> {/* Admin Routes */}
       <RouteWithAdminLayout exact path="/backoffice" component={Backoffice} />
 
       <RouteWithAdminLayout
@@ -111,8 +107,7 @@ const CustomRoutes = () => (
         </h1>
       )}
       />
-      <RouteWithAdminLayout path="/backoffice/signin" component={Signin} />
-      {/* Global layout */}
+      <RouteWithAdminLayout path="/backoffice/signin" component={Signin} /> {/* Global layout */}
       <RouteWithGlobalLayout path="/my-shaadi/searchusers" component={SearchUsers} />
       <Route path="" component={NotFoundPage} />
     </Switch>
