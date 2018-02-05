@@ -84,6 +84,7 @@ export class SearchUsers extends React.Component {
     const height = query.get('height');
     const bloodgroup = query.get('bloodgroup');
     const fname = query.get('fname');
+    const pageType = query.get('pageType');
     console.log('gender: ', gender);
     console.log('gender: ', fromage);
     console.log('gender: ', toage);
@@ -99,6 +100,7 @@ export class SearchUsers extends React.Component {
     console.log('gender: ', bloodgroup);
     console.log('gender: ', smoke);
     console.log('gender: ', height);
+    console.log('pageType is: ', pageType);
     if (fname) {
       axios
         .post(`${nodeApiServerUrl}/api/search/getuserbyname`, {
@@ -135,6 +137,7 @@ export class SearchUsers extends React.Component {
           bloodgroup,
           pageSizeLimit: this.state.defaultPageSize,
           skipRecords,
+          pageType,
         })
         .then((users) => {
           console.log('result data: ', users);

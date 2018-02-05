@@ -43,7 +43,7 @@ export class HomePage extends React.PureComponent {
 
   componentWillMount() {
     !USERDETAIL.fname ? (window.location.href = '/my-shaadi/edit-profile') : '';
-
+    console.log('gender is: ', USERDETAIL.gender);
     axios
       .post(`${nodeApiServerUrl}/api/getusers`, {
         gender: USERDETAIL.gender === 'Male' ? 'Female' : 'Male',

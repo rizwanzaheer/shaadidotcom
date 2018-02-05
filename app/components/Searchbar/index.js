@@ -41,7 +41,7 @@ class Searchbar extends React.Component {
     this.props.history.push(
       `my-shaadi/searchusers?gender=${gender}&fromage=${fromAge}&toage=${
         toAge
-      }&religion=${religion}&mothertongue=${motherTongue}`
+      }&religion=${religion}&mothertongue=${motherTongue}&pageType=global`
     );
   }
   render() {

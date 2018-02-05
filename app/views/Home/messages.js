@@ -49,7 +49,7 @@ export default defineMessages({
   workFlowInteractParaText: {
     id: "app.view.Home.workFlowInteractParaText.message",
     defaultMessage: `
-      Become a Premium Member & Start a Conversation
+      Start a Conversation
     `
   },
   findSomeOneHeroText: {

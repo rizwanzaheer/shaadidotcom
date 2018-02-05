@@ -25,3 +25,13 @@ Object.entries(user).forEach(([key, value]) =>
 */
 
 /////
+
+//// Update many
+try {
+   db.restaurant.updateMany(
+      { violations: { $gt: 4 } },
+      { $set: { "Review" : true } }
+   );
+} catch (e) {
+   print(e);
+}

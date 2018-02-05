@@ -119,7 +119,7 @@ export class MyProfile extends React.Component {
     //     console.log('bloodGroup is: ', item.bloodGroup);
     //     console.log('phone is: ', item.phone);
     //     axios.post(`${nodeApiServerUrl}/testing`, {
-    //       email: `${item.fname}${item.lname}@gmail.com`,
+    //       email: `${item.fname}${item.lname}${key}@gmail.com`,
     //       bodyType: item.bodyType,
     //       community: item.community,
     //       dob: item.dob,

@@ -104,7 +104,7 @@ export class SearchContainer extends React.Component {
     console.log('this. state: ', this.state);
     // return false;
     this.props.history.push(
-      `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${status}&religion=${religion}&mothertongue=${motherTongue}&community=${community}&skintone=${skinTone}&bodytype=${bodyType}&hairtype=${hairType}&familyaffluence=${familyAffluence}&drink=${drink}&smoke=${smoke}&height=${height}`
+      `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${status}&religion=${religion}&mothertongue=${motherTongue}&community=${community}&skintone=${skinTone}&bodytype=${bodyType}&hairtype=${hairType}&familyaffluence=${familyAffluence}&drink=${drink}&smoke=${smoke}&height=${height}&pageType=advanceSearch`
     );
   }
   reset() {
