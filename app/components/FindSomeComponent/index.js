@@ -26,7 +26,7 @@ class FindSomeComponent extends React.Component {
         return 'mothertongue';
       case 'By Religion':
         return 'religion';
-      case 'By Communit':
+      case 'By Community':
         return 'community';
       default:
         return 'in valid lang!';
@@ -43,7 +43,7 @@ class FindSomeComponent extends React.Component {
             <NavLink
               key={value}
               className="text-secondary"
-              to={`my-shaadi/searchusers?${this.checkType(name)}=${value.toLowerCase()}`}
+              to={`my-shaadi/searchusers?${this.checkType(name)}=${value.toLowerCase()}&pageType=shortlinks`}
             >
               {value}
             </NavLink>

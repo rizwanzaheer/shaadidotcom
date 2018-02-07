@@ -69,8 +69,8 @@ export class HomePage extends React.PureComponent {
   clickHandler = () => {
     // console.log('clickHandler is working!!!!');
     const { searchByName } = this.state;
-    const newSearchByName =
-      searchByName.charAt(0).toUpperCase() + searchByName.slice(1);
+    const newSearchByName = searchByName.toUpperCase();
+      // searchByName.charAt(0).toUpperCase() + searchByName.slice(1);
     this.props.history.push(`my-shaadi/searchusers?fname=${newSearchByName}`);
   };
   render() {

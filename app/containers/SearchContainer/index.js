@@ -130,7 +130,7 @@ export class SearchContainer extends React.Component {
   clickHandler = () => {
     // console.log('clickHandler is working!!!!');
     const { searchByName } = this.state;
-    this.props.history.push(`searchusers?fname=${searchByName}`);
+    this.props.history.push(`searchusers?fname=${searchByName.toUpperCase()}`);
   };
   render() {
     const {
@@ -401,6 +401,7 @@ export class SearchContainer extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;
                 </label>
                 <div className="form-check form-check-inline">
                   <input
@@ -438,7 +439,8 @@ export class SearchContainer extends React.Component {
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;
                 </label>
                 <div className="form-check form-check-inline">
                   <input

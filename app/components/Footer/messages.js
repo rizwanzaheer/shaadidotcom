@@ -8,7 +8,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   licenseMessage: {
     id: 'app.components.Footer.license.message',
-    defaultMessage: "The World's No.1 Matchmaking Service™",
+    defaultMessage: "The Pakistan No.1 Matchmaking Service™",
   },
   authorMessage: {
     id: 'app.components.Footer.author.message',

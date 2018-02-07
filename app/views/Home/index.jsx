@@ -156,7 +156,7 @@ class Home extends Component {
               </p>
               <p>
                 grooms meet for marriage.
-                <MoreDetailButtonRight label="learn more" url="#" />
+                {/* <MoreDetailButtonRight label="learn more" url="#" /> */}
               </p>
               {/* <p>
               Shaadi dot com has created a

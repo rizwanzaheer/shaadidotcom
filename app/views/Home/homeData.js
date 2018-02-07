@@ -17,14 +17,13 @@ export const findSomeOneBy = [
     name: 'By Religion',
     options: [
       'Muslim',
-      'Non-Muslim',
       'Christian',
+      'Non-Muslim',
       'No Religion',
-      'Other',
     ],
   },
   {
-    name: 'By Communit',
+    name: 'By Community',
     options: [
       'Chauhdary',
       'Malik',

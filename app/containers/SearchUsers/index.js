@@ -113,7 +113,10 @@ export class SearchUsers extends React.Component {
           console.log('users: ', users);
           this.setState({
             users: users.data.users,
-            totalPageSize: this.state.totalPageSize >= users.data.count ? this.state.totalPageSize : users.data.count,
+            totalPageSize:
+              this.state.totalPageSize >= users.data.count
+                ? this.state.totalPageSize
+                : users.data.count,
           });
         })
         .catch((err) => console.log(err));
@@ -143,7 +146,10 @@ export class SearchUsers extends React.Component {
           console.log('result data: ', users);
           this.setState({
             users: users.data.users,
-            totalPageSize: this.state.totalPageSize >= users.data.count ? this.state.totalPageSize : users.data.count,
+            totalPageSize:
+              this.state.totalPageSize >= users.data.count
+                ? this.state.totalPageSize
+                : users.data.count,
           });
         })
         .catch((err) => console.log(err));
@@ -156,8 +162,8 @@ export class SearchUsers extends React.Component {
 
   clickHandler = () => {
     const { searchByName } = this.state;
-    const newSearchByName =
-      searchByName.charAt(0).toUpperCase() + searchByName.slice(1);
+    const newSearchByName = searchByName.toUpperCase();
+    // + searchByName.slice(1)
     this.props.history.push(`searchusers?fname=${newSearchByName}`);
     window.location.reload();
   };
