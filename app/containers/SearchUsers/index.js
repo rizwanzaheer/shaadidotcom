@@ -20,6 +20,7 @@ import SingleProfileComponent from 'components/SingleProfileComponent';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { nodeApiServerUrl } from '../../config/envChecker';
+import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
 import reducer from './reducer';
 import saga from './saga';
 import './SearchUsersStyle.scss';
@@ -131,6 +132,7 @@ export class SearchUsers extends React.Component {
           matrialStatus,
           community,
           skintone,
+          userId:USERDETAIL._id,
           bodytype,
           hairtype,
           familyaffluence,
