@@ -31,6 +31,8 @@ import {
   BodyType,
   SkinTone,
   FamilyAffluence,
+  Star,
+  MovieGenre,
 } from '../../config/dropDownListData';
 import { nodeApiServerUrl } from '../../config/envChecker';
 import { USERDETAIL } from '../../config/getUserDetailFromLocalStorage';
@@ -125,6 +127,7 @@ export class EditProfileContainer extends React.Component {
       bloodGroup,
       community,
       dob,
+      annualIncome,
       drink,
       familyAffluence,
       height,
@@ -137,10 +140,14 @@ export class EditProfileContainer extends React.Component {
       gender,
       image,
       hairType,
+      star,
+      movieGenre,
       bodyType,
+      sport,
       weight,
       city,
       country,
+      ethenic,
     } = this.state;
     const avator = gender === 'Male' ? MaleAvator : femaleAvator;
     const newImage = image || avator;
@@ -321,6 +328,7 @@ export class EditProfileContainer extends React.Component {
                   type="email"
                   inputChange={this.inputChange}
                 />
+
                 <Input
                   id="education"
                   label="Education"
@@ -348,6 +356,51 @@ export class EditProfileContainer extends React.Component {
                     dropDownType={status}
                   />
                 </div>
+                <div className="form-group">
+                  <Dropdown
+                    label="Star"
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                    options={Star}
+                    defaultValue={star}
+                    dropDownType={star}
+                  />
+                </div>
+                <div className="form-group">
+                  <Dropdown
+                    label="Movie Genre"
+                    dropDownChangeHandler={this.dropDownChangeHandler}
+                    options={MovieGenre}
+                    defaultValue={movieGenre}
+                    dropDownType={movieGenre}
+                  />
+                </div>
+                <Input
+                  id="sport"
+                  label="Sport"
+                  placeholder="Enter Sport"
+                  value={sport}
+                  name="sport"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+                <Input
+                  id="ethenic"
+                  label="Ethenic"
+                  placeholder="Enter your Ethenic city"
+                  value={ethenic}
+                  name="ethenic"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+                <Input
+                  id="annualIncome"
+                  label="Annual Income"
+                  placeholder="Enter your Annual Income"
+                  value={annualIncome}
+                  name="annualIncome"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
                 <div className="form-group">
                   <Dropdown
                     label="Family Affluence"

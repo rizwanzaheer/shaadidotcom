@@ -4,20 +4,19 @@
  *
  */
 
+import axios from 'axios';
+import * as EmailValidator from 'email-validator';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import * as EmailValidator from 'email-validator';
-import ReactTooltip from 'react-tooltip';
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { NavLink, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import 'react-responsive-modal/lib/react-responsive-modal.css';
-
+import ReactTooltip from 'react-tooltip';
 import EnvChecker from '../../config/envChecker';
 import messages from './messages';
 import './ModalStyle.scss';
+import 'react-responsive-modal/lib/react-responsive-modal.css';
 
 class SignInModal extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -188,7 +187,7 @@ class SignInModal extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="row" style={{ visibility: 'hidden' }}>
                 <div className="col-12">
                   <div className="form-check">
                     <label className="form-check-label">

@@ -78,6 +78,22 @@ export const BloodGroup = [
   { dropDownType: 'bloodGroup', value: 'O-', label: 'O-' },
 ];
 
+export const Star = [
+  { dropDownType: 'star', value: 'aries', label: 'Aries' },
+  { dropDownType: 'star', value: 'taurus', label: 'Taurus' },
+  { dropDownType: 'star', value: 'gemini', label: 'Gemini' },
+  { dropDownType: 'star', value: 'cancer', label: 'Cancer' },
+  { dropDownType: 'star', value: 'leo', label: 'Leo' },
+  { dropDownType: 'star', value: 'virgo', label: 'Virgo' },
+  { dropDownType: 'star', value: 'libra', label: 'Libra' },
+  { dropDownType: 'star', value: 'scorpio', label: 'Scorpio' },
+  { dropDownType: 'star', value: 'sagittarius', label: 'Sagittarius' },
+  { dropDownType: 'star', value: 'capricon', label: 'Capricon' },
+  { dropDownType: 'star', value: 'aquarius', label: 'Aquarius' },
+  { dropDownType: 'star', value: 'pisces', label: 'Pisces' },
+
+];
+
 export const SkinTone = [
   { dropDownType: 'skinTone', value: 'Very Fair', label: 'Very Fair' },
   { dropDownType: 'skinTone', value: 'Fair', label: 'Fair' },
@@ -90,6 +106,13 @@ export const BodyType = [
   { dropDownType: 'bodyType', value: 'Slim', label: 'Slim' },
   { dropDownType: 'bodyType', value: 'Athletic', label: 'Athletic' },
   { dropDownType: 'bodyType', value: 'Heavy', label: 'Heavy' },
+];
+export const MovieGenre = [
+  { dropDownType: 'movieGenre', value: 'sciencefiction', label: 'Science Fiction' },
+  { dropDownType: 'movieGenre', value: 'action', label: 'Action' },
+  { dropDownType: 'movieGenre', value: 'horror', label: 'Horror' },
+  { dropDownType: 'movieGenre', value: 'comady', label: 'Comady' },
+  { dropDownType: 'movieGenre', value: 'romance', label: 'Romance' },
 ];
 
 export const HairType = [

@@ -7,6 +7,7 @@ import Footer from 'components/Footer';
 import Signin from 'components/Auth/Signin';
 
 import HomePage from 'containers/HomePage/Loadable';
+import SecondDashboard from 'containers/SecondDashboard/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Backoffice from 'containers/Backoffice/Loadable';
@@ -60,15 +61,19 @@ const CustomRoutes = () => (
     <Switch>
       {/* User Routes */}
       <Route exact path="/" component={Home} /> {/* dashboard */}
-      <RouteWithUserLayout exact path="/my-shaadi" component={HomePage} /> {/* Profile setting */}
+      {/*
+      root profile
+      <RouteWithUserLayout exact path="/my-shaadi" component={HomePage} />
+       */}
+      <RouteWithUserLayout exact path="/my-shaadi" component={SecondDashboard} /> {/* Profile setting */}
       <RouteWithUserLayout path="/my-shaadi/profile" component={MyProfile} />
       <RouteWithUserLayout
         path="/my-shaadi/edit-profile"
-        component={EditProfileContainer}
+        component={EditProfileContainer} 
       />
       <RouteWithUserLayout
         path="/my-shaadi/edit-preferences"
-        component={EditPreferences}
+        component={EditPreferences} 
       />
       <RouteWithUserLayout path="/my-shaadi/setting" component={SettingPage} />
       <RouteWithUserLayout
@@ -76,11 +81,11 @@ const CustomRoutes = () => (
         component={() => (
           <h1>
           photos</h1>
-      )}
+      )} 
       />
       <RouteWithUserLayout
         path="/my-shaadi/partner-preferences"
-        component={MyProfile}
+        component={MyProfile} 
       />
       <RouteWithUserLayout path="/my-shaadi/shortlist" component={ShortListPage} /> {/* Advance search for Bride/Groom */}
       <RouteWithUserLayout path="/my-shaadi/search" component={SearchContainer} />
@@ -97,7 +102,7 @@ const CustomRoutes = () => (
           <h1>
           backoffice/help route wroking
         </h1>
-      )}
+      )} 
       />
       <RouteWithAdminLayout
         path="/backoffice/setting"
@@ -105,7 +110,7 @@ const CustomRoutes = () => (
           <h1>
           backoffice/setting route wroking
         </h1>
-      )}
+      )} 
       />
       <RouteWithAdminLayout path="/backoffice/signin" component={Signin} /> {/* Global layout */}
       <RouteWithGlobalLayout path="/my-shaadi/searchusers" component={SearchUsers} />
