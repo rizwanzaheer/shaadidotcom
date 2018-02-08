@@ -88,3 +88,269 @@ console.log(result);
 // expected output: Array ["exuberant", "destruction", "present"]
 
 *****/
+
+// str.toLowerCase();
+// Try it Yourself »
+
+
+// function capitalize(s){
+//   return s.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
+// };
+
+// capitalize('this IS THE wOrst string eVeR');
+
+
+*****/
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/test');
+
+var Doc = mongoose.model('Test', new mongoose.Schema({
+  x: mongoose.Schema.Types.Decimal
+}));
+
+Doc.create({ x: '0.1' }).
+  then(doc => doc.update({ $inc: { x: '0.2' } }).then(() => doc)).
+  then(doc => Doc.findById(doc)).
+  then(doc => console.log('doc', doc.toObject())).
+  catch(error => console.error(error));
+
+// Output
+doc { _id: 588a5a0b9621524d3d84a059,
+  x: { '$numberDecimal': '0.3' },
+  __v: 0 }
+
+  *****/
+
+  *****/
+How to limit number of updating documents in mongodb
+
+db.collection.find().limit(db.collection.count() / 2).forEach(
+    function (e) {
+        e.newField = 1;
+        db.collection.save(e);
+    }
+);
+
+db.collection.update( { newField : { $exists : false } }, { $set : { newField : 2 } }, {multi : true} );
+
+OR
+ids = People.where(firstname: 'Pablo').limit(10000).only(:_id).to_a.map(&:id)
+People.in(_id: ids).update_all(lastname: 'Cantero')
+
+OR
+
+ids = db.collection.find(<condition>).limit(<limit>).map(
+    function(doc) {
+        return doc._id;
+    }
+);
+db.collection.updateMany({_id: {$in: ids}}, <update>})
+
+OR 
+db.collection.find(<condition>).limit(<limit>).forEach(function(doc){db.collection.update({_id:doc._id},{<your update>})}
+  *****/
+
+  *****/
+  // With a JSON doc
+Person.
+  find({
+    occupation: /host/,
+    'name.last': 'Ghost',
+    age: { $gt: 17, $lt: 66 },
+    likes: { $in: ['vaporizing', 'talking'] }
+  }).
+  limit(10).
+  sort({ occupation: -1 }).
+  select({ name: 1, occupation: 1 }).
+  exec(callback);
+  
+// Using query builder
+Person.
+  find({ occupation: /host/ }).
+  where('name.last').equals('Ghost').
+  where('age').gt(17).lt(66).
+  where('likes').in(['vaporizing', 'talking']).
+  limit(10).
+  sort('-occupation').
+  select('name occupation').
+  exec(callback);
+
+    *****/
+
+*****/
+populate Story
+
+    Story.
+  findOne({ title: 'Casino Royale' }).
+  populate('author').
+  exec(function (err, story) {
+    if (err) return handleError(err);
+    console.log('The author is %s', story.author.name);
+    // prints "The author is Ian Fleming"
+  });
+
+  *****/
+
+  *****/
+
+var str = "How are you doing today?";
+var res = str.split(" ", 3);
+
+  *****/
+*****/
+nor query in Mongoose not working with _id field
+
+var excludeList = [];
+
+req.body.members.forEach(function(member){ 
+    //members have a user field which is an ObjectID
+    excludeList.push( member.user );
+});
+
+// And finally the current id value
+excludeList.push( req.user._id );
+
+User.find(
+   { 
+       "$or": [
+            { "displayName": { "$regex": re } },
+            { "email": { "$regex": re } }
+       ],
+       "_id": { "$nin": excludeList }
+   },
+   'displayName email',
+   function(err,users) {
+       // work with results here
+
+   }
+);
+
+If you really insist on using the "helper methods", then you join them up like this:
+User.find().or([
+    { "displayName": { "$regex": re } },
+    { "email": { "$regex": re } }
+]).where("_id").nin(excludeList)
+.select("displayName email")
+.exec(function(err,users) {
+   // work with content here
+});
+*****/  
+*****/  
+
+var obj = {
+ arr: [
+    { id: 1, name: "larry" },    
+    { id: 2, name: "curly" },
+    { id: 3, name: "moe" }
+ ]
+};
+var moe = obj["arr[0].name"];
+*****/  
+
+*****/  
+Access / process (nested) objects, arrays or JSON
+
+const obj = {
+  a: 1
+ ,b: 2
+ ,c: 3
+}
+
+console.log(Object.keys(obj)) // ['a', 'b', 'c']
+console.log(Object.values(obj)) // [1, 2, 3]
+console.log(Object.entries(obj)) // [['a', 1], ['b', 2], ['c', 3]]
+*****/ 
+
+*****/ 
+const arr = [1, 2, 3]
+
+// true, because every element is greater than 0
+console.log(arr.every(x => x > 0))
+// false, because 3^2 is greater than 5
+console.log(arr.every(x => Math.pow(x, 2) < 5))
+// true, because 2 is even (the remainder from dividing by 2 is 0)
+console.log(arr.some(x => x % 2 === 0))
+// false, because none of the elements is equal to 5
+console.log(arr.some(x => x === 5))
+*****/  
+
+*****/  
+const arr = [1, 2, 3]
+
+// 2, because 2^2 !== 2
+console.log(arr.find(x => x !== Math.pow(x, 2)))
+// 1, because it's the first element
+console.log(arr.find(x => true))
+// undefined, because none of the elements equals 7
+console.log(arr.find(x => x === 7))
+
+// [2, 3], because these elements are greater than 1
+console.log(arr.filter(x => x > 1))
+// [1, 2, 3], because the function returns true for all elements
+console.log(arr.filter(x => true))
+// [], because none of the elements equals neither 6 nor 7
+console.log(arr.filter(x => x === 6 || x === 7))
+*****/  
+
+*****/  
+const arr = [1, 2, 3]
+
+console.log(arr.map(x => x + 1)) // [2, 3, 4]
+console.log(arr.map(x => String.fromCharCode(96 + x))) // ['a', 'b', 'c']
+console.log(arr.map(x => x)) // [1, 2, 3] (no-op)
+console.log(arr.map(x => Math.pow(x, 2))) // [1, 4, 9]
+console.log(arr.map(String)) // ['1', '2', '3']
+*****/
+
+*****/
+const arr = [1, 2, 3]
+
+// Sum of array elements.
+console.log(arr.reduce((a, b) => a + b)) // 6
+// The largest number in the array.
+console.log(arr.reduce((a, b) => a > b ? a : b)) // 3
+*****/
+
+*****/
+const sum = arr => arr.reduce((a, b) => a + b, 0)
+
+console.log(sum([]))     // 0
+console.log(sum([4]))    // 4
+console.log(sum([2, 5])) // 7
+*****/
+
+*****/
+var data = 'Peter';
+
+db.User.find({'name' : new RegExp(data, 'i')}, function(err, docs){
+    cb(docs);
+});
+*****/
+*****/
+db.inventory.find( { $nor: [ { price: 1.99 }, { sale: true } ]  } )
+db.inventory.find( { $nor: [ { price: 1.99 }, { qty: { $lt: 20 } }, { sale: true } ] } )
+$nor and $exists¶
+db.inventory.find( { $nor: [ { price: 1.99 }, { price: { $exists: false } },
+                             { sale: true }, { sale: { $exists: false } } ] } )
+*****/
+
+
+*****/
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+console.log(animals.slice(2));
+// expected output: Array ["camel", "duck", "elephant"]
+
+console.log(animals.slice(2, 4));
+// expected output: Array ["camel", "duck"]
+
+console.log(animals.slice(1, 5));
+// expected output: Array ["bison", "camel", "duck", "elephant"]
+
+*****/
+
+
+export database 
+mongoexport -d shaadiDotCom -c users -o testingDatabase.json
+mongoimport -d test(database name) -c users(collection name) users.json
