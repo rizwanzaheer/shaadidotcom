@@ -91,7 +91,6 @@ export const Star = [
   { dropDownType: 'star', value: 'capricon', label: 'Capricon' },
   { dropDownType: 'star', value: 'aquarius', label: 'Aquarius' },
   { dropDownType: 'star', value: 'pisces', label: 'Pisces' },
-
 ];
 
 export const SkinTone = [
