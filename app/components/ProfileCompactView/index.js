@@ -21,10 +21,12 @@ class ProfileCompactView extends React.Component {
       age,
       height,
       religion,
+      weight,
       motherTongue,
       _id,
       image,
       city,
+      annualIncome,
       gender,
       country,
     } = this.props.data;
@@ -45,7 +47,7 @@ class ProfileCompactView extends React.Component {
               {fname || 'N/A'}&nbsp;{lname || 'N/A'}
             </NavLink>
           </p>
-          <p>{`${age || 'N/A'}, ${height || 'N/A'}'', ${religion ||
+          <p>{`${`${age}y` || 'N/A'}, ${height || 'N/A'}'', ${weight}kg, ${annualIncome} ${religion ||
             'N/A'}, ${motherTongue || 'N/A'}`}</p>
           <p>
             {city || 'N/A'}, &nbsp;
