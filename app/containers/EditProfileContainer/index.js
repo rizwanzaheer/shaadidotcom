@@ -347,6 +347,26 @@ export class EditProfileContainer extends React.Component {
                   type="date"
                   inputChange={this.inputChange}
                 />
+
+                <Input
+                  id="height"
+                  label="Height (e.g 5.5)"
+                  placeholder="Enter height eg. 5.5"
+                  value={height}
+                  name="height"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+                <Input
+                  id="weight"
+                  label="Weight (e.g 65kg)"
+                  placeholder="Enter Weight in Kg"
+                  value={weight}
+                  name="weight"
+                  type="text"
+                  inputChange={this.inputChange}
+                />
+
                 <div className="form-group">
                   <Dropdown
                     label="Status"
@@ -356,7 +376,7 @@ export class EditProfileContainer extends React.Component {
                     dropDownType={status}
                   />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <Dropdown
                     label="Star"
                     dropDownChangeHandler={this.dropDownChangeHandler}
@@ -364,7 +384,7 @@ export class EditProfileContainer extends React.Component {
                     defaultValue={star}
                     dropDownType={star}
                   />
-                </div>
+                </div> */}
                 <div className="form-group">
                   <Dropdown
                     label="Movie Genre"
@@ -394,7 +414,7 @@ export class EditProfileContainer extends React.Component {
                 />
                 <Input
                   id="annualIncome"
-                  label="Annual Income"
+                  label="Annual Income (e.g 30000)"
                   placeholder="Enter your Annual Income"
                   value={annualIncome}
                   name="annualIncome"
@@ -444,7 +464,7 @@ export class EditProfileContainer extends React.Component {
                     options={Community}
                     defaultValue={community}
                     dropDownType={community}
-                    label="Community"
+                    label="Caste"
                   />
                 </div>
 
@@ -467,25 +487,6 @@ export class EditProfileContainer extends React.Component {
                     dropDownType={motherTongue}
                   />
                 </div>
-
-                <Input
-                  id="height"
-                  label="Height"
-                  placeholder="Enter height eg. 5.5"
-                  value={height}
-                  name="height"
-                  type="text"
-                  inputChange={this.inputChange}
-                />
-                <Input
-                  id="weight"
-                  label="Weight"
-                  placeholder="Enter Weight in Kg"
-                  value={weight}
-                  name="weight"
-                  type="text"
-                  inputChange={this.inputChange}
-                />
 
                 <div className="form-group">
                   <Dropdown

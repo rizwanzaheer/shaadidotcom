@@ -6,6 +6,7 @@
 
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
@@ -34,25 +35,48 @@ export class SecondDashboard extends React.Component {
       users: [],
       testname: '',
       searchByName: '',
+      totalCount: 0,
     };
   }
 
   componentWillMount() {
-    !USERDETAIL.fname ? (window.location.href = '/my-shaadi/edit-profile') : '';
-    console.log('gender is: ', USERDETAIL.gender);
+    try {
+      axios
+        .post(`${nodeApiServerUrl}/api/getuserdetail`, {
+          userId: USERDETAIL._id,
+        })
+        .then(({ data: { user }, status, statusText }) => {
+          if (status === 200 && statusText === 'OK') {
+            console.log("user detail is: ", user);
+            !user.fname ? (window.location.href = '/my-shaadi/edit-profile') : '';
+            // Object.entries(user).forEach(([key, value]) => {
+            //   const newValue =
+            //     key === 'dob' ? moment(value).format('YYYY-MM-DD') : value;
+            //   this.setState({ [key]: newValue });
+            // });
+            // console.log('this state: ', this.state);
+          }
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+    // !USERDETAIL.fname ? (window.location.href = '/my-shaadi/edit-profile') : '';
     axios
-      .post(`${nodeApiServerUrl}/api/getmatchusersprofile`, {
-        gender: USERDETAIL.gender === 'Male' ? 'Female' : 'Male',
-        userId: this.state.userId,
-      })
-      .then(({ data: { users }, status, statusText }) => {
-        console.log('users is: ', users);
-        if (status === 200 && statusText === 'OK') {
-          console.log('users: ', users);
-          this.setState({
-            users,
-          });
-        }
+    .post(`${nodeApiServerUrl}/api/getmatchusersprofile`, {
+      gender: USERDETAIL.gender === 'Male' ? 'Female' : 'Male',
+      userId: this.state.userId,
+    })
+    .then(({ data: { users, totalCount }, status, statusText }) => {
+      console.log('users is: ', users);
+      // if (status === 200 && statusText === 'OK') {
+        console.log('users: ', users);
+        this.setState({
+          users,
+          totalCount,
+        });
+        console.log('user detail is: ', USERDETAIL.gender);
+        // }
       })
       .catch((error) => {
         console.log(error);
@@ -71,7 +95,7 @@ export class SecondDashboard extends React.Component {
     this.props.history.push(`my-shaadi/searchusers?fname=${newSearchByName}`);
   };
   render() {
-    const { fName, lName, users } = this.state;
+    const { fName, lName, users, totalCount } = this.state;
     return (
       <article className="home-page-container">
         <Helmet>
@@ -98,8 +122,7 @@ export class SecondDashboard extends React.Component {
                       }}
                     >
                       <div className="new-match-container">
-                        <h5>My Matches</h5>
-
+                        <h5>My Matches ({totalCount})</h5>
                         {/* list of all user present in Db */}
                         {/* Single user call profilecompactive */}
                         {users.map((value) => (
@@ -111,7 +134,7 @@ export class SecondDashboard extends React.Component {
                           <h6 className="text-center">
                             No perfect match for you in our Record!!!
                             <br />
-                            Please Set the Partner Preferences.
+                            Please Set your Preferences.
                           </h6>
                         )}
                       </div>
@@ -181,4 +204,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'secondDashboard', reducer });
 const withSaga = injectSaga({ key: 'secondDashboard', saga });
 
-export default compose(withReducer, withSaga, withConnect)(SecondDashboard);
+export default withRouter(compose(withReducer, withSaga, withConnect)(SecondDashboard));

@@ -175,6 +175,7 @@ export class MyProfile extends React.Component {
       weight,
       city,
       country,
+      familyAffluence,
       image,
       partnerPreferences,
     } = this.state;
@@ -264,20 +265,22 @@ export class MyProfile extends React.Component {
                 <p>Marital Status : {status || 'N/A'}</p>
                 <p>Hight : {`${height}''` || 'N/A'}</p>
                 <p>Smoke : {smoke || 'N/A'}</p>
+                <p>family Affluence : {familyAffluence || 'N/A'}</p>
                 <p>Blood group : {bloodGroup || 'N/A'}</p>
-                <p>City : {city || 'N/A'}</p>
                 <p>movie Genre : {movieGenre || 'N/A'}</p>
                 <p>Annual Income : {`${annualIncome || 0} k` || 'N/A'}</p>
+                <p>City : {city || 'N/A'}</p>
                 <p>country : {country || 'N/A'}</p>
               </div>
               <div className="col-6">
                 <p>Last Name : {lname || 'N/A'}</p>
-                <p>Gender : {gender || 'N/A'}</p>
                 <p>star : {star || 'N/A'}</p>
+                <p>Gender : {gender || 'N/A'}</p>
                 <p>ethenic : {ethenic || 'N/A'}</p>
+                <p>weight : {`${weight} kg` || 'N/A'}</p>
                 <p>religion : {religion || 'N/A'}</p>
                 <p>education : {education || 'N/A'}</p>
-                <p>weight : {`${weight} kg` || 'N/A'}</p>
+                
                 <p>drink : {drink || 'N/A'}</p>
                 <p>sport : {sport || 'N/A'}</p>
                 <p>community : {community || 'N/A'}</p>
@@ -296,23 +299,24 @@ export class MyProfile extends React.Component {
             <hr />
             <div className="row">
               <div className="col-6">
-                <p>from Age : {`${partnerPreferences.fromAge} y` || 'N/A'}</p>
+                {/* <p>from Age : {`${partnerPreferences.fromAge} y` || 'N/A'}</p> */}
                 <p>
                   Mother tounge : {partnerPreferences.motherTongue || 'N/A'}
                 </p>
                 <p>Marital Status : {partnerPreferences.status || 'N/A'}</p>
                 <p>Hight : {`${partnerPreferences.height}''` || 'N/A'}</p>
+                <p>weight : {`${partnerPreferences.weight}kg` || 'N/A'}</p>
                 {/* <p>City : {partnerPreferences.city || 'N/A'}</p> */}
                 {/* <p>country : {partnerPreferences.country || 'N/A'}</p> */}
                 <p>body Type : {partnerPreferences.bodyType || 'N/A'}</p>
                 <p>skinTone : {partnerPreferences.skinTone || 'N/A'}</p>
-                <p>Smoke : {partnerPreferences.smoke || 'N/A'}</p>
                 <p>sport : {partnerPreferences.sport || 'N/A'}</p>
+                <p>Smoke : {partnerPreferences.smoke || 'N/A'}</p>
                 <p>ethenic : {partnerPreferences.ethenic || 'N/A'}</p>
                 {/* <p>province : {partnerPreferences.province || 'N/A'}</p> */}
               </div>
               <div className="col-6">
-                <p>To age : {`${partnerPreferences.toAge} y` || 'N/A'}</p>
+                {/* <p>To age : {`${partnerPreferences.toAge} y` || 'N/A'}</p> */}
                 <p>religion : {partnerPreferences.religion || 'N/A'}</p>
                 {/* <p>education : {partnerPreferences.education || 'N/A'}</p> */}
                 {/* <p>weight : {partnerPreferences.weight || 'N/A'}</p> */}

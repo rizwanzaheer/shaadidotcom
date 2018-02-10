@@ -134,6 +134,11 @@ export class FindUser extends React.Component {
       fname,
       lname,
       hairType,
+      sport,
+      ethenic,
+      movieGenre,
+      star,
+      annualIncome,
       // healthInformation,
       gender,
       motherTongue,
@@ -154,7 +159,7 @@ export class FindUser extends React.Component {
         </Helmet>
         <div className="row custom-user-container">
           <div className="col-lg-4 col-4 custom-user-image-wrapper">
-            <h3>
+            <h3 style={{ textTransform: 'capitalize'}}>
               {fname || 'N/A'} {lname || 'N/A'}
             </h3>
             <ImageThumbnail image={newImage} name="test" />
@@ -181,7 +186,7 @@ export class FindUser extends React.Component {
                     <p>
                       <i className="fa fa-user" aria-hidden="true" />
                       {age ? `${age} years` : 'N/A'},{' '}
-                      {height ? `${height} inc` : 'N/A'},{' '}
+                      {height ? `${height}''` : 'N/A'},{' '}
                       {weight ? `${weight} kg` : 'N/A'}
                     </p>
                     <p>
@@ -221,12 +226,12 @@ export class FindUser extends React.Component {
                     <p>
                       <i className="fa fa-user" aria-hidden="true" />
                       {age ? `${age} years` : 'N/A'},{' '}
-                      {height ? `${height} inc` : 'N/A'},{' '}
+                      {height ? `${height}''` : 'N/A'},{' '}
                       {weight ? `${weight} kg` : 'N/A'}
                     </p>
                     <p>
                       <i className="fa fa-beer" aria-hidden="true" />
-                      {drink ? `${drink}` : 'N/A'}
+                      {sport ? `${sport}` : 'N/A'}
                     </p>
                     <p>
                       <i className="fa fa-graduation-cap" aria-hidden="true" />
@@ -237,10 +242,14 @@ export class FindUser extends React.Component {
                       {motherTongue ? `${motherTongue}` : 'N/A'}
                     </p>
                     <p>
+                      <i className="fa fa-beer" aria-hidden="true" />
+                      {drink ? `${drink}` : 'N/A'}
+                    </p>
+                    <p>
                       {' '}
                       <b>Status</b>: {status ? `${status}` : 'N/A'}
                     </p>
-                    <p>
+                    {/* <p>
                       {' '}
                       <b>Date of birth</b>:{' '}
                       {moment(dob) ? (
@@ -248,6 +257,22 @@ export class FindUser extends React.Component {
                       ) : (
                         'N/A'
                       )}
+                    </p> */}
+                    <p>
+                      {' '}
+                      <b>star</b>: {star ? `${star}` : 'N/A'}
+                    </p>
+                    <p>
+                      {' '}
+                      <b>movie Genre</b>: {movieGenre ? `${movieGenre}` : 'N/A'}
+                    </p>
+                    <p>
+                      {' '}
+                      <b>ethenic</b>: {ethenic ? `${ethenic}` : 'N/A'}
+                    </p>
+                    <p>
+                      {' '}
+                      <b>Annual income</b>: {annualIncome ? `${annualIncome}` : 'N/A'}
                     </p>
                     <p>
                       {' '}
@@ -255,7 +280,7 @@ export class FindUser extends React.Component {
                     </p>
                     <p>
                       {' '}
-                      <b>Community</b>: {community ? `${community}` : 'N/A'}
+                      <b>Caste</b>: {community ? `${community}` : 'N/A'}
                     </p>
                     <p>
                       {' '}
@@ -287,7 +312,7 @@ export class FindUser extends React.Component {
                     </p>
                     <p>
                       <i className="fa fa-globe" aria-hidden="true" />
-                      {city ? `${city}, ${province}, ${country}` : 'N/A'}
+                      {city ? `${`${city}, `}${`${province}, `}${country}` : 'N/A'}
                     </p>
                   </div>
                 </div>
