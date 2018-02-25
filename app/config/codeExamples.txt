@@ -354,3 +354,7 @@ console.log(animals.slice(1, 5));
 export database 
 mongoexport -d shaadiDotCom -c users -o testingDatabase.json
 mongoimport -d test(database name) -c users(collection name) users.json
+
+for MLab
+mongoimport -h ds123136.mlab.com:23136 -d shaadidotcom -c <collection> -u <user> -p <password> --file <input file>
+mongoimport -h ds123136.mlab.com:23136 -d shaadidotcom -c shortlists -u admin -p admin --file shortlists.json
