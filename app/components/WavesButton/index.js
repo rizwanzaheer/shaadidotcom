@@ -16,7 +16,6 @@ class WavesButton extends React.Component {
         onClick={(e) => {
           e.preventDefault();
           this.props.clickHandler(e);
-          console.log('search btn click');
         }}
       >
         {this.props.label}{' '}

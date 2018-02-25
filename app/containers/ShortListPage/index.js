@@ -40,9 +40,7 @@ export class ShortListPage extends React.Component {
         })
         .then((users) => {
           console.log('users: ', users);
-          this.setState({ shortlistUsers: users.data.user }, () =>
-            console.log('this.state: ', this.state)
-          );
+          this.setState({ shortlistUsers: users.data.user });
         })
         .catch((error) => {
           console.log(error);

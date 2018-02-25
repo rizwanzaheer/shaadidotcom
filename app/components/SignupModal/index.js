@@ -56,7 +56,6 @@ class SignupModal extends React.Component {
     axios
       .post(`${nodeApiServerUrl}/signup`, { password, gender, email })
       .then((res) => {
-        console.log(res);
         SweetAlertPopup(
            'Successfuly Signup',
            'You have successfuly Signup, Now go and login to use serveice.',

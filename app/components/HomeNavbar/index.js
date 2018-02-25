@@ -49,14 +49,12 @@ class HomeNavbar extends React.Component {
     });
   }
   signupClickHandler() {
-    console.log('signup click handler call!');
     this.onCloseModal();
     this.setState({
       isOpenSignupModal: true,
     });
   }
   loginClickHandler() {
-    console.log('loginClickHandler working!');
     this.onCloseModal();
     this.setState({
       isOpenSignupModal: false,
@@ -64,7 +62,6 @@ class HomeNavbar extends React.Component {
     });
   }
   forgetPasswordClickHandler() {
-    console.log('forget click handler');
     this.onCloseModal();
     this.setState({
       isOpenForgetPasswordModal: true,

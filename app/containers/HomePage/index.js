@@ -43,7 +43,6 @@ export class HomePage extends React.PureComponent {
 
   componentWillMount() {
     !USERDETAIL.fname ? (window.location.href = '/my-shaadi/edit-profile') : '';
-    console.log('gender is: ', USERDETAIL.gender);
     axios
       .post(`${nodeApiServerUrl}/api/getusers`, {
         gender: USERDETAIL.gender === 'Male' ? 'Female' : 'Male',
@@ -51,7 +50,6 @@ export class HomePage extends React.PureComponent {
       })
       .then(({ data: { users }, status, statusText }) => {
         if (status === 200 && statusText === 'OK') {
-          console.log('users: ', users);
           this.setState({
             users,
           });
@@ -67,10 +65,9 @@ export class HomePage extends React.PureComponent {
     // this.props.onSubmitForm(); }
   }
   clickHandler = () => {
-    // console.log('clickHandler is working!!!!');
     const { searchByName } = this.state;
     const newSearchByName = searchByName.toUpperCase();
-      // searchByName.charAt(0).toUpperCase() + searchByName.slice(1);
+    // searchByName.charAt(0).toUpperCase() + searchByName.slice(1);
     this.props.history.push(`my-shaadi/searchusers?fname=${newSearchByName}`);
   };
   render() {
@@ -141,12 +138,7 @@ export class HomePage extends React.PureComponent {
                                   this.setState(
                                     {
                                       searchByName: e.target.value,
-                                    },
-                                    () =>
-                                      console.log(
-                                        'this. staet',
-                                        this.state.searchByName
-                                      )
+                                    }
                                   )}
                               />
                             </div>

@@ -54,19 +54,14 @@ export class SearchUsers extends React.Component {
     this.getData(0);
   }
   onChange = (page) => {
-    console.log(page);
     this.getData((page - this.state.defaultPage) * this.state.defaultPageSize);
     this.setState(
       {
         current: page,
       },
-      () => console.log('this state: ', this.state)
     );
-    console.log();
   };
   getData = (skipRecords) => {
-    console.log(skipRecords);
-    console.log('this.props: ', this.props.location.search);
     const query = new URLSearchParams(this.props.history.location.search);
 
     const gender = query.get('gender');
@@ -86,22 +81,6 @@ export class SearchUsers extends React.Component {
     const bloodgroup = query.get('bloodgroup');
     const fname = query.get('fname');
     const pageType = query.get('pageType');
-    console.log('gender: ', gender);
-    console.log('gender: ', fromage);
-    console.log('gender: ', toage);
-    console.log('gender: ', religion);
-    console.log('gender: ', mothertongue);
-    console.log('gender: ', matrialStatus);
-    console.log('gender: ', community);
-    console.log('gender: ', skintone);
-    console.log('gender: ', bodytype);
-    console.log('gender: ', hairtype);
-    console.log('gender: ', familyaffluence);
-    console.log('gender: ', drink);
-    console.log('gender: ', bloodgroup);
-    console.log('gender: ', smoke);
-    console.log('gender: ', height);
-    console.log('pageType is: ', pageType);
     if (fname) {
       axios
         .post(`${nodeApiServerUrl}/api/search/getuserbyname`, {
@@ -111,7 +90,6 @@ export class SearchUsers extends React.Component {
           // resultLimit: ,
         })
         .then((users) => {
-          console.log('users: ', users);
           this.setState({
             users: users.data.users,
             totalPageSize:
@@ -145,7 +123,6 @@ export class SearchUsers extends React.Component {
           pageType,
         })
         .then((users) => {
-          console.log('result data: ', users);
           this.setState({
             users: users.data.users,
             totalPageSize:
@@ -171,7 +148,6 @@ export class SearchUsers extends React.Component {
   };
   render() {
     const { users, defaultPage, totalPageSize, defaultPageSize } = this.state;
-    console.log('totalPageSize ', totalPageSize);
     return (
       <div className="container">
         <Helmet>

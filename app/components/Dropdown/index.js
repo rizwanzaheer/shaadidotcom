@@ -24,13 +24,11 @@ class Dropdown extends React.Component {
     });
   }
   logChange(val) {
-    console.log('value is :', val);
     const newValue = val === undefined || val === null ? '' : val.value;
     if (newValue) {
       this.props.dropDownChangeHandler(val);
       this.setState({ selectedValue: newValue });
     } else {
-      console.log('working');
       // this.props.dropDownChangeHandler({
       //   dropDownType: 'rizwan',
       //   value: 'zaheer',
@@ -39,8 +37,6 @@ class Dropdown extends React.Component {
     }
   }
   render() {
-    console.log('this.state.selectedValue: ', this.state.selectedValue);
-    console.log('this.props.options: ', this.props.options);
     return (
       <div>
         {this.props.label && (

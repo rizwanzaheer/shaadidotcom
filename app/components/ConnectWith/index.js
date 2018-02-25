@@ -43,7 +43,6 @@ class ConnectWith extends React.Component {
   };
   handleOk = () => {
     const { message, _id } = this.state;
-    console.log('send email working', _id);
     if (message) {
       try {
         axios
@@ -55,7 +54,6 @@ class ConnectWith extends React.Component {
             profileId: USERDETAIL._id,
           })
           .then((mes) => {
-            console.log('message is: ', mes);
             if (mes.status === 200 && mes.statusText === 'OK') {
               SweetAlertPopup(
                 'Email Send',
@@ -82,8 +80,6 @@ class ConnectWith extends React.Component {
   };
 
   yesClickHandler = (_id) => {
-    console.log('yes click: ', _id);
-    console.log('USERDETAIL id: ', USERDETAIL._id);
     this.showModal();
     this.setState({
       _id,
@@ -101,7 +97,6 @@ class ConnectWith extends React.Component {
     // }
   };
   noClickHandler = (_id) => {
-    console.log('no click', _id);
     try {
       axios
         .patch(`${nodeApiServerUrl}/api/adduserinrejectedlist`, {
@@ -109,7 +104,6 @@ class ConnectWith extends React.Component {
           profileId: _id,
         })
         .then(({ data, status, statusText }) => {
-          console.log('user is: ', data);
           if (status === 200 && statusText === 'OK') {
             if (data.message === 'Member is Already in your Rejected List!') {
               SweetAlertPopup('Not Added', data.message, 'info');
@@ -128,7 +122,6 @@ class ConnectWith extends React.Component {
     }
   };
   mayBeClickHandler = (_id) => {
-    console.log('maybe click', _id);
     try {
       axios
         .post(`${nodeApiServerUrl}/api/adduserinshortlist`, {
@@ -136,7 +129,6 @@ class ConnectWith extends React.Component {
           profileId: _id,
         })
         .then(({ data, status, statusText }) => {
-          console.log('user is: ', data);
           if (status === 200 && statusText === 'OK') {
             if (data.message === 'Member is Already in your Short List!') {
               SweetAlertPopup('Not Added', data.message, 'info');

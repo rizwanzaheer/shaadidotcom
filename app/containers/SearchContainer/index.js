@@ -38,7 +38,6 @@ import './SearchContainer.scss';
 
 import makeSelectSearchContainer from './selectors';
 
-console.log('gender is: ', USERDETAIL.gender);
 export class SearchContainer extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -70,17 +69,13 @@ export class SearchContainer extends React.Component {
     this.setState({
       [name]: value,
     });
-    console.log(`handle input change name: ${name}, value: ${value}`);
   }
 
   dropDownChangeHandler({ dropDownType, value }) {
-    console.log('testd');
-    console.log(`dropDownType: ${dropDownType}, value: ${value}`);
     this.setState(
       {
         [dropDownType]: value,
-      },
-      () => console.log('this.state:', this.state)
+      }
     );
   }
   linkCreation() {
@@ -101,8 +96,6 @@ export class SearchContainer extends React.Component {
       smoke,
       height,
     } = this.state;
-    console.log('this. state: ', this.state);
-    // return false;
     this.props.history.push(
       `searchusers?gender=${gender}&fromage=${fromAge}&toage=${toAge}&matrialStatus=${status}&religion=${religion}&mothertongue=${motherTongue}&community=${community}&skintone=${skinTone}&bodytype=${bodyType}&hairtype=${hairType}&familyaffluence=${familyAffluence}&drink=${drink}&smoke=${smoke}&height=${height}&pageType=advanceSearch`
     );
@@ -128,7 +121,6 @@ export class SearchContainer extends React.Component {
     });
   }
   clickHandler = () => {
-    // console.log('clickHandler is working!!!!');
     const { searchByName } = this.state;
     this.props.history.push(`searchusers?fname=${searchByName.toUpperCase()}`);
   };
@@ -325,7 +317,7 @@ export class SearchContainer extends React.Component {
                   />
                 </div>
               </div>
-{/* 
+              {/*
               <div className="form-group row">
                 <label
                   htmlFor="staticEmail"

@@ -69,23 +69,19 @@ class Signin extends Component {
           if (status === 200 && statusText === 'OK') {
             localStorage.setItem('user_token', data.token);
             localStorage.setItem('user_detail', JSON.stringify(data.user_detail));
-            console.log('user data: ', data);
             // window.history.push('/test');
             // window.history.push('/searchuser');
             window.location.pathname = 'my-shaadi';
-            console.log('successfuly Signin!');
           }
         })
         .catch((error) => {
-          const { status, statusText, data } = error.response;
+          const { status, statusText } = error.response;
           if (status === 401 && statusText === 'Unauthorized') {
             this.setState({
               notValidUser: true,
             });
           }
           console.log('catch', error.response);
-          console.log('status code: ', status);
-          console.log('status text: ', statusText);
         });
     }
   }

@@ -57,14 +57,11 @@ export class MyProfile extends React.Component {
   }
   componentWillMount() {
     try {
-      console.log('my profil will mount:', USERDETAIL._id);
       axios
         .post(`${nodeApiServerUrl}/api/getdetails`, {
           userId: USERDETAIL._id,
         })
         .then(({ data, status, statusText }) => {
-          console.log('working!');
-          console.log('my profile data: ', data);
           if (status === 200 && statusText === 'OK') {
             Object.entries(data.user).forEach(([key, value]) => {
               this.setState({ [key]: value });
@@ -73,9 +70,6 @@ export class MyProfile extends React.Component {
               {
                 ...this.state,
                 partnerPreferences: data.partnerPreferences,
-              },
-              () => {
-                console.log('this state: ', this.state);
               }
             );
           }
@@ -86,7 +80,6 @@ export class MyProfile extends React.Component {
     }
   }
   componentDidMount() {
-    console.log('did mount');
     // insert user record in db on fly
     // try {
     //   // axios.post(`${nodeApiServerUrl}/api/getdetails`, {

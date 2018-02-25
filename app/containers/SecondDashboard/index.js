@@ -47,7 +47,6 @@ export class SecondDashboard extends React.Component {
         })
         .then(({ data: { user }, status, statusText }) => {
           if (status === 200 && statusText === 'OK') {
-            console.log("user detail is: ", user);
             !user.fname ? (window.location.href = '/my-shaadi/edit-profile') : '';
             // Object.entries(user).forEach(([key, value]) => {
             //   const newValue =
@@ -63,20 +62,15 @@ export class SecondDashboard extends React.Component {
     }
     // !USERDETAIL.fname ? (window.location.href = '/my-shaadi/edit-profile') : '';
     axios
-    .post(`${nodeApiServerUrl}/api/getmatchusersprofile`, {
-      gender: USERDETAIL.gender === 'Male' ? 'Female' : 'Male',
-      userId: this.state.userId,
-    })
-    .then(({ data: { users, totalCount }, status, statusText }) => {
-      console.log('users is: ', users);
-      // if (status === 200 && statusText === 'OK') {
-        console.log('users: ', users);
+      .post(`${nodeApiServerUrl}/api/getmatchusersprofile`, {
+        gender: USERDETAIL.gender === 'Male' ? 'Female' : 'Male',
+        userId: this.state.userId,
+      })
+      .then(({ data: { users, totalCount } }) => {
         this.setState({
           users,
           totalCount,
         });
-        console.log('user detail is: ', USERDETAIL.gender);
-        // }
       })
       .catch((error) => {
         console.log(error);
@@ -88,7 +82,6 @@ export class SecondDashboard extends React.Component {
     // this.props.onSubmitForm(); }
   }
   clickHandler = () => {
-    // console.log('clickHandler is working!!!!');
     const { searchByName } = this.state;
     const newSearchByName = searchByName.toUpperCase();
     // searchByName.charAt(0).toUpperCase() + searchByName.slice(1);
@@ -161,12 +154,7 @@ export class SecondDashboard extends React.Component {
                                   this.setState(
                                     {
                                       searchByName: e.target.value,
-                                    },
-                                    () =>
-                                      console.log(
-                                        'this. staet',
-                                        this.state.searchByName
-                                      )
+                                    }
                                   )}
                               />
                             </div>

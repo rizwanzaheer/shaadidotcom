@@ -44,7 +44,6 @@ class FileUpload extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log('working');
     const { userId, imagePreviewUrl } = this.state;
     // this.props.imageChange(userId, imagePreviewUrl);
     !imagePreviewUrl

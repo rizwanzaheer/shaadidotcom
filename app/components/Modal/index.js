@@ -53,7 +53,6 @@ class SignInModal extends React.Component {
   emailValidatorHandler = () => {
     const isValid = EmailValidator.validate(this.state.email);
     this.setState({ isEmailChange: true });
-    console.log('before setting ', this.state.isEmailValid);
     isValid
       ? this.setState({
         isEmailValid: false,
@@ -94,7 +93,6 @@ class SignInModal extends React.Component {
         .catch((error) => {
           const { status, statusText, data } = error.response;
           const dataError = data.error;
-          console.log('data error: ', dataError);
           if (status === 401 && statusText === 'Unauthorized') {
             this.setState({
               notValidUser: true,
@@ -109,8 +107,6 @@ class SignInModal extends React.Component {
             }
           }
           console.log('catch', error.response);
-          console.log('status code: ', status);
-          console.log('status text: ', statusText);
         });
     }
   }

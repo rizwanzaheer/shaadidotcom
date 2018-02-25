@@ -39,8 +39,6 @@ class SingleProfileComponent extends React.Component {
       religion,
       status,
     } = this.props.data;
-    console.log('single profile component data: ', status);
-    console.log('data is: ', _id);
     const avator = gender === 'Male' ? MaleAvator : femaleAvator;
     const newImage = image || avator;
     return (

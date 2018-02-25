@@ -40,8 +40,6 @@ export function namefunc(data) {
 }
 
 export function imageChange(userId, imagePreviewUrl) {
-  // return
-  console.log('userid ', userId);
   return (dispatch) => {
     axios
       .post(`${nodeApiServerUrl}/api/upload`, {
@@ -49,7 +47,6 @@ export function imageChange(userId, imagePreviewUrl) {
         imageUrl: imagePreviewUrl,
       })
       .then((data) => {
-        console.log('succes data: ', data);
         dispatch(namefunc(data.data.new_user_detail));
         localStorage.setItem(
           'user_detail',
