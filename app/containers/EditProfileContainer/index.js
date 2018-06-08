@@ -56,14 +56,16 @@ export class EditProfileContainer extends React.Component {
 
   componentWillMount() {
     try {
+      console.log('timmy my love');
       axios
         .post(`${nodeApiServerUrl}/api/getuserdetail`, {
           userId: USERDETAIL._id,
         })
-        .then(({ data: { user }, status, statusText }) => {
+        .then((data) => {
           if (status === 200 && statusText === 'OK') {
-            console.log(user);
-            Object.entries(user).forEach(([key, value]) => {
+            console.log('data is: ', data);
+            console.log(" user ", data.user);
+            Object.entries(data.user).forEach(([key, value]) => {
               const newValue =
                 key === 'dob' ? moment(value).format('YYYY-MM-DD') : value;
               this.setState({ [key]: newValue });
@@ -151,6 +153,7 @@ export class EditProfileContainer extends React.Component {
     } = this.state;
     const avator = gender === 'Male' ? MaleAvator : femaleAvator;
     const newImage = image || avator;
+    console.log('image is: ', image);
     return (
       <div className="container">
         <Helmet>

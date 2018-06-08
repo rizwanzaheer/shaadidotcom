@@ -99,7 +99,6 @@ export class HomePage extends React.PureComponent {
                     >
                       <div className="new-match-container">
                         <h5>My Matches</h5>
-
                         {/* list of all user present in Db */}
                         {/* Single user call profilecompactive */}
                         {users.map((value) => (
@@ -117,6 +116,7 @@ export class HomePage extends React.PureComponent {
                       </div>
                     </div>
                     <div className="col-12 col-md-12 col-lg-3 col-sm-12">
+                    <FormattedMessage {...messages.header} />  
                       <RightSidePartnerSearchContainer
                         heading="Partner Search"
                         footer
